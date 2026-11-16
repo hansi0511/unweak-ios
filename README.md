@@ -6,7 +6,21 @@ Dieses Repository enthält die native iOS-App (Swift, SwiftUI). Die Android-App 
 
 ## Stand
 
-Noch kein Code. Die Vorgaben stehen in `docs/`:
+Schritt 1 von 7 (siehe `CLAUDE.md`): Xcode-Projekt, Design-Grundlagen und Navigation mit drei Tabs. Die Screens sind noch Platzhalter.
+
+Öffnen: `Unweak.xcodeproj` in Xcode 16 oder neuer. Mindestversion iOS 17. Die Bundle-ID `com.example.unweak` ist ein Platzhalter.
+
+| Ordner | Inhalt |
+|---|---|
+| `Unweak/App` | Einstieg und Tab-Navigation |
+| `Unweak/Design` | Farben, Schriften, Akzentfarben und Bausteine (`Components/`) |
+| `Unweak/Features` | Screens, je Bereich ein Ordner |
+| `Unweak/Resources` | Schriften mit Lizenzen, Assets, Texte (`Localizable.xcstrings`) |
+| `UnweakTests` | Unit-Tests |
+
+Neue Dateien in diesen Ordnern nimmt Xcode automatisch ins Projekt auf.
+
+Die Vorgaben stehen in `docs/`:
 
 | Datei | Inhalt |
 |---|---|
