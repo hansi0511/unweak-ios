@@ -1,7 +1,8 @@
 import SwiftUI
 
-/// Dashboard tab: the weekly target, the active goal and the next workout.
-struct DashboardScreen: View {
+/// "Me" tab: the weekly target, the skill the user works towards with the current
+/// stage, and (Pro) the next workout for that skill. Free: a teaser for the skills.
+struct MeScreen: View {
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
     @Environment(SubscriptionStore.self) private var subscription
@@ -23,7 +24,7 @@ struct DashboardScreen: View {
             header(week: week, streak: streak)
 
             if let goal = activeGoal {
-                GoalPanel(
+                SkillPanel(
                     progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
                     catalog: catalog
                 ) {
@@ -31,21 +32,22 @@ struct DashboardScreen: View {
                         store.markStageReached(of: goal)
                     }
                 }
+
+                // Pro only: the next workout comes from the skill being learned.
+                if let plan = stats.nextWorkout(in: catalog, access: subscription.access, preferring: goal.plans) {
+                    NavigationLink {
+                        TrainingScreen(plan: plan, catalog: catalog)
+                    } label: {
+                        NextWorkoutCard(plan: plan)
+                    }
+                    .buttonStyle(PressFeedbackStyle())
+                }
             } else {
-                // Free version: skills are Pro, so a teaser takes the place of the goal.
+                // Free version: skills are Pro, so a teaser takes the place of the skill.
                 Button {
                     isShowingPaywall = true
                 } label: {
                     SkillTeaser()
-                }
-                .buttonStyle(PressFeedbackStyle())
-            }
-
-            if let plan = stats.nextWorkout(in: catalog, access: subscription.access, preferring: activeGoal?.plans ?? []) {
-                NavigationLink {
-                    TrainingScreen(plan: plan, catalog: catalog)
-                } label: {
-                    NextWorkoutCard(plan: plan)
                 }
                 .buttonStyle(PressFeedbackStyle())
             }
@@ -123,8 +125,10 @@ private struct WeekTargetPanel: View {
     }
 }
 
-/// The active goal: name, state, animation, stage segments and "Stage reached".
-private struct GoalPanel: View {
+/// The skill the user works towards: name with "Change", the current stage ("Now")
+/// next to the skill itself ("Goal"), both animated, then the stage segments and
+/// "Stage reached".
+private struct SkillPanel: View {
     @Environment(\.accent) private var accent
     let progress: GoalProgress
     let catalog: Catalog
@@ -135,35 +139,42 @@ private struct GoalPanel: View {
     var body: some View {
         HUDPanel {
             VStack(alignment: .leading, spacing: 14) {
-                HStack(alignment: .center, spacing: 12) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        NavigationLink {
-                            GoalPickerScreen(catalog: catalog)
-                        } label: {
-                            HStack(spacing: 4) {
-                                Text("Next goal")
-                                Text(verbatim: "·")
-                                Text("Change")
-                            }
-                            .font(.monoBold)
-                            .tracking(1)
-                            .textCase(.uppercase)
-                            .foregroundStyle(accent.color)
-                            .frame(minHeight: Theme.Layout.minTouchTarget)
-                            .contentShape(Rectangle())
+                VStack(alignment: .leading, spacing: 4) {
+                    NavigationLink {
+                        GoalPickerScreen(catalog: catalog)
+                    } label: {
+                        HStack(spacing: 4) {
+                            Text("Your skill")
+                            Text(verbatim: "·")
+                            Text("Change")
                         }
-                        .buttonStyle(PressFeedbackStyle())
-
-                        Text(catalog: goal.nameKey)
-                            .font(.metric)
-                            .foregroundStyle(Theme.text)
-                        stateText
-                            .font(.text(15))
-                            .foregroundStyle(Theme.textSoft)
+                        .font(.monoBold)
+                        .tracking(1)
+                        .textCase(.uppercase)
+                        .foregroundStyle(accent.color)
+                        .frame(minHeight: Theme.Layout.minTouchTarget)
+                        .contentShape(Rectangle())
                     }
-                    Spacer(minLength: 0)
-                    StickyManView(catalog.animation(for: goal))
-                        .frame(width: 120, height: 120)
+                    .buttonStyle(PressFeedbackStyle())
+
+                    Text(catalog: goal.nameKey)
+                        .font(.metric)
+                        .foregroundStyle(Theme.text)
+                        .accessibilityAddTraits(.isHeader)
+                }
+
+                HStack(alignment: .top, spacing: 8) {
+                    column(label: "Now", animation: catalog.currentAnimation(for: progress)) {
+                        nowText
+                    }
+                    Image(systemName: "arrow.right")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundStyle(Theme.textMuted)
+                        .padding(.top, 50)
+                        .accessibilityHidden(true)
+                    column(label: "Goal", animation: catalog.animation(for: goal)) {
+                        goalText
+                    }
                 }
 
                 SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, label: "Goal progress")
@@ -186,24 +197,56 @@ private struct GoalPanel: View {
         }
     }
 
-    private var stateText: Text {
+    /// Animation with a small label above and a caption below.
+    private func column(label: LocalizedStringKey, animation: StickyAnimation, @ViewBuilder caption: () -> some View) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            MonoLabel(label)
+            StickyManView(animation)
+                .frame(height: 110)
+                .frame(maxWidth: .infinity)
+            caption()
+                .font(.text(13))
+                .foregroundStyle(Theme.textSoft)
+                .multilineTextAlignment(.leading)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
+    }
+
+    /// The stage worked on, or the best time.
+    private var nowText: Text {
         switch goal.kind {
         case .stages:
-            if let key = progress.nextStageKey {
-                return Text("Next stage: \(Text(catalog: key))")
+            if let index = progress.currentStageIndex, goal.stageKeys.indices.contains(index) {
+                return Text(catalog: goal.stageKeys[index])
             }
-            return Text("All stages reached")
-        case .time(let target):
+            return Text(catalog: goal.nameKey)
+        case .time:
             if let best = progress.bestSeconds {
-                return Text("Best time \(ValueText.seconds(best)) of \(ValueText.seconds(target))")
+                return Text("Best time \(ValueText.seconds(best))")
             }
-            return Text("Target \(ValueText.seconds(target)) · no time yet")
+            return Text("No time yet")
+        }
+    }
+
+    /// The final stage, or the target time.
+    private var goalText: Text {
+        switch goal.kind {
+        case .stages:
+            if let last = goal.stageKeys.last {
+                return Text(catalog: last)
+            }
+            return Text(catalog: goal.nameKey)
+        case .time(let target):
+            return Text("Target \(ValueText.seconds(target))")
         }
     }
 
     private var progressLine: Text {
         switch goal.kind {
         case .stages(let count):
+            if progress.isComplete { return Text("All stages reached") }
             let remaining = max(0, count - progress.reachedStages)
             return Text("Stage \(progress.reachedStages) / \(count) · \(remaining) to go")
         case .time:
@@ -273,14 +316,23 @@ private struct NextWorkoutCard: View {
 
 #Preview {
     NavigationStack {
-        DashboardScreen()
+        MeScreen()
     }
+    .previewEnvironment()
+}
+
+#Preview("Pro") {
+    NavigationStack {
+        MeScreen()
+    }
+    // Set before previewEnvironment(): the innermost value wins.
+    .environment(SubscriptionStore.preview(isPro: true))
     .previewEnvironment()
 }
 
 #Preview("German") {
     NavigationStack {
-        DashboardScreen()
+        MeScreen()
     }
     .previewEnvironment()
     .environment(\.locale, Locale(identifier: "de"))

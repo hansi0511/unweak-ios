@@ -250,7 +250,7 @@ struct SkillScreen: View {
             Card {
                 HStack(spacing: 10) {
                     Badge(kind: .selected)
-                    Text("This is your current goal on the dashboard.")
+                    Text("This is your current goal in the Me tab.")
                         .font(.text(15))
                         .foregroundStyle(Theme.textSoft)
                 }

@@ -239,6 +239,25 @@ struct TuckFrontLeverTests {
         #expect(tuck.head == straight.head)
     }
 
+    @Test func advancedTuckHasAFlatBackAndKneesAboveTheHips() {
+        let figure = StickyAnimation.advancedTuckFrontLever.figure(at: FrontLeverAnimation.holdProgress)
+        let shoulder = FrontLeverAnimation.shoulder
+        let torso = figure.limbs[2]
+        let thigh = figure.limbs[3]
+        // Hips at shoulder height and a full torso length away; thighs point up.
+        #expect(isClose(torso.to.y, shoulder.y, tolerance: 0.5))
+        #expect(isClose(torso.to.x - shoulder.x, FrontLeverAnimation.hip.y - shoulder.y, tolerance: 0.5))
+        #expect(thigh.to.y < shoulder.y - 15)
+    }
+
+    @Test func oneLegAndStraddleHaveTwoLegs() {
+        let oneLeg = StickyAnimation.oneLegFrontLever.figure(at: FrontLeverAnimation.holdProgress)
+        let straddle = StickyAnimation.straddleFrontLever.figure(at: FrontLeverAnimation.holdProgress)
+        let full = StickyAnimation.frontLever.figure(at: FrontLeverAnimation.holdProgress)
+        #expect(oneLeg.limbs.count == full.limbs.count + 2)
+        #expect(straddle.limbs.count == full.limbs.count + 1)
+    }
+
     @Test func skillShowsTheFullLeverWhileTheExerciseShowsTheTuck() throws {
         let catalog = Catalog.main
         let skill = try #require(catalog.goals.first { $0.id == "frontLever" })

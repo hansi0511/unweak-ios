@@ -553,7 +553,14 @@
       ],
       "isFree": false,
       "animation": "frontLever",
-      "stageCount": 5
+      "stageCount": 5,
+      "stageAnimations": [
+        "tuckFrontLever",
+        "advancedTuckFrontLever",
+        "oneLegFrontLever",
+        "straddleFrontLever",
+        "frontLever"
+      ]
     },
     {
       "id": "plank5Min",
@@ -576,7 +583,15 @@
         "handstandSchool"
       ],
       "isFree": false,
-      "stageCount": 5
+      "animation": "wallHandstandPushUp",
+      "stageCount": 5,
+      "stageAnimations": [
+        "pikePushUp",
+        "elevatedPikePushUp",
+        "wallHandstand",
+        "halfWallHandstandPushUp",
+        "wallHandstandPushUp"
+      ]
     },
     {
       "id": "lSit30",
@@ -598,7 +613,14 @@
         "legDayPlus"
       ],
       "isFree": false,
-      "stageCount": 5
+      "stageCount": 5,
+      "stageAnimations": [
+        "squat",
+        "lunge",
+        "boxPistol",
+        "assistedPistol",
+        "pistolSquat"
+      ]
     },
     {
       "id": "muscleUp",
@@ -611,7 +633,14 @@
         "muscleUpPath"
       ],
       "isFree": false,
-      "stageCount": 5
+      "stageCount": 5,
+      "stageAnimations": [
+        "pullUp",
+        "pullUp",
+        "dip",
+        "negativeMuscleUp",
+        "muscleUp"
+      ]
     }
   ],
   "achievements": [

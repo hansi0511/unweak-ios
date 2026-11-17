@@ -39,7 +39,7 @@ struct ReminderSchedule: Equatable, Sendable {
 }
 
 /// The reminder settings, stored in `UserDefaults`. The number of chosen weekdays is
-/// also the weekly training target on the dashboard.
+/// also the weekly training target in the Me tab.
 @MainActor
 @Observable
 final class ReminderSettings {

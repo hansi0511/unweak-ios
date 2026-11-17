@@ -1,15 +1,16 @@
 # Screens
 
-13 Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Workouts, Tagebuch. Alle anderen Screens öffnen sich darüber und haben oben links einen Zurück-Knopf.
+13 Screens in Version 1. Die untere Navigation hat drei Tabs: Ich, Workouts, Tagebuch. Alle anderen Screens öffnen sich darüber und haben oben links einen Zurück-Knopf.
 
 ## Navigation
 
 | Von | Auslöser | Nach |
 |---|---|---|
-| Anmeldung | Mit Apple oder Google anmelden | Dashboard |
-| Dashboard | „Nächstes Ziel · Ändern“ | Ziel wählen |
-| Dashboard | Karte „Nächstes Workout“ | Training läuft |
-| Dashboard | Regler-Symbol oben rechts | Einstellungen |
+| Anmeldung | Mit Apple oder Google anmelden | Ich |
+| Ich | „Dein Skill · Ändern“ | Ziel wählen |
+| Ich | Karte „Nächstes Workout“ (Pro) | Training läuft |
+| Ich | Regler-Symbol oben rechts | Einstellungen |
+| Ich (Gratis) | Hinweis „Erreiche deinen ersten Skill“ | Abo |
 | Workouts | Umschalter „Skills“ / „Workouts“ | anderer Bereich |
 | Workouts (Skills) | Skill-Karte | Skill |
 | Skill | Gratis-Workout | Training läuft |
@@ -21,15 +22,16 @@
 | Training läuft | „Training beenden und speichern“ | Tagebuch |
 | Tagebuch | Plus oder Eintrag antippen | Tagebucheintrag |
 | Einstellungen | „Abo ansehen“ | Abo |
-| Tagebucheintrag, Dashboard, Skill | Teilen-Symbol | Teilen |
+| Tagebucheintrag, Ich, Skill | Teilen-Symbol | Teilen |
 | Tagebuch (Erfolge) | Erreichter Erfolg | Teilen |
 | Einstellungen | „Abmelden“ | Anmeldung |
 
-## 1 Dashboard (Tab)
+## 1 Ich (Tab)
 
 - Kopf: Label „Diese Woche“, Serie in Wochen, Teilen- und Regler-Symbol. Überschrift „3 / 4 Trainings“. Darunter ein Segment pro Training des Wochenziels (geschafft in Akzentfarbe) und der Hinweis „Noch 1 bis zum Wochenziel“ bzw. „Wochenziel erreicht“ in Akzentfarbe.
-- Ziel-Panel (nur mit Pro; in der Gratis-Version an seiner Stelle ein Hinweis „Erreiche deinen ersten Skill“ mit Marke „Abo“, der zur Abo-Seite führt) mit Raster-Hintergrund und Eckmarkierungen: Link „Nächstes Ziel · Ändern“, Name des Ziels, aktueller Stand, rechts Sticky-Man-Animation des Ziels. Darunter fünf Segmente für die Stufe und „Stufe 2 / 5 · Noch 3 Stufen“.
-- Karte „Nächstes Workout“ in Akzentfarbe mit Name, Dauer und Start-Symbol.
+- Skill-Panel (nur mit Pro) mit Raster-Hintergrund und Eckmarkierungen: Link „Dein Skill · Ändern“, Name des Skills. Darunter zwei Animationen nebeneinander mit Pfeil dazwischen: links „Jetzt“ mit der Animation der Stufe, an der der Nutzer gerade arbeitet (die nächste noch nicht erreichte, nach der letzten die letzte), und ihrem Namen; rechts „Ziel“ mit der Animation des Skills und dem Namen der letzten Stufe. Bei Zeit-Skills links die Bestzeit, rechts die Zielzeit, beide mit der Animation der Übung. Darunter fünf Segmente, „Stufe 2 / 5 · Noch 3 Stufen“ und der gestrichelte Knopf „Stufe erreicht“.
+- Karte „Nächstes Workout“ in Akzentfarbe mit Name, Dauer und Start-Symbol: nur mit Pro, aus den Workouts des aktiven Skills.
+- Gratis-Version: statt Skill-Panel und nächstem Workout nur der Hinweis „Erreiche deinen ersten Skill“ mit Marke „Abo“, der zur Abo-Seite führt.
 
 ## 2 Workouts (Tab)
 
@@ -117,7 +119,7 @@
 
 ## 13 Teilen
 
-- Öffnet sich als Blatt aus dem Tagebucheintrag (Teilen-Symbol im Kopf: Workout; im Rekord-Banner: Rekord), dem Dashboard (Teilen-Symbol im Kopf: Woche und Serie), dem Tagebuch (Bereich „Erfolge“: Tipp auf einen erreichten Erfolg) und der Skill-Seite (Teilen-Symbol beim Fortschritt).
+- Öffnet sich als Blatt aus dem Tagebucheintrag (Teilen-Symbol im Kopf: Workout; im Rekord-Banner: Rekord), dem Tab „Ich“ (Teilen-Symbol im Kopf: Woche und Serie), dem Tagebuch (Bereich „Erfolge“: Tipp auf einen erreichten Erfolg) und der Skill-Seite (Teilen-Symbol beim Fortschritt).
 - Schließen-Knopf, Überschrift „Teilen“, Auswahl „Video“ (Standard) oder „Bild“ und „Story“ (9:16, Standard) oder „Post“ (4:5).
 - Vorschau (bei Video mit bewegtem Sticky Man; mit „Bewegung reduzieren“ steht er still): Raster-Hintergrund mit Eckmarkierungen in Akzentfarbe, „UNWEAK“ und Untertitel, Sticky Man groß in der Schlüsselpose, Art („Workout geschafft“, „Neuer Rekord“, „Erfolg freigeschaltet“, „Serie“, „Skill-Fortschritt“), Überschrift, Kennzahlen oder Segmente, unten Datum und Hashtags.
 - Hauptknopf „Video teilen“ bzw. „Bild teilen“ öffnet das iOS-Teilen-Menü (1080 px breit, Video als MP4 mit 30 Bildern pro Sekunde, mindestens 6 Sekunden, ohne Ton; dazu ein kurzer Text mit Hashtags). Während das Video entsteht, zeigt eine Segment-Leiste den Fortschritt. Hinweis, dass dort X, Facebook oder Instagram gewählt wird.

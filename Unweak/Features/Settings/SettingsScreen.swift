@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Settings, opened from the dashboard: account and subscription, training reminder,
+/// Settings, opened from the Me tab: account and subscription, training reminder,
 /// accent color, language, legal and account actions.
 struct SettingsScreen: View {
     @Environment(\.locale) private var locale

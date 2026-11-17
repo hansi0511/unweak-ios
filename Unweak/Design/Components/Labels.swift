@@ -105,7 +105,7 @@ extension ScreenHeader where Trailing == EmptyView {
 #Preview("All accents") {
     AccentPreview { _ in
         VStack(alignment: .leading, spacing: 12) {
-            ScreenHeader(label: MonoLabel("This week"), title: "Dashboard")
+            ScreenHeader(label: MonoLabel("This week"), title: "Me")
             HStack {
                 Badge(kind: .free)
                 Badge(kind: .subscription)
@@ -117,7 +117,7 @@ extension ScreenHeader where Trailing == EmptyView {
 
 #Preview("German") {
     VStack(alignment: .leading, spacing: 12) {
-        ScreenHeader(label: MonoLabel("This week"), title: "Dashboard")
+        ScreenHeader(label: MonoLabel("This week"), title: "Me")
         HStack {
             Badge(kind: .free)
             Badge(kind: .subscription)

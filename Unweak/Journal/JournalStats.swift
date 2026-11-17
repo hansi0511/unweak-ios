@@ -12,7 +12,7 @@ enum WeeklyTarget {
     }
 }
 
-/// One day bar of the dashboard week.
+/// One day of the training week (shown on the streak share card).
 struct WeekDay: Equatable {
     let date: Date
     let trained: Bool
@@ -72,6 +72,13 @@ struct GoalProgress: Equatable {
         case .stages(let count): reachedStages >= count
         case .time(let target): (bestSeconds ?? 0) >= target
         }
+    }
+
+    /// Index of the stage the user is at: the next one to reach, the last one once all
+    /// are reached; `nil` for time goals.
+    var currentStageIndex: Int? {
+        guard case .stages(let count) = goal.kind, count > 0 else { return nil }
+        return min(max(reachedStages, 0), count - 1)
     }
 
     /// Key of the stage that is worked on next, `nil` once all are reached or for time goals.

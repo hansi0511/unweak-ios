@@ -120,3 +120,48 @@ trans = mu((116, 86), (95, 122), (70, 100))
 supp = mu((102, 57.5), (97, 99.2), (70, 95))
 ANIMS['muscleUp'] = dict(canvas=(200,240), dur=4.5, end=0.75, app=[((60,100),(140,100))],
     keys=[(0,hang),(0.1,hang),(0.3,pull),(0.4,front),(0.5,trans),(0.66,supp),(0.82,supp),(0.9,trans),(0.95,front),(1,hang)])
+
+# ===== Skill stages =====
+
+# --- elevated pike push-up: feet on a box, hips higher, more weight on the hands
+ebox = 132; efoot = (72, ebox); ehand = (142, FLOOR)
+def epike(sh, bend, neck):
+    hip = circ(efoot, THIGH + SHIN, sh, TORSO, -1)
+    return P(hip, ang(hip, sh), ang(hip, sh)+neck, [('p', ehand, bend), ('p', (ehand[0]+2, ehand[1]), bend)], [('p', efoot, 1), ('p', (efoot[0]+2, efoot[1]), 1)])
+up, down = epike((133, 118), -1, -5), epike((137, 138), -1, -12)
+ebox_lines = [((52, ebox), (88, ebox)), ((52, ebox), (52, FLOOR+1.5)), ((88, ebox), (88, FLOOR+1.5))]
+ANIMS['elevatedPikePushUp'] = dict(canvas=(200,170), dur=3, end=0.0, app=ebox_lines + [floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
+
+# --- handstand against the wall (back to the wall, heels on it)
+WALL = 122
+wall = ((WALL, 12), (WALL, FLOOR+1.5))
+whand = (110, FLOOR)
+def wstand(sh, neck=90, bend=1):
+    hip = (sh[0]+5, sh[1]-42+0.3)
+    hip = along(sh, ang(sh, hip), TORSO)
+    dx = WALL-4-hip[0]; feet = (WALL-4, hip[1]-math.sqrt((THIGH+SHIN-0.3)**2 - dx*dx))
+    return P(hip, ang(hip, sh), neck, [('p', whand, bend), ('p', (whand[0]+2, whand[1]), bend)], [('p', feet, -1), ('p', (feet[0], feet[1]+2), -1)])
+rest, breathe = wstand((106, 114.5)), wstand((106, 113.5))
+ANIMS['wallHandstand'] = dict(canvas=(200,170), dur=4, end=0.0, app=[wall, floor()], keys=[(0,rest),(0.5,breathe),(1,rest)])
+
+# --- handstand push-up against the wall: half and full range
+top, half, full = wstand((106, 114.5)), wstand((103, 124), 95), wstand((99, 133), 100)
+ANIMS['halfWallHandstandPushUp'] = dict(canvas=(200,170), dur=3, end=0.0, app=[wall, floor()], keys=[(0,top),(0.1,top),(0.45,half),(0.55,half),(0.9,top),(1,top)])
+ANIMS['wallHandstandPushUp'] = dict(canvas=(200,170), dur=3.5, end=0.0, app=[wall, floor()], keys=[(0,top),(0.1,top),(0.45,full),(0.55,full),(0.9,top),(1,top)])
+
+# --- negative muscle-up: start in support, lower slowly to the hang, climb back quickly
+ANIMS['negativeMuscleUp'] = dict(canvas=(200,240), dur=5, end=0.0, app=[((60,100),(140,100))],
+    keys=[(0,supp),(0.12,supp),(0.3,trans),(0.45,front),(0.65,pull),(0.82,hang),(0.86,hang),(0.91,pull),(0.94,front),(0.97,trans),(1,supp)])
+
+# --- box pistol: sit back onto a box on one leg and stand up again
+bbox = 126
+bbox_lines = [((50, bbox), (84, bbox)), ((50, bbox), (50, FLOOR+1.5)), ((84, bbox), (84, FLOOR+1.5))]
+up, down = pistol((99, 110), -88, (70, 92), 10), pistol((76, bbox-3), -68, (-8, -6), -2)
+ANIMS['boxPistol'] = dict(canvas=(200,170), dur=3.5, end=0.0, app=bbox_lines + [floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
+
+# --- assisted pistol: hands on a pole in front for balance
+pole = 140
+def apistol(hip, torso, free, grip):
+    return P(hip, torso, torso, [('p', (pole-1, grip), 1), ('p', (pole-1, grip+3), 1)], [('p', pf, -1), ('a', free[0], free[1])])
+up, down = apistol((99, 110), -88, (70, 92), 84), apistol((82, 136), -62, (-6, -4), 84)
+ANIMS['assistedPistol'] = dict(canvas=(200,170), dur=3.5, end=0.0, app=[((pole, 40), (pole, FLOOR+1.5)), floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])

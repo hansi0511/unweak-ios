@@ -2,7 +2,7 @@ import SwiftUI
 
 /// The three tabs of the bottom navigation.
 enum AppTab: CaseIterable, Identifiable {
-    case dashboard
+    case me
     case workouts
     case journal
 
@@ -10,7 +10,7 @@ enum AppTab: CaseIterable, Identifiable {
 
     var title: LocalizedStringKey {
         switch self {
-        case .dashboard: "Dashboard"
+        case .me: "Me"
         case .workouts: "Workouts"
         case .journal: "Journal"
         }
@@ -18,7 +18,7 @@ enum AppTab: CaseIterable, Identifiable {
 
     var systemImage: String {
         switch self {
-        case .dashboard: "square.grid.2x2"
+        case .me: "person"
         case .workouts: "figure.strengthtraining.functional"
         case .journal: "list.bullet.rectangle"
         }
@@ -72,7 +72,7 @@ struct RootView: View {
     @ViewBuilder
     private func stack(for tab: AppTab, journalPath: Binding<[JournalRoute]>) -> some View {
         switch tab {
-        case .dashboard: NavigationStack { DashboardScreen() }
+        case .me: NavigationStack { MeScreen() }
         case .workouts: NavigationStack { WorkoutsScreen() }
         case .journal: NavigationStack(path: journalPath) { JournalScreen() }
         }

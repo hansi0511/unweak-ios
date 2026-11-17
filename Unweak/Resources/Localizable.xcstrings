@@ -321,6 +321,16 @@
         }
       }
     },
+    "Advanced tuck front lever animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Advanced Tuck Front Lever"
+          }
+        }
+      }
+    },
     "All" : {
       "localizations" : {
         "de" : {
@@ -357,6 +367,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darstellung"
+          }
+        }
+      }
+    },
+    "Assisted pistol animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Pistol mit Hilfe"
           }
         }
       }
@@ -401,12 +421,32 @@
         }
       }
     },
+    "Best time %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestzeit %@"
+          }
+        }
+      }
+    },
     "Best time %@ of %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bestzeit %1$@ von %2$@"
+          }
+        }
+      }
+    },
+    "Box pistol animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Pistol auf Kasten"
           }
         }
       }
@@ -591,16 +631,6 @@
         }
       }
     },
-    "Dashboard" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dashboard"
-          }
-        }
-      }
-    },
     "Delete" : {
       "localizations" : {
         "de" : {
@@ -731,6 +761,16 @@
         }
       }
     },
+    "Elevated pike push-up animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation erhöhter Pike-Liegestütz"
+          }
+        }
+      }
+    },
     "End and save workout" : {
       "localizations" : {
         "de" : {
@@ -851,6 +891,16 @@
         }
       }
     },
+    "Goal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziel"
+          }
+        }
+      }
+    },
     "Goal progress" : {
       "localizations" : {
         "de" : {
@@ -867,6 +917,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ziel erreicht"
+          }
+        }
+      }
+    },
+    "Half wall handstand push-up animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation halber Handstand-Liegestütz an der Wand"
           }
         }
       }
@@ -1141,6 +1201,16 @@
         }
       }
     },
+    "Me" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ich"
+          }
+        }
+      }
+    },
     "Monthly" : {
       "localizations" : {
         "de" : {
@@ -1197,6 +1267,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name"
+          }
+        }
+      }
+    },
+    "Negative muscle-up animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation negativer Muscle-up"
           }
         }
       }
@@ -1261,16 +1341,6 @@
         }
       }
     },
-    "Next stage: %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nächste Stufe: %@"
-          }
-        }
-      }
-    },
     "Next workout" : {
       "localizations" : {
         "de" : {
@@ -1297,6 +1367,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keine Übung gefunden."
+          }
+        }
+      }
+    },
+    "No time yet" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch keine Zeit"
           }
         }
       }
@@ -1351,12 +1431,32 @@
         }
       }
     },
+    "Now" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jetzt"
+          }
+        }
+      }
+    },
     "One goal at a time" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ein Ziel zur Zeit"
+          }
+        }
+      }
+    },
+    "One-leg front lever animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Front Lever mit einem Bein"
           }
         }
       }
@@ -2031,6 +2131,16 @@
         }
       }
     },
+    "Straddle front lever animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Straddle Front Lever"
+          }
+        }
+      }
+    },
     "Streak" : {
       "localizations" : {
         "de" : {
@@ -2097,16 +2207,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ziel %@"
-          }
-        }
-      }
-    },
-    "Target %@ · no time yet" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ziel %@ · noch keine Zeit"
           }
         }
       }
@@ -2201,12 +2301,12 @@
         }
       }
     },
-    "This is your current goal on the dashboard." : {
+    "This is your current goal in the Me tab." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das ist dein aktuelles Ziel im Dashboard."
+            "value" : "Das ist dein aktuelles Ziel im Tab „Ich“."
           }
         }
       }
@@ -2338,6 +2438,26 @@
         }
       }
     },
+    "Wall handstand animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Handstand an der Wand"
+          }
+        }
+      }
+    },
+    "Wall handstand push-up animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Handstand-Liegestütz an der Wand"
+          }
+        }
+      }
+    },
     "Weekly target" : {
       "localizations" : {
         "de" : {
@@ -2434,6 +2554,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deine Bestzeit kommt aus dem Tagebuch."
+          }
+        }
+      }
+    },
+    "Your skill" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Skill"
           }
         }
       }

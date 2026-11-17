@@ -150,24 +150,26 @@ plan("frontLeverBuildUp", ("Front lever build-up", "Front-Lever-Aufbau"), "skill
 plan("muscleUpPath", ("Muscle-up path", "Muscle-up-Weg"), "skill", "advanced", "muscleUp", False,
      [("pullUp", 4, 6, None, 120), ("dip", 4, 8, None, 90), ("negativePullUp", 3, 5, None, 90), ("muscleUp", 5, 2, None, 150)])
 
-# Skills (shown as goals on the dashboard, Pro only): id, name, pose, linked exercise (animation and,
+# Skills (shown as goals in the Me tab, Pro only): id, name, pose, linked exercise (animation and,
 # for time goals, best time), ordered workouts from easy to hard, free,
 # stages (skill with stages) or targetSeconds (time goal)
 G = []
 def goal(id, name, pose, exercise, plans, free, stages=None, seconds=None, animation=None):
     # animation: shown for the skill instead of the linked exercise's animation (optional)
+    # stages: (English, German, animation of the stage)
     G.append(dict(id=id, name=name, pose=pose, exercise=exercise, plans=plans, isFree=free, stages=stages, targetSeconds=seconds, animation=animation))
 goal("frontLever", ("Front lever", "Front Lever"), "frontLever", "tuckFrontLever", ["pullDay", "pullStrength", "frontLeverBuildUp"], False,
-     stages=[("Tuck", "Tuck"), ("Advanced tuck", "Advanced Tuck"), ("One leg", "Ein Bein"), ("Straddle", "Straddle"), ("Full front lever", "Voller Front Lever")],
+     stages=[("Tuck", "Tuck", "tuckFrontLever"), ("Advanced tuck", "Advanced Tuck", "advancedTuckFrontLever"), ("One leg", "Ein Bein", "oneLegFrontLever"), ("Straddle", "Straddle", "straddleFrontLever"), ("Full front lever", "Voller Front Lever", "frontLever")],
      animation="frontLever")
 goal("plank5Min", ("Plank 5 min", "Plank 5 min"), "plank", "plank", ["corePlank", "coreStrength"], False, seconds=300)
 goal("handstandPushUp", ("Handstand push-up", "Handstand-Liegestütz"), "handstand", "pikePushUp", ["pushBasics", "pushPower", "handstandSchool"], False,
-     stages=[("Pike push-up", "Pike-Liegestütz"), ("Elevated pike push-up", "Erhöhter Pike-Liegestütz"), ("Wall handstand hold", "Handstand an der Wand halten"), ("Half wall handstand push-up", "Halber Handstand-Liegestütz an der Wand"), ("Full wall handstand push-up", "Voller Handstand-Liegestütz an der Wand")])
+     stages=[("Pike push-up", "Pike-Liegestütz", "pikePushUp"), ("Elevated pike push-up", "Erhöhter Pike-Liegestütz", "elevatedPikePushUp"), ("Wall handstand hold", "Handstand an der Wand halten", "wallHandstand"), ("Half wall handstand push-up", "Halber Handstand-Liegestütz an der Wand", "halfWallHandstandPushUp"), ("Full wall handstand push-up", "Voller Handstand-Liegestütz an der Wand", "wallHandstandPushUp")],
+     animation="wallHandstandPushUp")
 goal("lSit30", ("L-sit 30 s", "L-Sit 30 s"), "lSit", "lSit", ["corePlank", "coreStrength"], False, seconds=30)
 goal("pistolSquat", ("Pistol squat", "Pistol Squat"), "pistolSquat", "pistolSquat", ["legsNoEquipment", "legDayPlus"], False,
-     stages=[("Deep squat", "Tiefe Kniebeuge"), ("Lunge", "Ausfallschritt"), ("Box pistol", "Pistol auf Kasten"), ("Assisted pistol", "Pistol mit Hilfe"), ("Full pistol squat", "Voller Pistol Squat")])
+     stages=[("Deep squat", "Tiefe Kniebeuge", "squat"), ("Lunge", "Ausfallschritt", "lunge"), ("Box pistol", "Pistol auf Kasten", "boxPistol"), ("Assisted pistol", "Pistol mit Hilfe", "assistedPistol"), ("Full pistol squat", "Voller Pistol Squat", "pistolSquat")])
 goal("muscleUp", ("Muscle-up", "Muscle-up"), "muscleUp", "muscleUp", ["pullDay", "pullStrength", "pushPower", "muscleUpPath"], False,
-     stages=[("10 pull-ups", "10 Klimmzüge"), ("Chest-to-bar pull-up", "Klimmzug bis zur Brust"), ("10 dips", "10 Dips"), ("Negative muscle-up", "Negativer Muscle-up"), ("Muscle-up", "Muscle-up")])
+     stages=[("10 pull-ups", "10 Klimmzüge", "pullUp"), ("Chest-to-bar pull-up", "Klimmzug bis zur Brust", "pullUp"), ("10 dips", "10 Dips", "dip"), ("Negative muscle-up", "Negativer Muscle-up", "negativeMuscleUp"), ("Muscle-up", "Muscle-up", "muscleUp")])
 
 # Achievements (sample list of 12, see docs/SPEC.md "Inhalte"), computed from the journal.
 # kind: workouts (number of journal entries), reps / seconds (best value of one exercise),

@@ -61,7 +61,7 @@ Strichfigur aus Linien mit runden Enden. Er wird aus Gelenkpunkten gezeichnet, d
 - **Farbe:** Akzentfarbe, mit Leuchten. In Listen darf die Pose für nicht hervorgehobene Zeilen in Textfarbe stehen.
 - **Bewegung reduzieren:** Animation aus, Figur steht in der Endpose.
 
-### Animation Front Lever (Dashboard, Anmeldung)
+### Animation Front Lever (Tab „Ich“, Anmeldung)
 
 Zeichenfläche 160 × 160. Stange bei y = 24. Hände bei (55, 24) und (65, 24), Schulter bei (60, 62). Kopf (60, 47), Rumpf von der Schulter bis (60, 106), Beine bis (60, 150).
 
