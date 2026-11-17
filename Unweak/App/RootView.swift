@@ -29,13 +29,14 @@ enum AppTab: CaseIterable, Identifiable {
 /// navigation stack alive while another tab is shown.
 struct RootView: View {
     @AppStorage(Accent.storageKey) private var accent: Accent = .default
-    @State private var selection: AppTab = .dashboard
+    @State private var navigation = AppNavigation()
 
     var body: some View {
+        @Bindable var navigation = navigation
         VStack(spacing: 0) {
             ZStack {
                 ForEach(AppTab.allCases) { tab in
-                    let isActive = tab == selection
+                    let isActive = tab == navigation.selectedTab
                     NavigationStack {
                         content(for: tab)
                     }
@@ -44,9 +45,12 @@ struct RootView: View {
                     .accessibilityHidden(!isActive)
                 }
             }
-            HUDTabBar(selection: $selection)
+            if !navigation.isTabBarHidden {
+                HUDTabBar(selection: $navigation.selectedTab)
+            }
         }
         .background(Theme.background.ignoresSafeArea())
+        .environment(navigation)
         .environment(\.accent, accent)
         .tint(accent.color)
         .preferredColorScheme(.dark)

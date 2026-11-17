@@ -68,7 +68,7 @@ struct StickyFigureCanvas: View {
             for segment in figure.apparatus {
                 context.stroke(
                     segment.path,
-                    with: .color(Theme.text),
+                    with: .color(Theme.text.opacity(segment.opacity)),
                     style: StrokeStyle(lineWidth: segment.width, lineCap: .round)
                 )
             }
@@ -86,7 +86,7 @@ struct StickyFigureCanvas: View {
                 for segment in figure.limbs {
                     layer.stroke(
                         segment.path,
-                        with: .color(color),
+                        with: .color(color.opacity(segment.opacity)),
                         style: StrokeStyle(lineWidth: segment.width, lineCap: .round, lineJoin: .round)
                     )
                 }
@@ -113,11 +113,26 @@ extension StickySegment {
     }
 }
 
-#Preview("Animations, all accents") {
+#Preview("All animations") {
+    ScrollView {
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+            ForEach(StickyAnimation.allCases, id: \.self) { animation in
+                VStack(spacing: 4) {
+                    HUDPanel(padding: 8) { StickyManView(animation).frame(height: 120) }
+                    MonoLabel(verbatim: animation.rawValue)
+                }
+            }
+        }
+        .padding(Theme.Layout.screenEdge)
+    }
+    .background(Theme.background)
+}
+
+#Preview("Accents") {
     AccentPreview { _ in
         HStack(spacing: 12) {
             HUDPanel(padding: 8) { StickyManView(.frontLever) }
-            HUDPanel(padding: 8) { StickyManView(.pullUp) }
+            HUDPanel(padding: 8) { StickyManView(.squat) }
         }
         .frame(height: 160)
     }
@@ -136,12 +151,13 @@ extension StickySegment {
 
 /// The poses shown when "Reduce Motion" is on.
 #Preview("End poses") {
-    HStack(spacing: 12) {
+    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 4), spacing: 8) {
         ForEach(StickyAnimation.allCases, id: \.self) { animation in
             StickyFigureCanvas(figure: animation.figure(at: animation.endPoseProgress))
+                .aspectRatio(animation.canvas.width / animation.canvas.height, contentMode: .fit)
         }
     }
-    .frame(height: 180)
     .padding(Theme.Layout.screenEdge)
+    .frame(maxHeight: .infinity)
     .background(Theme.background)
 }

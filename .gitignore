@@ -17,3 +17,6 @@ xcuserdata/
 *.xcconfig.local
 GoogleService-Info.plist
 .env
+
+# Python
+__pycache__/

@@ -1,0 +1,57 @@
+import SwiftUI
+
+/// Pushed screen for a feature that follows in a later step (e.g. creating a workout).
+struct ComingLaterScreen: View {
+    private let title: LocalizedStringKey
+
+    init(title: LocalizedStringKey) {
+        self.title = title
+    }
+
+    var body: some View {
+        ScreenContainer {
+            HStack {
+                BackButton()
+                Spacer()
+            }
+            Text(title)
+                .font(.screenTitle)
+                .foregroundStyle(Theme.text)
+                .accessibilityAddTraits(.isHeader)
+            PlaceholderNote()
+        }
+    }
+}
+
+/// Stand-in for the subscription page (step 7). Shown for subscription plans.
+struct SubscriptionPlaceholderSheet: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        ScreenContainer {
+            HStack {
+                IconButton(systemImage: "xmark", accessibilityLabel: "Close") {
+                    dismiss()
+                }
+                Spacer()
+                Badge(kind: .subscription)
+            }
+            Text("Unlock all plans")
+                .font(.screenTitle)
+                .foregroundStyle(Theme.text)
+                .accessibilityAddTraits(.isHeader)
+            Text("The five beginner plans stay free.")
+                .font(.text(15))
+                .foregroundStyle(Theme.textSoft)
+            StickyManView(.muscleUp)
+                .frame(height: 200)
+                .frame(maxWidth: .infinity)
+            PlaceholderNote()
+        }
+        .presentationBackground(Theme.background)
+    }
+}
+
+#Preview("Subscription") {
+    SubscriptionPlaceholderSheet()
+}
