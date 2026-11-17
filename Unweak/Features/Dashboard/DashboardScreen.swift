@@ -16,11 +16,18 @@ struct DashboardScreen: View {
             }
 
             HUDPanel {
-                VStack(alignment: .leading, spacing: 10) {
-                    MonoLabel("Next goal")
-                    Text("No goal yet")
-                        .font(.metric)
-                        .foregroundStyle(Theme.text)
+                VStack(alignment: .leading, spacing: 14) {
+                    HStack(alignment: .center, spacing: 12) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            MonoLabel("Next goal")
+                            Text("No goal yet")
+                                .font(.metric)
+                                .foregroundStyle(Theme.text)
+                        }
+                        Spacer(minLength: 0)
+                        StickyManView(.frontLever)
+                            .frame(width: 120, height: 120)
+                    }
                     SegmentedProgress(total: 5, filled: 0, label: "Stage")
                 }
             }
