@@ -209,10 +209,20 @@ struct Catalog: Codable, Sendable {
 
     /// Every text key the catalog uses.
     var textKeys: [String] {
-        exercises.flatMap { [$0.nameKey] + $0.stepKeys + $0.mistakeKeys }
-            + plans.map(\.nameKey)
-            + goals.flatMap { [$0.nameKey] + $0.stageKeys }
-            + achievements.map(\.labelKey)
+        // Built step by step: one long chain of `+` is too slow for the type checker.
+        var keys: [String] = []
+        for exercise in exercises {
+            keys.append(exercise.nameKey)
+            keys.append(contentsOf: exercise.stepKeys)
+            keys.append(contentsOf: exercise.mistakeKeys)
+        }
+        keys.append(contentsOf: plans.map(\.nameKey))
+        for goal in goals {
+            keys.append(goal.nameKey)
+            keys.append(contentsOf: goal.stageKeys)
+        }
+        keys.append(contentsOf: achievements.map(\.labelKey))
+        return keys
     }
 
     /// Broken references and inconsistent entries. Empty for valid data.
