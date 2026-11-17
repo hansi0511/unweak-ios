@@ -267,7 +267,7 @@ struct UserDataStoreTests {
         var first = entry(day(11, 2), results: [pullUps(5)])
         store.save(first)
         store.markStageReached(of: goal)
-        store.setActiveGoal(goal.id)
+        store.setLearning(true, goal, in: Catalog.main)
         first.note = "Strong day"
         first.rating = .hard
         store.save(first)
@@ -277,7 +277,7 @@ struct UserDataStoreTests {
         #expect(reloaded.entries.count == 1)
         #expect(reloaded.entries.first?.note == "Strong day")
         #expect(reloaded.reachedStages(of: goal) == 1)
-        #expect(reloaded.data.activeGoalID == "frontLever")
+        #expect(reloaded.data.activeGoalIDs == ["frontLever"])
         #expect(store.saveError == nil)
     }
 
@@ -303,6 +303,36 @@ struct UserDataStoreTests {
         #expect(store.reachedStages(of: skill) == 0)
         store.setReachedStages(9, of: skill)
         #expect(store.reachedStages(of: skill) == 5)
+    }
+
+    @Test func severalSkillsCanBeLearnedAtOnce() throws {
+        let catalog = Catalog.main
+        let store = UserDataStore(fileURL: nil)
+        let first = try #require(catalog.goals.first)
+        let muscleUp = try #require(catalog.goals.first { $0.id == "muscleUp" })
+        let plank = try #require(catalog.goals.first { $0.id == "plank5Min" })
+        // Before any choice the first skill counts as learned.
+        #expect(store.activeGoals(in: catalog).map(\.id) == [first.id])
+
+        store.setLearning(true, muscleUp, in: catalog)
+        store.setLearning(true, plank, in: catalog)
+        #expect(store.activeGoals(in: catalog).map(\.id) == [first.id, "muscleUp", "plank5Min"])
+        #expect(store.isLearning(muscleUp, in: catalog))
+
+        // Adding again does not duplicate; removing keeps the order of the rest.
+        store.setLearning(true, muscleUp, in: catalog)
+        store.setLearning(false, first, in: catalog)
+        #expect(store.activeGoalIDs(in: catalog) == ["muscleUp", "plank5Min"])
+
+        // Removing all leaves none, not the default.
+        store.setLearning(false, muscleUp, in: catalog)
+        store.setLearning(false, plank, in: catalog)
+        #expect(store.activeGoals(in: catalog).isEmpty)
+    }
+
+    @Test func unknownSkillIDsAreSkipped() {
+        let store = UserDataStore(fileURL: nil, initial: UserData(activeGoalIDs: ["gone", "muscleUp"]))
+        #expect(store.activeGoals(in: .main).map(\.id) == ["muscleUp"])
     }
 
     @Test func unreadableFileStartsEmpty() throws {

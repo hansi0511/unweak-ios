@@ -431,6 +431,16 @@
         }
       }
     },
+    "As many as you like" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So viele du willst"
+          }
+        }
+      }
+    },
     "Assisted pistol animation" : {
       "localizations" : {
         "de" : {
@@ -591,16 +601,6 @@
         }
       }
     },
-    "Change" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ändern"
-          }
-        }
-      }
-    },
     "Choose a skill and get the workouts that build it." : {
       "localizations" : {
         "de" : {
@@ -631,12 +631,12 @@
         }
       }
     },
-    "Choose goal" : {
+    "Choose skills" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ziel wählen"
+            "value" : "Skills wählen"
           }
         }
       }
@@ -947,6 +947,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Entspricht %@ pro Monat"
+          }
+        }
+      }
+    },
+    "Every skill you learn shows in the Me tab with its stage and workouts." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeder Skill, den du lernst, erscheint im Tab „Ich“ mit seiner Stufe und seinen Workouts."
           }
         }
       }
@@ -1381,6 +1391,16 @@
         }
       }
     },
+    "Learn this skill" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diesen Skill lernen"
+          }
+        }
+      }
+    },
     "Legal" : {
       "localizations" : {
         "de" : {
@@ -1807,16 +1827,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jetzt"
-          }
-        }
-      }
-    },
-    "One goal at a time" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ein Ziel zur Zeit"
           }
         }
       }
@@ -2261,16 +2271,6 @@
         }
       }
     },
-    "Set as goal" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Als Ziel setzen"
-          }
-        }
-      }
-    },
     "Sets" : {
       "localizations" : {
         "de" : {
@@ -2377,6 +2377,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zeigt Muskeln und Nutzen"
+          }
+        }
+      }
+    },
+    "Shows the skill with its stages" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeigt den Skill mit seinen Stufen"
           }
         }
       }
@@ -2517,6 +2527,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Training starten"
+          }
+        }
+      }
+    },
+    "Stop learning" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht mehr lernen"
           }
         }
       }
@@ -2717,16 +2737,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Die Abos sind gerade nicht verfügbar. Bitte versuch es später noch einmal."
-          }
-        }
-      }
-    },
-    "This is your current goal in the Me tab." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Das ist dein aktuelles Ziel im Tab „Ich“."
           }
         }
       }
@@ -2978,6 +2988,16 @@
         }
       }
     },
+    "You are learning this skill. It shows in the Me tab." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du lernst diesen Skill. Er erscheint im Tab „Ich“."
+          }
+        }
+      }
+    },
     "You will get a notification on %@ at %@." : {
       "localizations" : {
         "de" : {
@@ -3018,12 +3038,12 @@
         }
       }
     },
-    "Your skill" : {
+    "Your skills" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dein Skill"
+            "value" : "Deine Skills"
           }
         }
       }

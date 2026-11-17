@@ -23,7 +23,7 @@ struct MeScreen: View {
         let unlocks = AvatarUnlocks(stats: stats, catalog: catalog, weeklyTarget: target) {
             store.reachedStages(of: $0)
         }
-        let goal = activeGoal
+        let goals = activeGoals
 
         ScreenContainer {
             header(week: week, streak: streak)
@@ -33,24 +33,33 @@ struct MeScreen: View {
                 unlocks: unlocks,
                 week: week,
                 streak: streak,
-                // Pro: from the skill being learned. Free: from the free workouts.
-                nextPlan: stats.nextWorkout(in: catalog, access: subscription.access, preferring: goal?.plans ?? []),
+                // Pro: from the skills being learned. Free: from the free workouts.
+                nextPlan: stats.nextWorkout(in: catalog, access: subscription.access, preferring: goals.flatMap(\.plans)),
                 catalog: catalog
             )
 
-            if let goal {
-                SkillPanel(
-                    progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
-                    catalog: catalog
-                ) {
-                    withAnimation(.easeOut(duration: 0.2)) {
-                        store.markStageReached(of: goal)
+            if subscription.access.canUseSkills {
+                SkillsHeader(catalog: catalog)
+                if goals.isEmpty {
+                    NavigationLink {
+                        GoalPickerScreen(catalog: catalog)
+                    } label: {
+                        ChipLabel("Choose skills", systemImage: "plus", style: .dashed, expands: true)
+                    }
+                    .buttonStyle(PressFeedbackStyle())
+                }
+                ForEach(goals) { goal in
+                    SkillPanel(
+                        progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
+                        catalog: catalog
+                    ) {
+                        withAnimation(.easeOut(duration: 0.2)) {
+                            store.markStageReached(of: goal)
+                        }
                     }
                 }
-            }
-
-            if goal == nil {
-                // Free version: skills are Pro, so a teaser takes the place of the skill.
+            } else {
+                // Free version: skills are Pro, so a teaser takes the place of the skills.
                 Button {
                     isShowingPaywall = true
                 } label: {
@@ -67,11 +76,10 @@ struct MeScreen: View {
         }
     }
 
-    /// The active skill; none in the free version (skills are Pro).
-    private var activeGoal: Goal? {
-        guard subscription.access.canUseSkills else { return nil }
-        let id = store.data.activeGoalID
-        return catalog.goals.first { $0.id == id } ?? catalog.goals.first
+    /// The skills being learned; none in the free version (skills are Pro).
+    private var activeGoals: [Goal] {
+        guard subscription.access.canUseSkills else { return [] }
+        return store.activeGoals(in: catalog)
     }
 
     private func header(week: WeekSummary, streak: Int) -> some View {
@@ -193,7 +201,34 @@ private struct WeekRing: View {
     }
 }
 
-/// The skill the user works towards: name with "Change", the current stage ("Now")
+/// "Your skills" with a link to choose which skills to learn.
+private struct SkillsHeader: View {
+    @Environment(\.accent) private var accent
+    let catalog: Catalog
+
+    var body: some View {
+        HStack {
+            MonoLabel("Your skills")
+                .accessibilityAddTraits(.isHeader)
+            Spacer()
+            NavigationLink {
+                GoalPickerScreen(catalog: catalog)
+            } label: {
+                Text("Edit")
+                    .font(.monoBold)
+                    .tracking(1)
+                    .textCase(.uppercase)
+                    .foregroundStyle(accent.color)
+                    .frame(minWidth: Theme.Layout.minTouchTarget, minHeight: Theme.Layout.minTouchTarget)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(PressFeedbackStyle())
+            .accessibilityLabel(Text("Choose skills"))
+        }
+    }
+}
+
+/// One skill the user works towards: name and animations open the skill page; the current stage ("Now")
 /// next to the skill itself ("Goal"), both animated, then the stage segments and
 /// "Stage reached".
 private struct SkillPanel: View {
@@ -207,43 +242,41 @@ private struct SkillPanel: View {
     var body: some View {
         HUDPanel {
             VStack(alignment: .leading, spacing: 14) {
-                VStack(alignment: .leading, spacing: 4) {
-                    NavigationLink {
-                        GoalPickerScreen(catalog: catalog)
-                    } label: {
-                        HStack(spacing: 4) {
-                            Text("Your skill")
-                            Text(verbatim: "·")
-                            Text("Change")
+                // Name and animations open the skill's page with its description.
+                NavigationLink {
+                    SkillScreen(goal: goal, catalog: catalog)
+                } label: {
+                    VStack(alignment: .leading, spacing: 14) {
+                        HStack(spacing: 8) {
+                            Text(catalog: goal.nameKey)
+                                .font(.metric)
+                                .foregroundStyle(Theme.text)
+                                .multilineTextAlignment(.leading)
+                            Spacer(minLength: 0)
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundStyle(accent.color)
+                                .accessibilityHidden(true)
                         }
-                        .font(.monoBold)
-                        .tracking(1)
-                        .textCase(.uppercase)
-                        .foregroundStyle(accent.color)
                         .frame(minHeight: Theme.Layout.minTouchTarget)
-                        .contentShape(Rectangle())
+                        HStack(alignment: .top, spacing: 8) {
+                            column(label: "Now", animation: catalog.currentAnimation(for: progress)) {
+                                nowText
+                            }
+                            Image(systemName: "arrow.right")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundStyle(Theme.textMuted)
+                                .padding(.top, 50)
+                                .accessibilityHidden(true)
+                            column(label: "Goal", animation: catalog.animation(for: goal)) {
+                                goalText
+                            }
+                        }
                     }
-                    .buttonStyle(PressFeedbackStyle())
-
-                    Text(catalog: goal.nameKey)
-                        .font(.metric)
-                        .foregroundStyle(Theme.text)
-                        .accessibilityAddTraits(.isHeader)
+                    .contentShape(Rectangle())
                 }
-
-                HStack(alignment: .top, spacing: 8) {
-                    column(label: "Now", animation: catalog.currentAnimation(for: progress)) {
-                        nowText
-                    }
-                    Image(systemName: "arrow.right")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundStyle(Theme.textMuted)
-                        .padding(.top, 50)
-                        .accessibilityHidden(true)
-                    column(label: "Goal", animation: catalog.animation(for: goal)) {
-                        goalText
-                    }
-                }
+                .buttonStyle(PressFeedbackStyle())
+                .accessibilityHint(Text("Shows the skill with its stages"))
 
                 SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, label: "Goal progress")
 
