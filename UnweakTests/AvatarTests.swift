@@ -112,3 +112,41 @@ struct AvatarStyleTests {
         }
     }
 }
+
+struct AvatarBreathingTests {
+    @Test(arguments: AvatarBody.allCases)
+    func breathedOutIsTheRestingFigure(_ body: AvatarBody) {
+        #expect(AvatarFigure(body: body, extra: .crown, breath: 0) == AvatarFigure(body: body, extra: .crown))
+    }
+
+    @Test(arguments: AvatarBody.allCases)
+    func breathingInLiftsTheHeadAndKeepsTheFeet(_ body: AvatarBody) {
+        let rest = AvatarFigure(body: body, extra: .headband)
+        let inhaled = AvatarFigure(body: body, extra: .headband, breath: 1)
+        #expect(abs((rest.head.y - inhaled.head.y) - AvatarFigure.breathLift) < 0.01)
+        #expect(rest.head.x == inhaled.head.x)
+        // The extra moves with the head.
+        #expect(inhaled.extra.flatMap(\.points).map(\.y).min()! < rest.extra.flatMap(\.points).map(\.y).min()!)
+        // The lowest points (the feet) stay where they are.
+        let restFeet = rest.body.flatMap(\.points).map(\.y).max()
+        let inhaledFeet = inhaled.body.flatMap(\.points).map(\.y).max()
+        #expect(restFeet == inhaledFeet)
+    }
+
+    @Test(arguments: AvatarBody.allCases)
+    func breathingStaysOnTheGrid(_ body: AvatarBody) {
+        for extra in AvatarExtra.allCases {
+            let figure = AvatarFigure(body: body, extra: extra, breath: 1)
+            for point in (figure.body + figure.extra).flatMap(\.points) {
+                #expect((0...AvatarFigure.size).contains(point.y), "\(body) \(extra)")
+            }
+        }
+    }
+
+    @Test func breathFollowsTheCycle() {
+        let start = Date(timeIntervalSinceReferenceDate: 0)
+        #expect(AvatarView.breath(at: start) < 0.001)
+        #expect(abs(AvatarView.breath(at: start.addingTimeInterval(AvatarView.breathDuration / 2)) - 1) < 0.001)
+        #expect(AvatarView.breath(at: start.addingTimeInterval(AvatarView.breathDuration)) < 0.001)
+    }
+}

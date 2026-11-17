@@ -55,7 +55,7 @@ struct AvatarEditorScreen: View {
                         isSelected: style.body == nil,
                         isLocked: false
                     ) {
-                        AvatarView(style: style, body: unlocks.highestBody, extra: currentExtra)
+                        AvatarView(style: style, body: unlocks.highestBody, extra: currentExtra, breathes: false)
                     } action: {
                         update { $0.body = nil }
                     }
@@ -67,7 +67,7 @@ struct AvatarEditorScreen: View {
                             isSelected: style.body == body,
                             isLocked: isLocked
                         ) {
-                            AvatarView(style: style, body: body, extra: currentExtra)
+                            AvatarView(style: style, body: body, extra: currentExtra, breathes: false)
                         } action: {
                             update { $0.body = body }
                         }
@@ -100,7 +100,7 @@ struct AvatarEditorScreen: View {
             section("Extras") {
                 LazyVGrid(columns: columns, spacing: 10) {
                     OptionTile(title: "None", caption: nil, isSelected: currentExtra == nil, isLocked: false) {
-                        AvatarView(style: style, body: currentBody, extra: nil)
+                        AvatarView(style: style, body: currentBody, extra: nil, breathes: false)
                     } action: {
                         update { $0.extra = nil }
                     }
@@ -112,7 +112,7 @@ struct AvatarEditorScreen: View {
                             isSelected: currentExtra == extra,
                             isLocked: isLocked
                         ) {
-                            AvatarView(style: style, body: currentBody, extra: extra)
+                            AvatarView(style: style, body: currentBody, extra: extra, breathes: false)
                         } action: {
                             update { $0.extra = extra }
                         }

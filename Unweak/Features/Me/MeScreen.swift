@@ -27,11 +27,15 @@ struct MeScreen: View {
         ScreenContainer {
             header(week: week, streak: streak)
 
-            AvatarCard(style: store.data.avatar, unlocks: unlocks, catalog: catalog)
-
-            Card {
-                WeekTargetPanel(week: week, streak: streak)
-            }
+            AvatarStage(
+                style: store.data.avatar,
+                unlocks: unlocks,
+                week: week,
+                streak: streak,
+                // Pro: from the skill being learned. Free: from the free workouts.
+                nextPlan: stats.nextWorkout(in: catalog, access: subscription.access, preferring: goal?.plans ?? []),
+                catalog: catalog
+            )
 
             if let goal {
                 SkillPanel(
@@ -42,16 +46,6 @@ struct MeScreen: View {
                         store.markStageReached(of: goal)
                     }
                 }
-            }
-
-            // Pro: from the skill being learned. Free: from the free workouts.
-            if let plan = stats.nextWorkout(in: catalog, access: subscription.access, preferring: goal?.plans ?? []) {
-                NavigationLink {
-                    TrainingScreen(plan: plan, catalog: catalog)
-                } label: {
-                    NextWorkoutCard(plan: plan)
-                }
-                .buttonStyle(PressFeedbackStyle())
             }
 
             if goal == nil {
@@ -102,25 +96,68 @@ struct MeScreen: View {
     }
 }
 
-/// The avatar with its body name, what comes next and "Customize".
-private struct AvatarCard: View {
+/// The avatar large in the middle, framed by a ring that fills with the workouts of
+/// this week; below it the week in short, the body with "Customize" and the next workout.
+private struct AvatarStage: View {
+    @Environment(\.accent) private var accent
     let style: AvatarStyle
     let unlocks: AvatarUnlocks
+    let week: WeekSummary
+    let streak: Int
+    let nextPlan: WorkoutPlan?
     let catalog: Catalog
+
+    private var remaining: Int { max(0, week.target - week.workouts) }
 
     var body: some View {
         let current = unlocks.body(for: style)
-        HStack(alignment: .center, spacing: 16) {
-            AvatarView(style: style, body: current, extra: unlocks.extra(for: style))
-                .frame(width: 132, height: 132)
-            VStack(alignment: .leading, spacing: 8) {
-                MonoLabel("Your avatar")
+
+        VStack(spacing: 14) {
+            ZStack {
+                Circle()
+                    .fill(style.backgroundColor)
+                    .padding(16)
+                WeekRing(total: week.target, filled: week.workouts)
+                AvatarView(style: style, body: current, extra: unlocks.extra(for: style), framed: false)
+                    .padding(36)
+            }
+            .frame(maxWidth: 280)
+            .aspectRatio(1, contentMode: .fit)
+            .frame(maxWidth: .infinity)
+
+            VStack(spacing: 4) {
+                HStack(spacing: 6) {
+                    Text("\(week.workouts) / \(week.target) this week")
+                    if streak > 0 {
+                        Text(verbatim: "·")
+                        Text("Streak \(streak) weeks")
+                    }
+                }
+                .foregroundStyle(Theme.textSoft)
+                Group {
+                    if remaining == 0 {
+                        Text("Weekly target reached")
+                            .foregroundStyle(accent.color)
+                    } else {
+                        Text("\(remaining) to go for your weekly target")
+                            .foregroundStyle(Theme.textMuted)
+                    }
+                }
+            }
+            .font(.mono)
+            .tracking(1)
+            .textCase(.uppercase)
+            .multilineTextAlignment(.center)
+            .accessibilityElement(children: .combine)
+
+            VStack(spacing: 6) {
                 Text(current.name)
                     .font(.metric)
                     .foregroundStyle(Theme.text)
-                nextText
+                nextBodyText
                     .font(.text(13))
                     .foregroundStyle(Theme.textSoft)
+                    .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
                 NavigationLink {
                     AvatarEditorScreen(catalog: catalog)
@@ -128,13 +165,23 @@ private struct AvatarCard: View {
                     ChipLabel("Customize", systemImage: "paintbrush.pointed")
                 }
                 .buttonStyle(PressFeedbackStyle())
+                .padding(.top, 4)
             }
-            Spacer(minLength: 0)
+            .frame(maxWidth: .infinity)
+
+            if let nextPlan {
+                NavigationLink {
+                    TrainingScreen(plan: nextPlan, catalog: catalog)
+                } label: {
+                    NextWorkoutBar(plan: nextPlan)
+                }
+                .buttonStyle(PressFeedbackStyle())
+            }
         }
     }
 
     /// How the avatar grows next.
-    private var nextText: Text {
+    private var nextBodyText: Text {
         guard let next = unlocks.nextBody else { return Text("You are a legend!") }
         if let missing = unlocks.workoutsToNextBody {
             return Text("\(missing) more workouts to \(Text(next.name))")
@@ -143,42 +190,35 @@ private struct AvatarCard: View {
     }
 }
 
-/// This week against the weekly target: count, one segment per planned workout,
-/// the streak and how many workouts are still missing.
-private struct WeekTargetPanel: View {
+/// One arc per workout of the weekly target around the avatar; done ones in the accent color.
+private struct WeekRing: View {
     @Environment(\.accent) private var accent
-    let week: WeekSummary
-    let streak: Int
+    let total: Int
+    let filled: Int
 
-    private var remaining: Int { max(0, week.target - week.workouts) }
+    /// Gap between two arcs, as a share of the full circle.
+    private static let gap = 0.015
+    private static let lineWidth: CGFloat = 6
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack(spacing: 8) {
-                MonoLabel("This week")
-                if streak > 0 {
-                    MonoLabel("Streak \(streak) weeks", color: Theme.text, bold: true)
-                }
+        let count = max(total, 1)
+        let done = min(max(filled, 0), count)
+        ZStack {
+            ForEach(0..<count, id: \.self) { index in
+                let start = Double(index) / Double(count) + Self.gap / 2
+                let end = Double(index + 1) / Double(count) - Self.gap / 2
+                let isDone = index < done
+                Circle()
+                    .trim(from: start, to: end)
+                    .stroke(isDone ? accent.color : Theme.line, style: StrokeStyle(lineWidth: Self.lineWidth, lineCap: .butt))
+                    .glow(isDone ? accent.color : .clear, radius: Theme.Glow.small)
             }
-            Text("\(week.workouts) / \(week.target) workouts")
-                .font(.metric)
-                .foregroundStyle(Theme.text)
-                .accessibilityAddTraits(.isHeader)
-            SegmentedProgress(total: week.target, filled: week.workouts, height: 8, label: "Weekly target")
-            Group {
-                if remaining == 0 {
-                    Text("Weekly target reached")
-                        .foregroundStyle(accent.color)
-                } else {
-                    Text("\(remaining) to go for your weekly target")
-                        .foregroundStyle(Theme.textMuted)
-                }
-            }
-            .font(.mono)
-            .tracking(1)
-            .textCase(.uppercase)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .rotationEffect(.degrees(-90))
+        .padding(Self.lineWidth / 2)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("Weekly target"))
+        .accessibilityValue(Text("\(done) of \(count)"))
     }
 }
 
@@ -340,32 +380,35 @@ private struct SkillTeaser: View {
     }
 }
 
-/// Accent card with the suggested next workout.
-private struct NextWorkoutCard: View {
+/// Slim bar with the suggested next workout: play symbol, label, name and duration.
+private struct NextWorkoutBar: View {
     @Environment(\.accent) private var accent
     let plan: WorkoutPlan
 
     var body: some View {
-        HStack(spacing: 14) {
-            VStack(alignment: .leading, spacing: 6) {
-                MonoLabel("Next workout", color: Theme.onAccent, bold: true)
+        HStack(spacing: 12) {
+            Image(systemName: "play.fill")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(Theme.onAccent)
+                .frame(width: 36, height: 36)
+                .background(accent.color)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                MonoLabel("Next workout")
                 plan.title
-                    .font(.buttonTitle)
-                    .multilineTextAlignment(.leading)
-                ValueText.minutes(plan.estimatedSeconds)
-                    .font(.mono)
+                    .font(.textSemibold(15))
+                    .foregroundStyle(Theme.text)
+                    .lineLimit(1)
             }
             Spacer(minLength: 0)
-            Image(systemName: "play.fill")
-                .font(.system(size: 18, weight: .bold))
-                .frame(width: Theme.Layout.minTouchTarget, height: Theme.Layout.minTouchTarget)
-                .overlay(Rectangle().strokeBorder(Theme.onAccent, lineWidth: 2))
-                .accessibilityHidden(true)
+            ValueText.minutes(plan.estimatedSeconds)
+                .font(.mono)
+                .foregroundStyle(Theme.textMuted)
         }
-        .foregroundStyle(Theme.onAccent)
-        .padding(16)
-        .background(accent.color)
-        .glow(accent.color, radius: Theme.Glow.medium)
+        .padding(10)
+        .frame(minHeight: Theme.Layout.minTouchTarget)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
     }
