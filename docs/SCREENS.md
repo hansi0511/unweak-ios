@@ -1,6 +1,6 @@
 # Screens
 
-13 Screens in Version 1. Die untere Navigation hat drei Tabs: Ich, Workouts, Tagebuch. Alle anderen Screens öffnen sich darüber und haben oben links einen Zurück-Knopf.
+14 Screens in Version 1. Die untere Navigation hat drei Tabs: Ich, Workouts, Tagebuch. Alle anderen Screens öffnen sich darüber und haben oben links einen Zurück-Knopf.
 
 ## Navigation
 
@@ -8,7 +8,8 @@
 |---|---|---|
 | Anmeldung | Mit Apple oder Google anmelden | Ich |
 | Ich | „Dein Skill · Ändern“ | Ziel wählen |
-| Ich | Karte „Nächstes Workout“ (Pro) | Training läuft |
+| Ich | Karte „Nächstes Workout“ | Training läuft |
+| Ich | „Anpassen“ auf der Avatar-Karte | Avatar anpassen |
 | Ich | Regler-Symbol oben rechts | Einstellungen |
 | Ich (Gratis) | Hinweis „Erreiche deinen ersten Skill“ | Abo |
 | Workouts | Umschalter „Skills“ / „Workouts“ | anderer Bereich |
@@ -28,10 +29,12 @@
 
 ## 1 Ich (Tab)
 
-- Kopf: Label „Diese Woche“, Serie in Wochen, Teilen- und Regler-Symbol. Überschrift „3 / 4 Trainings“. Darunter ein Segment pro Training des Wochenziels (geschafft in Akzentfarbe) und der Hinweis „Noch 1 bis zum Wochenziel“ bzw. „Wochenziel erreicht“ in Akzentfarbe.
+- Kopf: Überschrift „Ich“, rechts Teilen-Symbol (Woche und Serie) und Regler-Symbol.
+- Avatar-Karte: links der Avatar (Körper, Farben, Grund und Extra wie gewählt, Eckmarkierungen oben links und unten rechts), rechts Label „Dein Avatar“, Name des Körpers, Weg zum nächsten Körper („Noch 7 Trainings bis Trainiert“, „Meistere einen Skill und werde zur Legende“, „Du bist eine Legende!“) und Knopf „Anpassen“.
+- Karte Wochenziel: Label „Diese Woche“, Serie in Wochen, „3 / 4 Trainings“, ein Segment pro Training des Wochenziels und der Hinweis „Noch 1 bis zum Wochenziel“ bzw. „Wochenziel erreicht“.
 - Skill-Panel (nur mit Pro) mit Raster-Hintergrund und Eckmarkierungen: Link „Dein Skill · Ändern“, Name des Skills. Darunter zwei Animationen nebeneinander mit Pfeil dazwischen: links „Jetzt“ mit der Animation der Stufe, an der der Nutzer gerade arbeitet (die nächste noch nicht erreichte, nach der letzten die letzte), und ihrem Namen; rechts „Ziel“ mit der Animation des Skills und dem Namen der letzten Stufe. Bei Zeit-Skills links die Bestzeit, rechts die Zielzeit, beide mit der Animation der Übung. Darunter fünf Segmente, „Stufe 2 / 5 · Noch 3 Stufen“ und der gestrichelte Knopf „Stufe erreicht“.
-- Karte „Nächstes Workout“ in Akzentfarbe mit Name, Dauer und Start-Symbol: nur mit Pro, aus den Workouts des aktiven Skills.
-- Gratis-Version: statt Skill-Panel und nächstem Workout nur der Hinweis „Erreiche deinen ersten Skill“ mit Marke „Abo“, der zur Abo-Seite führt.
+- Karte „Nächstes Workout“ in Akzentfarbe mit Name, Dauer und Start-Symbol: mit Pro aus den Workouts des aktiven Skills, gratis aus den Gratis-Workouts.
+- Gratis-Version: statt Skill-Panel der Hinweis „Erreiche deinen ersten Skill“ mit Marke „Abo“, der zur Abo-Seite führt.
 
 ## 2 Workouts (Tab)
 
@@ -124,3 +127,13 @@
 - Schließen-Knopf, Überschrift „Teilen“, Auswahl „Video“ (Standard) oder „Bild“ und „Story“ (9:16, Standard) oder „Post“ (4:5).
 - Vorschau (bei Video mit bewegtem Sticky Man; mit „Bewegung reduzieren“ steht er still): Raster-Hintergrund mit Eckmarkierungen in Akzentfarbe, „UNWEAK“ und Untertitel, Sticky Man groß in der Schlüsselpose, Art („Workout geschafft“, „Neuer Rekord“, „Erfolg freigeschaltet“, „Serie“, „Skill-Fortschritt“), Überschrift, Kennzahlen oder Segmente, unten Datum und Hashtags.
 - Hauptknopf „Video teilen“ bzw. „Bild teilen“ öffnet das iOS-Teilen-Menü (1080 px breit, Video als MP4 mit 30 Bildern pro Sekunde, mindestens 6 Sekunden, ohne Ton; dazu ein kurzer Text mit Hashtags). Während das Video entsteht, zeigt eine Segment-Leiste den Fortschritt. Hinweis, dass dort X, Facebook oder Instagram gewählt wird.
+
+## 14 Avatar anpassen
+
+- Kopf: Zurück, Label „Dein Avatar“, Überschrift „Anpassen“, ein Satz: Der Avatar wächst mit dem Training, Erfolge und Skills schalten mehr frei.
+- Große Vorschau des Avatars.
+- **Körper:** Kacheln „Automatisch“ (wächst mit) und Start, Athlet, Trainiert, Legende, je mit kleiner Vorschau.
+- **Farbe** und **Zweite Farbe** (für das Extra): je sieben Farbkreise (sechs Akzentfarben und Mono).
+- **Grund:** Dunkel, Nacht, Invertiert.
+- **Extras:** Keins, Stirnband, Kappe, Visier, Kopfhörer, Medaille, Krone, je mit kleiner Vorschau.
+- Gesperrte Kacheln sind gedimmt, mit Schloss und Bedingung („Ab 50 Trainings“, „Erfolg: 25 Trainings“, „Einen Skill meistern“). Die gewählte Kachel hat einen Rahmen in Akzentfarbe. Jede Auswahl wird sofort gespeichert.

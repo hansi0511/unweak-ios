@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// "Me" tab: the weekly target, the skill the user works towards with the current
-/// stage, and (Pro) the next workout for that skill. Free: a teaser for the skills.
+/// "Me" tab: the avatar, the weekly target, the skill being learned (Pro) and the next
+/// workout. Free: a teaser for the skills takes the place of the skill.
 struct MeScreen: View {
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
@@ -19,11 +19,21 @@ struct MeScreen: View {
         let stats = JournalStats(entries: store.entries)
         let week = stats.week(containing: .now, target: target)
         let streak = stats.streak(at: .now, target: target)
+        let unlocks = AvatarUnlocks(stats: stats, catalog: catalog, weeklyTarget: target) {
+            store.reachedStages(of: $0)
+        }
+        let goal = activeGoal
 
         ScreenContainer {
             header(week: week, streak: streak)
 
-            if let goal = activeGoal {
+            AvatarCard(style: store.data.avatar, unlocks: unlocks, catalog: catalog)
+
+            Card {
+                WeekTargetPanel(week: week, streak: streak)
+            }
+
+            if let goal {
                 SkillPanel(
                     progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
                     catalog: catalog
@@ -32,17 +42,19 @@ struct MeScreen: View {
                         store.markStageReached(of: goal)
                     }
                 }
+            }
 
-                // Pro only: the next workout comes from the skill being learned.
-                if let plan = stats.nextWorkout(in: catalog, access: subscription.access, preferring: goal.plans) {
-                    NavigationLink {
-                        TrainingScreen(plan: plan, catalog: catalog)
-                    } label: {
-                        NextWorkoutCard(plan: plan)
-                    }
-                    .buttonStyle(PressFeedbackStyle())
+            // Pro: from the skill being learned. Free: from the free workouts.
+            if let plan = stats.nextWorkout(in: catalog, access: subscription.access, preferring: goal?.plans ?? []) {
+                NavigationLink {
+                    TrainingScreen(plan: plan, catalog: catalog)
+                } label: {
+                    NextWorkoutCard(plan: plan)
                 }
-            } else {
+                .buttonStyle(PressFeedbackStyle())
+            }
+
+            if goal == nil {
                 // Free version: skills are Pro, so a teaser takes the place of the skill.
                 Button {
                     isShowingPaywall = true
@@ -68,8 +80,12 @@ struct MeScreen: View {
     }
 
     private func header(week: WeekSummary, streak: Int) -> some View {
-        HStack(alignment: .top, spacing: 12) {
-            WeekTargetPanel(week: week, streak: streak)
+        HStack(alignment: .center, spacing: 12) {
+            Text("Me")
+                .font(.screenTitle)
+                .foregroundStyle(Theme.text)
+                .accessibilityAddTraits(.isHeader)
+            Spacer(minLength: 0)
             if week.workouts > 0 || streak > 0 {
                 IconButton(systemImage: "square.and.arrow.up", accessibilityLabel: "Share week") {
                     shareContent = .streakCard(week: week, weeks: streak)
@@ -83,6 +99,47 @@ struct MeScreen: View {
             .buttonStyle(PressFeedbackStyle())
             .accessibilityLabel(Text("Settings"))
         }
+    }
+}
+
+/// The avatar with its body name, what comes next and "Customize".
+private struct AvatarCard: View {
+    let style: AvatarStyle
+    let unlocks: AvatarUnlocks
+    let catalog: Catalog
+
+    var body: some View {
+        let current = unlocks.body(for: style)
+        HStack(alignment: .center, spacing: 16) {
+            AvatarView(style: style, body: current, extra: unlocks.extra(for: style))
+                .frame(width: 132, height: 132)
+            VStack(alignment: .leading, spacing: 8) {
+                MonoLabel("Your avatar")
+                Text(current.name)
+                    .font(.metric)
+                    .foregroundStyle(Theme.text)
+                nextText
+                    .font(.text(13))
+                    .foregroundStyle(Theme.textSoft)
+                    .fixedSize(horizontal: false, vertical: true)
+                NavigationLink {
+                    AvatarEditorScreen(catalog: catalog)
+                } label: {
+                    ChipLabel("Customize", systemImage: "paintbrush.pointed")
+                }
+                .buttonStyle(PressFeedbackStyle())
+            }
+            Spacer(minLength: 0)
+        }
+    }
+
+    /// How the avatar grows next.
+    private var nextText: Text {
+        guard let next = unlocks.nextBody else { return Text("You are a legend!") }
+        if let missing = unlocks.workoutsToNextBody {
+            return Text("\(missing) more workouts to \(Text(next.name))")
+        }
+        return Text("Master a skill to become a legend")
     }
 }
 
@@ -104,7 +161,7 @@ private struct WeekTargetPanel: View {
                 }
             }
             Text("\(week.workouts) / \(week.target) workouts")
-                .font(.screenTitle)
+                .font(.metric)
                 .foregroundStyle(Theme.text)
                 .accessibilityAddTraits(.isHeader)
             SegmentedProgress(total: week.target, filled: week.workouts, height: 8, label: "Weekly target")

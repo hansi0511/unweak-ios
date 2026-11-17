@@ -10,17 +10,21 @@ struct UserData: Codable, Equatable, Sendable {
     /// Number of reached stages per skill goal.
     var reachedStages: [String: Int] = [:]
     var customWorkouts: [CustomWorkout] = []
+    /// How the user's avatar looks.
+    var avatar = AvatarStyle()
 
     init(
         entries: [JournalEntry] = [],
         activeGoalID: String? = nil,
         reachedStages: [String: Int] = [:],
-        customWorkouts: [CustomWorkout] = []
+        customWorkouts: [CustomWorkout] = [],
+        avatar: AvatarStyle = AvatarStyle()
     ) {
         self.entries = entries
         self.activeGoalID = activeGoalID
         self.reachedStages = reachedStages
         self.customWorkouts = customWorkouts
+        self.avatar = avatar
     }
 
     /// Fields missing in files from older versions get their defaults.
@@ -31,6 +35,7 @@ struct UserData: Codable, Equatable, Sendable {
         activeGoalID = try container.decodeIfPresent(String.self, forKey: .activeGoalID)
         reachedStages = try container.decodeIfPresent([String: Int].self, forKey: .reachedStages) ?? [:]
         customWorkouts = try container.decodeIfPresent([CustomWorkout].self, forKey: .customWorkouts) ?? []
+        avatar = try container.decodeIfPresent(AvatarStyle.self, forKey: .avatar) ?? AvatarStyle()
     }
 }
 
@@ -132,6 +137,13 @@ final class UserDataStore {
     func setReachedStages(_ reached: Int, of goal: Goal) {
         guard case .stages(let count) = goal.kind else { return }
         data.reachedStages[goal.id] = min(max(reached, 0), count)
+        persist()
+    }
+
+    // MARK: Avatar
+
+    func setAvatar(_ style: AvatarStyle) {
+        data.avatar = style
         persist()
     }
 

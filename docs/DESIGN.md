@@ -94,6 +94,17 @@ Dauer 3 s, Endlosschleife, gleichmäßiges Tempo zwischen den Stützpunkten: 0 b
 
 In der nativen Umsetzung ist es sauberer, den Ellbogen aus Hand, Schulter und Armlänge zu berechnen, statt die Winkel zu interpolieren.
 
+### Avatar
+
+Statische Figur auf einem Raster von 100 × 100, mit Kopf als Ring und runden Linienenden.
+
+- **Start:** dünne Linien (3), Arme nach unten.
+- **Athlet:** Linien 3,6, Schulterlinie, Arme im V nach oben.
+- **Trainiert:** Linien 4,6, Dreiecks-Oberkörper mit 30 % Füllung, gebeugte Muskelarme mit Fäusten, gebogene Beine.
+- **Legende:** wie Trainiert, mit Glow.
+- **Extras** sitzen relativ zum Kopf und passen so auf jeden Körper. Sie werden in der zweiten Farbe gezeichnet.
+- **Grund:** dunkel (Fläche), Nacht (#1E1733) oder invertiert (Grund in Figurfarbe, Figur dunkel). Eckmarkierungen oben links und unten rechts in Figurfarbe, nicht bei „invertiert“.
+
 ### Posen für Listen
 
 Zeichenfläche 48 × 48, Kopf als Kreis mit Radius 4 am angegebenen Punkt, Linien als Pfad.
