@@ -1661,12 +1661,12 @@
         }
       }
     },
-    "Next workout" : {
+    "Next workouts" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nächstes Workout"
+            "value" : "Nächste Workouts"
           }
         }
       }
@@ -2447,6 +2447,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Training starten"
+          }
+        }
+      }
+    },
+    "Starts the workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startet das Workout"
           }
         }
       }

@@ -222,31 +222,46 @@ struct JournalStats {
     }
 
     /// The plan trained longest ago; plans never trained come first, in catalog order.
-    /// Workouts of the active skill (`preferred`) the user may train are suggested first,
-    /// otherwise the general workouts.
+    /// Workouts of the skills being learned (`preferred`) the user may train are suggested
+    /// first, otherwise the general workouts.
     func nextWorkout(
         in catalog: Catalog,
         access: Access = Access(isPro: false),
         preferring preferred: [String] = []
     ) -> WorkoutPlan? {
-        let trainable = catalog.plans.filter { access.canTrain($0) }
-        let fromSkill = trainable.filter { preferred.contains($0.id) }
-        let general = trainable.filter { $0.category != .skill }
-        return leastRecentlyTrained(fromSkill.isEmpty ? general : fromSkill)
+        nextWorkouts(in: catalog, access: access, preferring: preferred, count: 1).first
     }
 
-    private func leastRecentlyTrained(_ candidates: [WorkoutPlan]) -> WorkoutPlan? {
+    /// Up to `count` suggestions: first the trainable workouts of the skills being learned,
+    /// then the general workouts, each group ordered from longest ago (never trained
+    /// first, in catalog order) to most recent. No plan appears twice.
+    func nextWorkouts(
+        in catalog: Catalog,
+        access: Access = Access(isPro: false),
+        preferring preferred: [String] = [],
+        count: Int
+    ) -> [WorkoutPlan] {
+        let trainable = catalog.plans.filter { access.canTrain($0) }
+        let fromSkills = trainable.filter { preferred.contains($0.id) }
+        let general = trainable.filter { $0.category != .skill && !preferred.contains($0.id) }
+        let ordered = byLeastRecentlyTrained(fromSkills) + byLeastRecentlyTrained(general)
+        return Array(ordered.prefix(max(0, count)))
+    }
+
+    /// Plans ordered from longest ago to most recently trained; never trained ones first,
+    /// in their given order.
+    private func byLeastRecentlyTrained(_ candidates: [WorkoutPlan]) -> [WorkoutPlan] {
         func lastTrained(_ plan: WorkoutPlan) -> Date? {
             entries.last { $0.planID == plan.id }?.date
         }
-        return candidates.enumerated().min { a, b in
+        return candidates.enumerated().sorted { a, b in
             switch (lastTrained(a.element), lastTrained(b.element)) {
             case (nil, nil): return a.offset < b.offset
             case (nil, _): return true
             case (_, nil): return false
             case let (dateA?, dateB?): return dateA < dateB || (dateA == dateB && a.offset < b.offset)
             }
-        }?.element
+        }.map(\.element)
     }
 }
 

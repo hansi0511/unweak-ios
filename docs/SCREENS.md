@@ -9,7 +9,7 @@
 | Anmeldung | Mit Apple oder Google anmelden | Ich |
 | Ich | „Bearbeiten“ bei „Deine Skills“ oder „Skills wählen“ | Workouts, Bereich „Skills“ |
 | Ich | Name und Animationen eines Skill-Panels | Skill |
-| Ich | Leiste „Nächstes Workout“ | Training läuft |
+| Ich | Kachel bei den nächsten Workouts | Training läuft |
 | Ich | Überschrift „Ich ›“ | Ich-Bereich |
 | Ich-Bereich | Zeile „Einstellungen“ | Einstellungen |
 | Ich (Gratis) | Hinweis „Erreiche deinen ersten Skill“ | Abo |
@@ -34,9 +34,9 @@
 Alles passt bei bis zu drei gelernten Skills ohne Scrollen auf ein iPhone 15; bei mehr Skills oder kleineren Geräten scrollt der Tab.
 
 - Kopf: Überschrift „Ich“ mit Pfeil in Akzentfarbe als Knopf zum Ich-Bereich (Level, Avatar, Einstellungen), rechts Teilen-Symbol (Woche und Serie).
-- Avatar-Bühne, mittig, höchstens 200 pt: Der Avatar (Körper, Farben und Extra wie gewählt) steht in einem Kreis in seiner Grundfarbe und atmet leicht. Um den Kreis liegt ein Ring aus so vielen Bögen, wie das Wochenziel Trainings hat; geschaffte Bögen leuchten in der Akzentfarbe.
+- Avatar-Bühne, mittig, höchstens 180 pt: Der Avatar (Körper, Farben und Extra wie gewählt) steht in einem Kreis in seiner Grundfarbe und atmet leicht. Um den Kreis liegt ein Ring aus so vielen Bögen, wie das Wochenziel Trainings hat; geschaffte Bögen leuchten in der Akzentfarbe.
 - Darunter eine dezente Mono-Zeile: „2 / 3 diese Woche · Serie 3 Wochen · Athlet“ (Körpername hell).
-- Schmale Leiste „Nächstes Workout“ mit Play-Symbol in Akzentfarbe, Name und Dauer: mit Pro aus den Workouts der gelernten Skills, gratis aus den Gratis-Workouts.
+- Die fünf nächsten Workouts als flache Kacheln (168 × 72 pt), seitlich verschiebbar: Pose, Name, Play-Symbol und Dauer; ein Tipp startet das Training. Zuerst die Workouts der gelernten Skills, dann die allgemeinen, jeweils das am längsten nicht trainierte vorn; gratis nur Gratis-Workouts. Die erste Kachel ist der Hauptvorschlag mit Rahmen in Akzentfarbe.
 - Nur mit Pro: Label „Deine Skills“ mit Link „Bearbeiten“. Er wechselt in den Workouts-Tab, Bereich „Skills“, zurück an dessen Anfang. Ohne gelernten Skill ein gestrichelter Knopf „Skills wählen“ mit demselben Ziel.
 - Je gelerntem Skill eine schmale Zeile: stille Pose der aktuellen Stufe, Name, Stand („Stufe 2 / 5 · Advanced Tuck“, bei Zeit-Skills „Bestzeit 1:20 / 5:00“ bzw. „Ziel 5:00“), feine Segmente und Pfeil. Ein Tipp öffnet die Skill-Seite; Stufen werden dort markiert.
 - Gratis-Version: statt der Skills eine schmale Zeile „Erreiche deinen ersten Skill“ mit Marke „Abo“, die zur Abo-Seite führt.
