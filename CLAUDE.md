@@ -1,6 +1,6 @@
 # Arbeitsanweisung
 
-Du baust die iOS-App „Unweak“. Lies zuerst `docs/SPEC.md`, `docs/SCREENS.md` und `docs/DESIGN.md`. Sie sind verbindlich; wo sie schweigen, entscheide einfach und notiere die Annahme in der Pull-Request-Beschreibung.
+Du baust die iOS-App „Unweak“. Lies zuerst `docs/SPEC.md`, `docs/DESIGN.md` und `docs/DESIGN-V2.md`. Für die Oberfläche gilt `docs/DESIGN-V2.md`; `docs/SCREENS.md` beschreibt den Stand davor und gilt nur noch, wo V2 nichts sagt. Sie sind verbindlich; wo sie schweigen, entscheide einfach und notiere die Annahme in der Pull-Request-Beschreibung.
 
 ## Rahmen
 

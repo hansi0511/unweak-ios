@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>V2 Einstellungen</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+body{margin:0}
+a{color:#EAF2F5;text-decoration:none}a:hover{color:#FFFFFF}
+
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #07090C; color: #EAF2F5; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; padding: 20px 20px 24px; gap: 18px">
+<div style="display: flex; align-items: center; gap: 14px"><a href="V2-Profil.dc.html" aria-label="Zurück" style="width: 44px; height: 44px; border: 1px solid #1E2A33; background: #0B1015; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></a><h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.6px; line-height: 1.05">Einstellungen</h1></div>
+<div style="border: 1px solid #1E2A33; background: #0B1015">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 56px; padding: 0 16px; border-bottom: 1px solid #1E2A33"><div style="font-size: 16px">Konto</div><div style="font-size: 15px; color: #9FB0BC">Apple</div></div>
+<a href="V2-Abo.dc.html" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 56px; padding: 0 16px"><div style="font-size: 16px">Abo</div><div style="display: flex; align-items: center; gap: 8px; font-size: 15px; color: #FFB547">Gratis <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9FB0BC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></div></a>
+</div>
+<div style="border: 1px solid #1E2A33; background: #0B1015">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 56px; padding: 0 8px 0 16px; border-bottom: 1px solid #1E2A33">
+<div style="font-size: 16px">Erinnerung</div>
+<button type="button" role="switch" aria-checked="{{remindOn}}" aria-label="Erinnerung" onClick="{{toggleRemind}}" style="width: 60px; height: 44px; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><div style="width: 48px; height: 26px; box-sizing: border-box; border: 1px solid {{swBorder}}; background: {{swBg}}; display: flex; align-items: center; justify-content: {{swAlign}}; padding: 0 3px"><div style="width: 18px; height: 18px; background: {{swKnob}}"></div></div></button>
+</div>
+<sc-if value="{{remind}}" hint-placeholder-val="{{true}}">
+<div style="padding: 12px 16px; display: flex; flex-direction: column; gap: 12px">
+<div role="group" aria-label="Trainingstage" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+<button type="button" onClick="{{d.toggle}}" aria-pressed="{{d.pressed}}" aria-label="{{d.full}}" style="height: 44px; padding: 0; border-radius: 50%; border: 1px solid {{d.border}}; background: {{d.bg}}; color: {{d.fg}}; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer">{{d.name}}</button>
+</sc-for>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center">
+<div style="font-size: 15px; color: #C3CED6">Uhrzeit</div>
+<div style="display: flex; align-items: center; gap: 4px">
+<button type="button" onClick="{{earlier}}" aria-label="Früher" style="width: 44px; height: 44px; border: 1px solid #3A4954; background: transparent; color: #EAF2F5; font-size: 20px; cursor: pointer">−</button>
+<div style="width: 70px; text-align: center; font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700">{{time}}</div>
+<button type="button" onClick="{{later}}" aria-label="Später" style="width: 44px; height: 44px; border: 1px solid #3A4954; background: transparent; color: #EAF2F5; font-size: 20px; cursor: pointer">+</button>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+<div style="border: 1px solid #1E2A33; background: #0B1015">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 60px; padding: 0 8px 0 16px; border-bottom: 1px solid #1E2A33">
+<div style="font-size: 16px">Farbe</div>
+<div role="group" aria-label="Akzentfarbe" style="display: flex">
+<sc-for list="{{colors}}" as="c" hint-placeholder-count="6">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}" aria-label="{{c.name}}" style="width: 40px; height: 44px; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><div style="width: 24px; height: 24px; border-radius: 50%; background: {{c.hex}}; outline: 2px solid {{c.ring}}; outline-offset: 2px"></div></button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 56px; padding: 0 8px 0 16px">
+<div style="font-size: 16px">Sprache</div>
+<div style="width: 120px"><div role="group" aria-label="Sprache" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid #3A4954; flex-shrink: 0">
+<sc-for list="{{langs}}" as="m" hint-placeholder-count="2">
+<button type="button" onClick="{{m.pick}}" aria-pressed="{{m.pressed}}" style="height: 44px; border: 0; background: {{m.bg}}; color: {{m.fg}}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">{{m.name}}</button>
+</sc-for>
+</div></div>
+</div>
+</div>
+<a href="#" style="display: flex; justify-content: space-between; align-items: center; min-height: 56px; padding: 0 16px; border: 1px solid #1E2A33; background: #0B1015"><div style="font-size: 16px">Rechtliches</div><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9FB0BC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></a>
+<div style="flex-grow: 1"></div>
+<div style="display: flex; justify-content: space-between">
+<a href="V2-Login.dc.html" style="min-height: 44px; display: flex; align-items: center; font-size: 15px; color: #C3CED6">Abmelden</a>
+<button type="button" style="min-height: 44px; padding: 0; border: 0; background: transparent; color: #FF8A8A; font-family: 'Inter', sans-serif; font-size: 15px; cursor: pointer">Konto löschen</button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C6F24E","options":["#C6F24E","#5CE1FF","#FFB547","#FF7566","#FF7AB8","#A995FF"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { remind: true, days: [0, 2, 4], minutes: 1080, lang: 'de', color: null }; }
+renderVals() {
+var accent = this.props.accent ?? '#C6F24E';
+var glow = /^#[0-9a-fA-F]{6}$/.test(accent) ? accent + '66' : accent;
+var self = this;
+var st = this.state || {};
+function seg(list, key, cur) {
+return list.map(function (m) {
+var on = m[1] === cur;
+return { name: m[0], pressed: on ? 'true' : 'false', bg: on ? accent : 'transparent', fg: on ? '#07090C' : '#EAF2F5', pick: function () { var o = {}; o[key] = m[1]; self.setState(o); } };
+});
+}
+var acc = st.color || accent;
+accent = acc;
+var remind = st.remind !== false;
+var picked = st.days || [0, 2, 4];
+var minutes = typeof st.minutes === 'number' ? st.minutes : 1080;
+var hh = Math.floor(minutes / 60), mm = minutes % 60;
+var full = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+var days = ['M', 'D', 'M', 'D', 'F', 'S', 'S'].map(function (n, i) {
+var on = picked.indexOf(i) !== -1;
+return { name: n, full: full[i], pressed: on ? 'true' : 'false', bg: on ? accent : 'transparent', fg: on ? '#07090C' : '#EAF2F5', border: on ? accent : '#3A4954',
+toggle: function () { var next = on ? picked.filter(function (x) { return x !== i; }) : picked.concat([i]); self.setState({ days: next }); } };
+});
+var colors = [['Lime', '#C6F24E'], ['Cyan', '#5CE1FF'], ['Orange', '#FFB547'], ['Rot', '#FF7566'], ['Pink', '#FF7AB8'], ['Violett', '#A995FF']].map(function (c) {
+var on = c[1].toLowerCase() === String(accent).toLowerCase();
+return { name: c[0], hex: c[1], pressed: on ? 'true' : 'false', ring: on ? '#EAF2F5' : 'transparent', pick: function () { self.setState({ color: c[1] }); } };
+});
+return { accent: accent, glow: glow, days: days, colors: colors, remind: remind,
+langs: seg([['DE', 'de'], ['EN', 'en']], 'lang', st.lang || 'de'),
+time: (hh < 10 ? '0' : '') + hh + ':' + (mm < 10 ? '0' : '') + mm,
+remindOn: remind ? 'true' : 'false', swBorder: remind ? accent : '#3A4954', swBg: remind ? '#111920' : 'transparent', swAlign: remind ? 'flex-end' : 'flex-start', swKnob: remind ? accent : '#9FB0BC',
+toggleRemind: function () { self.setState({ remind: !remind }); },
+earlier: function () { self.setState({ minutes: (minutes + 1410) % 1440 }); },
+later: function () { self.setState({ minutes: (minutes + 30) % 1440 }); } };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>V2 Ich-Bereich</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+body{margin:0}
+a{color:#EAF2F5;text-decoration:none}a:hover{color:#FFFFFF}
+@keyframes av-breath{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+.av-breath{transform-origin:50% 88%;animation:av-breath 4s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.av-breath{animation:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #07090C; color: #EAF2F5; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; padding: 20px 20px 24px; gap: 18px">
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<a href="V2-Ich.dc.html" aria-label="Zurück" style="width: 44px; height: 44px; border: 1px solid #1E2A33; background: #0B1015; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></a>
+<a href="V2-Einstellungen.dc.html" aria-label="Einstellungen" style="width: 44px; height: 44px; border: 1px solid #1E2A33; background: #0B1015; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h9M19 7h1M4 17h1M11 17h9"></path><circle cx="16" cy="7" r="2.5"></circle><circle cx="8" cy="17" r="2.5"></circle></svg></a>
+</div>
+
+<div style="display: flex; align-items: center; gap: 18px">
+<div style="position: relative; width: 132px; height: 132px; flex-shrink: 0; background: {{p.bg}}; border: 1px solid #1E2A33">
+<svg role="img" aria-label="{{p.aria}}" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: block; width: 100%; height: 100%; filter: {{p.glow}}">
+<g class="av-breath">
+<path d="{{p.fillD}}" fill="{{p.fg}}" fill-opacity="{{p.fillOp}}" stroke="none"></path>
+<path d="{{p.lines}}" stroke="{{p.fg}}" stroke-width="{{p.w}}"></path>
+<circle cx="{{p.hx}}" cy="{{p.hy}}" r="{{p.r}}" fill="{{p.bg}}" stroke="{{p.fg}}" stroke-width="{{p.w}}"></circle>
+<path d="{{p.solid}}" fill="{{p.fg}}" stroke="none"></path>
+<path d="{{p.exFill}}" fill="{{p.exColor}}" stroke="none"></path>
+<path d="{{p.exLine}}" stroke="{{p.exColor}}" stroke-width="{{p.exW}}"></path>
+</g>
+</svg>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 14px; color: #9FB0BC">Level</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.4px; line-height: 1">Athlet</div>
+<div style="height: 6px; background: #1E2A33"><div style="width: 20%; height: 6px; background: {{accent}}"></div></div>
+<div style="font-size: 13px; line-height: 1.35; color: #C3CED6">Noch 32 Trainings bis <span style="color: #EAF2F5; font-weight: 600">Trainiert</span></div>
+</div>
+</div>
+
+<div role="group" aria-label="Anpassen" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid #3A4954; flex-shrink: 0">
+<sc-for list="{{tabs}}" as="m" hint-placeholder-count="3">
+<button type="button" onClick="{{m.pick}}" aria-pressed="{{m.pressed}}" style="height: 44px; border: 0; background: {{m.bg}}; color: {{m.fg}}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">{{m.name}}</button>
+</sc-for>
+</div>
+
+<div style="flex-grow: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 14px">
+
+<sc-if value="{{showGrid}}" hint-placeholder-val="{{true}}">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{tiles}}" as="t" hint-placeholder-count="6">
+<button type="button" onClick="{{t.pick}}" aria-pressed="{{t.pressed}}" aria-label="{{t.aria}}" style="position: relative; padding: 8px 4px 10px; border: 2px solid {{t.border}}; background: #0B1015; color: #EAF2F5; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer">
+<svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: block; width: 72px; height: 72px; background: {{t.a.bg}}; opacity: {{t.op}}">
+<path d="{{t.a.fillD}}" fill="{{t.a.fg}}" fill-opacity="{{t.a.fillOp}}" stroke="none"></path>
+<path d="{{t.a.lines}}" stroke="{{t.a.fg}}" stroke-width="{{t.a.w}}"></path>
+<circle cx="{{t.a.hx}}" cy="{{t.a.hy}}" r="{{t.a.r}}" fill="{{t.a.bg}}" stroke="{{t.a.fg}}" stroke-width="{{t.a.w}}"></circle>
+<path d="{{t.a.solid}}" fill="{{t.a.fg}}" stroke="none"></path>
+<path d="{{t.a.exFill}}" fill="{{t.a.exColor}}" stroke="none"></path>
+<path d="{{t.a.exLine}}" stroke="{{t.a.exColor}}" stroke-width="{{t.a.exW}}"></path>
+</svg>
+<div style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; opacity: {{t.op}}">{{t.name}}</div>
+<sc-if value="{{t.locked}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EAF2F5" stroke-width="2.4" stroke-linecap="round" style="position: absolute; top: 8px; right: 8px"><rect x="5" y="11" width="14" height="10"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></sc-if>
+</button>
+</sc-for>
+</div>
+<div style="min-height: 20px; font-size: 14px; color: {{hintTone}}">{{hint}}</div>
+</sc-if>
+
+<sc-if value="{{showColors}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 15px; font-weight: 600">Figur</div>
+<div role="group" aria-label="Farbe der Figur" style="display: flex; justify-content: space-between">
+<sc-for list="{{colors}}" as="c" hint-placeholder-count="7">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}" aria-label="{{c.name}}" style="width: 44px; height: 44px; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><div style="width: 32px; height: 32px; border-radius: 50%; background: {{c.hex}}; outline: 2px solid {{c.ring}}; outline-offset: 3px"></div></button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 15px; font-weight: 600">Extra</div>
+<div role="group" aria-label="Farbe des Extras" style="display: flex; justify-content: space-between">
+<sc-for list="{{colors2}}" as="c" hint-placeholder-count="7">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}" aria-label="{{c.name}}" style="width: 44px; height: 44px; padding: 0; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><div style="width: 32px; height: 32px; border-radius: 50%; background: {{c.hex}}; outline: 2px solid {{c.ring}}; outline-offset: 3px"></div></button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 15px; font-weight: 600">Hintergrund</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{grounds}}" as="g" hint-placeholder-count="3">
+<button type="button" onClick="{{g.pick}}" aria-pressed="{{g.pressed}}" style="height: 44px; padding: 0; border: 1px solid {{g.border}}; background: {{g.bg}}; color: {{g.fg}}; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer">{{g.name}}</button>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C6F24E","options":["#C6F24E","#5CE1FF","#FFB547","#FF7566","#FF7AB8","#A995FF"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { tab: 'body', body: 'auto', color: 'lime', extraColor: 'cyan', ground: 'dark', extra: 'headband', hint: '' };
+}
+renderVals() {
+var accent = this.props.accent ?? '#C6F24E';
+var self = this;
+var st = this.state || {};
+var WORKOUTS = 18;
+var COLORS = { lime: ['Lime', '#C6F24E'], cyan: ['Cyan', '#5CE1FF'], orange: ['Orange', '#FFB547'], red: ['Rot', '#FF7566'], pink: ['Pink', '#FF7AB8'], violet: ['Violett', '#A995FF'], mono: ['Mono', '#EAF2F5'] };
+var BODIES = {
+start: { name: 'START', full: 'Start', hx: 50, hy: 24, r: 6.5, w: 3, lines: 'M50 30.5V63M50 38L40 55M50 38L60 55M50 63L42 88M50 63L58 88', fill: '', op: 0, solid: '', unlocked: true, cond: 'Von Anfang an' },
+athlete: { name: 'ATHLET', full: 'Athlet', hx: 50, hy: 22, r: 7, w: 3.6, lines: 'M50 29V63M42 38H58M42 38L33 22M58 38L67 22M50 63L41 88M50 63L59 88', fill: '', op: 0, solid: '', unlocked: WORKOUTS >= 10, cond: 'Ab 10 Trainings' },
+trained: { name: 'TRAINIERT', full: 'Trainiert', hx: 50, hy: 21, r: 8, w: 4.6, lines: 'M50 29V38M36 38L64 38L50 64ZM36 38Q24 36 25 24M64 38Q76 36 75 24M50 64Q38 70 40 89M50 64Q62 70 60 89', fill: 'M36 38L64 38L50 64Z', op: 0.3, solid: 'M21.8 22a3.2 3.2 0 1 0 6.4 0a3.2 3.2 0 1 0 -6.4 0M71.8 22a3.2 3.2 0 1 0 6.4 0a3.2 3.2 0 1 0 -6.4 0', unlocked: WORKOUTS >= 50, cond: 'Ab 50 Trainings' },
+legend: { name: 'LEGENDE', full: 'Legende', unlocked: false, cond: 'Einen Skill meistern' }
+};
+var EXTRAS = {
+none: { name: 'KEINS', unlocked: true, cond: '' },
+headband: { name: 'STIRNBAND', unlocked: true, cond: 'Erfolg: Erstes Training' },
+cap: { name: 'KAPPE', unlocked: true, cond: 'Erfolg: 10 Trainings' },
+visor: { name: 'VISIER', unlocked: false, cond: 'Erfolg: 4 Wochen in Folge' },
+headphones: { name: 'KOPFHÖRER', unlocked: false, cond: 'Erfolg: 25 Trainings' },
+medal: { name: 'MEDAILLE', unlocked: false, cond: 'Erfolg: 50 Trainings' },
+crown: { name: 'KRONE', unlocked: false, cond: 'Einen Skill meistern' }
+};
+function geo(kind) { return BODIES[kind === 'legend' ? 'trained' : kind]; }
+function f(n) { return Math.round(n * 100) / 100; }
+function extraShapes(kind, b) {
+var hx = b.hx, hy = b.hy, r = b.r, R;
+if (kind === 'headband') return { fill: '', line: 'M' + f(hx - r) + ' ' + f(hy - 0.35 * r) + 'L' + f(hx + r) + ' ' + f(hy - 0.55 * r) + 'M' + f(hx + r) + ' ' + f(hy - 0.55 * r) + 'L' + f(hx + r + 6) + ' ' + f(hy - 0.1 * r), w: 2.4 };
+if (kind === 'cap') { R = r + 1.2; return { fill: 'M' + f(hx - R) + ' ' + hy + 'A' + R + ' ' + R + ' 0 0 1 ' + f(hx + R) + ' ' + hy + 'Z', line: 'M' + hx + ' ' + f(hy - 0.15 * r) + 'H' + f(hx + r + 6), w: 2.6 }; }
+if (kind === 'visor') return { fill: '', line: 'M' + f(hx - r - 0.5) + ' ' + (hy - 0.5) + 'H' + f(hx + r + 0.5), w: 3.2 };
+if (kind === 'headphones') { R = r + 2.5; return { fill: 'M' + f(hx - r - 4) + ' ' + (hy - 2.5) + 'h5v6h-5ZM' + f(hx + r - 1) + ' ' + (hy - 2.5) + 'h5v6h-5Z', line: 'M' + f(hx - R) + ' ' + hy + 'A' + R + ' ' + R + ' 0 0 1 ' + f(hx + R) + ' ' + hy, w: 2.2 }; }
+if (kind === 'medal') { var my = hy + r + 12; return { fill: 'M' + (hx - 2.8) + ' ' + f(my) + 'a2.8 2.8 0 1 0 5.6 0a2.8 2.8 0 1 0 -5.6 0', line: 'M' + (hx - 5) + ' ' + f(hy + r + 2) + 'L' + hx + ' ' + f(hy + r + 10) + 'L' + (hx + 5) + ' ' + f(hy + r + 2), w: 1.8 }; }
+if (kind === 'crown') { var t = hy - r; return { fill: 'M' + f(hx - r) + ' ' + f(t - 1.5) + 'L' + f(hx - r) + ' ' + f(t - 8) + 'L' + f(hx - r / 2) + ' ' + f(t - 4.5) + 'L' + hx + ' ' + f(t - 10) + 'L' + f(hx + r / 2) + ' ' + f(t - 4.5) + 'L' + f(hx + r) + ' ' + f(t - 8) + 'L' + f(hx + r) + ' ' + f(t - 1.5) + 'Z', line: '', w: 1 }; }
+return { fill: '', line: '', w: 1 };
+}
+function figure(o) {
+var b = geo(o.body);
+var col = COLORS[o.color][1];
+var inv = o.ground === 'inverted';
+var bg = inv ? col : (o.ground === 'night' ? '#1E1733' : '#0B1015');
+var fg = inv ? '#07090C' : col;
+var x = extraShapes(o.extra, b);
+var legend = o.body === 'legend';
+return {
+bg: bg, fg: fg, corner: inv ? '#07090C' : col,
+w: b.w, hx: b.hx, hy: b.hy, r: b.r,
+lines: b.lines, fillD: b.fill || 'M0 0', fillOp: b.op, solid: b.solid || 'M0 0',
+exFill: x.fill || 'M0 0', exLine: x.line || 'M0 0', exW: x.w, exColor: COLORS[o.extraColor][1],
+glow: legend && !inv ? 'drop-shadow(0 0 8px ' + col + 'aa)' : 'none',
+aria: 'Dein Avatar: ' + BODIES[o.body].full
+};
+}
+var highest = ['start', 'athlete', 'trained', 'legend'].filter(function (k) { return BODIES[k].unlocked; }).pop();
+var chosenBody = st.body === 'auto' || !BODIES[st.body] || !BODIES[st.body].unlocked ? highest : st.body;
+var chosenExtra = EXTRAS[st.extra] && EXTRAS[st.extra].unlocked ? st.extra : 'none';
+var base = { body: chosenBody, color: st.color || 'lime', extraColor: st.extraColor || 'cyan', ground: st.ground || 'dark', extra: chosenExtra };
+var p = figure(base);
+var tab = st.tab || 'body';
+var tabs = [['Körper', 'body'], ['Farben', 'colors'], ['Extras', 'extras']].map(function (m) {
+var on = m[1] === tab;
+return { name: m[0], pressed: on ? 'true' : 'false', bg: on ? accent : 'transparent', fg: on ? '#07090C' : '#EAF2F5', pick: function () { self.setState({ tab: m[1], hint: '' }); } };
+});
+function tile(name, cond, unlocked, selected, fig, pick) {
+return {
+name: name, a: fig, locked: !unlocked,
+pressed: selected ? 'true' : 'false', aria: name + (unlocked ? '' : ', gesperrt: ' + cond),
+border: selected ? accent : '#1E2A33', op: unlocked ? '1' : '0.35',
+pick: unlocked ? function () { pick(); self.setState({ hint: '' }); } : function () { self.setState({ hint: 'Gesperrt: ' + cond }); }
+};
+}
+var tiles;
+if (tab === 'body') {
+tiles = [tile('Auto', '', true, st.body === 'auto', figure(Object.assign({}, base, { body: highest })), function () { self.setState({ body: 'auto' }); })];
+['start', 'athlete', 'trained', 'legend'].forEach(function (k) {
+var b = BODIES[k];
+tiles.push(tile(b.full, b.cond, b.unlocked, st.body === k, figure(Object.assign({}, base, { body: k })), function () { self.setState({ body: k }); }));
+});
+} else {
+var names = { none: 'Keins', headband: 'Stirnband', cap: 'Kappe', visor: 'Visier', headphones: 'Kopfhörer', medal: 'Medaille', crown: 'Krone' };
+tiles = Object.keys(EXTRAS).map(function (k) {
+var e = EXTRAS[k];
+return tile(names[k], e.cond, e.unlocked, chosenExtra === k, figure(Object.assign({}, base, { extra: k })), function () { self.setState({ extra: k }); });
+});
+}
+function swatches(key) {
+return Object.keys(COLORS).map(function (k) {
+var on = (st[key] || '') === k;
+return { name: COLORS[k][0], hex: COLORS[k][1], pressed: on ? 'true' : 'false', ring: on ? '#EAF2F5' : 'transparent', pick: function () { var o = {}; o[key] = k; self.setState(o); } };
+});
+}
+var grounds = [['Dunkel', 'dark'], ['Nacht', 'night'], ['Invertiert', 'inverted']].map(function (g) {
+var on = (st.ground || 'dark') === g[1];
+return { name: g[0], pressed: on ? 'true' : 'false', bg: on ? accent : 'transparent', fg: on ? '#07090C' : '#EAF2F5', border: on ? accent : '#3A4954', pick: function () { self.setState({ ground: g[1] }); } };
+});
+return {
+accent: accent, p: p, tabs: tabs, tiles: tiles,
+showGrid: tab !== 'colors', showColors: tab === 'colors',
+hint: st.hint || 'Tippe auf ein gesperrtes Teil, um zu sehen, wie du es freischaltest.',
+hintTone: st.hint ? '#EAF2F5' : '#9FB0BC',
+colors: swatches('color'), colors2: swatches('extraColor'), grounds: grounds
+};
+}
+}
+</script>
+</body>
+</html>

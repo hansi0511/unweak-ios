@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>V2 Übung Klimmzüge</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+body{margin:0}
+a{color:#EAF2F5;text-decoration:none}a:hover{color:#FFFFFF}
+@keyframes pu-body{0%,15%{transform:translateY(0)}32.5%{transform:translateY(-14.2px)}50%,60%{transform:translateY(-28.35px)}77.5%{transform:translateY(-14.2px)}95%,100%{transform:translateY(0)}}
+@keyframes pu-fl{0%,15%{transform:rotate(0deg)}32.5%{transform:rotate(40.2deg)}50%,60%{transform:rotate(51.6deg)}77.5%{transform:rotate(40.2deg)}95%,100%{transform:rotate(0deg)}}
+@keyframes pu-fr{0%,15%{transform:rotate(0deg)}32.5%{transform:rotate(-40.2deg)}50%,60%{transform:rotate(-51.6deg)}77.5%{transform:rotate(-40.2deg)}95%,100%{transform:rotate(0deg)}}
+@keyframes pu-ul{0%,15%{transform:rotate(0deg)}32.5%{transform:rotate(-47.4deg)}50%,60%{transform:rotate(-75.1deg)}77.5%{transform:rotate(-47.4deg)}95%,100%{transform:rotate(0deg)}}
+@keyframes pu-ur{0%,15%{transform:rotate(0deg)}32.5%{transform:rotate(47.4deg)}50%,60%{transform:rotate(75.1deg)}77.5%{transform:rotate(47.4deg)}95%,100%{transform:rotate(0deg)}}
+.pu{transform-box:view-box;animation-duration:3s;animation-timing-function:linear;animation-iteration-count:infinite}
+.pu-body{animation-name:pu-body}
+.pu-fl{transform-origin:80px 20px;animation-name:pu-fl}
+.pu-fr{transform-origin:120px 20px;animation-name:pu-fr}
+.pu-ul{transform-origin:88px 69.35px;animation-name:pu-ul}
+.pu-ur{transform-origin:112px 69.35px;animation-name:pu-ur}
+@media (prefers-reduced-motion: reduce){.pu{animation:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #07090C; color: #EAF2F5; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; padding: 20px 20px 24px; gap: 20px">
+<a href="V2-Training.dc.html" aria-label="Zurück zum Training" style="width: 44px; height: 44px; border: 1px solid #1E2A33; background: #0B1015; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; letter-spacing: -0.6px; line-height: 1.05">Klimmzüge</h1>
+<div style="height: 200px; flex-shrink: 0; border: 1px solid #1E2A33; background: #0B1015; display: flex; align-items: center; justify-content: center"><svg role="img" aria-label="Animation: Klimmzüge" width="220" height="187" viewBox="0 0 200 170" fill="none" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 10px {{glow}})">
+<path d="M30 6v14h140V6" stroke="#EAF2F5" stroke-width="3"></path>
+<path class="pu pu-fl" d="M80 20L84 44.7" stroke="{{accent}}" stroke-width="5"></path>
+<path class="pu pu-fr" d="M120 20L116 44.7" stroke="{{accent}}" stroke-width="5"></path>
+<g class="pu pu-body" stroke="{{accent}}" stroke-width="5">
+<path class="pu pu-ul" d="M88 69.35L84 44.7"></path>
+<path class="pu pu-ur" d="M112 69.35L116 44.7"></path>
+<path d="M88 69.35h24"></path>
+<circle cx="100" cy="55" r="9" fill="#07090C"></circle>
+<path d="M100 69.35V112"></path>
+<path d="M100 112l-6 38M100 112l6 38"></path>
+</g>
+</svg></div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; gap: 14px; align-items: baseline"><div style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: {{accent}}; width: 16px">1</div><div style="font-size: 16px; line-height: 1.4">Stange schulterbreit greifen, Arme gestreckt.</div></div>
+<div style="display: flex; gap: 14px; align-items: baseline"><div style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: {{accent}}; width: 16px">2</div><div style="font-size: 16px; line-height: 1.4">Hochziehen, bis das Kinn über der Stange ist.</div></div>
+<div style="display: flex; gap: 14px; align-items: baseline"><div style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: {{accent}}; width: 16px">3</div><div style="font-size: 16px; line-height: 1.4">Langsam ablassen.</div></div>
+</div>
+<div style="display: flex; gap: 12px; align-items: center; padding: 14px; border: 1px solid #1E2A33"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFB547" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M12 3l10 18H2zM12 10v5M12 18v.5"></path></svg><div style="font-size: 15px; line-height: 1.4">Kein Schwung holen.</div></div>
+<div style="flex-grow: 1"></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="padding: 12px 14px; border: 1px solid #1E2A33; background: #0B1015; display: flex; flex-direction: column; gap: 4px"><div style="font-size: 13px; color: #9FB0BC">Zu schwer?</div><div style="font-size: 15px; font-weight: 600">Negative Klimmzüge</div></div>
+<div style="padding: 12px 14px; border: 1px solid #1E2A33; background: #0B1015; display: flex; flex-direction: column; gap: 4px"><div style="font-size: 13px; color: #9FB0BC">Zu leicht?</div><div style="font-size: 15px; font-weight: 600">Brust zur Stange</div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C6F24E","options":["#C6F24E","#5CE1FF","#FFB547","#FF7566","#FF7AB8","#A995FF"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+
+renderVals() {
+var accent = this.props.accent ?? '#C6F24E';
+var glow = /^#[0-9a-fA-F]{6}$/.test(accent) ? accent + '66' : accent;
+var self = this;
+var st = this.state || {};
+return { accent: accent, glow: glow };
+}
+}
+</script>
+</body>
+</html>
