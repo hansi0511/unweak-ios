@@ -113,7 +113,9 @@ def mu(sh, hip, legs):
     return P(hip, ang(hip, sh), ang(hip, sh) + (0 if sh[1] > 100 else 0), [('p', mh, 1), ('p', (mh[0]+2, mh[1]), 1)], [('a', *legs), ('a', legs[0]+4, legs[1]+4)])
 hang = mu((100, 142.5), (100, 184.5), (75, 120))
 pull = mu((95, 113), (88, 153), (60, 85))
-trans = mu((104, 97), (88, 135), (70, 100))
+# The shoulder travels in front of the bar (x > 100) instead of through the hands.
+front = mu((114, 106), (96, 144), (65, 95))
+trans = mu((116, 86), (95, 122), (70, 100))
 supp = mu((102, 57.5), (97, 99.2), (70, 95))
 ANIMS['muscleUp'] = dict(canvas=(200,240), dur=4.5, end=0.75, app=[((60,100),(140,100))],
-    keys=[(0,hang),(0.1,hang),(0.32,pull),(0.5,trans),(0.68,supp),(0.82,supp),(0.92,trans),(1,hang)])
+    keys=[(0,hang),(0.1,hang),(0.3,pull),(0.4,front),(0.5,trans),(0.66,supp),(0.82,supp),(0.9,trans),(0.95,front),(1,hang)])
