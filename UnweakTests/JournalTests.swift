@@ -105,6 +105,24 @@ struct RecordAndMonthTests {
         #expect(stats([reps, seconds]).bestValue(of: "plank", unit: .seconds) == 40)
     }
 
+    @Test func personalBestsKeepTheFirstDayOfTheBestValue() {
+        let plank = ExerciseResult(exercise: "plank", sets: 1, value: 90, unit: .seconds)
+        let entries = [
+            entry(day(11, 2), results: [pullUps(5)]),
+            entry(day(11, 9), results: [pullUps(7)]),
+            entry(day(11, 10), results: [pullUps(7)]),
+            entry(day(11, 5), results: [plank]),
+        ]
+        let bests = stats(entries).personalBests()
+        #expect(bests.count == 2)
+        // Most recent first: pull-ups (9 Nov) before plank (5 Nov).
+        #expect(bests.map(\.exercise) == ["pullUp", "plank"])
+        #expect(bests[0].value == 7)
+        #expect(bests[0].date == day(11, 9))
+        #expect(bests[1].unit == .seconds)
+        #expect(stats([]).personalBests().isEmpty)
+    }
+
     @Test func monthFigures() {
         let entries = [
             entry(day(10, 30), seconds: 999, results: [pullUps(4)]),

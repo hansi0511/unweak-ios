@@ -32,6 +32,16 @@ struct MonthSummary: Equatable {
     let records: Int
 }
 
+/// The best value of one exercise and the day it was first reached.
+struct PersonalBest: Equatable, Identifiable, Sendable {
+    let exercise: String
+    let value: Int
+    let unit: ExerciseResult.Unit
+    let date: Date
+
+    var id: String { "\(exercise)|\(unit.rawValue)" }
+}
+
 /// Progress towards an achievement.
 struct AchievementProgress: Equatable {
     let achievement: Achievement
@@ -179,6 +189,20 @@ struct JournalStats {
             guard let previous = bestValue(of: result.exercise, unit: result.unit, before: entry) else { return false }
             return result.value > previous
         }
+    }
+
+    /// The best value of every exercise ever done, with the day it was first reached.
+    /// Most recent first; ties by exercise ID.
+    func personalBests() -> [PersonalBest] {
+        var bests: [String: PersonalBest] = [:]
+        for entry in entries {
+            for result in entry.results {
+                let key = "\(result.exercise)|\(result.unit.rawValue)"
+                if let current = bests[key], current.value >= result.value { continue }
+                bests[key] = PersonalBest(exercise: result.exercise, value: result.value, unit: result.unit, date: entry.date)
+            }
+        }
+        return bests.values.sorted { ($0.date, $1.exercise) > ($1.date, $0.exercise) }
     }
 
     private func isBefore(_ a: JournalEntry, _ b: JournalEntry) -> Bool {
