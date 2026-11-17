@@ -40,25 +40,23 @@ struct MeScreen: View {
             )
 
             if subscription.access.canUseSkills {
-                SkillsHeader {
-                    navigation?.showSkills()
-                }
-                if goals.isEmpty {
-                    Button {
+                VStack(spacing: 8) {
+                    SkillsHeader {
                         navigation?.showSkills()
-                    } label: {
-                        ChipLabel("Choose skills", systemImage: "plus", style: .dashed, expands: true)
                     }
-                    .buttonStyle(PressFeedbackStyle())
-                }
-                ForEach(goals) { goal in
-                    SkillPanel(
-                        progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
-                        catalog: catalog
-                    ) {
-                        withAnimation(.easeOut(duration: 0.2)) {
-                            store.markStageReached(of: goal)
+                    if goals.isEmpty {
+                        Button {
+                            navigation?.showSkills()
+                        } label: {
+                            ChipLabel("Choose skills", systemImage: "plus", style: .dashed, expands: true)
                         }
+                        .buttonStyle(PressFeedbackStyle())
+                    }
+                    ForEach(goals) { goal in
+                        SkillRow(
+                            progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
+                            catalog: catalog
+                        )
                     }
                 }
             } else {
@@ -128,16 +126,16 @@ private struct AvatarStage: View {
     var body: some View {
         let current = unlocks.body(for: style)
 
-        VStack(spacing: 14) {
+        VStack(spacing: 12) {
             ZStack {
                 Circle()
                     .fill(style.backgroundColor)
                     .padding(16)
                 WeekRing(total: week.target, filled: week.workouts)
                 AvatarView(style: style, body: current, extra: unlocks.extra(for: style), framed: false)
-                    .padding(36)
+                    .padding(26)
             }
-            .frame(maxWidth: 280)
+            .frame(maxWidth: 200)
             .aspectRatio(1, contentMode: .fit)
             .frame(maxWidth: .infinity)
 
@@ -147,18 +145,18 @@ private struct AvatarStage: View {
                     Text(verbatim: "·")
                     Text("Streak \(streak) weeks")
                 }
+                Text(verbatim: "·")
+                Text(current.name)
+                    .foregroundStyle(Theme.text)
             }
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
             .foregroundStyle(Theme.textSoft)
             .font(.mono)
             .tracking(1)
             .textCase(.uppercase)
             .multilineTextAlignment(.center)
             .accessibilityElement(children: .combine)
-
-            Text(current.name)
-                .font(.metric)
-                .foregroundStyle(Theme.text)
-                .frame(maxWidth: .infinity)
 
             if let nextPlan {
                 NavigationLink {
@@ -229,157 +227,88 @@ private struct SkillsHeader: View {
     }
 }
 
-/// One skill the user works towards: name and animations open the skill page; the current stage ("Now")
-/// next to the skill itself ("Goal"), both animated, then the stage segments and
-/// "Stage reached".
-private struct SkillPanel: View {
+/// One skill being learned, as a slim row: still pose of the current stage, name, state
+/// with the current stage, fine segments. Opens the skill page; stages are marked there.
+private struct SkillRow: View {
     @Environment(\.accent) private var accent
     let progress: GoalProgress
     let catalog: Catalog
-    let onStageReached: () -> Void
 
     private var goal: Goal { progress.goal }
 
     var body: some View {
-        HUDPanel {
-            VStack(alignment: .leading, spacing: 14) {
-                // Name and animations open the skill's page with its description.
-                NavigationLink {
-                    SkillScreen(goal: goal, catalog: catalog)
-                } label: {
-                    VStack(alignment: .leading, spacing: 14) {
-                        HStack(spacing: 8) {
-                            Text(catalog: goal.nameKey)
-                                .font(.metric)
-                                .foregroundStyle(Theme.text)
-                                .multilineTextAlignment(.leading)
-                            Spacer(minLength: 0)
-                            Image(systemName: "chevron.right")
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundStyle(accent.color)
-                                .accessibilityHidden(true)
-                        }
-                        .frame(minHeight: Theme.Layout.minTouchTarget)
-                        HStack(alignment: .top, spacing: 8) {
-                            column(label: "Now", animation: catalog.currentAnimation(for: progress)) {
-                                nowText
-                            }
-                            Image(systemName: "arrow.right")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundStyle(Theme.textMuted)
-                                .padding(.top, 50)
-                                .accessibilityHidden(true)
-                            column(label: "Goal", animation: catalog.animation(for: goal)) {
-                                goalText
-                            }
-                        }
-                    }
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(PressFeedbackStyle())
-                .accessibilityHint(Text("Shows the skill with its stages"))
-
-                SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, label: "Goal progress")
-
-                HStack(spacing: 12) {
-                    progressLine
+        let animation = catalog.currentAnimation(for: progress)
+        NavigationLink {
+            SkillScreen(goal: goal, catalog: catalog)
+        } label: {
+            HStack(spacing: 12) {
+                StickyFigureCanvas(figure: animation.figure(at: animation.endPoseProgress))
+                    .frame(width: 44, height: 44)
+                    .accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(catalog: goal.nameKey)
+                        .font(.textSemibold(15))
+                        .foregroundStyle(Theme.text)
+                        .lineLimit(1)
+                    stateLine
                         .font(.mono)
-                        .tracking(1)
-                        .textCase(.uppercase)
                         .foregroundStyle(Theme.textMuted)
-                    Spacer(minLength: 0)
-                    if case .stages = goal.kind, !progress.isComplete {
-                        Button(action: onStageReached) {
-                            ChipLabel("Stage reached", systemImage: "checkmark", style: .dashed)
-                        }
-                        .buttonStyle(PressFeedbackStyle())
-                    }
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                    SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, height: 4, label: "Goal progress")
                 }
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(accent.color)
+                    .accessibilityHidden(true)
             }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget, alignment: .leading)
+            .background(Theme.surface)
+            .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+            .contentShape(Rectangle())
         }
-    }
-
-    /// Animation with a small label above and a caption below.
-    private func column(label: LocalizedStringKey, animation: StickyAnimation, @ViewBuilder caption: () -> some View) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            MonoLabel(label)
-            StickyManView(animation)
-                .frame(height: 110)
-                .frame(maxWidth: .infinity)
-            caption()
-                .font(.text(13))
-                .foregroundStyle(Theme.textSoft)
-                .multilineTextAlignment(.leading)
-                .fixedSize(horizontal: false, vertical: true)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .buttonStyle(PressFeedbackStyle())
         .accessibilityElement(children: .combine)
+        .accessibilityHint(Text("Shows the skill with its stages"))
     }
 
-    /// The stage worked on, or the best time.
-    private var nowText: Text {
-        switch goal.kind {
-        case .stages:
-            if let index = progress.currentStageIndex, goal.stageKeys.indices.contains(index) {
-                return Text(catalog: goal.stageKeys[index])
-            }
-            return Text(catalog: goal.nameKey)
-        case .time:
-            if let best = progress.bestSeconds {
-                return Text("Best time \(ValueText.seconds(best))")
-            }
-            return Text("No time yet")
-        }
-    }
-
-    /// The final stage, or the target time.
-    private var goalText: Text {
-        switch goal.kind {
-        case .stages:
-            if let last = goal.stageKeys.last {
-                return Text(catalog: last)
-            }
-            return Text(catalog: goal.nameKey)
-        case .time(let target):
-            return Text("Target \(ValueText.seconds(target))")
-        }
-    }
-
-    private var progressLine: Text {
-        switch goal.kind {
-        case .stages(let count):
-            if progress.isComplete { return Text("All stages reached") }
-            let remaining = max(0, count - progress.reachedStages)
-            return Text("Stage \(progress.reachedStages) / \(count) · \(remaining) to go")
-        case .time:
-            return progress.isComplete ? Text("Goal reached") : Text("Keep going")
-        }
+    /// "Stage 2 / 5 · Advanced tuck", or the best or target time.
+    private var stateLine: Text {
+        guard let index = progress.currentStageIndex, !progress.isComplete,
+              goal.stageKeys.indices.contains(index)
+        else { return progress.stateText }
+        return progress.stateText + Text(verbatim: " · ") + Text(catalog: goal.stageKeys[index])
     }
 }
 
 /// Free version: invites to the skills, which need Pro.
 private struct SkillTeaser: View {
     var body: some View {
-        HUDPanel {
-            HStack(spacing: 12) {
-                VStack(alignment: .leading, spacing: 8) {
-                    HStack(spacing: 6) {
-                        MonoLabel("Skills")
-                        Badge(kind: .subscription)
-                    }
-                    Text("Reach your first skill")
-                        .font(.metric)
-                        .foregroundStyle(Theme.text)
-                    Text("Choose a skill like the front lever and get the workouts that build it.")
-                        .font(.text(13))
-                        .foregroundStyle(Theme.textSoft)
-                        .multilineTextAlignment(.leading)
+        HStack(spacing: 12) {
+            StickyPoseView(.frontLever)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 6) {
+                    MonoLabel("Skills")
+                    Badge(kind: .subscription)
                 }
-                Spacer(minLength: 0)
-                StickyManView(.frontLever)
-                    .frame(width: 110, height: 110)
+                Text("Reach your first skill")
+                    .font(.textSemibold(15))
+                    .foregroundStyle(Theme.text)
             }
+            Spacer(minLength: 0)
+            Image(systemName: "chevron.right")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(Theme.textMuted)
+                .accessibilityHidden(true)
         }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget, alignment: .leading)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
     }
