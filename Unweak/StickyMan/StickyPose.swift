@@ -2,7 +2,7 @@ import CoreGraphics
 import Foundation
 
 /// Static 48 x 48 poses for lists, from the table in `docs/DESIGN.md`.
-enum StickyPose: CaseIterable, Sendable {
+enum StickyPose: String, CaseIterable, Codable, Sendable {
     case pushUp
     case pullUp
     case plank

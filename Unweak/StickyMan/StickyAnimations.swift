@@ -2,16 +2,54 @@ import CoreGraphics
 import Foundation
 
 /// The looping exercise animations. Each maps a progress value (0...1 over one loop)
-/// to a `StickyFigure`, using the values in `docs/DESIGN.md`.
-enum StickyAnimation: CaseIterable, Sendable {
+/// to a `StickyFigure`. Front lever and pull-up follow `docs/DESIGN.md`; the others
+/// are side views built from key poses (`BodyAnimation`).
+/// The raw values are used as identifiers in `Catalog.json`.
+enum StickyAnimation: String, CaseIterable, Codable, Sendable {
     case frontLever
     case pullUp
+    case negativePullUp
+    case pushUp
+    case kneePushUp
+    case pikePushUp
+    case dip
+    case row
+    case squat
+    case lunge
+    case pistolSquat
+    case plank
+    case kneeRaise
+    case lSit
+    case handstand
+    case muscleUp
+
+    /// Key-pose animation behind the side-view cases.
+    var bodyAnimation: BodyAnimation? {
+        switch self {
+        case .frontLever, .pullUp, .negativePullUp: nil
+        case .pushUp: .pushUp
+        case .kneePushUp: .kneePushUp
+        case .pikePushUp: .pikePushUp
+        case .dip: .dip
+        case .row: .row
+        case .squat: .squat
+        case .lunge: .lunge
+        case .pistolSquat: .pistolSquat
+        case .plank: .plank
+        case .kneeRaise: .kneeRaise
+        case .lSit: .lSit
+        case .handstand: .handstand
+        case .muscleUp: .muscleUp
+        }
+    }
 
     /// Length of one loop in seconds.
     var duration: TimeInterval {
         switch self {
         case .frontLever: FrontLeverAnimation.duration
         case .pullUp: PullUpAnimation.duration
+        case .negativePullUp: NegativePullUpAnimation.duration
+        default: bodyAnimation?.duration ?? 3
         }
     }
 
@@ -20,13 +58,16 @@ enum StickyAnimation: CaseIterable, Sendable {
         switch self {
         case .frontLever: FrontLeverAnimation.holdProgress
         case .pullUp: PullUpAnimation.topProgress
+        case .negativePullUp: NegativePullUpAnimation.topProgress
+        default: bodyAnimation?.endPoseProgress ?? 0
         }
     }
 
     var canvas: CGSize {
         switch self {
         case .frontLever: FrontLeverAnimation.canvas
-        case .pullUp: PullUpAnimation.canvas
+        case .pullUp, .negativePullUp: PullUpAnimation.canvas
+        default: bodyAnimation?.canvas ?? PullUpAnimation.canvas
         }
     }
 
@@ -34,6 +75,8 @@ enum StickyAnimation: CaseIterable, Sendable {
         switch self {
         case .frontLever: FrontLeverAnimation.figure(at: progress)
         case .pullUp: PullUpAnimation.figure(at: progress)
+        case .negativePullUp: NegativePullUpAnimation.figure(at: progress)
+        default: bodyAnimation?.figure(at: progress) ?? PullUpAnimation.figure(at: progress)
         }
     }
 
@@ -47,7 +90,38 @@ enum StickyAnimation: CaseIterable, Sendable {
         switch self {
         case .frontLever: "Front lever animation"
         case .pullUp: "Pull-up animation"
+        case .negativePullUp: "Negative pull-up animation"
+        case .pushUp: "Push-up animation"
+        case .kneePushUp: "Knee push-up animation"
+        case .pikePushUp: "Pike push-up animation"
+        case .dip: "Dip animation"
+        case .row: "Australian row animation"
+        case .squat: "Squat animation"
+        case .lunge: "Lunge animation"
+        case .pistolSquat: "Pistol squat animation"
+        case .plank: "Plank animation"
+        case .kneeRaise: "Hanging knee raise animation"
+        case .lSit: "L-sit animation"
+        case .handstand: "Handstand animation"
+        case .muscleUp: "Muscle-up animation"
         }
+    }
+}
+
+/// Negative pull-up: hold at the top, lower slowly, step back up. Reuses the
+/// pull-up figure with a different timeline.
+enum NegativePullUpAnimation {
+    static let duration: TimeInterval = 5
+    static let topProgress = 0.0
+
+    /// Maps the loop to pull-up progress: top (0.55) held, slow descent to the bottom
+    /// (0.95), then a quick climb back to the top (0.15 to 0.5, both bottom/top poses).
+    private static let mapping = Keyframes([
+        (0, 0.55), (0.15, 0.55), (0.85, 0.95), (0.86, 0.15), (1, 0.5),
+    ])
+
+    static func figure(at progress: Double) -> StickyFigure {
+        PullUpAnimation.figure(at: mapping.value(at: progress))
     }
 }
 

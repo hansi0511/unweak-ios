@@ -6,7 +6,7 @@ Dieses Repository enthält die native iOS-App (Swift, SwiftUI). Die Android-App 
 
 ## Stand
 
-Schritt 2 von 7 (siehe `CLAUDE.md`): Xcode-Projekt, Design-Grundlagen, Navigation mit drei Tabs und Sticky Man. Die Screens sind noch Platzhalter.
+Schritt 3 von 7 (siehe `CLAUDE.md`): Xcode-Projekt, Design-Grundlagen, Navigation, Sticky Man mit 16 Übungsanimationen, Trainingsdaten und die Screens Workouts, Training läuft und Übungsdetail. Dashboard, Tagebuch und Einstellungen sind noch Platzhalter. Die Trainingsinhalte sind Beispielinhalte, bis der echte Katalog steht.
 
 Öffnen: `Unweak.xcodeproj` in Xcode 16 oder neuer. Mindestversion iOS 17. Die Bundle-ID `com.example.unweak` ist ein Platzhalter.
 
@@ -15,9 +15,11 @@ Schritt 2 von 7 (siehe `CLAUDE.md`): Xcode-Projekt, Design-Grundlagen, Navigatio
 | `Unweak/App` | Einstieg und Tab-Navigation |
 | `Unweak/Design` | Farben, Schriften, Akzentfarben und Bausteine (`Components/`) |
 | `Unweak/StickyMan` | Sticky Man: Gelenkpunkte, Animationen (Front Lever, Klimmzug), Listenposen, Darstellung |
+| `Unweak/Training` | Trainingsdaten (Übungen, Pläne, Ziele) und Ablauf eines Trainings |
 | `Unweak/Features` | Screens, je Bereich ein Ordner |
-| `Unweak/Resources` | Schriften mit Lizenzen, Assets, Texte (`Localizable.xcstrings`) |
+| `Unweak/Resources` | Schriften mit Lizenzen, Assets, Texte der Oberfläche (`Localizable.xcstrings`), Trainingsinhalte (`Catalog.json`, Texte in `Catalog.xcstrings`) |
 | `UnweakTests` | Unit-Tests |
+| `tools` | Skripte, die Trainingsinhalte und Animationsdaten erzeugen (siehe `tools/README.md`) |
 
 Neue Dateien in diesen Ordnern nimmt Xcode automatisch ins Projekt auf.
 

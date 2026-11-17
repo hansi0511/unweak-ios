@@ -5,6 +5,8 @@ struct StickySegment: Equatable, Sendable {
     var from: CGPoint
     var to: CGPoint
     var width: CGFloat
+    /// 1 for the near side; lower for far limbs and background lines such as the floor.
+    var opacity: Double = 1
 
     var length: CGFloat { from.distance(to: to) }
 }

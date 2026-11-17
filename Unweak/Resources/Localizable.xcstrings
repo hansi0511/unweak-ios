@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld min" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        }
+      }
+    },
     "%lld of %lld" : {
       "localizations" : {
         "de" : {
@@ -11,12 +21,22 @@
         }
       }
     },
-    "5 plans free" : {
+    "%lld plans free" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "5 Pläne gratis"
+            "value" : "%lld Pläne gratis"
+          }
+        }
+      }
+    },
+    "%lld s" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld s"
           }
         }
       }
@@ -27,6 +47,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Akzentfarbe"
+          }
+        }
+      }
+    },
+    "Advanced" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profi"
           }
         }
       }
@@ -51,12 +81,52 @@
         }
       }
     },
+    "Australian row animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Australian Row"
+          }
+        }
+      }
+    },
     "Back" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zurück"
+          }
+        }
+      }
+    },
+    "Beginner" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einsteiger"
+          }
+        }
+      }
+    },
+    "Close" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        }
+      }
+    },
+    "Common mistakes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häufige Fehler"
           }
         }
       }
@@ -81,6 +151,36 @@
         }
       }
     },
+    "Create workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workout erstellen"
+          }
+        }
+      }
+    },
+    "Current" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuell"
+          }
+        }
+      }
+    },
+    "Custom" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigenes"
+          }
+        }
+      }
+    },
     "Cyan" : {
       "localizations" : {
         "de" : {
@@ -97,6 +197,96 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dashboard"
+          }
+        }
+      }
+    },
+    "Dip animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Dip"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erledigt"
+          }
+        }
+      }
+    },
+    "Easier" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leichter"
+          }
+        }
+      }
+    },
+    "Elapsed time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trainingszeit"
+          }
+        }
+      }
+    },
+    "End and save workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Training beenden und speichern"
+          }
+        }
+      }
+    },
+    "Exercise %lld / %lld · %lld × %lld reps" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übung %1$lld / %2$lld · %3$lld × %4$lld Wdh."
+          }
+        }
+      }
+    },
+    "Exercise %lld / %lld · %lld × %lld s" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übung %1$lld / %2$lld · %3$lld × %4$lld s"
+          }
+        }
+      }
+    },
+    "Exercises" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übungen"
+          }
+        }
+      }
+    },
+    "Finish workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Training abschließen"
           }
         }
       }
@@ -141,12 +331,62 @@
         }
       }
     },
+    "Handstand animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Handstand"
+          }
+        }
+      }
+    },
+    "Hanging knee raise animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation hängendes Knieheben"
+          }
+        }
+      }
+    },
+    "Harder" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schwerer"
+          }
+        }
+      }
+    },
+    "How it works" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So geht's"
+          }
+        }
+      }
+    },
     "In progress" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "In Arbeit"
+          }
+        }
+      }
+    },
+    "Intermediate" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortgeschritten"
           }
         }
       }
@@ -161,12 +401,42 @@
         }
       }
     },
+    "Knee push-up animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Knie-Liegestütz"
+          }
+        }
+      }
+    },
     "L-sit" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "L-Sit"
+          }
+        }
+      }
+    },
+    "L-sit animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation L-Sit"
+          }
+        }
+      }
+    },
+    "Last exercise" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letzte Übung"
           }
         }
       }
@@ -191,12 +461,62 @@
         }
       }
     },
+    "Lunge animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Ausfallschritt"
+          }
+        }
+      }
+    },
     "Muscle-up" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muscle-up"
+          }
+        }
+      }
+    },
+    "Muscle-up animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Muscle-up"
+          }
+        }
+      }
+    },
+    "Negative pull-up animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation negativer Klimmzug"
+          }
+        }
+      }
+    },
+    "Next" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nächste"
+          }
+        }
+      }
+    },
+    "Next exercise" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nächste Übung"
           }
         }
       }
@@ -221,12 +541,42 @@
         }
       }
     },
+    "None" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine"
+          }
+        }
+      }
+    },
+    "Open" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offen"
+          }
+        }
+      }
+    },
     "Orange" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Orange"
+          }
+        }
+      }
+    },
+    "Pike push-up animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Pike-Liegestütz"
           }
         }
       }
@@ -251,12 +601,32 @@
         }
       }
     },
+    "Pistol squat animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Pistol Squat"
+          }
+        }
+      }
+    },
     "Plank" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Plank"
+          }
+        }
+      }
+    },
+    "Plank animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Plank"
           }
         }
       }
@@ -321,6 +691,16 @@
         }
       }
     },
+    "Push-up animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Liegestütz"
+          }
+        }
+      }
+    },
     "Records" : {
       "localizations" : {
         "de" : {
@@ -341,6 +721,26 @@
         }
       }
     },
+    "Rest" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause"
+          }
+        }
+      }
+    },
+    "Rest time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pausenzeit"
+          }
+        }
+      }
+    },
     "Selected" : {
       "localizations" : {
         "de" : {
@@ -357,6 +757,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trainings"
+          }
+        }
+      }
+    },
+    "Set %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satz %lld"
+          }
+        }
+      }
+    },
+    "Set %lld done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satz %lld erledigt"
           }
         }
       }
@@ -401,6 +821,16 @@
         }
       }
     },
+    "Squat animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Kniebeuge"
+          }
+        }
+      }
+    },
     "Stage" : {
       "localizations" : {
         "de" : {
@@ -417,6 +847,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Training starten"
+          }
+        }
+      }
+    },
+    "Technique" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Technik"
+          }
+        }
+      }
+    },
+    "The five beginner plans stay free." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die fünf Einsteiger-Pläne bleiben gratis."
           }
         }
       }
@@ -447,6 +897,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zeit"
+          }
+        }
+      }
+    },
+    "Unlock all plans" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Pläne freischalten"
           }
         }
       }

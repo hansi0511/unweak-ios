@@ -1,0 +1,408 @@
+{
+  "exercises": [
+    {
+      "id": "kneePushUp",
+      "category": "push",
+      "level": "beginner",
+      "animation": "kneePushUp",
+      "pose": "pushUp",
+      "mistakeCount": 2,
+      "harder": "pushUp"
+    },
+    {
+      "id": "pushUp",
+      "category": "push",
+      "level": "beginner",
+      "animation": "pushUp",
+      "pose": "pushUp",
+      "mistakeCount": 2,
+      "easier": "kneePushUp",
+      "harder": "pikePushUp"
+    },
+    {
+      "id": "pikePushUp",
+      "category": "push",
+      "level": "intermediate",
+      "animation": "pikePushUp",
+      "pose": "pushUp",
+      "mistakeCount": 2,
+      "easier": "pushUp",
+      "harder": "wallHandstand"
+    },
+    {
+      "id": "dip",
+      "category": "push",
+      "level": "intermediate",
+      "animation": "dip",
+      "pose": "muscleUp",
+      "mistakeCount": 2,
+      "easier": "pushUp",
+      "harder": "muscleUp"
+    },
+    {
+      "id": "row",
+      "category": "pull",
+      "level": "beginner",
+      "animation": "row",
+      "pose": "pullUp",
+      "mistakeCount": 2,
+      "harder": "negativePullUp"
+    },
+    {
+      "id": "negativePullUp",
+      "category": "pull",
+      "level": "beginner",
+      "animation": "negativePullUp",
+      "pose": "pullUp",
+      "mistakeCount": 2,
+      "easier": "row",
+      "harder": "pullUp"
+    },
+    {
+      "id": "pullUp",
+      "category": "pull",
+      "level": "intermediate",
+      "animation": "pullUp",
+      "pose": "pullUp",
+      "mistakeCount": 2,
+      "easier": "negativePullUp",
+      "harder": "muscleUp"
+    },
+    {
+      "id": "squat",
+      "category": "legs",
+      "level": "beginner",
+      "animation": "squat",
+      "pose": "squat",
+      "mistakeCount": 2,
+      "harder": "lunge"
+    },
+    {
+      "id": "lunge",
+      "category": "legs",
+      "level": "beginner",
+      "animation": "lunge",
+      "pose": "squat",
+      "mistakeCount": 2,
+      "easier": "squat",
+      "harder": "pistolSquat"
+    },
+    {
+      "id": "pistolSquat",
+      "category": "legs",
+      "level": "advanced",
+      "animation": "pistolSquat",
+      "pose": "pistolSquat",
+      "mistakeCount": 2,
+      "easier": "lunge"
+    },
+    {
+      "id": "plank",
+      "category": "core",
+      "level": "beginner",
+      "animation": "plank",
+      "pose": "plank",
+      "mistakeCount": 2,
+      "harder": "lSit"
+    },
+    {
+      "id": "kneeRaise",
+      "category": "core",
+      "level": "beginner",
+      "animation": "kneeRaise",
+      "pose": "lSit",
+      "mistakeCount": 2,
+      "easier": "plank",
+      "harder": "lSit"
+    },
+    {
+      "id": "lSit",
+      "category": "core",
+      "level": "intermediate",
+      "animation": "lSit",
+      "pose": "lSit",
+      "mistakeCount": 2,
+      "easier": "kneeRaise"
+    },
+    {
+      "id": "wallHandstand",
+      "category": "skill",
+      "level": "beginner",
+      "animation": "handstand",
+      "pose": "handstand",
+      "mistakeCount": 2,
+      "easier": "pikePushUp"
+    },
+    {
+      "id": "tuckFrontLever",
+      "category": "skill",
+      "level": "advanced",
+      "animation": "frontLever",
+      "pose": "frontLever",
+      "mistakeCount": 2,
+      "easier": "kneeRaise"
+    },
+    {
+      "id": "muscleUp",
+      "category": "skill",
+      "level": "advanced",
+      "animation": "muscleUp",
+      "pose": "muscleUp",
+      "mistakeCount": 2,
+      "easier": "pullUp"
+    }
+  ],
+  "plans": [
+    {
+      "id": "pushBasics",
+      "category": "push",
+      "level": "beginner",
+      "pose": "pushUp",
+      "isFree": true,
+      "exercises": [
+        {
+          "exercise": "kneePushUp",
+          "sets": 3,
+          "reps": 10,
+          "rest": 60
+        },
+        {
+          "exercise": "pushUp",
+          "sets": 4,
+          "reps": 6,
+          "rest": 90
+        },
+        {
+          "exercise": "pikePushUp",
+          "sets": 3,
+          "reps": 6,
+          "rest": 90
+        },
+        {
+          "exercise": "plank",
+          "sets": 3,
+          "seconds": 30,
+          "rest": 45
+        }
+      ]
+    },
+    {
+      "id": "pullDay",
+      "category": "pull",
+      "level": "beginner",
+      "pose": "pullUp",
+      "isFree": true,
+      "exercises": [
+        {
+          "exercise": "row",
+          "sets": 3,
+          "reps": 10,
+          "rest": 60
+        },
+        {
+          "exercise": "negativePullUp",
+          "sets": 3,
+          "reps": 5,
+          "rest": 90
+        },
+        {
+          "exercise": "pullUp",
+          "sets": 3,
+          "reps": 4,
+          "rest": 120
+        },
+        {
+          "exercise": "kneeRaise",
+          "sets": 3,
+          "reps": 10,
+          "rest": 60
+        }
+      ]
+    },
+    {
+      "id": "corePlank",
+      "category": "core",
+      "level": "beginner",
+      "pose": "plank",
+      "isFree": true,
+      "exercises": [
+        {
+          "exercise": "plank",
+          "sets": 3,
+          "seconds": 40,
+          "rest": 45
+        },
+        {
+          "exercise": "kneeRaise",
+          "sets": 3,
+          "reps": 10,
+          "rest": 60
+        },
+        {
+          "exercise": "lSit",
+          "sets": 4,
+          "seconds": 10,
+          "rest": 60
+        }
+      ]
+    },
+    {
+      "id": "legsNoEquipment",
+      "category": "legs",
+      "level": "beginner",
+      "pose": "squat",
+      "isFree": true,
+      "exercises": [
+        {
+          "exercise": "squat",
+          "sets": 4,
+          "reps": 15,
+          "rest": 60
+        },
+        {
+          "exercise": "lunge",
+          "sets": 3,
+          "reps": 10,
+          "rest": 60
+        },
+        {
+          "exercise": "pistolSquat",
+          "sets": 3,
+          "reps": 3,
+          "rest": 90
+        }
+      ]
+    },
+    {
+      "id": "handstandSchool",
+      "category": "skill",
+      "level": "beginner",
+      "pose": "handstand",
+      "isFree": true,
+      "exercises": [
+        {
+          "exercise": "pikePushUp",
+          "sets": 3,
+          "reps": 8,
+          "rest": 90
+        },
+        {
+          "exercise": "plank",
+          "sets": 3,
+          "seconds": 30,
+          "rest": 45
+        },
+        {
+          "exercise": "wallHandstand",
+          "sets": 4,
+          "seconds": 20,
+          "rest": 60
+        }
+      ]
+    },
+    {
+      "id": "frontLeverBuildUp",
+      "category": "skill",
+      "level": "advanced",
+      "pose": "frontLever",
+      "isFree": false,
+      "exercises": [
+        {
+          "exercise": "pullUp",
+          "sets": 4,
+          "reps": 6,
+          "rest": 120
+        },
+        {
+          "exercise": "kneeRaise",
+          "sets": 3,
+          "reps": 12,
+          "rest": 60
+        },
+        {
+          "exercise": "tuckFrontLever",
+          "sets": 5,
+          "seconds": 10,
+          "rest": 90
+        },
+        {
+          "exercise": "row",
+          "sets": 3,
+          "reps": 12,
+          "rest": 60
+        }
+      ]
+    },
+    {
+      "id": "muscleUpPath",
+      "category": "skill",
+      "level": "advanced",
+      "pose": "muscleUp",
+      "isFree": false,
+      "exercises": [
+        {
+          "exercise": "pullUp",
+          "sets": 4,
+          "reps": 6,
+          "rest": 120
+        },
+        {
+          "exercise": "dip",
+          "sets": 4,
+          "reps": 8,
+          "rest": 90
+        },
+        {
+          "exercise": "negativePullUp",
+          "sets": 3,
+          "reps": 5,
+          "rest": 90
+        },
+        {
+          "exercise": "muscleUp",
+          "sets": 5,
+          "reps": 2,
+          "rest": 150
+        }
+      ]
+    }
+  ],
+  "goals": [
+    {
+      "id": "frontLever",
+      "pose": "frontLever",
+      "isFree": true,
+      "stageCount": 5
+    },
+    {
+      "id": "plank5Min",
+      "pose": "plank",
+      "isFree": true,
+      "targetSeconds": 300
+    },
+    {
+      "id": "handstandPushUp",
+      "pose": "handstand",
+      "isFree": true,
+      "stageCount": 5
+    },
+    {
+      "id": "lSit30",
+      "pose": "lSit",
+      "isFree": true,
+      "targetSeconds": 30
+    },
+    {
+      "id": "pistolSquat",
+      "pose": "pistolSquat",
+      "isFree": true,
+      "stageCount": 5
+    },
+    {
+      "id": "muscleUp",
+      "pose": "muscleUp",
+      "isFree": false,
+      "stageCount": 5
+    }
+  ]
+}
