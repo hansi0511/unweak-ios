@@ -290,3 +290,18 @@ struct AccessTests {
         #expect(suggestion?.category != .skill)
     }
 }
+
+struct SubscriptionStateTests {
+    private let now = Date(timeIntervalSinceReferenceDate: 800_000_000)
+
+    @Test func runningSubscriptionUnlocksPro() {
+        #expect(SubscriptionStore.isActive(productID: ProductID.yearly, revocationDate: nil, expirationDate: now.addingTimeInterval(60), now: now))
+        #expect(SubscriptionStore.isActive(productID: ProductID.monthly, revocationDate: nil, expirationDate: nil, now: now))
+    }
+
+    @Test func expiredRefundedOrForeignDoNotUnlock() {
+        #expect(!SubscriptionStore.isActive(productID: ProductID.monthly, revocationDate: nil, expirationDate: now.addingTimeInterval(-1), now: now))
+        #expect(!SubscriptionStore.isActive(productID: ProductID.yearly, revocationDate: now, expirationDate: nil, now: now))
+        #expect(!SubscriptionStore.isActive(productID: "other.product", revocationDate: nil, expirationDate: nil, now: now))
+    }
+}

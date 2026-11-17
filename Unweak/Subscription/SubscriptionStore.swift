@@ -56,10 +56,9 @@ final class SubscriptionStore {
         }
         updatesTask = Task { [weak self] in
             for await update in Transaction.updates {
-                if case .verified(let transaction) = update {
-                    await transaction.finish()
-                }
-                await self?.refreshEntitlement()
+                guard case .verified(let transaction) = update else { continue }
+                await transaction.finish()
+                await self?.apply(transaction)
             }
         }
         Task {
@@ -90,16 +89,44 @@ final class SubscriptionStore {
     }
 
     /// Checks the current entitlements for an active Pro subscription.
+    /// Used at launch and after a restore. Right after a purchase the list can still
+    /// be missing the new transaction, so purchases and updates use `apply(_:)`.
     func refreshEntitlement() async {
         var active = false
         for await result in Transaction.currentEntitlements {
-            if case .verified(let transaction) = result,
-               ProductID.all.contains(transaction.productID),
-               transaction.revocationDate == nil {
+            if case .verified(let transaction) = result, Self.isActive(transaction) {
                 active = true
             }
         }
         isPro = active
+    }
+
+    /// Takes the state from a single verified transaction: an active one unlocks Pro
+    /// at once; an expired or refunded one triggers a full check of all entitlements.
+    private func apply(_ transaction: Transaction) async {
+        guard ProductID.all.contains(transaction.productID) else { return }
+        if Self.isActive(transaction) {
+            isPro = true
+        } else {
+            await refreshEntitlement()
+        }
+    }
+
+    private static func isActive(_ transaction: Transaction) -> Bool {
+        isActive(
+            productID: transaction.productID,
+            revocationDate: transaction.revocationDate,
+            expirationDate: transaction.expirationDate,
+            now: .now
+        )
+    }
+
+    /// Whether a transaction with these values grants Pro: one of our products,
+    /// not refunded and not expired.
+    nonisolated static func isActive(productID: String, revocationDate: Date?, expirationDate: Date?, now: Date) -> Bool {
+        guard ProductID.all.contains(productID), revocationDate == nil else { return false }
+        guard let expirationDate else { return true }
+        return expirationDate > now
     }
 
     /// Handles the result of `Product.purchase()`.
@@ -109,7 +136,7 @@ final class SubscriptionStore {
         switch result {
         case .success(.verified(let transaction)):
             await transaction.finish()
-            await refreshEntitlement()
+            await apply(transaction)
             return isPro
         case .success(.unverified):
             issue = .unverified
