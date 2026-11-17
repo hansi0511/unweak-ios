@@ -2788,6 +2788,16 @@
         }
       }
     },
+    "Up next" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als Nächstes"
+          }
+        }
+      }
+    },
     "Video" : {
       "localizations" : {
         "de" : {
@@ -2874,6 +2884,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Training"
+          }
+        }
+      }
+    },
+    "Workout %lld: %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workout %1$lld: %2$@"
           }
         }
       }
