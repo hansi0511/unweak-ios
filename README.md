@@ -16,6 +16,7 @@ Schritte 1 bis 5 und 7 von 7 (siehe `CLAUDE.md`): alles ohne Server plus das Pro
 | `Unweak/Design` | Farben, Schriften, Akzentfarben und Bausteine (`Components/`) |
 | `Unweak/StickyMan` | Sticky Man: Gelenkpunkte, Animationen (Front Lever, Klimmzug), Listenposen, Darstellung |
 | `Unweak/Training` | Trainingsdaten (Übungen, Pläne, Ziele, Erfolge) und Ablauf eines Trainings |
+| `Unweak/Share` | Teilen: Bild im HUD-Look (Story oder Post) und das iOS-Teilen-Menü |
 | `Unweak/Subscription` | Pro-Abo (StoreKit 2) und die Regeln, was gratis und was Pro ist |
 | `Unweak/Settings` | Sprache der App und Trainingserinnerungen |
 | `Unweak/Journal` | Tagebuch: Einträge, lokale Speicherung (`userdata.json`), Auswertungen für Woche, Serie, Rekorde und Erfolge |

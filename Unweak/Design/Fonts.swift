@@ -52,6 +52,13 @@ extension Font {
         app(.interSemiBold, size: size, relativeTo: .body)
     }
 
+    /// Fixed size, not scaled by Dynamic Type. Only for images with a fixed layout,
+    /// such as the share cards.
+    static func fixed(_ font: AppFont, size: CGFloat) -> Font {
+        _ = FontRegistry.registerOnce
+        return .custom(font.rawValue, fixedSize: size)
+    }
+
     /// JetBrains Mono Medium 12 – labels and metadata (use with `MonoLabel`).
     static var mono: Font { app(.monoMedium, size: 12, relativeTo: .caption) }
     /// JetBrains Mono Bold 12 – badges and secondary button titles.

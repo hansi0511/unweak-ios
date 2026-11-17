@@ -117,6 +117,7 @@ struct SkillScreen: View {
     @Environment(UserDataStore.self) private var store
     @Environment(SubscriptionStore.self) private var subscription
     @State private var isShowingSubscription = false
+    @State private var shareContent: ShareContent?
     private let goal: Goal
     private let catalog: Catalog
 
@@ -175,6 +176,9 @@ struct SkillScreen: View {
         .sheet(isPresented: $isShowingSubscription) {
             PaywallSheet()
         }
+        .sheet(item: $shareContent) { content in
+            ShareSheet(content: content)
+        }
     }
 
     @ViewBuilder
@@ -183,6 +187,11 @@ struct SkillScreen: View {
             HStack {
                 MonoLabel("Progress")
                 Spacer()
+                if progress.filledSegments > 0 || progress.reachedStages > 0 {
+                    IconButton(systemImage: "square.and.arrow.up", accessibilityLabel: "Share progress") {
+                        shareContent = .skillCard(progress, catalog: catalog)
+                    }
+                }
                 progress.stateText
                     .font(.monoBold)
                     .textCase(.uppercase)

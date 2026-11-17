@@ -6,6 +6,7 @@ struct DashboardScreen: View {
     @Environment(ReminderSettings.self) private var reminders
     @Environment(SubscriptionStore.self) private var subscription
     @State private var isShowingPaywall = false
+    @State private var shareContent: ShareContent?
     private let catalog: Catalog
 
     init(catalog: Catalog = .main) {
@@ -68,10 +69,15 @@ struct DashboardScreen: View {
 
             AchievementsSection(
                 progress: catalog.achievements.map { stats.progress(of: $0, target: target) }
-            )
+            ) { achievement in
+                shareContent = .achievement(achievement)
+            }
         }
         .sheet(isPresented: $isShowingPaywall) {
             PaywallSheet()
+        }
+        .sheet(item: $shareContent) { content in
+            ShareSheet(content: content)
         }
     }
 
@@ -97,6 +103,11 @@ struct DashboardScreen: View {
                     .accessibilityAddTraits(.isHeader)
             }
             Spacer(minLength: 0)
+            if week.workouts > 0 || streak > 0 {
+                IconButton(systemImage: "square.and.arrow.up", accessibilityLabel: "Share week") {
+                    shareContent = .streakCard(week: week, weeks: streak)
+                }
+            }
             NavigationLink {
                 SettingsScreen()
             } label: {
@@ -295,6 +306,8 @@ private struct NextWorkoutCard: View {
 private struct AchievementsSection: View {
     @Environment(\.accent) private var accent
     let progress: [AchievementProgress]
+    /// Called when an achieved tile is tapped.
+    let onShare: (Achievement) -> Void
 
     private var achievedCount: Int { progress.filter(\.isAchieved).count }
 
@@ -314,7 +327,17 @@ private struct AchievementsSection: View {
             }
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
                 ForEach(shown, id: \.achievement.id) { item in
-                    tile(item)
+                    if item.isAchieved {
+                        Button {
+                            onShare(item.achievement)
+                        } label: {
+                            tile(item)
+                        }
+                        .buttonStyle(PressFeedbackStyle())
+                        .accessibilityHint(Text("Share achievement"))
+                    } else {
+                        tile(item)
+                    }
                 }
             }
         }

@@ -8,6 +8,7 @@ struct JournalEntryScreen: View {
     @Environment(\.locale) private var locale
     @Environment(UserDataStore.self) private var store
     @State private var draft: JournalEntry
+    @State private var shareContent: ShareContent?
     private let catalog: Catalog
 
     /// - Parameter entry: An existing entry or a new, unsaved one. Leaving with "Back"
@@ -31,6 +32,9 @@ struct JournalEntryScreen: View {
                 HStack {
                     BackButton()
                     Spacer()
+                    IconButton(systemImage: "square.and.arrow.up", accessibilityLabel: "Share workout") {
+                        shareContent = .workoutCard(entry: draft, plan: plan, records: records, catalog: catalog)
+                    }
                 }
                 MetaLine([
                     Text(verbatim: draft.date.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated).locale(locale))),
@@ -88,6 +92,9 @@ struct JournalEntryScreen: View {
                 dismiss()
             }
         }
+        .sheet(item: $shareContent) { content in
+            ShareSheet(content: content)
+        }
     }
 
     private var planName: Text {
@@ -118,12 +125,25 @@ struct JournalEntryScreen: View {
                 }
             }
             Spacer(minLength: 0)
+            Button {
+                if let first = records.first, let record = ShareContent.recordData(from: first, catalog: catalog) {
+                    shareContent = .record(record)
+                }
+            } label: {
+                Image(systemName: "square.and.arrow.up")
+                    .font(.system(size: 17, weight: .semibold))
+                    .frame(width: Theme.Layout.minTouchTarget, height: Theme.Layout.minTouchTarget)
+                    .overlay(Rectangle().strokeBorder(Theme.onAccent, lineWidth: 1))
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(PressFeedbackStyle())
+            .accessibilityLabel(Text("Share record"))
         }
         .foregroundStyle(Theme.onAccent)
         .padding(14)
         .background(accent.color)
         .glow(accent.color, radius: Theme.Glow.small)
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .contain)
     }
 }
 
