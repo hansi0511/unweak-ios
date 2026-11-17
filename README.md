@@ -6,7 +6,7 @@ Dieses Repository enthält die native iOS-App (Swift, SwiftUI). Die Android-App 
 
 ## Stand
 
-Schritt 3 von 7 (siehe `CLAUDE.md`): Xcode-Projekt, Design-Grundlagen, Navigation, Sticky Man mit 16 Übungsanimationen, Trainingsdaten und die Screens Workouts, Training läuft und Übungsdetail. Dashboard, Tagebuch und Einstellungen sind noch Platzhalter. Die Trainingsinhalte sind Beispielinhalte, bis der echte Katalog steht.
+Schritt 4 von 7 (siehe `CLAUDE.md`): Xcode-Projekt, Design-Grundlagen, Navigation, Sticky Man mit 16 Übungsanimationen, Trainingsdaten, Workouts, Training läuft, Übungsdetail, Tagebuch mit lokaler Speicherung und Dashboard mit Woche, Ziel und Erfolgen. Einstellungen, eigenes Workout und Ziel wählen sind noch Platzhalter. Trainingsinhalte und Erfolge sind Beispielinhalte, bis der echte Katalog steht. Offene Punkte zu den Animationen sammelt Issue #4.
 
 Öffnen: `Unweak.xcodeproj` in Xcode 16 oder neuer. Mindestversion iOS 17. Die Bundle-ID `com.example.unweak` ist ein Platzhalter.
 
@@ -15,7 +15,8 @@ Schritt 3 von 7 (siehe `CLAUDE.md`): Xcode-Projekt, Design-Grundlagen, Navigatio
 | `Unweak/App` | Einstieg und Tab-Navigation |
 | `Unweak/Design` | Farben, Schriften, Akzentfarben und Bausteine (`Components/`) |
 | `Unweak/StickyMan` | Sticky Man: Gelenkpunkte, Animationen (Front Lever, Klimmzug), Listenposen, Darstellung |
-| `Unweak/Training` | Trainingsdaten (Übungen, Pläne, Ziele) und Ablauf eines Trainings |
+| `Unweak/Training` | Trainingsdaten (Übungen, Pläne, Ziele, Erfolge) und Ablauf eines Trainings |
+| `Unweak/Journal` | Tagebuch: Einträge, lokale Speicherung (`userdata.json`), Auswertungen für Woche, Serie, Rekorde und Erfolge |
 | `Unweak/Features` | Screens, je Bereich ein Ordner |
 | `Unweak/Resources` | Schriften mit Lizenzen, Assets, Texte der Oberfläche (`Localizable.xcstrings`), Trainingsinhalte (`Catalog.json`, Texte in `Catalog.xcstrings`) |
 | `UnweakTests` | Unit-Tests |

@@ -138,17 +138,37 @@ plan("frontLeverBuildUp", ("Front lever build-up", "Front-Lever-Aufbau"), "skill
 plan("muscleUpPath", ("Muscle-up path", "Muscle-up-Weg"), "skill", "advanced", "muscleUp", False,
      [("pullUp", 4, 6, None, 120), ("dip", 4, 8, None, 90), ("negativePullUp", 3, 5, None, 90), ("muscleUp", 5, 2, None, 150)])
 
-# Goals: id, name, pose, free, stages (skill) or targetSeconds (time)
+# Goals: id, name, pose, linked exercise (best time for time goals, animation), free,
+# stages (skill goal) or targetSeconds (time goal)
 G = []
-def goal(id, name, pose, free, stages=None, seconds=None):
-    G.append(dict(id=id, name=name, pose=pose, isFree=free, stages=stages, targetSeconds=seconds))
-goal("frontLever", ("Front lever", "Front Lever"), "frontLever", True,
+def goal(id, name, pose, exercise, free, stages=None, seconds=None):
+    G.append(dict(id=id, name=name, pose=pose, exercise=exercise, isFree=free, stages=stages, targetSeconds=seconds))
+goal("frontLever", ("Front lever", "Front Lever"), "frontLever", "tuckFrontLever", True,
      stages=[("Tuck", "Tuck"), ("Advanced tuck", "Advanced Tuck"), ("One leg", "Ein Bein"), ("Straddle", "Straddle"), ("Full front lever", "Voller Front Lever")])
-goal("plank5Min", ("Plank 5 min", "Plank 5 min"), "plank", True, seconds=300)
-goal("handstandPushUp", ("Handstand push-up", "Handstand-Liegestütz"), "handstand", True,
+goal("plank5Min", ("Plank 5 min", "Plank 5 min"), "plank", "plank", True, seconds=300)
+goal("handstandPushUp", ("Handstand push-up", "Handstand-Liegestütz"), "handstand", "pikePushUp", True,
      stages=[("Pike push-up", "Pike-Liegestütz"), ("Elevated pike push-up", "Erhöhter Pike-Liegestütz"), ("Wall handstand hold", "Handstand an der Wand halten"), ("Half wall handstand push-up", "Halber Handstand-Liegestütz an der Wand"), ("Full wall handstand push-up", "Voller Handstand-Liegestütz an der Wand")])
-goal("lSit30", ("L-sit 30 s", "L-Sit 30 s"), "lSit", True, seconds=30)
-goal("pistolSquat", ("Pistol squat", "Pistol Squat"), "pistolSquat", True,
+goal("lSit30", ("L-sit 30 s", "L-Sit 30 s"), "lSit", "lSit", True, seconds=30)
+goal("pistolSquat", ("Pistol squat", "Pistol Squat"), "pistolSquat", "pistolSquat", True,
      stages=[("Deep squat", "Tiefe Kniebeuge"), ("Lunge", "Ausfallschritt"), ("Box pistol", "Pistol auf Kasten"), ("Assisted pistol", "Pistol mit Hilfe"), ("Full pistol squat", "Voller Pistol Squat")])
-goal("muscleUp", ("Muscle-up", "Muscle-up"), "muscleUp", False,
+goal("muscleUp", ("Muscle-up", "Muscle-up"), "muscleUp", "muscleUp", False,
      stages=[("10 pull-ups", "10 Klimmzüge"), ("Chest-to-bar pull-up", "Klimmzug bis zur Brust"), ("10 dips", "10 Dips"), ("Negative muscle-up", "Negativer Muscle-up"), ("Muscle-up", "Muscle-up")])
+
+# Achievements (sample list of 12, see docs/SPEC.md "Inhalte"), computed from the journal.
+# kind: workouts (number of journal entries), reps / seconds (best value of one exercise),
+# streak (weeks in a row with the weekly target reached). label = text under the value.
+A = []
+def achievement(id, kind, threshold, label, exercise=None):
+    A.append(dict(id=id, kind=kind, threshold=threshold, exercise=exercise, label=label))
+achievement("firstWorkout", "workouts", 1, ("First workout", "Erstes Training"))
+achievement("workouts10", "workouts", 10, ("Workouts", "Trainings"))
+achievement("workouts25", "workouts", 25, ("Workouts", "Trainings"))
+achievement("workouts50", "workouts", 50, ("Workouts", "Trainings"))
+achievement("pullUps10", "reps", 10, ("Pull-ups", "Klimmzüge"), "pullUp")
+achievement("pushUps20", "reps", 20, ("Push-ups", "Liegestütze"), "pushUp")
+achievement("squats30", "reps", 30, ("Squats", "Kniebeugen"), "squat")
+achievement("pistolSquats5", "reps", 5, ("Pistol squats", "Pistol Squats"), "pistolSquat")
+achievement("plank3Min", "seconds", 180, ("Plank", "Plank"), "plank")
+achievement("lSit20", "seconds", 20, ("L-sit", "L-Sit"), "lSit")
+achievement("streak4", "streak", 4, ("Weeks in a row", "Wochen in Folge"))
+achievement("firstMuscleUp", "reps", 1, ("Muscle-up", "Muscle-up"), "muscleUp")

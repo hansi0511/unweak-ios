@@ -11,6 +11,7 @@ struct CatalogTests {
         #expect(loaded.exercises.count == 16)
         #expect(loaded.plans.count == 7)
         #expect(loaded.goals.count == 6)
+        #expect(loaded.achievements.count == 12)
     }
 
     @Test func fivePlansAreFree() {
@@ -74,7 +75,7 @@ struct CatalogTests {
             isFree: true,
             exercises: [PlanExercise(exercise: "doesNotExist", sets: 3, reps: 5, seconds: nil, rest: 60)]
         )
-        let broken = Catalog(exercises: catalog.exercises, plans: [plan], goals: [])
+        let broken = Catalog(exercises: catalog.exercises, plans: [plan], goals: [], achievements: [])
         #expect(!broken.problems().isEmpty)
     }
 
@@ -88,7 +89,7 @@ struct CatalogTests {
             isFree: true,
             exercises: [PlanExercise(exercise: exercise.id, sets: 3, reps: nil, seconds: nil, rest: 60)]
         )
-        let broken = Catalog(exercises: catalog.exercises, plans: [plan], goals: [])
+        let broken = Catalog(exercises: catalog.exercises, plans: [plan], goals: [], achievements: [])
         #expect(!broken.problems().isEmpty)
     }
 }

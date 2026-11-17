@@ -371,38 +371,113 @@
     {
       "id": "frontLever",
       "pose": "frontLever",
+      "exercise": "tuckFrontLever",
       "isFree": true,
       "stageCount": 5
     },
     {
       "id": "plank5Min",
       "pose": "plank",
+      "exercise": "plank",
       "isFree": true,
       "targetSeconds": 300
     },
     {
       "id": "handstandPushUp",
       "pose": "handstand",
+      "exercise": "pikePushUp",
       "isFree": true,
       "stageCount": 5
     },
     {
       "id": "lSit30",
       "pose": "lSit",
+      "exercise": "lSit",
       "isFree": true,
       "targetSeconds": 30
     },
     {
       "id": "pistolSquat",
       "pose": "pistolSquat",
+      "exercise": "pistolSquat",
       "isFree": true,
       "stageCount": 5
     },
     {
       "id": "muscleUp",
       "pose": "muscleUp",
+      "exercise": "muscleUp",
       "isFree": false,
       "stageCount": 5
+    }
+  ],
+  "achievements": [
+    {
+      "id": "firstWorkout",
+      "kind": "workouts",
+      "threshold": 1
+    },
+    {
+      "id": "workouts10",
+      "kind": "workouts",
+      "threshold": 10
+    },
+    {
+      "id": "workouts25",
+      "kind": "workouts",
+      "threshold": 25
+    },
+    {
+      "id": "workouts50",
+      "kind": "workouts",
+      "threshold": 50
+    },
+    {
+      "id": "pullUps10",
+      "kind": "reps",
+      "threshold": 10,
+      "exercise": "pullUp"
+    },
+    {
+      "id": "pushUps20",
+      "kind": "reps",
+      "threshold": 20,
+      "exercise": "pushUp"
+    },
+    {
+      "id": "squats30",
+      "kind": "reps",
+      "threshold": 30,
+      "exercise": "squat"
+    },
+    {
+      "id": "pistolSquats5",
+      "kind": "reps",
+      "threshold": 5,
+      "exercise": "pistolSquat"
+    },
+    {
+      "id": "plank3Min",
+      "kind": "seconds",
+      "threshold": 180,
+      "exercise": "plank"
+    },
+    {
+      "id": "lSit20",
+      "kind": "seconds",
+      "threshold": 20,
+      "exercise": "lSit"
+    },
+    {
+      "id": "streak4",
+      "kind": "streak",
+      "threshold": 4
+    },
+    {
+      "id": "firstMuscleUp",
+      "kind": "reps",
+      "threshold": 1,
+      "exercise": "muscleUp"
     }
   ]
 }
