@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@, %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
     "%lld / %lld workouts" : {
       "localizations" : {
         "de" : {
@@ -57,6 +67,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld min"
+          }
+        }
+      }
+    },
+    "%lld more workouts to %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch %1$lld Trainings bis %2$@"
           }
         }
       }
@@ -291,6 +311,26 @@
         }
       }
     },
+    "Achievement: %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erfolg: %@"
+          }
+        }
+      }
+    },
+    "Achievement: %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erfolg: %1$@ %2$@"
+          }
+        }
+      }
+    },
     "Achievements" : {
       "localizations" : {
         "de" : {
@@ -391,6 +431,16 @@
         }
       }
     },
+    "Athlete" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Athlet"
+          }
+        }
+      }
+    },
     "Australian row animation" : {
       "localizations" : {
         "de" : {
@@ -401,12 +451,42 @@
         }
       }
     },
+    "Automatic" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisch"
+          }
+        }
+      }
+    },
+    "Avatar" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avatar"
+          }
+        }
+      }
+    },
     "Back" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zurück"
+          }
+        }
+      }
+    },
+    "Background" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grund"
           }
         }
       }
@@ -451,6 +531,16 @@
         }
       }
     },
+    "Body" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Körper"
+          }
+        }
+      }
+    },
     "Box pistol animation" : {
       "localizations" : {
         "de" : {
@@ -467,6 +557,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abbrechen"
+          }
+        }
+      }
+    },
+    "Cap" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kappe"
           }
         }
       }
@@ -561,6 +661,16 @@
         }
       }
     },
+    "Color" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Farbe"
+          }
+        }
+      }
+    },
     "Common mistakes" : {
       "localizations" : {
         "de" : {
@@ -621,6 +731,16 @@
         }
       }
     },
+    "Crown" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krone"
+          }
+        }
+      }
+    },
     "Current" : {
       "localizations" : {
         "de" : {
@@ -641,12 +761,32 @@
         }
       }
     },
+    "Customize" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anpassen"
+          }
+        }
+      }
+    },
     "Cyan" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cyan"
+          }
+        }
+      }
+    },
+    "Dark" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dunkel"
           }
         }
       }
@@ -851,6 +991,16 @@
         }
       }
     },
+    "Extras" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extras"
+          }
+        }
+      }
+    },
     "Finish a workout or tap + to add one." : {
       "localizations" : {
         "de" : {
@@ -877,6 +1027,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gratis"
+          }
+        }
+      }
+    },
+    "From %lld workouts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ab %lld Trainings"
           }
         }
       }
@@ -941,6 +1101,16 @@
         }
       }
     },
+    "Grows with you" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wächst mit dir"
+          }
+        }
+      }
+    },
     "Half wall handstand push-up animation" : {
       "localizations" : {
         "de" : {
@@ -1001,6 +1171,26 @@
         }
       }
     },
+    "Headband" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stirnband"
+          }
+        }
+      }
+    },
+    "Headphones" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopfhörer"
+          }
+        }
+      }
+    },
     "How did it feel?" : {
       "localizations" : {
         "de" : {
@@ -1027,6 +1217,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "So geht's"
+          }
+        }
+      }
+    },
+    "How it’s done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So geht’s"
           }
         }
       }
@@ -1067,6 +1267,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fortgeschritten"
+          }
+        }
+      }
+    },
+    "Inverted" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invertiert"
           }
         }
       }
@@ -1181,6 +1391,16 @@
         }
       }
     },
+    "Legend" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legende"
+          }
+        }
+      }
+    },
     "Legs" : {
       "localizations" : {
         "de" : {
@@ -1211,6 +1431,26 @@
         }
       }
     },
+    "Locked" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesperrt"
+          }
+        }
+      }
+    },
+    "Locked, %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesperrt, %@"
+          }
+        }
+      }
+    },
     "Lunge animation" : {
       "localizations" : {
         "de" : {
@@ -1227,6 +1467,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abo verwalten"
+          }
+        }
+      }
+    },
+    "Master a skill" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einen Skill meistern"
+          }
+        }
+      }
+    },
+    "Master a skill to become a legend" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meistere einen Skill und werde zur Legende"
           }
         }
       }
@@ -1257,6 +1517,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ich"
+          }
+        }
+      }
+    },
+    "Medal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medaille"
+          }
+        }
+      }
+    },
+    "Mono" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mono"
           }
         }
       }
@@ -1407,6 +1687,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nächstes Workout"
+          }
+        }
+      }
+    },
+    "Night" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nacht"
           }
         }
       }
@@ -1881,6 +2171,16 @@
         }
       }
     },
+    "Second color" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zweite Farbe"
+          }
+        }
+      }
+    },
     "Seconds" : {
       "localizations" : {
         "de" : {
@@ -2171,6 +2471,16 @@
         }
       }
     },
+    "Start" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
+          }
+        }
+      }
+    },
     "Start subscription" : {
       "localizations" : {
         "de" : {
@@ -2448,6 +2758,16 @@
         }
       }
     },
+    "Trained" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trainiert"
+          }
+        }
+      }
+    },
     "Training reminder" : {
       "localizations" : {
         "de" : {
@@ -2528,6 +2848,16 @@
         }
       }
     },
+    "Visor" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visier"
+          }
+        }
+      }
+    },
     "Wall handstand animation" : {
       "localizations" : {
         "de" : {
@@ -2574,16 +2904,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wochen in Folge"
-          }
-        }
-      }
-    },
-    "What it brings" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Was es bringt"
           }
         }
       }
@@ -2638,12 +2958,42 @@
         }
       }
     },
+    "You are a legend!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du bist eine Legende!"
+          }
+        }
+      }
+    },
     "You will get a notification on %@ at %@." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du bekommst %1$@ um %2$@ eine Mitteilung."
+          }
+        }
+      }
+    },
+    "Your avatar" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Avatar"
+          }
+        }
+      }
+    },
+    "Your avatar grows with your training. Achievements and skills unlock more." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Avatar wächst mit deinem Training. Erfolge und Skills schalten noch mehr frei."
           }
         }
       }
