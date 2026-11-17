@@ -6,7 +6,9 @@ import Observation
 struct UserData: Codable, Equatable, Sendable {
     var version = 1
     var entries: [JournalEntry] = []
-    var activeGoalID: String?
+    /// Skills the user is learning, in the order they were added. `nil` until the user
+    /// chooses: then the first skill of the catalog counts as learned.
+    var activeGoalIDs: [String]?
     /// Number of reached stages per skill goal.
     var reachedStages: [String: Int] = [:]
     var customWorkouts: [CustomWorkout] = []
@@ -15,13 +17,13 @@ struct UserData: Codable, Equatable, Sendable {
 
     init(
         entries: [JournalEntry] = [],
-        activeGoalID: String? = nil,
+        activeGoalIDs: [String]? = nil,
         reachedStages: [String: Int] = [:],
         customWorkouts: [CustomWorkout] = [],
         avatar: AvatarStyle = AvatarStyle()
     ) {
         self.entries = entries
-        self.activeGoalID = activeGoalID
+        self.activeGoalIDs = activeGoalIDs
         self.reachedStages = reachedStages
         self.customWorkouts = customWorkouts
         self.avatar = avatar
@@ -32,10 +34,23 @@ struct UserData: Codable, Equatable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         version = try container.decodeIfPresent(Int.self, forKey: .version) ?? 1
         entries = try container.decodeIfPresent([JournalEntry].self, forKey: .entries) ?? []
-        activeGoalID = try container.decodeIfPresent(String.self, forKey: .activeGoalID)
+        // Older files held a single active skill under "activeGoalID".
+        let legacy = try decoder.container(keyedBy: LegacyKeys.self)
+        if let ids = try container.decodeIfPresent([String].self, forKey: .activeGoalIDs) {
+            activeGoalIDs = ids
+        } else if let id = try legacy.decodeIfPresent(String.self, forKey: .activeGoalID) {
+            activeGoalIDs = [id]
+        }
         reachedStages = try container.decodeIfPresent([String: Int].self, forKey: .reachedStages) ?? [:]
         customWorkouts = try container.decodeIfPresent([CustomWorkout].self, forKey: .customWorkouts) ?? []
         avatar = try container.decodeIfPresent(AvatarStyle.self, forKey: .avatar) ?? AvatarStyle()
+    }
+}
+
+extension UserData {
+    /// Keys of older file formats that are still read.
+    private enum LegacyKeys: String, CodingKey {
+        case activeGoalID
     }
 }
 
@@ -117,8 +132,26 @@ final class UserDataStore {
 
     // MARK: Goals
 
-    func setActiveGoal(_ goalID: String) {
-        data.activeGoalID = goalID
+    /// IDs of the skills being learned; before the first choice the first skill of the catalog.
+    func activeGoalIDs(in catalog: Catalog) -> [String] {
+        data.activeGoalIDs ?? catalog.goals.first.map { [$0.id] } ?? []
+    }
+
+    /// The skills being learned, in the order they were added.
+    func activeGoals(in catalog: Catalog) -> [Goal] {
+        activeGoalIDs(in: catalog).compactMap { id in catalog.goals.first { $0.id == id } }
+    }
+
+    func isLearning(_ goal: Goal, in catalog: Catalog) -> Bool {
+        activeGoalIDs(in: catalog).contains(goal.id)
+    }
+
+    /// Starts or stops learning a skill. Several skills can be learned at once.
+    func setLearning(_ learning: Bool, _ goal: Goal, in catalog: Catalog) {
+        var ids = activeGoalIDs(in: catalog)
+        ids.removeAll { $0 == goal.id }
+        if learning { ids.append(goal.id) }
+        data.activeGoalIDs = ids
         persist()
     }
 

@@ -197,7 +197,8 @@ struct UserDataCompatibilityTests {
         // Format written by step 4.
         let json = #"{"activeGoalID":"frontLever","entries":[],"reachedStages":{"frontLever":2},"version":1}"#
         let data = try JSONDecoder.userData.decode(UserData.self, from: Data(json.utf8))
-        #expect(data.activeGoalID == "frontLever")
+        // The single active skill of older files becomes a one-element list.
+        #expect(data.activeGoalIDs == ["frontLever"])
         #expect(data.reachedStages == ["frontLever": 2])
         #expect(data.customWorkouts.isEmpty)
     }

@@ -1,20 +1,15 @@
 import SwiftUI
 
-/// Choose the one active goal. Subscription goals lead to the subscription page.
+/// Choose the skills to learn, as many as the user likes. Each tap adds or removes a
+/// skill at once. Without Pro the rows lead to the subscription page.
 struct GoalPickerScreen: View {
-    @Environment(\.dismiss) private var dismiss
     @Environment(UserDataStore.self) private var store
     @Environment(SubscriptionStore.self) private var subscription
-    @State private var selection: String?
     @State private var isShowingSubscription = false
     private let catalog: Catalog
 
     init(catalog: Catalog = .main) {
         self.catalog = catalog
-    }
-
-    private var activeGoalID: String? {
-        store.data.activeGoalID ?? catalog.goals.first?.id
     }
 
     var body: some View {
@@ -25,39 +20,38 @@ struct GoalPickerScreen: View {
                 HStack {
                     BackButton()
                     Spacer()
-                    MonoLabel("One goal at a time")
+                    MonoLabel("As many as you like")
                 }
-                Text("Choose goal")
+                Text("Choose skills")
                     .font(.screenTitle)
                     .foregroundStyle(Theme.text)
                     .accessibilityAddTraits(.isHeader)
+                Text("Every skill you learn shows in the Me tab with its stage and workouts.")
+                    .font(.text(15))
+                    .foregroundStyle(Theme.textSoft)
+                    .fixedSize(horizontal: false, vertical: true)
             }
 
             VStack(spacing: 10) {
                 ForEach(catalog.goals) { goal in
+                    let isLearning = store.isLearning(goal, in: catalog)
                     Button {
-                        if subscription.access.canUseSkills {
-                            selection = goal.id
-                        } else {
+                        guard subscription.access.canUseSkills else {
                             isShowingSubscription = true
+                            return
+                        }
+                        withAnimation(.easeOut(duration: 0.15)) {
+                            store.setLearning(!isLearning, goal, in: catalog)
                         }
                     } label: {
                         GoalRow(
                             progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
-                            isSelected: goal.id == (selection ?? activeGoalID)
+                            isSelected: subscription.access.canUseSkills && isLearning
                         )
                     }
                     .buttonStyle(PressFeedbackStyle())
                 }
             }
-
-            PrimaryButton("Set as goal", systemImage: "scope") {
-                if let selection {
-                    store.setActiveGoal(selection)
-                }
-                dismiss()
-            }
-            .disabled(selection == nil || selection == activeGoalID)
         }
         .sheet(isPresented: $isShowingSubscription) {
             PaywallSheet()

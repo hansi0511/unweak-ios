@@ -17,7 +17,7 @@ extension UserDataStore {
             entries.append(entry)
         }
         var data = UserData(entries: entries)
-        data.activeGoalID = catalog.goals.first?.id
+        data.activeGoalIDs = catalog.goals.first.map { [$0.id] }
         if let goal = catalog.goals.first { data.reachedStages[goal.id] = 2 }
         return UserDataStore(fileURL: nil, initial: data)
     }

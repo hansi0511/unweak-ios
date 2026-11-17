@@ -7,7 +7,8 @@
 | Von | Auslöser | Nach |
 |---|---|---|
 | Anmeldung | Mit Apple oder Google anmelden | Ich |
-| Ich | „Dein Skill · Ändern“ | Ziel wählen |
+| Ich | „Bearbeiten“ bei „Deine Skills“ | Skills wählen |
+| Ich | Name und Animationen eines Skill-Panels | Skill |
 | Ich | Leiste „Nächstes Workout“ | Training läuft |
 | Ich | Überschrift „Ich ›“ | Ich-Bereich |
 | Ich-Bereich | Zeile „Einstellungen“ | Einstellungen |
@@ -15,7 +16,7 @@
 | Workouts | Umschalter „Skills“ / „Workouts“ | anderer Bereich |
 | Workouts (Skills) | Skill-Karte | Skill |
 | Skill | Gratis-Workout | Training läuft |
-| Skill | Abo-Workout oder „Als Ziel setzen“ bei Abo-Skill | Abo |
+| Skill | Abo-Workout oder „Diesen Skill lernen“ ohne Abo | Abo |
 | Workouts | Gratis-Plan | Training läuft |
 | Workouts | Abo-Plan ohne Abo | Abo |
 | Workouts | „Eigenes“ | Workout erstellen |
@@ -33,8 +34,9 @@
 - Avatar-Bühne, groß und mittig: Der Avatar (Körper, Farben und Extra wie gewählt) steht in einem Kreis in seiner Grundfarbe und atmet leicht. Um den Kreis liegt ein Ring aus so vielen Bögen, wie das Wochenziel Trainings hat; geschaffte Bögen leuchten in der Akzentfarbe.
 - Darunter dezent in Mono-Schrift: „2 / 3 diese Woche · Serie 3 Wochen“.
 - Darunter mittig: Name des Körpers.
-- Schmale Leiste „Nächstes Workout“ mit Play-Symbol in Akzentfarbe, Name und Dauer: mit Pro aus den Workouts des aktiven Skills, gratis aus den Gratis-Workouts.
-- Skill-Panel (nur mit Pro) mit Raster-Hintergrund und Eckmarkierungen: Link „Dein Skill · Ändern“, Name des Skills. Darunter zwei Animationen nebeneinander mit Pfeil dazwischen: links „Jetzt“ mit der Animation der Stufe, an der der Nutzer gerade arbeitet (die nächste noch nicht erreichte, nach der letzten die letzte), und ihrem Namen; rechts „Ziel“ mit der Animation des Skills und dem Namen der letzten Stufe. Bei Zeit-Skills links die Bestzeit, rechts die Zielzeit, beide mit der Animation der Übung. Darunter fünf Segmente, „Stufe 2 / 5 · Noch 3 Stufen“ und der gestrichelte Knopf „Stufe erreicht“.
+- Schmale Leiste „Nächstes Workout“ mit Play-Symbol in Akzentfarbe, Name und Dauer: mit Pro aus den Workouts der gelernten Skills, gratis aus den Gratis-Workouts.
+- Nur mit Pro: Label „Deine Skills“ mit Link „Bearbeiten“ (öffnet „Skills wählen“). Ohne gelernten Skill ein gestrichelter Knopf „Skills wählen“.
+- Je gelerntem Skill ein Skill-Panel mit Raster-Hintergrund und Eckmarkierungen. Name des Skills mit Pfeil und die beiden Animationen öffnen die Skill-Seite mit der Beschreibung. Darunter zwei Animationen nebeneinander mit Pfeil dazwischen: links „Jetzt“ mit der Animation der Stufe, an der der Nutzer gerade arbeitet (die nächste noch nicht erreichte, nach der letzten die letzte), und ihrem Namen; rechts „Ziel“ mit der Animation des Skills und dem Namen der letzten Stufe. Bei Zeit-Skills links die Bestzeit, rechts die Zielzeit, beide mit der Animation der Übung. Darunter fünf Segmente, „Stufe 2 / 5 · Noch 3 Stufen“ und der gestrichelte Knopf „Stufe erreicht“.
 - Gratis-Version: statt Skill-Panel der Hinweis „Erreiche deinen ersten Skill“ mit Marke „Abo“, der zur Abo-Seite führt.
 
 ## 2 Workouts (Tab)
@@ -84,12 +86,11 @@
 - „Abo starten“, „Käufe wiederherstellen“, Hinweis zur Kündigung und automatischen Verlängerung.
 - Mit aktivem Abo stattdessen „Pro ist aktiv“ und „Abo verwalten“.
 
-## 8 Ziel wählen
+## 8 Skills wählen
 
-- Die Ziele sind die Skills aus dem Workouts-Tab.
-- Kopf: Zurück, Label „Ein Ziel zur Zeit“.
-- Liste der Ziele mit Pose, Name, Stand und Marke „Gewählt“ oder „Abo“. Einfachauswahl.
-- Knopf „Als Ziel setzen“.
+- Die Skills aus dem Workouts-Tab; der Nutzer kann beliebig viele gleichzeitig lernen.
+- Kopf: Zurück, Label „So viele du willst“, Überschrift „Skills wählen“, ein Satz, dass jeder gelernte Skill im Tab „Ich“ erscheint.
+- Liste der Skills mit Pose, Name, Stand und Marke „Gewählt“ oder „Abo“. Mehrfachauswahl: Ein Tipp nimmt einen Skill auf oder heraus und wird sofort gespeichert. Ohne Pro führt ein Tipp zur Abo-Seite.
 
 ## 9 Übungsdetail
 
@@ -119,7 +120,7 @@
 - Panel mit animiertem Sticky Man.
 - Fortschritt: Stand rechts, fünf Segmente. Bei Skills mit Stufen die fünf Stufen als Karten: kleine Sticky-Man-Animation der Stufe, Nummer, Name, Info-Symbol und rechts ein Schalter „Beherrscht“. Die Stufe, an der der Nutzer arbeitet, ist mit „Jetzt“ und Rahmen in Akzentfarbe markiert. Tipp auf die Karte öffnet das Info-Fenster der Stufe. Schalter an markiert die Stufe und alle davor als erreicht; Schalter aus nimmt sie nach Rückfrage zurück, spätere Stufen ebenfalls. Darunter der gestrichelte Knopf „Stufe erreicht“. Bei Zeit-Skills Hinweis, dass die Bestzeit aus dem Tagebuch kommt.
 - Info-Fenster (Blatt, über das Info-Symbol oben rechts für den Skill oder über eine Stufen-Karte): Schließen-Knopf, „Skill“ bzw. „Stufe 2 / 5“, Name, Animation, Abschnitte „Muskeln“ (beanspruchte Muskeln) und „So geht’s“ (wie die Übung aussieht und was sie bringt).
-- „Als Ziel setzen“ (Hauptknopf) oder, wenn der Skill das aktive Ziel ist, Marke „Gewählt“ mit kurzem Hinweis.
+- „Diesen Skill lernen“ (Hauptknopf) oder, wenn der Nutzer ihn schon lernt, Marke „Gewählt“ mit dem Hinweis, dass er im Tab „Ich“ erscheint, und der Knopf „Nicht mehr lernen“.
 - „Workouts für diesen Skill“, von leicht nach schwer, wie in der Workouts-Liste.
 
 ## 13 Teilen

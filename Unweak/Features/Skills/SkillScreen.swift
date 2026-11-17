@@ -25,7 +25,7 @@ struct SkillList: View {
     var body: some View {
         let stats = JournalStats(entries: store.entries)
         let canUseSkills = subscription.access.canUseSkills
-        let activeID = canUseSkills ? (store.data.activeGoalID ?? catalog.goals.first?.id) : nil
+        let learning = canUseSkills ? Set(store.activeGoalIDs(in: catalog)) : []
 
         VStack(alignment: .leading, spacing: 10) {
             Text("Choose a skill and get the workouts that build it.")
@@ -35,7 +35,7 @@ struct SkillList: View {
                 let card = SkillCard(
                     progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
                     workoutCount: goal.plans.count,
-                    isActive: goal.id == activeID,
+                    isActive: learning.contains(goal.id),
                     isLocked: !canUseSkills,
                     catalog: catalog
                 )
@@ -130,7 +130,7 @@ struct SkillScreen: View {
     }
 
     private var isActive: Bool {
-        subscription.access.canUseSkills && (store.data.activeGoalID ?? catalog.goals.first?.id) == goal.id
+        subscription.access.canUseSkills && store.isLearning(goal, in: catalog)
     }
 
     var body: some View {
@@ -338,18 +338,28 @@ struct SkillScreen: View {
     @ViewBuilder
     private var goalSection: some View {
         if isActive {
-            Card {
-                HStack(spacing: 10) {
-                    Badge(kind: .selected)
-                    Text("This is your current goal in the Me tab.")
-                        .font(.text(15))
-                        .foregroundStyle(Theme.textSoft)
+            VStack(alignment: .leading, spacing: 10) {
+                Card {
+                    HStack(spacing: 10) {
+                        Badge(kind: .selected)
+                        Text("You are learning this skill. It shows in the Me tab.")
+                            .font(.text(15))
+                            .foregroundStyle(Theme.textSoft)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+                SecondaryButton("Stop learning", systemImage: "xmark") {
+                    withAnimation(.easeOut(duration: 0.15)) {
+                        store.setLearning(false, goal, in: catalog)
+                    }
                 }
             }
         } else {
-            PrimaryButton("Set as goal", systemImage: "scope") {
+            PrimaryButton("Learn this skill", systemImage: "scope") {
                 if subscription.access.canUseSkills {
-                    store.setActiveGoal(goal.id)
+                    withAnimation(.easeOut(duration: 0.15)) {
+                        store.setLearning(true, goal, in: catalog)
+                    }
                 } else {
                     isShowingSubscription = true
                 }
