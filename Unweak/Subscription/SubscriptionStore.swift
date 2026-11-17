@@ -30,7 +30,11 @@ final class SubscriptionStore {
     enum LoadState: Equatable {
         case loading
         case loaded
+        /// The App Store could not be reached.
         case failed
+        /// The App Store answered, but without our products: wrong product IDs, or in
+        /// the simulator the StoreKit test file is not active.
+        case noProducts
     }
 
     private(set) var isPro = false
@@ -79,7 +83,7 @@ final class SubscriptionStore {
         do {
             let loaded = try await Product.products(for: ProductID.all)
             products = loaded.sorted { $0.price > $1.price }
-            loadState = loaded.isEmpty ? .failed : .loaded
+            loadState = loaded.isEmpty ? .noProducts : .loaded
         } catch {
             loadState = .failed
         }

@@ -4,7 +4,7 @@
   "products" : [],
   "settings" : {
     "_failTransactionsEnabled" : false,
-    "_locale" : "de",
+    "_locale" : "de_DE",
     "_storefront" : "DEU",
     "_storeKitErrors" : []
   },
@@ -30,8 +30,8 @@
             },
             {
               "description" : "Alle Skills und unbegrenzt Workouts",
-              "displayName" : "Unweak Pro j\u00e4hrlich",
-              "locale" : "de"
+              "displayName" : "Unweak Pro jährlich",
+              "locale" : "de_DE"
             }
           ],
           "productID" : "com.example.unweak.pro.yearly",
@@ -57,7 +57,7 @@
             {
               "description" : "Alle Skills und unbegrenzt Workouts",
               "displayName" : "Unweak Pro monatlich",
-              "locale" : "de"
+              "locale" : "de_DE"
             }
           ],
           "productID" : "com.example.unweak.pro.monthly",
