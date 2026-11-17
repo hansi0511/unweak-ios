@@ -27,16 +27,16 @@ Zwölf Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Wor
 ## 1 Dashboard (Tab)
 
 - Kopf: Label „Diese Woche“, Serie in Wochen, Regler-Symbol. Überschrift „3 / 4 Trainings“. Darunter sieben Tagesbalken Mo bis So: trainiert in Akzentfarbe, heute hell, sonst dunkel.
-- Ziel-Panel mit Raster-Hintergrund und Eckmarkierungen: Link „Nächstes Ziel · Ändern“, Name des Ziels, aktueller Stand, rechts Sticky-Man-Animation des Ziels. Darunter fünf Segmente für die Stufe und „Stufe 2 / 5 · Noch 3 Stufen“.
+- Ziel-Panel (nur mit Pro; in der Gratis-Version an seiner Stelle ein Hinweis „Erreiche deinen ersten Skill“ mit Marke „Abo“, der zur Abo-Seite führt) mit Raster-Hintergrund und Eckmarkierungen: Link „Nächstes Ziel · Ändern“, Name des Ziels, aktueller Stand, rechts Sticky-Man-Animation des Ziels. Darunter fünf Segmente für die Stufe und „Stufe 2 / 5 · Noch 3 Stufen“.
 - Karte „Nächstes Workout“ in Akzentfarbe mit Name, Dauer und Start-Symbol.
 - Gestrichelter Knopf „Eigenes Workout erstellen“.
 - Erfolge: Zähler „4 / 12“ und vier Kacheln mit Wert und Bezeichnung.
 
 ## 2 Workouts (Tab)
 
-- Kopf: Label „5 Pläne gratis“, Überschrift, rechts Knopf „Eigenes“ (nur im Bereich Workouts).
+- Kopf: Label „10 Workouts gratis“, Überschrift, rechts Knopf „Eigenes“ (nur im Bereich Workouts; in der Gratis-Version ab 3 eigenen Workouts mit Schloss, führt zur Abo-Seite).
 - Umschalter mit zwei gleich breiten Feldern: „Skills“ (Standard) und „Workouts“.
-- **Skills:** ein Satz zur Erklärung, darunter je Skill eine große Karte im HUD-Stil: Sticky Man in der Schlüsselpose, Marke „Gewählt“ (aktives Ziel) oder „Abo“, Name, „Stufe 2 / 5 · 2 Workouts“ bzw. Bestzeit, fünf Segmente.
+- **Skills:** ein Satz zur Erklärung, darunter je Skill eine große Karte im HUD-Stil: Sticky Man in der Schlüsselpose, Marke „Gewählt“ (aktives Ziel), Name, „Stufe 2 / 5 · 2 Workouts“ bzw. Bestzeit, fünf Segmente. Ohne Pro: Marke „Abo“, Schloss statt Pfeil, Pose in Textfarbe; die Karte öffnet die Abo-Seite.
 - **Workouts:** Filter Alle, Push, Pull, Beine, Core (Einfachauswahl). Liste: zuerst eigene Workouts (Marke „Eigenes“), dann die Pläne ohne die Skill-Workouts; je Plan Sticky-Man-Pose, Name, „Kategorie · Dauer · Niveau“ und Marke „Gratis“ (Akzentfarbe) oder „Abo“ (Orange).
 
 ## 3 Training läuft
@@ -72,10 +72,11 @@ Zwölf Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Wor
 ## 7 Abo
 
 - Schließen-Knopf, Marke „Abo“.
-- Überschrift „Alle Pläne freischalten“, Hinweis, dass die fünf Einsteiger-Pläne gratis bleiben, Sticky Man in der Stützposition über der Stange.
-- Drei Vorteile mit Häkchen.
-- Auswahl Jahr (29,90, „entspricht 2,49 pro Monat“, vorausgewählt) oder Monat (4,90).
+- Überschrift „Alle Skills freischalten“, Hinweis, dass die 10 Workouts gratis bleiben, Sticky Man in der Stützposition über der Stange.
+- Drei Vorteile mit Häkchen: alle Skills mit ihren Workouts, Skill als Ziel mit Stufen, unbegrenzt eigene Workouts.
+- Auswahl Jahr (29,90, „entspricht 2,49 pro Monat“, vorausgewählt) oder Monat (4,90). Preise kommen aus dem App Store.
 - „Abo starten“, „Käufe wiederherstellen“, Hinweis zur Kündigung und automatischen Verlängerung.
+- Mit aktivem Abo stattdessen „Pro ist aktiv“ und „Abo verwalten“.
 
 ## 8 Ziel wählen
 

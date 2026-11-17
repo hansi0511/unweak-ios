@@ -131,28 +131,40 @@ plan("corePlank", ("Core & Plank", "Core & Plank"), "core", "beginner", "plank",
      [("plank", 3, None, 40, 45), ("kneeRaise", 3, 10, None, 60), ("lSit", 4, None, 10, 60)])
 plan("legsNoEquipment", ("Legs without equipment", "Beine ohne Geräte"), "legs", "beginner", "squat", True,
      [("squat", 4, 15, None, 60), ("lunge", 3, 10, None, 60), ("pistolSquat", 3, 3, None, 90)])
-plan("handstandSchool", ("Handstand school", "Handstand-Schule"), "skill", "beginner", "handstand", True,
+plan("handstandSchool", ("Handstand school", "Handstand-Schule"), "skill", "beginner", "handstand", False,
      [("pikePushUp", 3, 8, None, 90), ("plank", 3, None, 30, 45), ("wallHandstand", 4, None, 20, 60)])
+plan("pushEndurance", ("Push Endurance", "Push-Ausdauer"), "push", "beginner", "pushUp", True,
+     [("kneePushUp", 3, 15, None, 60), ("pushUp", 3, 10, None, 75), ("plank", 3, None, 40, 45)])
+plan("pushPower", ("Push Power", "Push-Kraft"), "push", "intermediate", "pushUp", True,
+     [("pushUp", 4, 10, None, 90), ("dip", 4, 8, None, 90), ("pikePushUp", 3, 8, None, 90), ("plank", 3, None, 45, 45)])
+plan("rowsAndHangs", ("Rows & Hangs", "Rudern & Hängen"), "pull", "beginner", "pullUp", True,
+     [("row", 4, 10, None, 60), ("kneeRaise", 3, 8, None, 60), ("negativePullUp", 3, 4, None, 90)])
+plan("pullStrength", ("Pull Strength", "Zugkraft"), "pull", "intermediate", "pullUp", True,
+     [("pullUp", 5, 5, None, 120), ("row", 3, 12, None, 60), ("negativePullUp", 3, 3, None, 90), ("kneeRaise", 3, 12, None, 60)])
+plan("legDayPlus", ("Leg Day Plus", "Beine Plus"), "legs", "intermediate", "squat", True,
+     [("squat", 4, 20, None, 60), ("lunge", 4, 12, None, 60), ("pistolSquat", 3, 4, None, 90)])
+plan("coreStrength", ("Core Strength", "Core-Kraft"), "core", "intermediate", "lSit", True,
+     [("kneeRaise", 4, 12, None, 60), ("lSit", 4, None, 15, 60), ("plank", 3, None, 60, 60)])
 plan("frontLeverBuildUp", ("Front lever build-up", "Front-Lever-Aufbau"), "skill", "advanced", "frontLever", False,
      [("pullUp", 4, 6, None, 120), ("kneeRaise", 3, 12, None, 60), ("tuckFrontLever", 5, None, 10, 90), ("row", 3, 12, None, 60)])
 plan("muscleUpPath", ("Muscle-up path", "Muscle-up-Weg"), "skill", "advanced", "muscleUp", False,
      [("pullUp", 4, 6, None, 120), ("dip", 4, 8, None, 90), ("negativePullUp", 3, 5, None, 90), ("muscleUp", 5, 2, None, 150)])
 
-# Skills (shown as goals on the dashboard): id, name, pose, linked exercise (animation and,
+# Skills (shown as goals on the dashboard, Pro only): id, name, pose, linked exercise (animation and,
 # for time goals, best time), ordered workouts from easy to hard, free,
 # stages (skill with stages) or targetSeconds (time goal)
 G = []
 def goal(id, name, pose, exercise, plans, free, stages=None, seconds=None):
     G.append(dict(id=id, name=name, pose=pose, exercise=exercise, plans=plans, isFree=free, stages=stages, targetSeconds=seconds))
-goal("frontLever", ("Front lever", "Front Lever"), "frontLever", "tuckFrontLever", ["pullDay", "frontLeverBuildUp"], True,
+goal("frontLever", ("Front lever", "Front Lever"), "frontLever", "tuckFrontLever", ["pullDay", "pullStrength", "frontLeverBuildUp"], False,
      stages=[("Tuck", "Tuck"), ("Advanced tuck", "Advanced Tuck"), ("One leg", "Ein Bein"), ("Straddle", "Straddle"), ("Full front lever", "Voller Front Lever")])
-goal("plank5Min", ("Plank 5 min", "Plank 5 min"), "plank", "plank", ["corePlank", "pushBasics"], True, seconds=300)
-goal("handstandPushUp", ("Handstand push-up", "Handstand-Liegestütz"), "handstand", "pikePushUp", ["pushBasics", "handstandSchool"], True,
+goal("plank5Min", ("Plank 5 min", "Plank 5 min"), "plank", "plank", ["corePlank", "coreStrength"], False, seconds=300)
+goal("handstandPushUp", ("Handstand push-up", "Handstand-Liegestütz"), "handstand", "pikePushUp", ["pushBasics", "pushPower", "handstandSchool"], False,
      stages=[("Pike push-up", "Pike-Liegestütz"), ("Elevated pike push-up", "Erhöhter Pike-Liegestütz"), ("Wall handstand hold", "Handstand an der Wand halten"), ("Half wall handstand push-up", "Halber Handstand-Liegestütz an der Wand"), ("Full wall handstand push-up", "Voller Handstand-Liegestütz an der Wand")])
-goal("lSit30", ("L-sit 30 s", "L-Sit 30 s"), "lSit", "lSit", ["corePlank"], True, seconds=30)
-goal("pistolSquat", ("Pistol squat", "Pistol Squat"), "pistolSquat", "pistolSquat", ["legsNoEquipment"], True,
+goal("lSit30", ("L-sit 30 s", "L-Sit 30 s"), "lSit", "lSit", ["corePlank", "coreStrength"], False, seconds=30)
+goal("pistolSquat", ("Pistol squat", "Pistol Squat"), "pistolSquat", "pistolSquat", ["legsNoEquipment", "legDayPlus"], False,
      stages=[("Deep squat", "Tiefe Kniebeuge"), ("Lunge", "Ausfallschritt"), ("Box pistol", "Pistol auf Kasten"), ("Assisted pistol", "Pistol mit Hilfe"), ("Full pistol squat", "Voller Pistol Squat")])
-goal("muscleUp", ("Muscle-up", "Muscle-up"), "muscleUp", "muscleUp", ["pullDay", "muscleUpPath"], False,
+goal("muscleUp", ("Muscle-up", "Muscle-up"), "muscleUp", "muscleUp", ["pullDay", "pullStrength", "pushPower", "muscleUpPath"], False,
      stages=[("10 pull-ups", "10 Klimmzüge"), ("Chest-to-bar pull-up", "Klimmzug bis zur Brust"), ("10 dips", "10 Dips"), ("Negative muscle-up", "Negativer Muscle-up"), ("Muscle-up", "Muscle-up")])
 
 # Achievements (sample list of 12, see docs/SPEC.md "Inhalte"), computed from the journal.

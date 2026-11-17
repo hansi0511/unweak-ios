@@ -18,29 +18,47 @@ extension GoalProgress {
 /// The skills area of the workouts tab: one large card per skill.
 struct SkillList: View {
     @Environment(UserDataStore.self) private var store
+    @Environment(SubscriptionStore.self) private var subscription
+    @State private var isShowingPaywall = false
     let catalog: Catalog
 
     var body: some View {
         let stats = JournalStats(entries: store.entries)
-        let activeID = store.data.activeGoalID ?? catalog.goals.first(where: \.isFree)?.id
+        let canUseSkills = subscription.access.canUseSkills
+        let activeID = canUseSkills ? (store.data.activeGoalID ?? catalog.goals.first?.id) : nil
 
         VStack(alignment: .leading, spacing: 10) {
             Text("Choose a skill and get the workouts that build it.")
                 .font(.text(15))
                 .foregroundStyle(Theme.textSoft)
             ForEach(catalog.goals) { goal in
-                NavigationLink {
-                    SkillScreen(goal: goal, catalog: catalog)
-                } label: {
-                    SkillCard(
-                        progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
-                        workoutCount: goal.plans.count,
-                        isActive: goal.id == activeID,
-                        catalog: catalog
-                    )
+                let card = SkillCard(
+                    progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
+                    workoutCount: goal.plans.count,
+                    isActive: goal.id == activeID,
+                    isLocked: !canUseSkills,
+                    catalog: catalog
+                )
+                if canUseSkills {
+                    NavigationLink {
+                        SkillScreen(goal: goal, catalog: catalog)
+                    } label: {
+                        card
+                    }
+                    .buttonStyle(PressFeedbackStyle())
+                } else {
+                    // Skills need Pro: the card opens the subscription page.
+                    Button {
+                        isShowingPaywall = true
+                    } label: {
+                        card
+                    }
+                    .buttonStyle(PressFeedbackStyle())
                 }
-                .buttonStyle(PressFeedbackStyle())
             }
+        }
+        .sheet(isPresented: $isShowingPaywall) {
+            PaywallSheet()
         }
     }
 }
@@ -50,6 +68,7 @@ private struct SkillCard: View {
     let progress: GoalProgress
     let workoutCount: Int
     let isActive: Bool
+    let isLocked: Bool
     let catalog: Catalog
 
     private var goal: Goal { progress.goal }
@@ -60,13 +79,13 @@ private struct SkillCard: View {
                 HStack(alignment: .center, spacing: 14) {
                     if let animation = catalog.exercise(goal.exercise)?.animation {
                         // Static key pose: six moving figures in one list would be restless.
-                        StickyFigureCanvas(figure: animation.figure(at: animation.endPoseProgress), highlighted: goal.isFree)
+                        StickyFigureCanvas(figure: animation.figure(at: animation.endPoseProgress), highlighted: !isLocked)
                             .frame(width: 88, height: 88)
                             .accessibilityHidden(true)
                     }
                     VStack(alignment: .leading, spacing: 6) {
                         HStack(spacing: 6) {
-                            if !goal.isFree {
+                            if isLocked {
                                 Badge(kind: .subscription)
                             } else if isActive {
                                 Badge(kind: .selected)
@@ -79,7 +98,7 @@ private struct SkillCard: View {
                         MetaLine([progress.stateText, Text("\(workoutCount) workouts")])
                     }
                     Spacer(minLength: 0)
-                    Image(systemName: "chevron.right")
+                    Image(systemName: isLocked ? "lock.fill" : "chevron.right")
                         .font(.system(size: 14, weight: .bold))
                         .foregroundStyle(Theme.textMuted)
                         .accessibilityHidden(true)
@@ -96,6 +115,7 @@ private struct SkillCard: View {
 struct SkillScreen: View {
     @Environment(\.accent) private var accent
     @Environment(UserDataStore.self) private var store
+    @Environment(SubscriptionStore.self) private var subscription
     @State private var isShowingSubscription = false
     private let goal: Goal
     private let catalog: Catalog
@@ -106,7 +126,7 @@ struct SkillScreen: View {
     }
 
     private var isActive: Bool {
-        (store.data.activeGoalID ?? catalog.goals.first(where: \.isFree)?.id) == goal.id
+        subscription.access.canUseSkills && (store.data.activeGoalID ?? catalog.goals.first?.id) == goal.id
     }
 
     var body: some View {
@@ -118,7 +138,7 @@ struct SkillScreen: View {
                 HStack {
                     BackButton()
                     Spacer()
-                    if !goal.isFree { Badge(kind: .subscription) }
+                    Badge(kind: .subscription)
                 }
                 MonoLabel("Skill")
                 Text(catalog: goal.nameKey)
@@ -153,7 +173,7 @@ struct SkillScreen: View {
             }
         }
         .sheet(isPresented: $isShowingSubscription) {
-            SubscriptionPlaceholderSheet()
+            PaywallSheet()
         }
     }
 
@@ -178,6 +198,10 @@ struct SkillScreen: View {
                 }
                 if !progress.isComplete {
                     Button {
+                        guard subscription.access.canUseSkills else {
+                            isShowingSubscription = true
+                            return
+                        }
                         withAnimation(.easeOut(duration: 0.2)) {
                             store.markStageReached(of: goal)
                         }
@@ -227,7 +251,7 @@ struct SkillScreen: View {
             }
         } else {
             PrimaryButton("Set as goal", systemImage: "scope") {
-                if goal.isFree {
+                if subscription.access.canUseSkills {
                     store.setActiveGoal(goal.id)
                 } else {
                     isShowingSubscription = true

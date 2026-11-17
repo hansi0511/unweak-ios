@@ -4,6 +4,7 @@ import SwiftUI
 struct GoalPickerScreen: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(UserDataStore.self) private var store
+    @Environment(SubscriptionStore.self) private var subscription
     @State private var selection: String?
     @State private var isShowingSubscription = false
     private let catalog: Catalog
@@ -13,7 +14,7 @@ struct GoalPickerScreen: View {
     }
 
     private var activeGoalID: String? {
-        store.data.activeGoalID ?? catalog.goals.first(where: \.isFree)?.id
+        store.data.activeGoalID ?? catalog.goals.first?.id
     }
 
     var body: some View {
@@ -35,7 +36,7 @@ struct GoalPickerScreen: View {
             VStack(spacing: 10) {
                 ForEach(catalog.goals) { goal in
                     Button {
-                        if goal.isFree {
+                        if subscription.access.canUseSkills {
                             selection = goal.id
                         } else {
                             isShowingSubscription = true
@@ -59,7 +60,7 @@ struct GoalPickerScreen: View {
             .disabled(selection == nil || selection == activeGoalID)
         }
         .sheet(isPresented: $isShowingSubscription) {
-            SubscriptionPlaceholderSheet()
+            PaywallSheet()
         }
     }
 }
@@ -67,6 +68,7 @@ struct GoalPickerScreen: View {
 /// One goal: pose, name, current state and badge.
 private struct GoalRow: View {
     @Environment(\.accent) private var accent
+    @Environment(SubscriptionStore.self) private var subscription
     let progress: GoalProgress
     let isSelected: Bool
 
@@ -74,7 +76,7 @@ private struct GoalRow: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            StickyPoseView(goal.pose, highlighted: goal.isFree)
+            StickyPoseView(goal.pose, highlighted: subscription.access.canUseSkills)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 6) {
                 Text(catalog: goal.nameKey)
@@ -87,7 +89,7 @@ private struct GoalRow: View {
                     .foregroundStyle(Theme.textMuted)
             }
             Spacer(minLength: 0)
-            if !goal.isFree {
+            if !subscription.access.canUseSkills {
                 Badge(kind: .subscription)
             } else if isSelected {
                 Badge(kind: .selected)

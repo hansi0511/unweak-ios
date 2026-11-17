@@ -71,16 +71,6 @@
         }
       }
     },
-    "%lld plans free" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld Pläne gratis"
-          }
-        }
-      }
-    },
     "%lld reps" : {
       "localizations" : {
         "en" : {
@@ -211,6 +201,16 @@
         }
       }
     },
+    "%lld workouts free" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Workouts gratis"
+          }
+        }
+      }
+    },
     "about %lld min" : {
       "localizations" : {
         "de" : {
@@ -311,6 +311,16 @@
         }
       }
     },
+    "All skills with their workouts, from easy to hard" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Skills mit ihren Workouts, von leicht nach schwer"
+          }
+        }
+      }
+    },
     "All stages reached" : {
       "localizations" : {
         "de" : {
@@ -407,6 +417,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wähle einen Skill und bekomm die Workouts, die dich dorthin bringen."
+          }
+        }
+      }
+    },
+    "Choose a skill like the front lever and get the workouts that build it." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle einen Skill wie den Front Lever und bekomm die Workouts, die dich dorthin bringen."
           }
         }
       }
@@ -667,6 +687,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Training beenden und speichern"
+          }
+        }
+      }
+    },
+    "Equals %@ per month" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entspricht %@ pro Monat"
           }
         }
       }
@@ -1041,6 +1071,26 @@
         }
       }
     },
+    "Manage subscription" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abo verwalten"
+          }
+        }
+      }
+    },
+    "Monthly" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monatlich"
+          }
+        }
+      }
+    },
     "More" : {
       "localizations" : {
         "de" : {
@@ -1157,6 +1207,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nächstes Workout"
+          }
+        }
+      }
+    },
+    "No active subscription was found for this Apple ID." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für diese Apple-ID wurde kein aktives Abo gefunden."
           }
         }
       }
@@ -1331,6 +1391,16 @@
         }
       }
     },
+    "Prices could not be loaded. Check your internet connection." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Preise konnten nicht geladen werden. Prüfe deine Internetverbindung."
+          }
+        }
+      }
+    },
     "Privacy" : {
       "localizations" : {
         "de" : {
@@ -1347,6 +1417,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abo"
+          }
+        }
+      }
+    },
+    "Pro is active. Thank you!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro ist aktiv. Danke!"
           }
         }
       }
@@ -1391,6 +1471,16 @@
         }
       }
     },
+    "Purchases could not be restored. Please try again." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Käufe konnten nicht wiederhergestellt werden. Bitte versuch es noch einmal."
+          }
+        }
+      }
+    },
     "Push" : {
       "localizations" : {
         "de" : {
@@ -1417,6 +1507,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Liegestütz"
+          }
+        }
+      }
+    },
+    "Reach your first skill" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreiche deinen ersten Skill"
           }
         }
       }
@@ -1521,6 +1621,16 @@
         }
       }
     },
+    "Restore purchases" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Käufe wiederherstellen"
+          }
+        }
+      }
+    },
     "Save" : {
       "localizations" : {
         "de" : {
@@ -1597,6 +1707,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Satz %lld erledigt"
+          }
+        }
+      }
+    },
+    "Set a skill as your goal and track its stages" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einen Skill als Ziel setzen und seine Stufen verfolgen"
           }
         }
       }
@@ -1721,6 +1841,16 @@
         }
       }
     },
+    "Start subscription" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abo starten"
+          }
+        }
+      }
+    },
     "Start workout" : {
       "localizations" : {
         "de" : {
@@ -1821,12 +1951,52 @@
         }
       }
     },
-    "The five beginner plans stay free." : {
+    "The 10 workouts stay free." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die fünf Einsteiger-Pläne bleiben gratis."
+            "value" : "Die 10 Workouts bleiben gratis."
+          }
+        }
+      }
+    },
+    "The purchase could not be verified." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Kauf konnte nicht bestätigt werden."
+          }
+        }
+      }
+    },
+    "The purchase did not work. Please try again." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Kauf hat nicht geklappt. Bitte versuch es noch einmal."
+          }
+        }
+      }
+    },
+    "The purchase is waiting for approval." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Kauf wartet auf Freigabe."
+          }
+        }
+      }
+    },
+    "The subscription renews automatically unless you cancel it at least 24 hours before the end of the period in your Apple ID settings. Payment is charged to your Apple ID." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Abo verlängert sich automatisch, wenn du es nicht spätestens 24 Stunden vor Ablauf des Zeitraums in den Einstellungen deiner Apple-ID kündigst. Die Zahlung erfolgt über deine Apple-ID."
           }
         }
       }
@@ -1908,12 +2078,32 @@
         }
       }
     },
-    "Unlock all plans" : {
+    "Try again" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alle Pläne freischalten"
+            "value" : "Erneut versuchen"
+          }
+        }
+      }
+    },
+    "Unlimited custom workouts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbegrenzt eigene Workouts"
+          }
+        }
+      }
+    },
+    "Unlock all skills" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Skills freischalten"
           }
         }
       }
@@ -1964,6 +2154,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Workouts für diesen Skill"
+          }
+        }
+      }
+    },
+    "Yearly" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jährlich"
           }
         }
       }

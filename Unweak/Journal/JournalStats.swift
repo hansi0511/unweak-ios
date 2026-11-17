@@ -207,12 +207,18 @@ struct JournalStats {
         )
     }
 
-    /// The free plan trained longest ago; plans never trained come first, in catalog order.
-    /// Free workouts of the active skill (`preferred`) are suggested before all others.
-    func nextWorkout(in catalog: Catalog, preferring preferred: [String] = []) -> WorkoutPlan? {
-        let free = catalog.plans.filter(\.isFree)
-        let fromSkill = free.filter { preferred.contains($0.id) }
-        return leastRecentlyTrained(fromSkill.isEmpty ? free : fromSkill)
+    /// The plan trained longest ago; plans never trained come first, in catalog order.
+    /// Workouts of the active skill (`preferred`) the user may train are suggested first,
+    /// otherwise the general workouts.
+    func nextWorkout(
+        in catalog: Catalog,
+        access: Access = Access(isPro: false),
+        preferring preferred: [String] = []
+    ) -> WorkoutPlan? {
+        let trainable = catalog.plans.filter { access.canTrain($0) }
+        let fromSkill = trainable.filter { preferred.contains($0.id) }
+        let general = trainable.filter { $0.category != .skill }
+        return leastRecentlyTrained(fromSkill.isEmpty ? general : fromSkill)
     }
 
     private func leastRecentlyTrained(_ candidates: [WorkoutPlan]) -> WorkoutPlan? {

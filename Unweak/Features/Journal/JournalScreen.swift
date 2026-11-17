@@ -161,15 +161,17 @@ private struct JournalRow: View {
 /// Choose the plan for a workout added by hand.
 private struct PlanPickerSheet: View {
     @Environment(UserDataStore.self) private var store
+    @Environment(SubscriptionStore.self) private var subscription
     @Environment(\.dismiss) private var dismiss
     @Environment(AppNavigation.self) private var navigation: AppNavigation?
     let catalog: Catalog
 
-    /// Custom workouts first, then the free catalog plans.
+    /// Custom workouts first, then the catalog plans the user can train.
     private var pickablePlans: [WorkoutPlan] {
+        let access = subscription.access
         let custom: [WorkoutPlan] = store.customWorkouts.map { $0.plan(in: catalog) }
-        let free: [WorkoutPlan] = catalog.plans.filter(\.isFree)
-        return custom + free
+        let available: [WorkoutPlan] = catalog.plans.filter { access.canTrain($0) }
+        return custom + available
     }
 
     var body: some View {
@@ -216,5 +218,6 @@ private struct PlanPickerSheet: View {
     }
     .environment(UserDataStore(fileURL: nil))
     .environment(AppNavigation())
+    .environment(SubscriptionStore.preview(isPro: false))
     .environment(\.locale, Locale(identifier: "de"))
 }
