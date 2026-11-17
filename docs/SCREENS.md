@@ -9,8 +9,8 @@
 | Anmeldung | Mit Apple oder Google anmelden | Ich |
 | Ich | „Dein Skill · Ändern“ | Ziel wählen |
 | Ich | Leiste „Nächstes Workout“ | Training läuft |
-| Ich | „Anpassen“ unter dem Avatar | Avatar anpassen |
-| Ich | Regler-Symbol oben rechts | Einstellungen |
+| Ich | Überschrift „Ich ›“ | Ich-Bereich |
+| Ich-Bereich | Zeile „Einstellungen“ | Einstellungen |
 | Ich (Gratis) | Hinweis „Erreiche deinen ersten Skill“ | Abo |
 | Workouts | Umschalter „Skills“ / „Workouts“ | anderer Bereich |
 | Workouts (Skills) | Skill-Karte | Skill |
@@ -29,10 +29,10 @@
 
 ## 1 Ich (Tab)
 
-- Kopf: Überschrift „Ich“, rechts Teilen-Symbol (Woche und Serie) und Regler-Symbol.
+- Kopf: Überschrift „Ich“ mit Pfeil in Akzentfarbe als Knopf zum Ich-Bereich (Level, Avatar, Einstellungen), rechts Teilen-Symbol (Woche und Serie).
 - Avatar-Bühne, groß und mittig: Der Avatar (Körper, Farben und Extra wie gewählt) steht in einem Kreis in seiner Grundfarbe und atmet leicht. Um den Kreis liegt ein Ring aus so vielen Bögen, wie das Wochenziel Trainings hat; geschaffte Bögen leuchten in der Akzentfarbe.
-- Darunter dezent in Mono-Schrift: „2 / 3 diese Woche · Serie 3 Wochen“ und „Noch 1 bis zum Wochenziel“ bzw. „Wochenziel erreicht“.
-- Darunter mittig: Name des Körpers, Weg zum nächsten Körper („Noch 7 Trainings bis Trainiert“, „Meistere einen Skill und werde zur Legende“, „Du bist eine Legende!“) und Knopf „Anpassen“.
+- Darunter dezent in Mono-Schrift: „2 / 3 diese Woche · Serie 3 Wochen“.
+- Darunter mittig: Name des Körpers.
 - Schmale Leiste „Nächstes Workout“ mit Play-Symbol in Akzentfarbe, Name und Dauer: mit Pro aus den Workouts des aktiven Skills, gratis aus den Gratis-Workouts.
 - Skill-Panel (nur mit Pro) mit Raster-Hintergrund und Eckmarkierungen: Link „Dein Skill · Ändern“, Name des Skills. Darunter zwei Animationen nebeneinander mit Pfeil dazwischen: links „Jetzt“ mit der Animation der Stufe, an der der Nutzer gerade arbeitet (die nächste noch nicht erreichte, nach der letzten die letzte), und ihrem Namen; rechts „Ziel“ mit der Animation des Skills und dem Namen der letzten Stufe. Bei Zeit-Skills links die Bestzeit, rechts die Zielzeit, beide mit der Animation der Übung. Darunter fünf Segmente, „Stufe 2 / 5 · Noch 3 Stufen“ und der gestrichelte Knopf „Stufe erreicht“.
 - Gratis-Version: statt Skill-Panel der Hinweis „Erreiche deinen ersten Skill“ mit Marke „Abo“, der zur Abo-Seite führt.
@@ -129,12 +129,15 @@
 - Vorschau (bei Video mit bewegtem Sticky Man; mit „Bewegung reduzieren“ steht er still): Raster-Hintergrund mit Eckmarkierungen in Akzentfarbe, „UNWEAK“ und Untertitel, Sticky Man groß in der Schlüsselpose, Art („Workout geschafft“, „Neuer Rekord“, „Erfolg freigeschaltet“, „Serie“, „Skill-Fortschritt“), Überschrift, Kennzahlen oder Segmente, unten Datum und Hashtags.
 - Hauptknopf „Video teilen“ bzw. „Bild teilen“ öffnet das iOS-Teilen-Menü (1080 px breit, Video als MP4 mit 30 Bildern pro Sekunde, mindestens 6 Sekunden, ohne Ton; dazu ein kurzer Text mit Hashtags). Während das Video entsteht, zeigt eine Segment-Leiste den Fortschritt. Hinweis, dass dort X, Facebook oder Instagram gewählt wird.
 
-## 14 Avatar anpassen
+## 14 Ich-Bereich
 
-- Kopf: Zurück, Label „Dein Avatar“, Überschrift „Anpassen“, ein Satz: Der Avatar wächst mit dem Training, Erfolge und Skills schalten mehr frei.
-- Große Vorschau des Avatars.
-- **Körper:** Kacheln „Automatisch“ (wächst mit) und Start, Athlet, Trainiert, Legende, je mit kleiner Vorschau.
-- **Farbe** und **Zweite Farbe** (für das Extra): je sieben Farbkreise (sechs Akzentfarben und Mono).
-- **Grund:** Dunkel, Nacht, Invertiert.
-- **Extras:** Keins, Stirnband, Kappe, Visier, Kopfhörer, Medaille, Krone, je mit kleiner Vorschau.
-- Gesperrte Kacheln sind gedimmt, mit Schloss und Bedingung („Ab 50 Trainings“, „Erfolg: 25 Trainings“, „Einen Skill meistern“). Die gewählte Kachel hat einen Rahmen in Akzentfarbe. Jede Auswahl wird sofort gespeichert.
+- Öffnet sich über die Überschrift „Ich“ im Tab „Ich“. Kopf: Zurück, Überschrift „Ich“.
+- Große Vorschau des Avatars (atmet).
+- **Level:** ein Satz, dass der Avatar mit dem Training wächst. Darunter die vier Körper als Zeilen mit stiller Vorschau und Name: erreichte mit „Freigeschaltet“ und Haken; der nächste mit Rahmen in Akzentfarbe, „Noch 7 Trainings“ und Fortschrittssegmenten; spätere gedimmt mit Bedingung und Schloss.
+- **Dein Avatar:**
+  - **Körper:** Kacheln „Automatisch“ (wächst mit) und Start, Athlet, Trainiert, Legende, je mit kleiner Vorschau.
+  - **Farbe** und **Zweite Farbe** (für das Extra): je sieben Farbkreise (sechs Akzentfarben und Mono).
+  - **Grund:** Dunkel, Nacht, Invertiert.
+  - **Extras:** Keins, Stirnband, Kappe, Visier, Kopfhörer, Medaille, Krone, je mit kleiner Vorschau.
+  - Gesperrte Kacheln sind gedimmt, mit Schloss und Bedingung („Ab 50 Trainings“, „Erfolg: 25 Trainings“, „Einen Skill meistern“). Die gewählte Kachel hat einen Rahmen in Akzentfarbe. Jede Auswahl wird sofort gespeichert.
+- Zeile **Einstellungen** (Konto, Abo, Erinnerungen, Farbe, Sprache) öffnet die Einstellungen.

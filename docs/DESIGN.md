@@ -104,7 +104,7 @@ Statische Figur auf einem Raster von 100 × 100, mit Kopf als Ring und runden Li
 - **Legende:** wie Trainiert, mit Glow.
 - **Extras** sitzen relativ zum Kopf und passen so auf jeden Körper. Sie werden in der zweiten Farbe gezeichnet.
 - **Grund:** dunkel (Fläche), Nacht (#1E1733) oder invertiert (Grund in Figurfarbe, Figur dunkel). Eckmarkierungen oben links und unten rechts in Figurfarbe, nicht bei „invertiert“.
-- **Atmen:** Alles oberhalb der Hüfte hebt sich einmal alle 4 Sekunden um bis zu 1,6 Einheiten, anteilig zur Höhe (Kopf und Extras am meisten, Beine gar nicht). Mit „Bewegung reduzieren“ steht der Avatar still. Kleine Vorschauen im Editor atmen nicht.
+- **Atmen:** Alles oberhalb der Hüfte hebt sich einmal alle 4 Sekunden um bis zu 2,8 Einheiten, anteilig zur Höhe (Kopf und Extras am meisten, Beine gar nicht). Mit „Bewegung reduzieren“ steht der Avatar still. Kleine Vorschauen im Editor atmen nicht.
 - **Wochenring (Tab „Ich“):** Ring um den Avatar-Kreis, ein Bogen pro Training des Wochenziels mit kleinen Lücken, Linie 6 pt; geschaffte Bögen in der Akzentfarbe mit kleinem Glow, offene in der Linienfarbe.
 
 ### Posen für Listen

@@ -1,8 +1,9 @@
 import SwiftUI
 
-/// Customize the avatar: body, colors, background and extra. Locked bodies and extras
-/// show what unlocks them. Every choice is saved at once.
-struct AvatarEditorScreen: View {
+/// The "Me" area, opened from the title of the Me tab: the level of the avatar, its
+/// customization (body, colors, background, extra) and the settings. Locked bodies and
+/// extras show what unlocks them. Every choice is saved at once.
+struct ProfileScreen: View {
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
     private let catalog: Catalog
@@ -32,20 +33,37 @@ struct AvatarEditorScreen: View {
                     BackButton()
                     Spacer()
                 }
-                MonoLabel("Your avatar")
-                Text("Customize")
+                Text("Me")
                     .font(.screenTitle)
                     .foregroundStyle(Theme.text)
                     .accessibilityAddTraits(.isHeader)
-                Text("Your avatar grows with your training. Achievements and skills unlock more.")
-                    .font(.text(15))
-                    .foregroundStyle(Theme.textSoft)
-                    .fixedSize(horizontal: false, vertical: true)
             }
 
             AvatarView(style: style, body: currentBody, extra: currentExtra)
                 .frame(width: 200, height: 200)
                 .frame(maxWidth: .infinity)
+
+            section("Level") {
+                Text("Your avatar grows with your training. Achievements and skills unlock more.")
+                    .font(.text(15))
+                    .foregroundStyle(Theme.textSoft)
+                    .fixedSize(horizontal: false, vertical: true)
+                VStack(spacing: 8) {
+                    ForEach(AvatarBody.allCases) { body in
+                        LevelRow(
+                            level: body,
+                            unlocks: unlocks,
+                            style: style,
+                            extra: currentExtra,
+                            requirement: requirement(body.unlock)
+                        )
+                    }
+                }
+            }
+
+            MonoLabel("Your avatar", color: Theme.text, bold: true)
+                .accessibilityAddTraits(.isHeader)
+                .padding(.top, 6)
 
             section("Body") {
                 LazyVGrid(columns: columns, spacing: 10) {
@@ -119,6 +137,14 @@ struct AvatarEditorScreen: View {
                     }
                 }
             }
+
+            NavigationLink {
+                SettingsScreen()
+            } label: {
+                SettingsRow()
+            }
+            .buttonStyle(PressFeedbackStyle())
+            .padding(.top, 6)
         }
     }
 
@@ -153,6 +179,92 @@ struct AvatarEditorScreen: View {
             }
             return Text("Achievement: \(ValueText.threshold(of: achievement)) \(label)")
         }
+    }
+}
+
+/// One level of the avatar: still preview, name and its state — unlocked, the next one
+/// with the workouts still missing, or what unlocks it.
+private struct LevelRow: View {
+    @Environment(\.accent) private var accent
+    let level: AvatarBody
+    let unlocks: AvatarUnlocks
+    let style: AvatarStyle
+    let extra: AvatarExtra?
+    let requirement: Text?
+
+    var body: some View {
+        let isUnlocked = unlocks.isUnlocked(level)
+        let isNext = unlocks.nextBody == level
+        HStack(spacing: 12) {
+            AvatarView(style: style, body: level, extra: extra, breathes: false)
+                .frame(width: 56, height: 56)
+                .opacity(isUnlocked || isNext ? 1 : 0.45)
+            VStack(alignment: .leading, spacing: 6) {
+                Text(level.name)
+                    .font(.textSemibold(15))
+                    .foregroundStyle(Theme.text)
+                if isUnlocked {
+                    MonoLabel("Unlocked", color: accent.color, bold: true)
+                } else if isNext, case .workouts(let count) = level.unlock {
+                    Text("\(max(0, count - unlocks.workouts)) more workouts")
+                        .font(.text(13))
+                        .foregroundStyle(Theme.textSoft)
+                    SegmentedProgress(total: 10, filled: unlocks.workouts * 10 / max(count, 1), height: 4, label: "Level progress")
+                } else if let requirement {
+                    requirement
+                        .font(.text(13))
+                        .foregroundStyle(Theme.textMuted)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            Spacer(minLength: 0)
+            if isUnlocked {
+                Image(systemName: "checkmark")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(accent.color)
+                    .accessibilityHidden(true)
+            } else {
+                Image(systemName: "lock.fill")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundStyle(Theme.textMuted)
+                    .accessibilityHidden(true)
+            }
+        }
+        .padding(10)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(isNext ? accent.color : Theme.line, lineWidth: isNext ? 2 : 1))
+        .accessibilityElement(children: .combine)
+    }
+}
+
+/// Row that opens the settings.
+private struct SettingsRow: View {
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "slider.horizontal.3")
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundStyle(Theme.text)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Settings")
+                    .font(.textSemibold(15))
+                    .foregroundStyle(Theme.text)
+                Text("Account, subscription, reminders, color, language")
+                    .font(.text(13))
+                    .foregroundStyle(Theme.textMuted)
+            }
+            Spacer(minLength: 0)
+            Image(systemName: "chevron.right")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(Theme.textMuted)
+                .accessibilityHidden(true)
+        }
+        .padding(12)
+        .frame(minHeight: Theme.Layout.minTouchTarget)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
     }
 }
 
@@ -246,14 +358,14 @@ private struct ColorRow: View {
 
 #Preview {
     NavigationStack {
-        AvatarEditorScreen()
+        ProfileScreen()
     }
     .previewEnvironment()
 }
 
 #Preview("German") {
     NavigationStack {
-        AvatarEditorScreen()
+        ProfileScreen()
     }
     .previewEnvironment()
     .environment(\.locale, Locale(identifier: "de"))
