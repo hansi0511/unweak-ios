@@ -171,6 +171,46 @@
         }
       }
     },
+    "%lld workouts" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld workout"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld workouts"
+                }
+              }
+            }
+          }
+        },
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Workout"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Workouts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "about %lld min" : {
       "localizations" : {
         "de" : {
@@ -357,6 +397,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ändern"
+          }
+        }
+      }
+    },
+    "Choose a skill and get the workouts that build it." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle einen Skill und bekomm die Workouts, die dich dorthin bringen."
           }
         }
       }
@@ -687,6 +737,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gratis"
+          }
+        }
+      }
+    },
+    "From easy to hard." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von leicht nach schwer."
           }
         }
       }
@@ -1291,6 +1351,16 @@
         }
       }
     },
+    "Progress" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortschritt"
+          }
+        }
+      }
+    },
     "Pull" : {
       "localizations" : {
         "de" : {
@@ -1347,6 +1417,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Liegestütz"
+          }
+        }
+      }
+    },
+    "Reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreicht"
           }
         }
       }
@@ -1571,6 +1651,16 @@
         }
       }
     },
+    "Skills" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skills"
+          }
+        }
+      }
+    },
     "Squat" : {
       "localizations" : {
         "de" : {
@@ -1741,6 +1831,16 @@
         }
       }
     },
+    "This is your current goal on the dashboard." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das ist dein aktuelles Ziel im Dashboard."
+          }
+        }
+      }
+    },
     "This screen is filled in a later development step." : {
       "localizations" : {
         "de" : {
@@ -1858,12 +1958,32 @@
         }
       }
     },
+    "Workouts for this skill" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workouts für diesen Skill"
+          }
+        }
+      }
+    },
     "You will get a notification on %@ at %@." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du bekommst %1$@ um %2$@ eine Mitteilung."
+          }
+        }
+      }
+    },
+    "Your best time comes from the journal." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Bestzeit kommt aus dem Tagebuch."
           }
         }
       }

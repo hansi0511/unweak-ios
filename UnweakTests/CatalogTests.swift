@@ -179,10 +179,58 @@ struct TimeTextTests {
 }
 
 struct WorkoutFilterTests {
-    @Test func offersAllAndEveryCategory() {
-        #expect(WorkoutFilter.allFilters.count == ExerciseCategory.allCases.count + 1)
+    @Test func offersAllAndTheGeneralCategoriesButNotSkill() {
+        #expect(WorkoutFilter.allFilters.count == ExerciseCategory.allCases.count)
         #expect(WorkoutFilter.allFilters.first == .all)
+        #expect(!WorkoutFilter.allFilters.contains(.category(.skill)))
         #expect(WorkoutFilter.all.category == nil)
         #expect(WorkoutFilter.category(.legs).category == .legs)
+    }
+}
+
+struct SkillTests {
+    private let catalog = Catalog.main
+
+    @Test func everySkillHasWorkoutsFromEasyToHard() throws {
+        for goal in catalog.goals {
+            #expect(!catalog.skillPlans(for: goal).isEmpty, "\(goal.id)")
+        }
+        let frontLever = try #require(catalog.goals.first { $0.id == "frontLever" })
+        #expect(catalog.skillPlans(for: frontLever).map(\.id) == ["pullDay", "frontLeverBuildUp"])
+    }
+
+    @Test func skillWorkoutsAreNotInTheWorkoutsArea() {
+        let general = catalog.workoutPlans(category: nil)
+        #expect(general.allSatisfy { $0.category != .skill })
+        for plan in catalog.plans where plan.category == .skill {
+            #expect(catalog.goals.contains { $0.plans.contains(plan.id) }, "\(plan.id) belongs to a skill")
+        }
+    }
+
+    @Test func detectsUnknownSkillWorkouts() throws {
+        let goal = try #require(catalog.goals.first)
+        let broken = Goal(
+            id: goal.id,
+            pose: goal.pose,
+            exercise: goal.exercise,
+            plans: ["doesNotExist"],
+            isFree: true,
+            stageCount: 5,
+            targetSeconds: nil
+        )
+        let catalogWithBrokenSkill = Catalog(
+            exercises: catalog.exercises,
+            plans: catalog.plans,
+            goals: [broken],
+            achievements: []
+        )
+        #expect(!catalogWithBrokenSkill.problems().isEmpty)
+    }
+
+    @Test func nextWorkoutPrefersFreeWorkoutsOfTheActiveSkill() {
+        let stats = JournalStats(entries: [])
+        #expect(stats.nextWorkout(in: catalog, preferring: ["pullDay", "frontLeverBuildUp"])?.id == "pullDay")
+        // Only Pro workouts in the skill: fall back to all free plans.
+        #expect(stats.nextWorkout(in: catalog, preferring: ["muscleUpPath"])?.id == catalog.plans.first(where: \.isFree)?.id)
     }
 }

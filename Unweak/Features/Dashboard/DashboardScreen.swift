@@ -31,7 +31,7 @@ struct DashboardScreen: View {
                 }
             }
 
-            if let plan = stats.nextWorkout(in: catalog) {
+            if let plan = stats.nextWorkout(in: catalog, preferring: activeGoal?.plans ?? []) {
                 NavigationLink {
                     TrainingScreen(plan: plan, catalog: catalog)
                 } label: {

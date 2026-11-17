@@ -208,12 +208,18 @@ struct JournalStats {
     }
 
     /// The free plan trained longest ago; plans never trained come first, in catalog order.
-    func nextWorkout(in catalog: Catalog) -> WorkoutPlan? {
+    /// Free workouts of the active skill (`preferred`) are suggested before all others.
+    func nextWorkout(in catalog: Catalog, preferring preferred: [String] = []) -> WorkoutPlan? {
         let free = catalog.plans.filter(\.isFree)
+        let fromSkill = free.filter { preferred.contains($0.id) }
+        return leastRecentlyTrained(fromSkill.isEmpty ? free : fromSkill)
+    }
+
+    private func leastRecentlyTrained(_ candidates: [WorkoutPlan]) -> WorkoutPlan? {
         func lastTrained(_ plan: WorkoutPlan) -> Date? {
             entries.last { $0.planID == plan.id }?.date
         }
-        return free.enumerated().min { a, b in
+        return candidates.enumerated().min { a, b in
             switch (lastTrained(a.element), lastTrained(b.element)) {
             case (nil, nil): return a.offset < b.offset
             case (nil, _): return true
