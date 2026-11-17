@@ -2191,6 +2191,16 @@
         }
       }
     },
+    "The subscriptions are not available right now. Please try again later." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Abos sind gerade nicht verfügbar. Bitte versuch es später noch einmal."
+          }
+        }
+      }
+    },
     "This is your current goal on the dashboard." : {
       "localizations" : {
         "de" : {

@@ -52,6 +52,12 @@ struct PaywallSheet: View {
         .onChange(of: subscription.isPro) { _, isPro in
             if isPro { dismiss() }
         }
+        .task {
+            // Try again each time the page opens, e.g. after the connection is back.
+            if subscription.loadState != .loaded {
+                await subscription.loadProducts()
+            }
+        }
     }
 
     // MARK: Sections
@@ -82,12 +88,24 @@ struct PaywallSheet: View {
                 ProgressView()
                     .tint(Theme.text)
                     .frame(maxWidth: .infinity, minHeight: 120)
-            case .failed:
+            case .failed, .noProducts:
                 Card {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Prices could not be loaded. Check your internet connection.")
-                            .font(.text(15))
-                            .foregroundStyle(Theme.textSoft)
+                        if subscription.loadState == .failed {
+                            Text("Prices could not be loaded. Check your internet connection.")
+                                .font(.text(15))
+                                .foregroundStyle(Theme.textSoft)
+                        } else {
+                            Text("The subscriptions are not available right now. Please try again later.")
+                                .font(.text(15))
+                                .foregroundStyle(Theme.textSoft)
+                            #if DEBUG
+                            // Developer hint, not shown in App Store builds.
+                            Text(verbatim: "DEBUG: The App Store returned no products for \(ProductID.all.sorted().joined(separator: ", ")). In the simulator, check Edit Scheme → Run → Options → StoreKit Configuration = Unweak.storekit, and open Unweak.storekit in Xcode to see whether it loads.")
+                                .font(.text(12))
+                                .foregroundStyle(Theme.subscription)
+                            #endif
+                        }
                         Button {
                             Task { await subscription.loadProducts() }
                         } label: {
