@@ -5,7 +5,6 @@ import SwiftUI
 /// Shows the active state with "Manage subscription" once Pro is active.
 struct PaywallSheet: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.purchase) private var purchase
     @Environment(SubscriptionStore.self) private var subscription
     @State private var selectedID = ProductID.yearly
     @State private var isWorking = false
@@ -163,7 +162,9 @@ struct PaywallSheet: View {
             isWorking = true
             defer { isWorking = false }
             do {
-                let result = try await purchase(product)
+                // `Product` is Sendable, so this call is safe under strict concurrency
+                // (SwiftUI's PurchaseAction is not).
+                let result = try await product.purchase()
                 _ = await subscription.handle(result)
             } catch {
                 subscription.purchaseFailed()

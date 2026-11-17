@@ -98,7 +98,7 @@ final class SubscriptionStore {
         isPro = active
     }
 
-    /// Handles the result of `PurchaseAction` (SwiftUI `@Environment(\.purchase)`).
+    /// Handles the result of `Product.purchase()`.
     /// Returns `true` when Pro is now active.
     func handle(_ result: Product.PurchaseResult) async -> Bool {
         issue = nil
