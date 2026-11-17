@@ -135,6 +135,13 @@ struct AchievementAndGoalTests {
         #expect(twentyFive.value == 10)
     }
 
+    @Test func achievedFirstKeepsCatalogOrder() throws {
+        let entries = (1...10).map { entry(day(11, $0)) }
+        let ids = ["workouts25", "firstWorkout", "pullUps10", "workouts10"]
+        let progress = try ids.map { stats(entries).progress(of: try achievement($0), target: 3) }
+        #expect(progress.achievedFirst.map(\.achievement.id) == ["firstWorkout", "workouts10", "workouts25", "pullUps10"])
+    }
+
     @Test func bestRepsAchievement() throws {
         let entries = [entry(day(11, 2), results: [pullUps(9)]), entry(day(11, 4), results: [pullUps(10)])]
         let pullUpAchievement = try achievement("pullUps10")

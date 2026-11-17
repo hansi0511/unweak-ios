@@ -40,6 +40,13 @@ struct AchievementProgress: Equatable {
     var isAchieved: Bool { value >= achievement.threshold }
 }
 
+extension Array where Element == AchievementProgress {
+    /// Achieved ones first, then the open ones, each in catalog order.
+    var achievedFirst: [AchievementProgress] {
+        filter(\.isAchieved) + filter { !$0.isAchieved }
+    }
+}
+
 /// State of the active goal.
 struct GoalProgress: Equatable {
     let goal: Goal

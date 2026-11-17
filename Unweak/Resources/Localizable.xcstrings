@@ -161,6 +161,16 @@
         }
       }
     },
+    "%lld to go for your weekly target" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch %lld bis zum Wochenziel"
+          }
+        }
+      }
+    },
     "%lld workouts" : {
       "localizations" : {
         "en" : {
@@ -1321,16 +1331,6 @@
         }
       }
     },
-    "Not trained" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nicht trainiert"
-          }
-        }
-      }
-    },
     "Note" : {
       "localizations" : {
         "de" : {
@@ -2258,16 +2258,6 @@
         }
       }
     },
-    "Trained" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trainiert"
-          }
-        }
-      }
-    },
     "Training reminder" : {
       "localizations" : {
         "de" : {
@@ -2344,6 +2334,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Violett"
+          }
+        }
+      }
+    },
+    "Weekly target" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wochenziel"
+          }
+        }
+      }
+    },
+    "Weekly target reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wochenziel erreicht"
           }
         }
       }

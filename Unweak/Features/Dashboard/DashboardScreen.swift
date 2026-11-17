@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Dashboard tab: this week, the active goal, the next workout and achievements.
+/// Dashboard tab: the weekly target, the active goal and the next workout.
 struct DashboardScreen: View {
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
@@ -21,7 +21,6 @@ struct DashboardScreen: View {
 
         ScreenContainer {
             header(week: week, streak: streak)
-            WeekBars(week: week)
 
             if let goal = activeGoal {
                 GoalPanel(
@@ -50,28 +49,6 @@ struct DashboardScreen: View {
                 }
                 .buttonStyle(PressFeedbackStyle())
             }
-
-            if subscription.access.canCreateCustomWorkout(existing: store.customWorkouts.count) {
-                NavigationLink {
-                    CustomWorkoutEditor(workout: nil, catalog: catalog)
-                } label: {
-                    ChipLabel("Create custom workout", systemImage: "plus", style: .dashed, expands: true)
-                }
-                .buttonStyle(PressFeedbackStyle())
-            } else {
-                Button {
-                    isShowingPaywall = true
-                } label: {
-                    ChipLabel("Create custom workout", systemImage: "lock.fill", style: .dashed, expands: true)
-                }
-                .buttonStyle(PressFeedbackStyle())
-            }
-
-            AchievementsSection(
-                progress: catalog.achievements.map { stats.progress(of: $0, target: target) }
-            ) { achievement in
-                shareContent = .achievement(achievement)
-            }
         }
         .sheet(isPresented: $isShowingPaywall) {
             PaywallSheet()
@@ -90,19 +67,7 @@ struct DashboardScreen: View {
 
     private func header(week: WeekSummary, streak: Int) -> some View {
         HStack(alignment: .top, spacing: 12) {
-            VStack(alignment: .leading, spacing: 6) {
-                HStack(spacing: 8) {
-                    MonoLabel("This week")
-                    if streak > 0 {
-                        MonoLabel("Streak \(streak) weeks", color: Theme.text, bold: true)
-                    }
-                }
-                Text("\(week.workouts) / \(week.target) workouts")
-                    .font(.screenTitle)
-                    .foregroundStyle(Theme.text)
-                    .accessibilityAddTraits(.isHeader)
-            }
-            Spacer(minLength: 0)
+            WeekTargetPanel(week: week, streak: streak)
             if week.workouts > 0 || streak > 0 {
                 IconButton(systemImage: "square.and.arrow.up", accessibilityLabel: "Share week") {
                     shareContent = .streakCard(week: week, weeks: streak)
@@ -119,36 +84,42 @@ struct DashboardScreen: View {
     }
 }
 
-/// Seven day bars, Monday to Sunday: trained in the accent color, today bright, else dark.
-private struct WeekBars: View {
+/// This week against the weekly target: count, one segment per planned workout,
+/// the streak and how many workouts are still missing.
+private struct WeekTargetPanel: View {
     @Environment(\.accent) private var accent
-    @Environment(\.locale) private var locale
     let week: WeekSummary
+    let streak: Int
+
+    private var remaining: Int { max(0, week.target - week.workouts) }
 
     var body: some View {
-        HStack(spacing: 6) {
-            ForEach(week.days, id: \.date) { day in
-                VStack(spacing: 6) {
-                    Rectangle()
-                        .fill(color(for: day))
-                        .frame(height: 8)
-                        .glow(day.trained ? accent.color : .clear, radius: Theme.Glow.small)
-                    Text(verbatim: day.date.formatted(.dateTime.weekday(.short).locale(locale)))
-                        .font(.mono)
-                        .textCase(.uppercase)
-                        .foregroundStyle(day.isToday ? Theme.text : Theme.textMuted)
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 8) {
+                MonoLabel("This week")
+                if streak > 0 {
+                    MonoLabel("Streak \(streak) weeks", color: Theme.text, bold: true)
                 }
-                .frame(maxWidth: .infinity)
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel(Text(verbatim: day.date.formatted(.dateTime.weekday(.wide).locale(locale))))
-                .accessibilityValue(day.trained ? Text("Trained") : Text("Not trained"))
             }
+            Text("\(week.workouts) / \(week.target) workouts")
+                .font(.screenTitle)
+                .foregroundStyle(Theme.text)
+                .accessibilityAddTraits(.isHeader)
+            SegmentedProgress(total: week.target, filled: week.workouts, height: 8, label: "Weekly target")
+            Group {
+                if remaining == 0 {
+                    Text("Weekly target reached")
+                        .foregroundStyle(accent.color)
+                } else {
+                    Text("\(remaining) to go for your weekly target")
+                        .foregroundStyle(Theme.textMuted)
+                }
+            }
+            .font(.mono)
+            .tracking(1)
+            .textCase(.uppercase)
         }
-    }
-
-    private func color(for day: WeekDay) -> Color {
-        if day.trained { return accent.color }
-        return day.isToday ? Theme.textSoft : Theme.line
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -297,66 +268,6 @@ private struct NextWorkoutCard: View {
         .glow(accent.color, radius: Theme.Glow.medium)
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
-    }
-}
-
-/// "4 / 12" and four tiles: achieved ones first, then the next open ones.
-private struct AchievementsSection: View {
-    @Environment(\.accent) private var accent
-    let progress: [AchievementProgress]
-    /// Called when an achieved tile is tapped.
-    let onShare: (Achievement) -> Void
-
-    private var achievedCount: Int { progress.filter(\.isAchieved).count }
-
-    private var shown: [AchievementProgress] {
-        let achieved = progress.filter(\.isAchieved).suffix(4)
-        let open = progress.filter { !$0.isAchieved }.prefix(4 - achieved.count)
-        return Array(achieved) + Array(open)
-    }
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                MonoLabel("Achievements")
-                Spacer()
-                MonoLabel(verbatim: "\(achievedCount) / \(progress.count)", color: Theme.text, bold: true)
-                    .accessibilityLabel(Text("\(achievedCount) of \(progress.count)"))
-            }
-            LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
-                ForEach(shown, id: \.achievement.id) { item in
-                    if item.isAchieved {
-                        Button {
-                            onShare(item.achievement)
-                        } label: {
-                            tile(item)
-                        }
-                        .buttonStyle(PressFeedbackStyle())
-                        .accessibilityHint(Text("Share achievement"))
-                    } else {
-                        tile(item)
-                    }
-                }
-            }
-        }
-    }
-
-    private func tile(_ item: AchievementProgress) -> some View {
-        Card(padding: 12) {
-            VStack(alignment: .leading, spacing: 4) {
-                ValueText.threshold(of: item.achievement)
-                    .font(.metric)
-                    .foregroundStyle(item.isAchieved ? accent.color : Theme.textMuted)
-                Text(catalog: item.achievement.labelKey)
-                    .font(.mono)
-                    .textCase(.uppercase)
-                    .foregroundStyle(item.isAchieved ? Theme.text : Theme.textMuted)
-                    .lineLimit(2)
-            }
-        }
-        .opacity(item.isAchieved ? 1 : 0.6)
-        .accessibilityElement(children: .combine)
-        .accessibilityValue(item.isAchieved ? Text("Achieved") : Text("Open"))
     }
 }
 
