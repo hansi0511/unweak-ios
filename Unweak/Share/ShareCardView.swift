@@ -9,11 +9,14 @@ struct ShareCardView: View {
     private let format: ShareFormat
     /// Date shown in the footer.
     private let date: Date
+    /// Animation progress (0...1) of Sticky Man; `nil` shows the key pose (still image).
+    private let progress: Double?
 
-    init(content: ShareContent, format: ShareFormat, date: Date = .now) {
+    init(content: ShareContent, format: ShareFormat, date: Date = .now, progress: Double? = nil) {
         self.content = content
         self.format = format
         self.date = date
+        self.progress = progress
     }
 
     private var isStory: Bool { format == .story }
@@ -30,7 +33,7 @@ struct ShareCardView: View {
             VStack(alignment: .leading, spacing: 0) {
                 brand
                 Spacer(minLength: 6)
-                StickyFigureCanvas(figure: content.animation.figure(at: content.animation.endPoseProgress))
+                StickyFigureCanvas(figure: content.animation.figure(at: progress ?? content.animation.endPoseProgress))
                     .frame(maxWidth: .infinity)
                     .frame(height: isStory ? 230 : 130)
                 Spacer(minLength: 6)

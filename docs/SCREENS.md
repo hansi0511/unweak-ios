@@ -119,6 +119,6 @@
 ## 13 Teilen
 
 - Öffnet sich als Blatt aus dem Tagebucheintrag (Teilen-Symbol im Kopf: Workout; im Rekord-Banner: Rekord), dem Dashboard (Teilen-Symbol im Kopf: Woche und Serie; Tipp auf einen erreichten Erfolg) und der Skill-Seite (Teilen-Symbol beim Fortschritt).
-- Schließen-Knopf, Überschrift „Teilen“, Auswahl „Story“ (9:16, Standard) oder „Post“ (4:5).
-- Vorschau des Bildes: Raster-Hintergrund mit Eckmarkierungen in Akzentfarbe, „UNWEAK“ und Untertitel, Sticky Man groß in der Schlüsselpose, Art („Workout geschafft“, „Neuer Rekord“, „Erfolg freigeschaltet“, „Serie“, „Skill-Fortschritt“), Überschrift, Kennzahlen oder Segmente, unten Datum und Hashtags.
-- Hauptknopf „Bild teilen“ öffnet das iOS-Teilen-Menü (Bild 1080 px breit und ein kurzer Text mit Hashtags). Hinweis, dass dort X, Facebook oder Instagram gewählt wird.
+- Schließen-Knopf, Überschrift „Teilen“, Auswahl „Video“ (Standard) oder „Bild“ und „Story“ (9:16, Standard) oder „Post“ (4:5).
+- Vorschau (bei Video mit bewegtem Sticky Man; mit „Bewegung reduzieren“ steht er still): Raster-Hintergrund mit Eckmarkierungen in Akzentfarbe, „UNWEAK“ und Untertitel, Sticky Man groß in der Schlüsselpose, Art („Workout geschafft“, „Neuer Rekord“, „Erfolg freigeschaltet“, „Serie“, „Skill-Fortschritt“), Überschrift, Kennzahlen oder Segmente, unten Datum und Hashtags.
+- Hauptknopf „Video teilen“ bzw. „Bild teilen“ öffnet das iOS-Teilen-Menü (1080 px breit, Video als MP4 mit 30 Bildern pro Sekunde, mindestens 6 Sekunden, ohne Ton; dazu ein kurzer Text mit Hashtags). Während das Video entsteht, zeigt eine Segment-Leiste den Fortschritt. Hinweis, dass dort X, Facebook oder Instagram gewählt wird.

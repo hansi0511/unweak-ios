@@ -531,6 +531,26 @@
         }
       }
     },
+    "Creating video" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video wird erstellt"
+          }
+        }
+      }
+    },
+    "Creating video …" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video wird erstellt …"
+          }
+        }
+      }
+    },
     "Current" : {
       "localizations" : {
         "de" : {
@@ -917,6 +937,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "So geht's"
+          }
+        }
+      }
+    },
+    "Image" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bild"
           }
         }
       }
@@ -1841,6 +1871,16 @@
         }
       }
     },
+    "Share video" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video teilen"
+          }
+        }
+      }
+    },
     "Share week" : {
       "localizations" : {
         "de" : {
@@ -2101,6 +2141,16 @@
         }
       }
     },
+    "The file could not be created. Try the other format or the image." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Datei konnte nicht erstellt werden. Versuch das andere Format oder das Bild."
+          }
+        }
+      }
+    },
     "The purchase could not be verified." : {
       "localizations" : {
         "de" : {
@@ -2244,6 +2294,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alle Skills freischalten"
+          }
+        }
+      }
+    },
+    "Video" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video"
           }
         }
       }

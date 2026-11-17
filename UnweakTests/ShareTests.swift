@@ -90,3 +90,25 @@ struct ShareContentTests {
         #expect(ShareFormat.post.size.height * ShareFormat.renderScale == 1350)
     }
 }
+
+struct ShareVideoTests {
+    @Test func videoIsAtLeastSixSecondsOfWholeLoops() {
+        #expect(ShareVideoRenderer.plan(animationDuration: 3) == (frames: 180, loops: 2))
+        #expect(ShareVideoRenderer.plan(animationDuration: 6) == (frames: 180, loops: 1))
+        #expect(ShareVideoRenderer.plan(animationDuration: 4.5) == (frames: 270, loops: 2))
+        #expect(ShareVideoRenderer.plan(animationDuration: 4) == (frames: 240, loops: 2))
+    }
+
+    @Test func framesFollowTheAnimationLoop() {
+        #expect(ShareVideoRenderer.progress(ofFrame: 0, animationDuration: 3) == 0)
+        #expect(ShareVideoRenderer.progress(ofFrame: 45, animationDuration: 3) == 0.5)
+        #expect(ShareVideoRenderer.progress(ofFrame: 90, animationDuration: 3) == 0)
+    }
+
+    @Test(arguments: StickyAnimation.allCases)
+    func everyAnimationGivesAWholeNumberOfFrames(_ animation: StickyAnimation) {
+        let (frames, loops) = ShareVideoRenderer.plan(animationDuration: animation.duration)
+        #expect(Double(frames) == animation.duration * Double(loops) * Double(ShareVideoRenderer.framesPerSecond))
+        #expect(Double(frames) / Double(ShareVideoRenderer.framesPerSecond) >= ShareVideoRenderer.minimumSeconds)
+    }
+}

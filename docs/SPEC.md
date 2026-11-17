@@ -20,7 +20,7 @@ Stand: 16. November 2026. Alle Punkte unter „Entschieden“ stammen von Hansi.
 | Wochenziel | Anzahl der Trainingstage aus der Erinnerung (Standard 3). Eine Woche zählt zur Serie, wenn das Ziel erreicht ist. |
 | Eigene Workouts | Lassen sich auch bearbeiten und löschen (mit Rückfrage); Tagebucheinträge bleiben erhalten. |
 | Sprache in der App | Standard ist die Sprache des iPhones; in den Einstellungen lässt sie sich auf DE oder EN umstellen. |
-| Teilen | Fertiges Workout, Rekord, Erfolg, Serie/Woche und Skill-Fortschritt als Bild im HUD-Look (Story 9:16 oder Post 4:5) über das iOS-Teilen-Menü, z. B. zu X, Facebook und Instagram. Keine eigenen Konten bei Meta oder X nötig. |
+| Teilen | Fertiges Workout, Rekord, Erfolg, Serie/Woche und Skill-Fortschritt im HUD-Look, als Video (MP4-Schleife mit animiertem Sticky Man, Standard) oder Bild, jeweils als Story 9:16 oder Post 4:5, über das iOS-Teilen-Menü, z. B. zu X, Facebook und Instagram. Keine eigenen Konten bei Meta oder X nötig. |
 | Veröffentlichung | Über Hansis eigenes Entwicklerkonto. |
 
 ## Funktionen
