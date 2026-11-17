@@ -10,8 +10,8 @@ private func isClose(_ a: CGFloat, _ b: CGFloat, tolerance: CGFloat = 0.01) -> B
 }
 
 struct StickyBodyTests {
-    @Test func thirteenKeyPoseAnimationsExist() {
-        #expect(bodyCases.count == 13)
+    @Test func twentyKeyPoseAnimationsExist() {
+        #expect(bodyCases.count == 20)
     }
 
     @Test(arguments: bodyCases)

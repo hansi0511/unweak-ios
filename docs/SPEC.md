@@ -25,15 +25,15 @@ Stand: 16. November 2026. Alle Punkte unter „Entschieden“ stammen von Hansi.
 
 ## Funktionen
 
-1. **Dashboard:** Wochenziel (Trainings diese Woche als Segmente, Serie), genau ein aktives Ziel mit Sticky-Man-Animation und Stufenanzeige, nächstes Workout.
+1. **Ich** (erster Tab): Wochenziel (Trainings diese Woche als Segmente, Serie); mit Pro der aktive Skill mit Animation, daneben der aktuelle Stand als Animation der Stufe, an der der Nutzer arbeitet, Stufenanzeige und nächstes Workout aus diesem Skill. Gratis nur Wochenziel und Hinweis auf die Skills.
 2. **Workouts:** zwei Bereiche mit Umschalter. **Skills** (zuerst, hervorgehoben, nur mit Pro; in der Gratis-Version führen die Karten zur Abo-Seite): je Skill eine Karte; die Skill-Seite zeigt Animation, Stufen bzw. Bestzeit, „Als Ziel setzen“ und die passenden Workouts von leicht nach schwer. **Workouts**: die 10 allgemeinen Workouts (gratis) und eigene Workouts, filterbar nach Push, Pull, Beine, Core. Workouts, die Pro brauchen, führen ohne Abo zur Abo-Seite.
 3. **Training:** eine Übung pro Bildschirm, Sätze abhaken, Pausenzeit, nächste Übung, am Ende Speichern ins Tagebuch.
 4. **Übungsdetail:** Animation, Technikschritte, häufige Fehler, leichtere und schwerere Variante.
 5. **Eigenes Workout:** Name, Kategorie, Übungen aus dem Katalog hinzufügen und entfernen. Gratis bis zu 3, mit Pro unbegrenzt.
 6. **Tagebuch:** Monatszahlen, Liste der Trainings, Rekorde hervorgehoben; im zweiten Bereich „Erfolge“ alle zwölf Erfolge; Eintrag mit Übungen, Bewertung (leicht, passt, hart) und Notiz.
-7. **Ziele = Skills:** ein Ziel zur Zeit, wählbar aus der Liste der Skills (im Dashboard oder auf der Skill-Seite). Skills mit Stufen haben fünf Stufen, die der Nutzer selbst als erreicht markiert; Zeit-Skills (Plank 5 min, L-Sit 30 s) übernehmen die Bestzeit aus dem Tagebuch. Das nächste Workout im Dashboard kommt bevorzugt aus dem aktiven Skill.
+7. **Ziele = Skills:** ein Ziel zur Zeit, wählbar aus der Liste der Skills (im Tab „Ich“ oder auf der Skill-Seite). Skills mit Stufen haben fünf Stufen, die der Nutzer selbst als erreicht markiert; Zeit-Skills (Plank 5 min, L-Sit 30 s) übernehmen die Bestzeit aus dem Tagebuch. Jede Stufe hat eine eigene Sticky-Man-Animation. Das nächste Workout im Tab „Ich“ kommt aus dem aktiven Skill und erscheint nur mit Pro.
 8. **Einstellungen:** Konto, Abo, Trainingserinnerung, Farbe, Sprache, Rechtliches, Abmelden, Konto löschen.
-9. **Teilen:** aus dem Tagebucheintrag (Workout, Rekord), dem Dashboard (Woche/Serie), dem Tagebuch (erreichte Erfolge) und der Skill-Seite (Fortschritt). Vorschau mit Wahl des Formats, dann das iOS-Teilen-Menü.
+9. **Teilen:** aus dem Tagebucheintrag (Workout, Rekord), dem Tab „Ich“ (Woche/Serie), dem Tagebuch (erreichte Erfolge) und der Skill-Seite (Fortschritt). Vorschau mit Wahl des Formats, dann das iOS-Teilen-Menü.
 10. **Anmeldung und Abo-Seite.** Abo mit StoreKit 2: Jahr oder Monat, Käufe wiederherstellen, Abo verwalten.
 
 ## Beispielinhalte aus dem Mockup

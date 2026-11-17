@@ -142,6 +142,32 @@ struct AchievementAndGoalTests {
         #expect(progress.achievedFirst.map(\.achievement.id) == ["firstWorkout", "workouts10", "workouts25", "pullUps10"])
     }
 
+    @Test func currentStageIsTheNextOneToReach() throws {
+        let goal = try #require(catalog.goals.first { $0.id == "frontLever" })
+        #expect(stats([]).goalProgress(goal, reachedStages: 0).currentStageIndex == 0)
+        #expect(stats([]).goalProgress(goal, reachedStages: 2).currentStageIndex == 2)
+        #expect(stats([]).goalProgress(goal, reachedStages: 5).currentStageIndex == 4)
+        let plank = try #require(catalog.goals.first { $0.id == "plank5Min" })
+        #expect(stats([]).goalProgress(plank, reachedStages: 0).currentStageIndex == nil)
+    }
+
+    @Test func currentAnimationFollowsTheStage() throws {
+        let goal = try #require(catalog.goals.first { $0.id == "frontLever" })
+        #expect(catalog.currentAnimation(for: stats([]).goalProgress(goal, reachedStages: 0)) == .tuckFrontLever)
+        #expect(catalog.currentAnimation(for: stats([]).goalProgress(goal, reachedStages: 1)) == .advancedTuckFrontLever)
+        #expect(catalog.currentAnimation(for: stats([]).goalProgress(goal, reachedStages: 5)) == .frontLever)
+        let plank = try #require(catalog.goals.first { $0.id == "plank5Min" })
+        #expect(catalog.currentAnimation(for: stats([]).goalProgress(plank, reachedStages: 0)) == .plank)
+    }
+
+    @Test func everyStageHasItsOwnAnimationAndTheLastIsTheSkill() {
+        for goal in catalog.goals where goal.stageCount != nil {
+            let animations = goal.stageAnimations ?? []
+            #expect(animations.count == goal.stageCount, "\(goal.id)")
+            #expect(animations.last == catalog.animation(for: goal), "\(goal.id)")
+        }
+    }
+
     @Test func bestRepsAchievement() throws {
         let entries = [entry(day(11, 2), results: [pullUps(9)]), entry(day(11, 4), results: [pullUps(10)])]
         let pullUpAchievement = try achievement("pullUps10")

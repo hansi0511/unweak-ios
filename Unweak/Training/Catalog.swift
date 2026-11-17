@@ -130,7 +130,7 @@ struct Goal: Codable, Identifiable, Hashable, Sendable {
 
     let id: String
     let pose: StickyPose
-    /// Exercise behind the goal: its animation is shown on the dashboard and, for
+    /// Exercise behind the goal: its animation is the fallback for the skill and, for
     /// time goals, its best journal value is the current best time.
     let exercise: String
     /// Workouts that build this skill, from easy to hard.
@@ -141,6 +141,8 @@ struct Goal: Codable, Identifiable, Hashable, Sendable {
     /// Animation for the skill, if it differs from the linked exercise's animation
     /// (e.g. the full front lever, while the exercise is the tuck front lever).
     var animation: StickyAnimation?
+    /// One animation per stage, in stage order (skills with stages only).
+    var stageAnimations: [StickyAnimation]?
 
     var kind: Kind {
         if let stageCount { .stages(stageCount) } else { .time(seconds: targetSeconds ?? 0) }
@@ -224,6 +226,16 @@ struct Catalog: Codable, Sendable {
         goal.animation ?? exercise(goal.exercise)?.animation ?? .frontLever
     }
 
+    /// Animation of the stage the user is at: the next stage to reach, the last one once
+    /// all are reached. Time goals show the skill animation.
+    func currentAnimation(for progress: GoalProgress) -> StickyAnimation {
+        guard let index = progress.currentStageIndex,
+              let animations = progress.goal.stageAnimations,
+              animations.indices.contains(index)
+        else { return animation(for: progress.goal) }
+        return animations[index]
+    }
+
     /// The workouts of a skill, from easy to hard.
     func skillPlans(for goal: Goal) -> [WorkoutPlan] {
         goal.plans.compactMap { plan($0) }
@@ -276,6 +288,9 @@ struct Catalog: Codable, Sendable {
         for goal in goals {
             if (goal.stageCount == nil) == (goal.targetSeconds == nil) {
                 problems.append("Goal \(goal.id) needs either stages or a target time")
+            }
+            if let count = goal.stageCount, goal.stageAnimations?.count != count {
+                problems.append("Goal \(goal.id) needs one animation per stage")
             }
             if !ids.contains(goal.exercise) { problems.append("Goal \(goal.id): unknown exercise \(goal.exercise)") }
             if goal.plans.isEmpty { problems.append("Goal \(goal.id) has no workouts") }

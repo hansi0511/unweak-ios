@@ -14,7 +14,7 @@ enum JournalRoute: Hashable {
 @MainActor
 @Observable
 final class AppNavigation {
-    var selectedTab: AppTab = .dashboard
+    var selectedTab: AppTab = .me
     var journalPath: [JournalRoute] = []
     /// Hidden while a full-focus screen such as a running workout is shown.
     var isTabBarHidden = false
