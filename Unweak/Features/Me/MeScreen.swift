@@ -140,7 +140,7 @@ private struct AvatarStage: View {
                 AvatarView(style: style, body: current, extra: unlocks.extra(for: style), framed: false)
                     .padding(26)
             }
-            .frame(maxWidth: 180)
+            .frame(maxWidth: 170)
             .aspectRatio(1, contentMode: .fit)
             .frame(maxWidth: .infinity)
 
@@ -314,21 +314,27 @@ private struct SkillTeaser: View {
     }
 }
 
-/// Up to five suggested workouts as tiles that scroll sideways. The first one is the
-/// main suggestion and stands out in the accent color. Each tile starts its workout.
-/// Kept flat (72 pt) so that the Me tab fits on one screen.
+/// Up to five suggested workouts as tiles that scroll sideways, in order: numbered
+/// 01 to 05 with an arrow between them; the first one says "Up next" and stands out in
+/// the accent color. Each tile starts its workout.
 private struct NextWorkoutsRow: View {
     let plans: [WorkoutPlan]
     let catalog: Catalog
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 10) {
+            HStack(spacing: 6) {
                 ForEach(Array(plans.enumerated()), id: \.element.id) { index, plan in
+                    if index > 0 {
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundStyle(Theme.textMuted)
+                            .accessibilityHidden(true)
+                    }
                     NavigationLink {
                         TrainingScreen(plan: plan, catalog: catalog)
                     } label: {
-                        NextWorkoutTile(plan: plan, isFirst: index == 0)
+                        NextWorkoutTile(plan: plan, position: index + 1)
                     }
                     .buttonStyle(PressFeedbackStyle())
                 }
@@ -342,19 +348,30 @@ private struct NextWorkoutsRow: View {
     }
 }
 
-/// One suggested workout: pose, name, duration and a play symbol.
+/// One suggested workout: its place in the order, pose, name and duration.
 private struct NextWorkoutTile: View {
     @Environment(\.accent) private var accent
     let plan: WorkoutPlan
-    let isFirst: Bool
+    /// 1 for the main suggestion.
+    let position: Int
+
+    private var isFirst: Bool { position == 1 }
 
     var body: some View {
-        HStack(alignment: .center, spacing: 8) {
-            StickyPoseView(plan.pose)
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 3) {
+        HStack(alignment: .center, spacing: 10) {
+            VStack(spacing: 4) {
+                Text(verbatim: String(format: "%02d", position))
+                    .font(.monoBold)
+                    .foregroundStyle(isFirst ? accent.color : Theme.textMuted)
+                StickyPoseView(plan.pose, highlighted: isFirst)
+            }
+            .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 4) {
+                if isFirst {
+                    MonoLabel("Up next", color: accent.color, bold: true)
+                }
                 plan.title
-                    .font(.textSemibold(13))
+                    .font(.textSemibold(15))
                     .foregroundStyle(Theme.text)
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
@@ -371,12 +388,13 @@ private struct NextWorkoutTile: View {
             }
             Spacer(minLength: 0)
         }
-        .padding(.horizontal, 10)
-        .frame(width: 168, height: 72, alignment: .leading)
+        .padding(.horizontal, 12)
+        .frame(width: 232, height: 84, alignment: .leading)
         .background(isFirst ? Theme.surfaceSelected : Theme.surface)
         .overlay(Rectangle().strokeBorder(isFirst ? accent.color : Theme.line, lineWidth: isFirst ? 2 : 1))
         .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text("Workout \(position): \(plan.title)"))
         .accessibilityAddTraits(.isButton)
         .accessibilityHint(Text("Starts the workout"))
     }
