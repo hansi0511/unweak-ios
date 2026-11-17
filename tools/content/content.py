@@ -154,22 +154,129 @@ plan("muscleUpPath", ("Muscle-up path", "Muscle-up-Weg"), "skill", "advanced", "
 # for time goals, best time), ordered workouts from easy to hard, free,
 # stages (skill with stages) or targetSeconds (time goal)
 G = []
-def goal(id, name, pose, exercise, plans, free, stages=None, seconds=None, animation=None):
+def goal(id, name, pose, exercise, plans, free, muscles, benefit, stages=None, seconds=None, animation=None):
     # animation: shown for the skill instead of the linked exercise's animation (optional)
-    # stages: (English, German, animation of the stage)
-    G.append(dict(id=id, name=name, pose=pose, exercise=exercise, plans=plans, isFree=free, stages=stages, targetSeconds=seconds, animation=animation))
+    # muscles, benefit: (English, German) texts for the skill's info sheet
+    # stages: (name, animation, muscles, benefit); name, muscles and benefit as (English, German)
+    G.append(dict(id=id, name=name, pose=pose, exercise=exercise, plans=plans, isFree=free, muscles=muscles, benefit=benefit,
+                  stages=stages, targetSeconds=seconds, animation=animation))
+
 goal("frontLever", ("Front lever", "Front Lever"), "frontLever", "tuckFrontLever", ["pullDay", "pullStrength", "frontLeverBuildUp"], False,
-     stages=[("Tuck", "Tuck", "tuckFrontLever"), ("Advanced tuck", "Advanced Tuck", "advancedTuckFrontLever"), ("One leg", "Ein Bein", "oneLegFrontLever"), ("Straddle", "Straddle", "straddleFrontLever"), ("Full front lever", "Voller Front Lever", "frontLever")],
+     ("Lats, core, rear shoulders, glutes, grip", "Latissimus, Rumpf, hintere Schultern, Gesäß, Griffkraft"),
+     ("Holds the whole body horizontal under the bar with straight arms. Builds pulling strength and full-body tension like few other exercises.",
+      "Hält den ganzen Körper waagrecht unter der Stange, mit gestreckten Armen. Baut Zugkraft und Ganzkörperspannung auf wie kaum eine andere Übung."),
+     stages=[
+         (("Tuck", "Tuck"), "tuckFrontLever",
+          ("Lats, core, rear shoulders", "Latissimus, Rumpf, hintere Schultern"),
+          ("Knees at the chest keep the lever short. You learn to hold your body horizontal with straight arms: the base for every further stage.",
+           "Die Knie an der Brust halten den Hebel kurz. Du lernst, den Körper mit gestreckten Armen waagrecht zu halten: die Basis für alle weiteren Stufen.")),
+         (("Advanced tuck", "Advanced Tuck"), "advancedTuckFrontLever",
+          ("Lats, core, rear shoulders, lower back", "Latissimus, Rumpf, hintere Schultern, unterer Rücken"),
+          ("The back is flat and the thighs point up. The longer lever puts clearly more load on lats and core.",
+           "Der Rücken ist flach, die Oberschenkel zeigen nach oben. Der längere Hebel belastet Latissimus und Rumpf deutlich stärker.")),
+         (("One leg", "Ein Bein"), "oneLegFrontLever",
+          ("Lats, core, glutes, hip flexors", "Latissimus, Rumpf, Gesäß, Hüftbeuger"),
+          ("One leg is straight, the other stays bent. Bridges the big step from the tuck to the open-leg positions.",
+           "Ein Bein ist gestreckt, das andere bleibt gebeugt. Überbrückt den großen Schritt vom Tuck zu den offenen Beinpositionen.")),
+         (("Straddle", "Straddle"), "straddleFrontLever",
+          ("Lats, core, glutes, lower back, adductors", "Latissimus, Rumpf, Gesäß, unterer Rücken, Adduktoren"),
+          ("Straight, spread legs: almost the full lever, but the spread shortens it a little. Strength close to the goal.",
+           "Gestreckte, gespreizte Beine: fast der volle Hebel, die Grätsche verkürzt ihn nur etwas. Kraft nahe am Ziel.")),
+         (("Full front lever", "Voller Front Lever"), "frontLever",
+          ("Lats, core, glutes, rear shoulders", "Latissimus, Rumpf, Gesäß, hintere Schultern"),
+          ("Body straight from head to feet and horizontal, held with straight arms: the goal of this skill.",
+           "Körper gestreckt von Kopf bis Fuß und waagrecht, mit gestreckten Armen gehalten: das Ziel dieses Skills.")),
+     ],
      animation="frontLever")
-goal("plank5Min", ("Plank 5 min", "Plank 5 min"), "plank", "plank", ["corePlank", "coreStrength"], False, seconds=300)
+goal("plank5Min", ("Plank 5 min", "Plank 5 min"), "plank", "plank", ["corePlank", "coreStrength"], False,
+     ("Deep abdominal muscles, straight abs, shoulders, glutes", "Tiefe Bauchmuskeln, gerader Bauch, Schultern, Gesäß"),
+     ("Five minutes in a straight forearm plank. Builds endurance in the trunk, improves posture and protects the lower back in everyday life.",
+      "Fünf Minuten im geraden Unterarmstütz. Baut Ausdauer im Rumpf auf, verbessert die Haltung und schützt den unteren Rücken im Alltag."),
+     seconds=300)
 goal("handstandPushUp", ("Handstand push-up", "Handstand-Liegestütz"), "handstand", "pikePushUp", ["pushBasics", "pushPower", "handstandSchool"], False,
-     stages=[("Pike push-up", "Pike-Liegestütz", "pikePushUp"), ("Elevated pike push-up", "Erhöhter Pike-Liegestütz", "elevatedPikePushUp"), ("Wall handstand hold", "Handstand an der Wand halten", "wallHandstand"), ("Half wall handstand push-up", "Halber Handstand-Liegestütz an der Wand", "halfWallHandstandPushUp"), ("Full wall handstand push-up", "Voller Handstand-Liegestütz an der Wand", "wallHandstandPushUp")],
+     ("Shoulders, triceps, upper chest, upper back, core", "Schultern, Trizeps, obere Brust, oberer Rücken, Rumpf"),
+     ("Pressing your whole bodyweight upside down. Builds strong, stable shoulders and full control in the handstand.",
+      "Das ganze Körpergewicht kopfüber drücken. Baut starke, stabile Schultern und volle Kontrolle im Handstand auf."),
+     stages=[
+         (("Pike push-up", "Pike-Liegestütz"), "pikePushUp",
+          ("Shoulders, triceps, upper chest", "Schultern, Trizeps, obere Brust"),
+          ("Hips high, body in an upside-down V. You learn to press vertically with part of your bodyweight.",
+           "Hüfte hoch, Körper im umgekehrten V. Du lernst, mit einem Teil deines Gewichts senkrecht zu drücken.")),
+         (("Elevated pike push-up", "Erhöhter Pike-Liegestütz"), "elevatedPikePushUp",
+          ("Shoulders, triceps, core", "Schultern, Trizeps, Rumpf"),
+          ("Feet on a box: more weight on your hands and a steeper angle, closer to the handstand push-up.",
+           "Füße auf einem Kasten: mehr Gewicht auf den Händen und ein steilerer Winkel, näher am Handstand-Liegestütz.")),
+         (("Wall handstand hold", "Handstand an der Wand halten"), "wallHandstand",
+          ("Shoulders, triceps, core, wrists", "Schultern, Trizeps, Rumpf, Handgelenke"),
+          ("Carry your full bodyweight upside down on straight arms. Gets you used to the handstand and strengthens shoulders and wrists.",
+           "Das volle Körpergewicht kopfüber mit gestreckten Armen tragen. Gewöhnt dich an den Handstand und stärkt Schultern und Handgelenke.")),
+         (("Half wall handstand push-up", "Halber Handstand-Liegestütz an der Wand"), "halfWallHandstandPushUp",
+          ("Shoulders, triceps, upper back", "Schultern, Trizeps, oberer Rücken"),
+          ("First presses with your full bodyweight, but only halfway down. Builds strength in the top part of the movement.",
+           "Erste Drückbewegungen mit vollem Körpergewicht, aber nur halb nach unten. Baut Kraft im oberen Teil der Bewegung auf.")),
+         (("Full wall handstand push-up", "Voller Handstand-Liegestütz an der Wand"), "wallHandstandPushUp",
+          ("Shoulders, triceps, upper chest, core", "Schultern, Trizeps, obere Brust, Rumpf"),
+          ("Head down to the floor and back up to straight arms, with your full bodyweight: the goal of this skill.",
+           "Mit dem Kopf bis zum Boden und zurück zu gestreckten Armen, mit vollem Körpergewicht: das Ziel dieses Skills.")),
+     ],
      animation="wallHandstandPushUp")
-goal("lSit30", ("L-sit 30 s", "L-Sit 30 s"), "lSit", "lSit", ["corePlank", "coreStrength"], False, seconds=30)
+goal("lSit30", ("L-sit 30 s", "L-Sit 30 s"), "lSit", "lSit", ["corePlank", "coreStrength"], False,
+     ("Hip flexors, abs, triceps, shoulders", "Hüftbeuger, Bauch, Trizeps, Schultern"),
+     ("Thirty seconds in support with straight legs held in front. Builds compression strength and stable shoulders, the base for many gymnastics skills.",
+      "Dreißig Sekunden im Stütz mit gestreckten Beinen vor dem Körper. Baut Kompressionskraft und stabile Schultern auf, die Basis für viele Turnelemente."),
+     seconds=30)
 goal("pistolSquat", ("Pistol squat", "Pistol Squat"), "pistolSquat", "pistolSquat", ["legsNoEquipment", "legDayPlus"], False,
-     stages=[("Deep squat", "Tiefe Kniebeuge", "squat"), ("Lunge", "Ausfallschritt", "lunge"), ("Box pistol", "Pistol auf Kasten", "boxPistol"), ("Assisted pistol", "Pistol mit Hilfe", "assistedPistol"), ("Full pistol squat", "Voller Pistol Squat", "pistolSquat")])
+     ("Quadriceps, glutes, adductors, calves, core", "Oberschenkel vorne, Gesäß, Adduktoren, Waden, Rumpf"),
+     ("A full squat on one leg. Builds strength, balance and mobility in ankle and hip, one leg at a time.",
+      "Eine volle Kniebeuge auf einem Bein. Baut Kraft, Gleichgewicht und Beweglichkeit in Sprunggelenk und Hüfte auf, Bein für Bein."),
+     stages=[
+         (("Deep squat", "Tiefe Kniebeuge"), "squat",
+          ("Quadriceps, glutes, adductors", "Oberschenkel vorne, Gesäß, Adduktoren"),
+          ("Both legs, all the way down. Opens ankles and hips for the deep position you need later on one leg.",
+           "Mit beiden Beinen ganz nach unten. Öffnet Sprunggelenke und Hüfte für die tiefe Position, die du später auf einem Bein brauchst.")),
+         (("Lunge", "Ausfallschritt"), "lunge",
+          ("Quadriceps, glutes, hamstrings", "Oberschenkel vorne, Gesäß, Oberschenkel hinten"),
+          ("Most of the weight on the front leg, the back leg supports. First single-leg strength and balance.",
+           "Das meiste Gewicht auf dem vorderen Bein, das hintere stützt. Erste Kraft und Balance auf einem Bein.")),
+         (("Box pistol", "Pistol auf Kasten"), "boxPistol",
+          ("Quadriceps, glutes, core", "Oberschenkel vorne, Gesäß, Rumpf"),
+          ("Sit back onto a box on one leg and stand up again. The box limits the depth, so strength grows step by step.",
+           "Auf einem Bein auf einen Kasten setzen und wieder aufstehen. Der Kasten begrenzt die Tiefe, so wächst die Kraft Schritt für Schritt.")),
+         (("Assisted pistol", "Pistol mit Hilfe"), "assistedPistol",
+          ("Quadriceps, glutes, calves", "Oberschenkel vorne, Gesäß, Waden"),
+          ("Full depth on one leg, the hands on a pole help with balance. Strength and mobility at the bottom.",
+           "Volle Tiefe auf einem Bein, die Hände an einer Stange helfen beim Gleichgewicht. Kraft und Beweglichkeit ganz unten.")),
+         (("Full pistol squat", "Voller Pistol Squat"), "pistolSquat",
+          ("Quadriceps, glutes, adductors, core", "Oberschenkel vorne, Gesäß, Adduktoren, Rumpf"),
+          ("All the way down on one leg and back up, without help: the goal of this skill.",
+           "Auf einem Bein ganz nach unten und wieder hoch, ohne Hilfe: das Ziel dieses Skills.")),
+     ])
 goal("muscleUp", ("Muscle-up", "Muscle-up"), "muscleUp", "muscleUp", ["pullDay", "pullStrength", "pushPower", "muscleUpPath"], False,
-     stages=[("10 pull-ups", "10 Klimmzüge", "pullUp"), ("Chest-to-bar pull-up", "Klimmzug bis zur Brust", "pullUp"), ("10 dips", "10 Dips", "dip"), ("Negative muscle-up", "Negativer Muscle-up", "negativeMuscleUp"), ("Muscle-up", "Muscle-up", "muscleUp")])
+     ("Lats, biceps, chest, triceps, shoulders, core", "Latissimus, Bizeps, Brust, Trizeps, Schultern, Rumpf"),
+     ("From hanging below the bar to support above it in one movement. Combines explosive pulling and pushing.",
+      "Aus dem Hang unter der Stange in einer Bewegung in den Stütz darüber. Verbindet explosives Ziehen und Drücken."),
+     stages=[
+         (("10 pull-ups", "10 Klimmzüge"), "pullUp",
+          ("Lats, biceps, rear shoulders, grip", "Latissimus, Bizeps, hintere Schultern, Griffkraft"),
+          ("Ten clean pull-ups in a row: the pulling strength the muscle-up is built on.",
+           "Zehn saubere Klimmzüge am Stück: die Zugkraft, auf der der Muscle-up aufbaut.")),
+         (("Chest-to-bar pull-up", "Klimmzug bis zur Brust"), "pullUp",
+          ("Lats, biceps, middle back", "Latissimus, Bizeps, mittlerer Rücken"),
+          ("Pull higher and faster until your chest touches the bar. You need this height to get over the bar.",
+           "Höher und schneller ziehen, bis die Brust die Stange berührt. Diese Höhe brauchst du, um über die Stange zu kommen.")),
+         (("10 dips", "10 Dips"), "dip",
+          ("Chest, triceps, front shoulders", "Brust, Trizeps, vordere Schultern"),
+          ("Ten dips in a row: the pushing strength for the part above the bar.",
+           "Zehn Dips am Stück: die Drückkraft für den Teil über der Stange.")),
+         (("Negative muscle-up", "Negativer Muscle-up"), "negativeMuscleUp",
+          ("Lats, chest, triceps, shoulders", "Latissimus, Brust, Trizeps, Schultern"),
+          ("Start in support above the bar and lower yourself slowly to the hang. Teaches the transition over the bar under control.",
+           "Im Stütz über der Stange beginnen und langsam in den Hang ablassen. Lehrt den Übergang über die Stange unter Kontrolle.")),
+         (("Muscle-up", "Muscle-up"), "muscleUp",
+          ("Lats, chest, triceps, shoulders, core", "Latissimus, Brust, Trizeps, Schultern, Rumpf"),
+          ("Pull and push in one movement from the hang to the support: the goal of this skill.",
+           "Ziehen und Drücken in einer Bewegung vom Hang in den Stütz: das Ziel dieses Skills.")),
+     ])
 
 # Achievements (sample list of 12, see docs/SPEC.md "Inhalte"), computed from the journal.
 # kind: workouts (number of journal entries), reps / seconds (best value of one exercise),

@@ -150,6 +150,12 @@ struct Goal: Codable, Identifiable, Hashable, Sendable {
 
     var nameKey: String { "goal.\(id).name" }
     var stageKeys: [String] { (0..<(stageCount ?? 0)).map { "goal.\(id).stage\($0 + 1)" } }
+    /// Info sheet texts: the muscles used and what the skill brings.
+    var musclesKey: String { "goal.\(id).muscles" }
+    var benefitKey: String { "goal.\(id).benefit" }
+    /// Info sheet texts of each stage, in stage order.
+    var stageMusclesKeys: [String] { stageKeys.map { "\($0).muscles" } }
+    var stageBenefitKeys: [String] { stageKeys.map { "\($0).benefit" } }
 }
 
 /// A milestone computed from the journal, e.g. "10 pull-ups" or "25 workouts".
@@ -259,7 +265,11 @@ struct Catalog: Codable, Sendable {
         keys.append(contentsOf: plans.map(\.nameKey))
         for goal in goals {
             keys.append(goal.nameKey)
+            keys.append(goal.musclesKey)
+            keys.append(goal.benefitKey)
             keys.append(contentsOf: goal.stageKeys)
+            keys.append(contentsOf: goal.stageMusclesKeys)
+            keys.append(contentsOf: goal.stageBenefitKeys)
         }
         keys.append(contentsOf: achievements.map(\.labelKey))
         return keys

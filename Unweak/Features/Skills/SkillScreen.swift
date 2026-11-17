@@ -119,6 +119,8 @@ struct SkillScreen: View {
     @State private var shareContent: ShareContent?
     /// Index of the reached stage the user wants to take back, while asking.
     @State private var stageToTakeBack: Int?
+    /// Info sheet shown for the skill or one of its stages.
+    @State private var info: SkillInfo?
     private let goal: Goal
     private let catalog: Catalog
 
@@ -141,6 +143,9 @@ struct SkillScreen: View {
                     BackButton()
                     Spacer()
                     Badge(kind: .subscription)
+                    IconButton(systemImage: "info.circle", accessibilityLabel: "About this skill") {
+                        info = .skill
+                    }
                 }
                 MonoLabel("Skill")
                 Text(catalog: goal.nameKey)
@@ -177,6 +182,9 @@ struct SkillScreen: View {
         }
         .sheet(item: $shareContent) { content in
             ShareSheet(content: content)
+        }
+        .sheet(item: $info) { info in
+            SkillInfoSheet(goal: goal, info: info, catalog: catalog)
         }
     }
 
@@ -253,63 +261,78 @@ struct SkillScreen: View {
         return Text("Take back “\(Text(catalog: goal.stageKeys[index]))”?")
     }
 
-    /// One stage: small animation, number, name and check box. Tapping an open stage
-    /// reaches it (and all before it); tapping a reached one asks to take it back.
+    /// One stage: small animation, number and name open the stage's info sheet; the
+    /// switch at the end shows whether the stage is mastered. Switching it on reaches the
+    /// stage (and all before it); switching it off asks to take it back.
     private func stageRow(index: Int, key: String, progress: GoalProgress) -> some View {
         let isReached = index < progress.reachedStages
         let isCurrent = index == progress.currentStageIndex && !progress.isComplete
         let animations = goal.stageAnimations ?? []
-        return Button {
-            guard subscription.access.canUseSkills else {
-                isShowingSubscription = true
-                return
-            }
-            if isReached {
-                stageToTakeBack = index
-            } else {
-                withAnimation(.easeOut(duration: 0.2)) {
-                    store.setReachedStages(index + 1, of: goal)
+        let mastered = Binding<Bool>(
+            get: { isReached },
+            set: { newValue in
+                guard subscription.access.canUseSkills else {
+                    isShowingSubscription = true
+                    return
                 }
-            }
-        } label: {
-            HStack(spacing: 12) {
-                if animations.indices.contains(index) {
-                    StickyManView(animations[index])
-                        .frame(width: 64, height: 56)
-                        .opacity(isReached || isCurrent ? 1 : 0.55)
-                }
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(spacing: 6) {
-                        MonoLabel(verbatim: String(format: "%02d", index + 1))
-                        if isCurrent {
-                            MonoLabel("Now", color: accent.color, bold: true)
-                        }
+                if newValue {
+                    withAnimation(.easeOut(duration: 0.2)) {
+                        store.setReachedStages(index + 1, of: goal)
                     }
-                    Text(catalog: key)
-                        .font(.textSemibold(15))
-                        .foregroundStyle(isReached || isCurrent ? Theme.text : Theme.textSoft)
-                        .multilineTextAlignment(.leading)
-                        .fixedSize(horizontal: false, vertical: true)
+                } else {
+                    stageToTakeBack = index
                 }
-                Spacer(minLength: 0)
-                Image(systemName: isReached ? "checkmark.square.fill" : "square")
-                    .font(.system(size: 22, weight: .semibold))
-                    .foregroundStyle(isReached ? accent.color : Theme.lineStrong)
-                    .frame(width: Theme.Layout.minTouchTarget, height: Theme.Layout.minTouchTarget)
-                    .accessibilityHidden(true)
             }
-            .padding(.vertical, 6)
-            .padding(.horizontal, 10)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Theme.surface)
-            .overlay(Rectangle().strokeBorder(isCurrent ? accent.color : Theme.line, lineWidth: isCurrent ? 2 : 1))
-            .contentShape(Rectangle())
+        )
+        return HStack(spacing: 10) {
+            Button {
+                info = .stage(index)
+            } label: {
+                HStack(spacing: 12) {
+                    if animations.indices.contains(index) {
+                        StickyManView(animations[index])
+                            .frame(width: 64, height: 56)
+                            .opacity(isReached || isCurrent ? 1 : 0.55)
+                    }
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack(spacing: 6) {
+                            MonoLabel(verbatim: String(format: "%02d", index + 1))
+                            if isCurrent {
+                                MonoLabel("Now", color: accent.color, bold: true)
+                            }
+                        }
+                        Text(catalog: key)
+                            .font(.textSemibold(15))
+                            .foregroundStyle(isReached || isCurrent ? Theme.text : Theme.textSoft)
+                            .multilineTextAlignment(.leading)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    Spacer(minLength: 0)
+                    Image(systemName: "info.circle")
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundStyle(Theme.textMuted)
+                        .accessibilityHidden(true)
+                }
+                .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget, alignment: .leading)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(PressFeedbackStyle())
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text("Stage \(index + 1): \(Text(catalog: key))"))
+            .accessibilityHint(Text("Shows muscles and benefits"))
+
+            Toggle(isOn: mastered) {
+                Text("Mastered")
+            }
+            .labelsHidden()
+            .tint(accent.color)
+            .frame(minWidth: Theme.Layout.minTouchTarget, minHeight: Theme.Layout.minTouchTarget)
+            .accessibilityLabel(Text("Mastered: \(Text(catalog: key))"))
         }
-        .buttonStyle(PressFeedbackStyle())
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("Stage \(index + 1): \(Text(catalog: key))"))
-        .accessibilityValue(isReached ? Text("Reached") : Text("Open"))
-        .accessibilityHint(isReached ? Text("Take back this stage") : Text("Mark as reached"))
+        .padding(.vertical, 6)
+        .padding(.horizontal, 10)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(isCurrent ? accent.color : Theme.line, lineWidth: isCurrent ? 2 : 1))
     }
 
     @ViewBuilder
