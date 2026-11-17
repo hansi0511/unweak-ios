@@ -110,7 +110,7 @@ private struct TrainingContent: View {
     private var header: some View {
         HStack(spacing: 12) {
             BackButton()
-            Text(catalog: session.plan.nameKey)
+            session.plan.title
                 .font(.textSemibold(15))
                 .foregroundStyle(Theme.textSoft)
                 .lineLimit(1)

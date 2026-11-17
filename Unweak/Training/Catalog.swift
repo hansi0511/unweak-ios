@@ -99,8 +99,15 @@ struct WorkoutPlan: Codable, Identifiable, Hashable, Sendable {
     let pose: StickyPose
     let isFree: Bool
     let exercises: [PlanExercise]
+    /// Name typed by the user for a custom workout; catalog plans use `nameKey`.
+    var customName: String?
 
     var nameKey: String { "plan.\(id).name" }
+
+    /// Display name: the custom name or the localized catalog name.
+    var title: Text {
+        if let customName { Text(verbatim: customName) } else { Text(catalog: nameKey) }
+    }
 
     /// Estimated length: sets × (work + rest) for every exercise.
     var estimatedSeconds: Int {

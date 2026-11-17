@@ -29,7 +29,7 @@ struct JournalScreen: View {
 
             HStack(spacing: 10) {
                 MetricTile(value: Text(verbatim: "\(month.workouts)"), label: "Sessions")
-                MetricTile(value: ValueText.totalTime(month.seconds), label: "Time")
+                MetricTile(value: ValueText.totalTime(month.seconds, locale: locale), label: "Time")
                 MetricTile(value: Text(verbatim: "\(month.records)"), label: "Records")
             }
 
@@ -60,7 +60,7 @@ struct JournalScreen: View {
                     JournalEntryScreen(entry: entry, catalog: catalog)
                 }
             case .newEntry(let planID):
-                if let plan = catalog.plan(planID) {
+                if let plan = store.plan(planID, in: catalog) {
                     JournalEntryScreen(entry: JournalEntry(plan: plan, date: .now), catalog: catalog)
                 }
             }
@@ -100,13 +100,14 @@ struct MetricTile: View {
 
 /// One workout in the journal list.
 private struct JournalRow: View {
+    @Environment(UserDataStore.self) private var store
     @Environment(\.accent) private var accent
     @Environment(\.locale) private var locale
     let entry: JournalEntry
     let records: [ExerciseResult]
     let catalog: Catalog
 
-    private var plan: WorkoutPlan? { entry.planID.flatMap(catalog.plan) }
+    private var plan: WorkoutPlan? { entry.planID.flatMap { store.plan($0, in: catalog) } }
 
     var body: some View {
         Card(padding: 12) {
@@ -134,7 +135,7 @@ private struct JournalRow: View {
     }
 
     private var planName: Text {
-        if let plan { Text(catalog: plan.nameKey) } else { Text("Workout") }
+        if let plan { plan.title } else { Text("Workout") }
     }
 
     @ViewBuilder
@@ -159,9 +160,17 @@ private struct JournalRow: View {
 
 /// Choose the plan for a workout added by hand.
 private struct PlanPickerSheet: View {
+    @Environment(UserDataStore.self) private var store
     @Environment(\.dismiss) private var dismiss
     @Environment(AppNavigation.self) private var navigation: AppNavigation?
     let catalog: Catalog
+
+    /// Custom workouts first, then the free catalog plans.
+    private var pickablePlans: [WorkoutPlan] {
+        let custom: [WorkoutPlan] = store.customWorkouts.map { $0.plan(in: catalog) }
+        let free: [WorkoutPlan] = catalog.plans.filter(\.isFree)
+        return custom + free
+    }
 
     var body: some View {
         ScreenContainer {
@@ -179,7 +188,7 @@ private struct PlanPickerSheet: View {
                 .font(.text(15))
                 .foregroundStyle(Theme.textSoft)
             VStack(spacing: 10) {
-                ForEach(catalog.plans.filter(\.isFree)) { plan in
+                ForEach(pickablePlans) { plan in
                     Button {
                         navigation?.journalPath.append(.newEntry(planID: plan.id))
                         dismiss()

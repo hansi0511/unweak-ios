@@ -28,5 +28,6 @@ extension View {
     func previewEnvironment() -> some View {
         environment(UserDataStore.preview())
             .environment(AppNavigation())
+            .environment(ReminderSettings(defaults: UserDefaults(suiteName: "unweak.preview") ?? .standard))
     }
 }

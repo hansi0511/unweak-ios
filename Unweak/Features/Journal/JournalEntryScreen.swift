@@ -17,7 +17,7 @@ struct JournalEntryScreen: View {
         self.catalog = catalog
     }
 
-    private var plan: WorkoutPlan? { draft.planID.flatMap(catalog.plan) }
+    private var plan: WorkoutPlan? { draft.planID.flatMap { store.plan($0, in: catalog) } }
 
     /// Records of the draft compared with all other entries.
     private var records: [ExerciseResult] {
@@ -91,7 +91,7 @@ struct JournalEntryScreen: View {
     }
 
     private var planName: Text {
-        if let plan { Text(catalog: plan.nameKey) } else { Text("Workout") }
+        if let plan { plan.title } else { Text("Workout") }
     }
 
     private var recordBanner: some View {
