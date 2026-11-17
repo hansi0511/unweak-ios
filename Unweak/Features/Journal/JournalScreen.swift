@@ -1,10 +1,20 @@
 import SwiftUI
 
-/// Journal tab: month figures and all workouts, newest first. Records are highlighted.
+/// The two areas of the journal tab.
+private enum JournalArea {
+    case journal
+    case achievements
+}
+
+/// Journal tab: month figures and all workouts, newest first, with records highlighted;
+/// or, switched over, all achievements.
 struct JournalScreen: View {
     @Environment(\.locale) private var locale
     @Environment(UserDataStore.self) private var store
+    @Environment(ReminderSettings.self) private var reminders
+    @State private var area: JournalArea = .journal
     @State private var isPickingPlan = false
+    @State private var shareContent: ShareContent?
     private let catalog: Catalog
 
     init(catalog: Catalog = .main) {
@@ -27,29 +37,47 @@ struct JournalScreen: View {
                 }
             }
 
-            HStack(spacing: 10) {
-                MetricTile(value: Text(verbatim: "\(month.workouts)"), label: "Sessions")
-                MetricTile(value: ValueText.totalTime(month.seconds, locale: locale), label: "Time")
-                MetricTile(value: Text(verbatim: "\(month.records)"), label: "Records")
+            HStack(spacing: 8) {
+                SelectChip("Journal", isSelected: area == .journal, expands: true) {
+                    area = .journal
+                }
+                SelectChip("Achievements", isSelected: area == .achievements, expands: true) {
+                    area = .achievements
+                }
             }
 
-            if entries.isEmpty {
-                Card {
-                    VStack(alignment: .leading, spacing: 6) {
-                        MonoLabel("No workouts yet", bold: true)
-                        Text("Finish a workout or tap + to add one.")
-                            .font(.text(15))
-                            .foregroundStyle(Theme.textSoft)
+            switch area {
+            case .journal:
+                HStack(spacing: 10) {
+                    MetricTile(value: Text(verbatim: "\(month.workouts)"), label: "Sessions")
+                    MetricTile(value: ValueText.totalTime(month.seconds, locale: locale), label: "Time")
+                    MetricTile(value: Text(verbatim: "\(month.records)"), label: "Records")
+                }
+
+                if entries.isEmpty {
+                    Card {
+                        VStack(alignment: .leading, spacing: 6) {
+                            MonoLabel("No workouts yet", bold: true)
+                            Text("Finish a workout or tap + to add one.")
+                                .font(.text(15))
+                                .foregroundStyle(Theme.textSoft)
+                        }
+                    }
+                } else {
+                    VStack(spacing: 10) {
+                        ForEach(entries) { entry in
+                            NavigationLink(value: JournalRoute.entry(entry.id)) {
+                                JournalRow(entry: entry, records: stats.records(in: entry), catalog: catalog)
+                            }
+                            .buttonStyle(PressFeedbackStyle())
+                        }
                     }
                 }
-            } else {
-                VStack(spacing: 10) {
-                    ForEach(entries) { entry in
-                        NavigationLink(value: JournalRoute.entry(entry.id)) {
-                            JournalRow(entry: entry, records: stats.records(in: entry), catalog: catalog)
-                        }
-                        .buttonStyle(PressFeedbackStyle())
-                    }
+            case .achievements:
+                AchievementsGrid(
+                    progress: catalog.achievements.map { stats.progress(of: $0, target: reminders.weeklyTarget) }
+                ) { achievement in
+                    shareContent = .achievement(achievement)
                 }
             }
         }
@@ -67,6 +95,9 @@ struct JournalScreen: View {
         }
         .sheet(isPresented: $isPickingPlan) {
             PlanPickerSheet(catalog: catalog)
+        }
+        .sheet(item: $shareContent) { content in
+            ShareSheet(content: content)
         }
     }
 }
@@ -217,6 +248,7 @@ private struct PlanPickerSheet: View {
         JournalScreen()
     }
     .environment(UserDataStore(fileURL: nil))
+    .environment(ReminderSettings(defaults: UserDefaults(suiteName: "unweak.preview") ?? .standard))
     .environment(AppNavigation())
     .environment(SubscriptionStore.preview(isPro: false))
     .environment(\.locale, Locale(identifier: "de"))

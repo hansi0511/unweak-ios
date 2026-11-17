@@ -9,7 +9,6 @@
 | Anmeldung | Mit Apple oder Google anmelden | Dashboard |
 | Dashboard | „Nächstes Ziel · Ändern“ | Ziel wählen |
 | Dashboard | Karte „Nächstes Workout“ | Training läuft |
-| Dashboard | „Eigenes Workout erstellen“ | Workout erstellen |
 | Dashboard | Regler-Symbol oben rechts | Einstellungen |
 | Workouts | Umschalter „Skills“ / „Workouts“ | anderer Bereich |
 | Workouts (Skills) | Skill-Karte | Skill |
@@ -22,16 +21,15 @@
 | Training läuft | „Training beenden und speichern“ | Tagebuch |
 | Tagebuch | Plus oder Eintrag antippen | Tagebucheintrag |
 | Einstellungen | „Abo ansehen“ | Abo |
-| Tagebucheintrag, Dashboard, Skill | Teilen-Symbol oder erreichter Erfolg | Teilen |
+| Tagebucheintrag, Dashboard, Skill | Teilen-Symbol | Teilen |
+| Tagebuch (Erfolge) | Erreichter Erfolg | Teilen |
 | Einstellungen | „Abmelden“ | Anmeldung |
 
 ## 1 Dashboard (Tab)
 
-- Kopf: Label „Diese Woche“, Serie in Wochen, Regler-Symbol. Überschrift „3 / 4 Trainings“. Darunter sieben Tagesbalken Mo bis So: trainiert in Akzentfarbe, heute hell, sonst dunkel.
+- Kopf: Label „Diese Woche“, Serie in Wochen, Teilen- und Regler-Symbol. Überschrift „3 / 4 Trainings“. Darunter ein Segment pro Training des Wochenziels (geschafft in Akzentfarbe) und der Hinweis „Noch 1 bis zum Wochenziel“ bzw. „Wochenziel erreicht“ in Akzentfarbe.
 - Ziel-Panel (nur mit Pro; in der Gratis-Version an seiner Stelle ein Hinweis „Erreiche deinen ersten Skill“ mit Marke „Abo“, der zur Abo-Seite führt) mit Raster-Hintergrund und Eckmarkierungen: Link „Nächstes Ziel · Ändern“, Name des Ziels, aktueller Stand, rechts Sticky-Man-Animation des Ziels. Darunter fünf Segmente für die Stufe und „Stufe 2 / 5 · Noch 3 Stufen“.
 - Karte „Nächstes Workout“ in Akzentfarbe mit Name, Dauer und Start-Symbol.
-- Gestrichelter Knopf „Eigenes Workout erstellen“.
-- Erfolge: Zähler „4 / 12“ und vier Kacheln mit Wert und Bezeichnung.
 
 ## 2 Workouts (Tab)
 
@@ -52,8 +50,9 @@
 ## 4 Tagebuch (Tab)
 
 - Kopf: Monat, Überschrift, Plus-Knopf.
-- Drei Kennzahlen: Trainings, Zeit, Rekorde.
-- Liste: Wochentag und Datum, Sticky-Man-Pose, Planname, Dauer, darunter Übungszusammenfassung oder „Rekord: …“ in Akzentfarbe.
+- Umschalter mit zwei gleich breiten Feldern: „Tagebuch“ (Standard) und „Erfolge“.
+- **Tagebuch:** drei Kennzahlen (Trainings, Zeit, Rekorde), darunter die Liste: Wochentag und Datum, Sticky-Man-Pose, Planname, Dauer, darunter Übungszusammenfassung oder „Rekord: …“ in Akzentfarbe.
+- **Erfolge:** Zähler „4 / 12“ und alle zwölf Kacheln mit Wert und Bezeichnung, erreichte zuerst. Ein erreichter Erfolg öffnet Teilen.
 
 ## 5 Workout erstellen
 
@@ -118,7 +117,7 @@
 
 ## 13 Teilen
 
-- Öffnet sich als Blatt aus dem Tagebucheintrag (Teilen-Symbol im Kopf: Workout; im Rekord-Banner: Rekord), dem Dashboard (Teilen-Symbol im Kopf: Woche und Serie; Tipp auf einen erreichten Erfolg) und der Skill-Seite (Teilen-Symbol beim Fortschritt).
+- Öffnet sich als Blatt aus dem Tagebucheintrag (Teilen-Symbol im Kopf: Workout; im Rekord-Banner: Rekord), dem Dashboard (Teilen-Symbol im Kopf: Woche und Serie), dem Tagebuch (Bereich „Erfolge“: Tipp auf einen erreichten Erfolg) und der Skill-Seite (Teilen-Symbol beim Fortschritt).
 - Schließen-Knopf, Überschrift „Teilen“, Auswahl „Video“ (Standard) oder „Bild“ und „Story“ (9:16, Standard) oder „Post“ (4:5).
 - Vorschau (bei Video mit bewegtem Sticky Man; mit „Bewegung reduzieren“ steht er still): Raster-Hintergrund mit Eckmarkierungen in Akzentfarbe, „UNWEAK“ und Untertitel, Sticky Man groß in der Schlüsselpose, Art („Workout geschafft“, „Neuer Rekord“, „Erfolg freigeschaltet“, „Serie“, „Skill-Fortschritt“), Überschrift, Kennzahlen oder Segmente, unten Datum und Hashtags.
 - Hauptknopf „Video teilen“ bzw. „Bild teilen“ öffnet das iOS-Teilen-Menü (1080 px breit, Video als MP4 mit 30 Bildern pro Sekunde, mindestens 6 Sekunden, ohne Ton; dazu ein kurzer Text mit Hashtags). Während das Video entsteht, zeigt eine Segment-Leiste den Fortschritt. Hinweis, dass dort X, Facebook oder Instagram gewählt wird.
