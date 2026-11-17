@@ -34,8 +34,13 @@ struct MeScreen: View {
                 unlocks: unlocks,
                 week: week,
                 streak: streak,
-                // Pro: from the skills being learned. Free: from the free workouts.
-                nextPlan: stats.nextWorkout(in: catalog, access: subscription.access, preferring: goals.flatMap(\.plans)),
+                // Pro: first from the skills being learned. Free: from the free workouts.
+                nextPlans: stats.nextWorkouts(
+                    in: catalog,
+                    access: subscription.access,
+                    preferring: goals.flatMap(\.plans),
+                    count: 5
+                ),
                 catalog: catalog
             )
 
@@ -114,13 +119,13 @@ struct MeScreen: View {
 }
 
 /// The avatar large in the middle, framed by a ring that fills with the workouts of
-/// this week; below it the week in short, the name of the body and the next workout.
+/// this week; below it the week in short, the name of the body and the next workouts.
 private struct AvatarStage: View {
     let style: AvatarStyle
     let unlocks: AvatarUnlocks
     let week: WeekSummary
     let streak: Int
-    let nextPlan: WorkoutPlan?
+    let nextPlans: [WorkoutPlan]
     let catalog: Catalog
 
     var body: some View {
@@ -135,7 +140,7 @@ private struct AvatarStage: View {
                 AvatarView(style: style, body: current, extra: unlocks.extra(for: style), framed: false)
                     .padding(26)
             }
-            .frame(maxWidth: 200)
+            .frame(maxWidth: 180)
             .aspectRatio(1, contentMode: .fit)
             .frame(maxWidth: .infinity)
 
@@ -158,13 +163,8 @@ private struct AvatarStage: View {
             .multilineTextAlignment(.center)
             .accessibilityElement(children: .combine)
 
-            if let nextPlan {
-                NavigationLink {
-                    TrainingScreen(plan: nextPlan, catalog: catalog)
-                } label: {
-                    NextWorkoutBar(plan: nextPlan)
-                }
-                .buttonStyle(PressFeedbackStyle())
+            if !nextPlans.isEmpty {
+                NextWorkoutsRow(plans: nextPlans, catalog: catalog)
             }
         }
     }
@@ -314,37 +314,71 @@ private struct SkillTeaser: View {
     }
 }
 
-/// Slim bar with the suggested next workout: play symbol, label, name and duration.
-private struct NextWorkoutBar: View {
-    @Environment(\.accent) private var accent
-    let plan: WorkoutPlan
+/// Up to five suggested workouts as tiles that scroll sideways. The first one is the
+/// main suggestion and stands out in the accent color. Each tile starts its workout.
+/// Kept flat (72 pt) so that the Me tab fits on one screen.
+private struct NextWorkoutsRow: View {
+    let plans: [WorkoutPlan]
+    let catalog: Catalog
 
     var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: "play.fill")
-                .font(.system(size: 14, weight: .bold))
-                .foregroundStyle(Theme.onAccent)
-                .frame(width: 36, height: 36)
-                .background(accent.color)
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(Array(plans.enumerated()), id: \.element.id) { index, plan in
+                    NavigationLink {
+                        TrainingScreen(plan: plan, catalog: catalog)
+                    } label: {
+                        NextWorkoutTile(plan: plan, isFirst: index == 0)
+                    }
+                    .buttonStyle(PressFeedbackStyle())
+                }
+            }
+            // The row runs to the screen edges while the tiles start in line with the content.
+            .padding(.horizontal, Theme.Layout.screenEdge)
+        }
+        .padding(.horizontal, -Theme.Layout.screenEdge)
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(Text("Next workouts"))
+    }
+}
+
+/// One suggested workout: pose, name, duration and a play symbol.
+private struct NextWorkoutTile: View {
+    @Environment(\.accent) private var accent
+    let plan: WorkoutPlan
+    let isFirst: Bool
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 8) {
+            StickyPoseView(plan.pose)
                 .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 2) {
-                MonoLabel("Next workout")
+            VStack(alignment: .leading, spacing: 3) {
                 plan.title
-                    .font(.textSemibold(15))
+                    .font(.textSemibold(13))
                     .foregroundStyle(Theme.text)
-                    .lineLimit(1)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                HStack(spacing: 4) {
+                    Image(systemName: "play.fill")
+                        .font(.system(size: 9, weight: .bold))
+                        .foregroundStyle(accent.color)
+                        .accessibilityHidden(true)
+                    ValueText.minutes(plan.estimatedSeconds)
+                        .font(.mono)
+                        .foregroundStyle(Theme.textMuted)
+                }
             }
             Spacer(minLength: 0)
-            ValueText.minutes(plan.estimatedSeconds)
-                .font(.mono)
-                .foregroundStyle(Theme.textMuted)
         }
-        .padding(10)
-        .frame(minHeight: Theme.Layout.minTouchTarget)
-        .background(Theme.surface)
-        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+        .padding(.horizontal, 10)
+        .frame(width: 168, height: 72, alignment: .leading)
+        .background(isFirst ? Theme.surfaceSelected : Theme.surface)
+        .overlay(Rectangle().strokeBorder(isFirst ? accent.color : Theme.line, lineWidth: isFirst ? 2 : 1))
+        .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
+        .accessibilityHint(Text("Starts the workout"))
     }
 }
 

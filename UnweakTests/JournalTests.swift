@@ -212,6 +212,31 @@ struct AchievementAndGoalTests {
         let allTrained = free.enumerated().map { index, plan in entry(day(11, 10 - index), plan: plan.id) }
         #expect(stats(allTrained).nextWorkout(in: catalog)?.id == free.last?.id)
     }
+
+    @Test func fiveNextWorkoutsFromTheSkillsFirstThenGeneral() throws {
+        let pro = Access(isPro: true)
+        let frontLever = try #require(catalog.goals.first { $0.id == "frontLever" })
+        // The skill's workouts were trained, the oldest first in the list.
+        let trained = [
+            entry(day(11, 4), plan: "frontLeverBuildUp"),
+            entry(day(11, 2), plan: "pullStrength"),
+        ]
+        let next = stats(trained).nextWorkouts(in: catalog, access: pro, preferring: frontLever.plans, count: 5)
+        #expect(next.count == 5)
+        // Skill workouts first: never trained (pullDay), then the oldest, then the newest.
+        #expect(next.prefix(3).map(\.id) == ["pullDay", "pullStrength", "frontLeverBuildUp"])
+        // Then general workouts, no skill-only plans, no duplicates.
+        #expect(next.dropFirst(3).allSatisfy { $0.category != .skill && !frontLever.plans.contains($0.id) })
+        #expect(Set(next.map(\.id)).count == next.count)
+    }
+
+    @Test func nextWorkoutsForFreeUsersAreFreePlans() {
+        let next = stats([]).nextWorkouts(in: catalog, count: 5)
+        #expect(next.count == 5)
+        #expect(next.allSatisfy(\.isFree))
+        #expect(next.first?.id == stats([]).nextWorkout(in: catalog)?.id)
+        #expect(stats([]).nextWorkouts(in: catalog, count: 0).isEmpty)
+    }
 }
 
 @MainActor
