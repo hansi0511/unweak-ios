@@ -41,8 +41,10 @@ enum WorkoutsArea: Hashable {
 struct WorkoutsScreen: View {
     @Environment(UserDataStore.self) private var store
     @Environment(SubscriptionStore.self) private var subscription
+    /// Holds the area, so that other tabs can open the skills; missing in some previews.
+    @Environment(AppNavigation.self) private var navigation: AppNavigation?
     private let catalog: Catalog
-    @State private var area: WorkoutsArea = .skills
+    @State private var localArea: WorkoutsArea = .skills
     @State private var filter: WorkoutFilter = .all
     @State private var isShowingPaywall = false
     @State private var editing: CustomWorkout?
@@ -50,6 +52,17 @@ struct WorkoutsScreen: View {
 
     init(catalog: Catalog = .main) {
         self.catalog = catalog
+    }
+
+    private var area: WorkoutsArea {
+        get { navigation?.workoutsArea ?? localArea }
+        nonmutating set {
+            if let navigation {
+                navigation.workoutsArea = newValue
+            } else {
+                localArea = newValue
+            }
+        }
     }
 
     var body: some View {
