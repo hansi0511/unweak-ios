@@ -94,7 +94,7 @@ final class SubscriptionStore {
     func refreshEntitlement() async {
         var active = false
         for await result in Transaction.currentEntitlements {
-            if case .verified(let transaction) = result, Self.isActive(transaction) {
+            if case .verified(let transaction) = result, Self.grantsPro(transaction) {
                 active = true
             }
         }
@@ -103,16 +103,16 @@ final class SubscriptionStore {
 
     /// Takes the state from a single verified transaction: an active one unlocks Pro
     /// at once; an expired or refunded one triggers a full check of all entitlements.
-    private func apply(_ transaction: Transaction) async {
+    private func apply(_ transaction: StoreKit.Transaction) async {
         guard ProductID.all.contains(transaction.productID) else { return }
-        if Self.isActive(transaction) {
+        if Self.grantsPro(transaction) {
             isPro = true
         } else {
             await refreshEntitlement()
         }
     }
 
-    private static func isActive(_ transaction: Transaction) -> Bool {
+    private static func grantsPro(_ transaction: StoreKit.Transaction) -> Bool {
         isActive(
             productID: transaction.productID,
             revocationDate: transaction.revocationDate,
