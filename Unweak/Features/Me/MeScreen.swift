@@ -4,6 +4,7 @@ import SwiftUI
 /// workout. Free: a teaser for the skills takes the place of the skill.
 struct MeScreen: View {
     @Environment(\.accent) private var accent
+    @Environment(AppNavigation.self) private var navigation: AppNavigation?
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
     @Environment(SubscriptionStore.self) private var subscription
@@ -39,10 +40,12 @@ struct MeScreen: View {
             )
 
             if subscription.access.canUseSkills {
-                SkillsHeader(catalog: catalog)
+                SkillsHeader {
+                    navigation?.showSkills()
+                }
                 if goals.isEmpty {
-                    NavigationLink {
-                        GoalPickerScreen(catalog: catalog)
+                    Button {
+                        navigation?.showSkills()
                     } label: {
                         ChipLabel("Choose skills", systemImage: "plus", style: .dashed, expands: true)
                     }
@@ -201,19 +204,17 @@ private struct WeekRing: View {
     }
 }
 
-/// "Your skills" with a link to choose which skills to learn.
+/// "Your skills" with "Edit", which opens the skills in the workouts tab.
 private struct SkillsHeader: View {
     @Environment(\.accent) private var accent
-    let catalog: Catalog
+    let onEdit: () -> Void
 
     var body: some View {
         HStack {
             MonoLabel("Your skills")
                 .accessibilityAddTraits(.isHeader)
             Spacer()
-            NavigationLink {
-                GoalPickerScreen(catalog: catalog)
-            } label: {
+            Button(action: onEdit) {
                 Text("Edit")
                     .font(.monoBold)
                     .tracking(1)

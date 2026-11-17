@@ -32,28 +32,45 @@ struct SkillList: View {
                 .font(.text(15))
                 .foregroundStyle(Theme.textSoft)
             ForEach(catalog.goals) { goal in
+                let isLearning = learning.contains(goal.id)
                 let card = SkillCard(
                     progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
                     workoutCount: goal.plans.count,
-                    isActive: learning.contains(goal.id),
+                    isActive: isLearning,
                     isLocked: !canUseSkills,
                     catalog: catalog
                 )
-                if canUseSkills {
-                    NavigationLink {
-                        SkillScreen(goal: goal, catalog: catalog)
-                    } label: {
-                        card
+                Group {
+                    if canUseSkills {
+                        NavigationLink {
+                            SkillScreen(goal: goal, catalog: catalog)
+                        } label: {
+                            card
+                        }
+                        .buttonStyle(PressFeedbackStyle())
+                    } else {
+                        // Skills need Pro: the card opens the subscription page.
+                        Button {
+                            isShowingPaywall = true
+                        } label: {
+                            card
+                        }
+                        .buttonStyle(PressFeedbackStyle())
                     }
-                    .buttonStyle(PressFeedbackStyle())
-                } else {
-                    // Skills need Pro: the card opens the subscription page.
-                    Button {
-                        isShowingPaywall = true
-                    } label: {
-                        card
+                }
+                // Lies over the space the card keeps free at its bottom, so it is not
+                // part of the card's own button.
+                .overlay(alignment: .bottom) {
+                    LearnSkillButton(isLearning: isLearning, isLocked: !canUseSkills) {
+                        guard canUseSkills else {
+                            isShowingPaywall = true
+                            return
+                        }
+                        withAnimation(.easeOut(duration: 0.15)) {
+                            store.setLearning(!isLearning, goal, in: catalog)
+                        }
                     }
-                    .buttonStyle(PressFeedbackStyle())
+                    .padding(14)
                 }
             }
         }
@@ -103,10 +120,34 @@ private struct SkillCard: View {
                         .accessibilityHidden(true)
                 }
                 SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, label: "Goal progress")
+                // Room for the learn button, which lies over the card.
+                Color.clear
+                    .frame(height: Theme.Layout.minTouchTarget)
+                    .accessibilityHidden(true)
             }
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
+    }
+}
+
+/// "Learn this skill", or "Learning" with a check once the skill is learned; tapping it
+/// again stops learning. Without Pro it shows a lock.
+struct LearnSkillButton: View {
+    let isLearning: Bool
+    let isLocked: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            if isLearning {
+                ChipLabel("Learning", systemImage: "checkmark", style: .outline, expands: true)
+            } else {
+                ChipLabel("Learn this skill", systemImage: isLocked ? "lock.fill" : "plus", style: .dashed, expands: true)
+            }
+        }
+        .buttonStyle(PressFeedbackStyle())
+        .accessibilityHint(isLearning ? Text("Tap to stop learning") : Text("Adds the skill to the Me tab"))
     }
 }
 
@@ -155,6 +196,8 @@ struct SkillScreen: View {
                     .accessibilityAddTraits(.isHeader)
             }
 
+            goalSection
+
             HUDPanel(padding: 10) {
                 StickyManView(catalog.animation(for: goal))
                     .frame(maxWidth: .infinity)
@@ -162,8 +205,6 @@ struct SkillScreen: View {
             }
 
             progressSection(progress)
-
-            goalSection
 
             VStack(alignment: .leading, spacing: 10) {
                 MonoLabel("Workouts for this skill")
@@ -335,23 +376,14 @@ struct SkillScreen: View {
         .overlay(Rectangle().strokeBorder(isCurrent ? accent.color : Theme.line, lineWidth: isCurrent ? 2 : 1))
     }
 
+    /// "Learn this skill" as the main button, or "Learning" once the skill is learned
+    /// (tapping it stops learning).
     @ViewBuilder
     private var goalSection: some View {
         if isActive {
-            VStack(alignment: .leading, spacing: 10) {
-                Card {
-                    HStack(spacing: 10) {
-                        Badge(kind: .selected)
-                        Text("You are learning this skill. It shows in the Me tab.")
-                            .font(.text(15))
-                            .foregroundStyle(Theme.textSoft)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-                SecondaryButton("Stop learning", systemImage: "xmark") {
-                    withAnimation(.easeOut(duration: 0.15)) {
-                        store.setLearning(false, goal, in: catalog)
-                    }
+            LearnSkillButton(isLearning: true, isLocked: false) {
+                withAnimation(.easeOut(duration: 0.15)) {
+                    store.setLearning(false, goal, in: catalog)
                 }
             }
         } else {

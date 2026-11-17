@@ -73,7 +73,7 @@ struct RootView: View {
     private func stack(for tab: AppTab, journalPath: Binding<[JournalRoute]>) -> some View {
         switch tab {
         case .me: NavigationStack { MeScreen() }
-        case .workouts: NavigationStack { WorkoutsScreen() }
+        case .workouts: NavigationStack { WorkoutsScreen() }.id(navigation.workoutsStackID)
         case .journal: NavigationStack(path: journalPath) { JournalScreen() }
         }
     }

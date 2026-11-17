@@ -371,6 +371,16 @@
         }
       }
     },
+    "Adds the skill to the Me tab" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fügt den Skill zum Tab „Ich“ hinzu"
+          }
+        }
+      }
+    },
     "Advanced" : {
       "localizations" : {
         "de" : {
@@ -427,16 +437,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Darstellung"
-          }
-        }
-      }
-    },
-    "As many as you like" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "So viele du willst"
           }
         }
       }
@@ -951,16 +951,6 @@
         }
       }
     },
-    "Every skill you learn shows in the Me tab with its stage and workouts." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jeder Skill, den du lernst, erscheint im Tab „Ich“ mit seiner Stufe und seinen Workouts."
-          }
-        }
-      }
-    },
     "Exercise %lld / %lld · %lld × %lld reps" : {
       "localizations" : {
         "de" : {
@@ -1397,6 +1387,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diesen Skill lernen"
+          }
+        }
+      }
+    },
+    "Learning" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lerne ich"
           }
         }
       }
@@ -2531,16 +2531,6 @@
         }
       }
     },
-    "Stop learning" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nicht mehr lernen"
-          }
-        }
-      }
-    },
     "Story" : {
       "localizations" : {
         "de" : {
@@ -2637,6 +2627,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "„%@“ zurücknehmen?"
+          }
+        }
+      }
+    },
+    "Tap to stop learning" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippen, um nicht mehr zu lernen"
           }
         }
       }
@@ -2984,16 +2984,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jährlich"
-          }
-        }
-      }
-    },
-    "You are learning this skill. It shows in the Me tab." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Du lernst diesen Skill. Er erscheint im Tab „Ich“."
           }
         }
       }
