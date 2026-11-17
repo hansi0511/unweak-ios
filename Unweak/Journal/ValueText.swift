@@ -21,8 +21,9 @@ enum ValueText {
     }
 
     /// Total time such as "5 h 20 min" in the user's language.
-    static func totalTime(_ seconds: Int) -> Text {
-        Text(verbatim: Duration.seconds(seconds).formatted(.units(allowed: [.hours, .minutes], width: .abbreviated)))
+    static func totalTime(_ seconds: Int, locale: Locale) -> Text {
+        let style = Duration.UnitsFormatStyle(allowedUnits: [.hours, .minutes], width: .abbreviated).locale(locale)
+        return Text(verbatim: Duration.seconds(seconds).formatted(style))
     }
 
     /// Threshold of an achievement: "10", "3 min", "20 s".

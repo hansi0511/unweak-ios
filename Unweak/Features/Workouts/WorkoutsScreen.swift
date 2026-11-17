@@ -27,9 +27,12 @@ enum WorkoutFilter: Hashable, Identifiable {
 /// Workouts tab: predefined plans, filterable by category. Free plans start the
 /// workout; subscription plans lead to the subscription page.
 struct WorkoutsScreen: View {
+    @Environment(UserDataStore.self) private var store
     private let catalog: Catalog
     @State private var filter: WorkoutFilter = .all
     @State private var subscriptionPlan: WorkoutPlan?
+    @State private var editing: CustomWorkout?
+    @State private var deleting: CustomWorkout?
 
     init(catalog: Catalog = .main) {
         self.catalog = catalog
@@ -39,7 +42,7 @@ struct WorkoutsScreen: View {
         ScreenContainer {
             ScreenHeader(label: MonoLabel("\(catalog.freePlanCount) plans free"), title: "Workouts") {
                 NavigationLink {
-                    ComingLaterScreen(title: "Create workout")
+                    CustomWorkoutEditor(workout: nil, catalog: catalog)
                 } label: {
                     ChipLabel("Custom", systemImage: "plus", style: .dashed)
                 }
@@ -58,6 +61,26 @@ struct WorkoutsScreen: View {
             .scrollIndicators(.hidden)
 
             VStack(spacing: 10) {
+                ForEach(customWorkouts) { workout in
+                    NavigationLink {
+                        TrainingScreen(plan: workout.plan(in: catalog), catalog: catalog)
+                    } label: {
+                        PlanRow(plan: workout.plan(in: catalog), badge: .custom)
+                    }
+                    .buttonStyle(PressFeedbackStyle())
+                    .contextMenu {
+                        Button {
+                            editing = workout
+                        } label: {
+                            Label("Edit", systemImage: "pencil")
+                        }
+                        Button(role: .destructive) {
+                            deleting = workout
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
+                }
                 ForEach(catalog.filteredPlans(category: filter.category)) { plan in
                     if plan.isFree {
                         NavigationLink {
@@ -80,15 +103,37 @@ struct WorkoutsScreen: View {
         .sheet(item: $subscriptionPlan) { _ in
             SubscriptionPlaceholderSheet()
         }
+        .navigationDestination(item: $editing) { workout in
+            CustomWorkoutEditor(workout: workout, catalog: catalog)
+        }
+        .confirmationDialog(
+            "Delete this workout?",
+            isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } }),
+            titleVisibility: .visible,
+            presenting: deleting
+        ) { workout in
+            Button("Delete workout", role: .destructive) {
+                store.delete(workout)
+            }
+        } message: { _ in
+            Text("Journal entries of this workout are kept.")
+        }
+    }
+
+    /// Custom workouts of the selected category, shown above the plans.
+    private var customWorkouts: [CustomWorkout] {
+        store.customWorkouts.filter { filter.category == nil || $0.category == filter.category }
     }
 }
 
-/// One plan in the list: pose, name, metadata and Free/Pro badge.
+/// One plan in the list: pose, name, metadata and badge (Free, Pro or Custom).
 struct PlanRow: View {
     private let plan: WorkoutPlan
+    private let badge: Badge.Kind
 
-    init(plan: WorkoutPlan) {
+    init(plan: WorkoutPlan, badge: Badge.Kind? = nil) {
         self.plan = plan
+        self.badge = badge ?? (plan.customName != nil ? .custom : (plan.isFree ? .free : .subscription))
     }
 
     var body: some View {
@@ -97,7 +142,7 @@ struct PlanRow: View {
                 StickyPoseView(plan.pose, highlighted: plan.isFree)
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(catalog: plan.nameKey)
+                    plan.title
                         .font(.textSemibold(17))
                         .foregroundStyle(Theme.text)
                         .multilineTextAlignment(.leading)
@@ -108,7 +153,7 @@ struct PlanRow: View {
                     ])
                 }
                 Spacer(minLength: 0)
-                Badge(kind: plan.isFree ? .free : .subscription)
+                Badge(kind: badge)
             }
         }
         .accessibilityElement(children: .combine)

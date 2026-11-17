@@ -11,6 +11,46 @@
         }
       }
     },
+    "%lld exercises" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld exercise"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld exercises"
+                }
+              }
+            }
+          }
+        },
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Übung"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Übungen"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld min" : {
       "localizations" : {
         "de" : {
@@ -131,12 +171,42 @@
         }
       }
     },
+    "about %lld min" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ca. %lld min"
+          }
+        }
+      }
+    },
     "Accent color" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Akzentfarbe"
+          }
+        }
+      }
+    },
+    "Account" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konto"
+          }
+        }
+      }
+    },
+    "Account and subscription" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konto und Abo"
           }
         }
       }
@@ -157,6 +227,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erfolge"
+          }
+        }
+      }
+    },
+    "Add exercise" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übung hinzufügen"
           }
         }
       }
@@ -241,6 +321,16 @@
         }
       }
     },
+    "Best %@ / %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestzeit %1$@ / %2$@"
+          }
+        }
+      }
+    },
     "Best time %@ of %@" : {
       "localizations" : {
         "de" : {
@@ -251,12 +341,32 @@
         }
       }
     },
+    "Category" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorie"
+          }
+        }
+      }
+    },
     "Change" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ändern"
+          }
+        }
+      }
+    },
+    "Choose at least one day." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle mindestens einen Tag."
           }
         }
       }
@@ -371,6 +481,56 @@
         }
       }
     },
+    "Delete" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löschen"
+          }
+        }
+      }
+    },
+    "Delete account" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konto löschen"
+          }
+        }
+      }
+    },
+    "Delete this workout?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Workout löschen?"
+          }
+        }
+      }
+    },
+    "Delete workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workout löschen"
+          }
+        }
+      }
+    },
+    "Deleting your account is permanent. Both are available once you are signed in." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Löschen des Kontos ist endgültig. Beides ist verfügbar, sobald du angemeldet bist."
+          }
+        }
+      }
+    },
     "Dip animation" : {
       "localizations" : {
         "de" : {
@@ -391,6 +551,16 @@
         }
       }
     },
+    "e.g. Morning push" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z. B. Morgen-Push"
+          }
+        }
+      }
+    },
     "Easier" : {
       "localizations" : {
         "de" : {
@@ -407,6 +577,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Leicht"
+          }
+        }
+      }
+    },
+    "Edit" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bearbeiten"
+          }
+        }
+      }
+    },
+    "Edit workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workout bearbeiten"
           }
         }
       }
@@ -621,6 +811,16 @@
         }
       }
     },
+    "Imprint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impressum"
+          }
+        }
+      }
+    },
     "In progress" : {
       "localizations" : {
         "de" : {
@@ -647,6 +847,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tagebuch"
+          }
+        }
+      }
+    },
+    "Journal entries of this workout are kept." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagebucheinträge dieses Workouts bleiben erhalten."
           }
         }
       }
@@ -701,12 +911,32 @@
         }
       }
     },
+    "Language" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprache"
+          }
+        }
+      }
+    },
     "Last exercise" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Letzte Übung"
+          }
+        }
+      }
+    },
+    "Legal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechtliches"
           }
         }
       }
@@ -777,6 +1007,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Muscle-up"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
           }
         }
       }
@@ -861,6 +1101,16 @@
         }
       }
     },
+    "No exercise found." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Übung gefunden."
+          }
+        }
+      }
+    },
     "No workouts yet" : {
       "localizations" : {
         "de" : {
@@ -877,6 +1127,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keine"
+          }
+        }
+      }
+    },
+    "Not signed in" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht angemeldet"
           }
         }
       }
@@ -901,12 +1161,42 @@
         }
       }
     },
+    "Notifications are turned off for Unweak in the iOS settings." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mitteilungen für Unweak sind in den iOS-Einstellungen ausgeschaltet."
+          }
+        }
+      }
+    },
+    "One goal at a time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Ziel zur Zeit"
+          }
+        }
+      }
+    },
     "Open" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Offen"
+          }
+        }
+      }
+    },
+    "Open iOS settings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS-Einstellungen öffnen"
           }
         }
       }
@@ -977,6 +1267,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Plank"
+          }
+        }
+      }
+    },
+    "Privacy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenschutz"
           }
         }
       }
@@ -1081,6 +1381,46 @@
         }
       }
     },
+    "Reminder" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erinnerung"
+          }
+        }
+      }
+    },
+    "Reminders are off." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erinnerungen sind aus."
+          }
+        }
+      }
+    },
+    "Remove exercise" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übung entfernen"
+          }
+        }
+      }
+    },
+    "Reps" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wdh."
+          }
+        }
+      }
+    },
     "Rest" : {
       "localizations" : {
         "de" : {
@@ -1107,6 +1447,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Speichern"
+          }
+        }
+      }
+    },
+    "Save workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workout speichern"
+          }
+        }
+      }
+    },
+    "Search exercises" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übungen suchen"
+          }
+        }
+      }
+    },
+    "Seconds" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sekunden"
           }
         }
       }
@@ -1151,6 +1521,16 @@
         }
       }
     },
+    "Set as goal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als Ziel setzen"
+          }
+        }
+      }
+    },
     "Sets" : {
       "localizations" : {
         "de" : {
@@ -1167,6 +1547,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Einstellungen"
+          }
+        }
+      }
+    },
+    "Sign out" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abmelden"
           }
         }
       }
@@ -1207,6 +1597,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stufe"
+          }
+        }
+      }
+    },
+    "Stage %lld / %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stufe %1$lld / %2$lld"
           }
         }
       }
@@ -1281,6 +1681,26 @@
         }
       }
     },
+    "Subscription" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abo"
+          }
+        }
+      }
+    },
+    "Target %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziel %@"
+          }
+        }
+      }
+    },
     "Target %@ · no time yet" : {
       "localizations" : {
         "de" : {
@@ -1297,6 +1717,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Technik"
+          }
+        }
+      }
+    },
+    "Terms" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nutzungsbedingungen"
           }
         }
       }
@@ -1341,6 +1771,23 @@
         }
       }
     },
+    "Time for your workout. Your plan is ready." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time for your workout. Your plan is ready."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeit für dein Training. Dein Plan wartet."
+          }
+        }
+      }
+    },
     "Trained" : {
       "localizations" : {
         "de" : {
@@ -1351,12 +1798,32 @@
         }
       }
     },
+    "Training reminder" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trainingserinnerung"
+          }
+        }
+      }
+    },
     "Unlock all plans" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alle Pläne freischalten"
+          }
+        }
+      }
+    },
+    "View subscription" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abo ansehen"
           }
         }
       }
@@ -1387,6 +1854,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Workouts"
+          }
+        }
+      }
+    },
+    "You will get a notification on %@ at %@." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du bekommst %1$@ um %2$@ eine Mitteilung."
           }
         }
       }

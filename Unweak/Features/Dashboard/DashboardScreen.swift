@@ -3,6 +3,7 @@ import SwiftUI
 /// Dashboard tab: this week, the active goal, the next workout and achievements.
 struct DashboardScreen: View {
     @Environment(UserDataStore.self) private var store
+    @Environment(ReminderSettings.self) private var reminders
     private let catalog: Catalog
 
     init(catalog: Catalog = .main) {
@@ -10,7 +11,7 @@ struct DashboardScreen: View {
     }
 
     var body: some View {
-        let target = WeeklyTarget.current()
+        let target = reminders.weeklyTarget
         let stats = JournalStats(entries: store.entries)
         let week = stats.week(containing: .now, target: target)
         let streak = stats.streak(at: .now, target: target)
@@ -40,7 +41,7 @@ struct DashboardScreen: View {
             }
 
             NavigationLink {
-                ComingLaterScreen(title: "Create workout")
+                CustomWorkoutEditor(workout: nil, catalog: catalog)
             } label: {
                 ChipLabel("Create custom workout", systemImage: "plus", style: .dashed, expands: true)
             }
@@ -131,7 +132,7 @@ private struct GoalPanel: View {
                 HStack(alignment: .center, spacing: 12) {
                     VStack(alignment: .leading, spacing: 8) {
                         NavigationLink {
-                            ComingLaterScreen(title: "Choose goal")
+                            GoalPickerScreen(catalog: catalog)
                         } label: {
                             HStack(spacing: 4) {
                                 Text("Next goal")
@@ -216,7 +217,7 @@ private struct NextWorkoutCard: View {
         HStack(spacing: 14) {
             VStack(alignment: .leading, spacing: 6) {
                 MonoLabel("Next workout", color: Theme.onAccent, bold: true)
-                Text(catalog: plan.nameKey)
+                plan.title
                     .font(.buttonTitle)
                     .multilineTextAlignment(.leading)
                 ValueText.minutes(plan.estimatedSeconds)

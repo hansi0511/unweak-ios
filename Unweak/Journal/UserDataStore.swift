@@ -9,6 +9,29 @@ struct UserData: Codable, Equatable, Sendable {
     var activeGoalID: String?
     /// Number of reached stages per skill goal.
     var reachedStages: [String: Int] = [:]
+    var customWorkouts: [CustomWorkout] = []
+
+    init(
+        entries: [JournalEntry] = [],
+        activeGoalID: String? = nil,
+        reachedStages: [String: Int] = [:],
+        customWorkouts: [CustomWorkout] = []
+    ) {
+        self.entries = entries
+        self.activeGoalID = activeGoalID
+        self.reachedStages = reachedStages
+        self.customWorkouts = customWorkouts
+    }
+
+    /// Fields missing in files from older versions get their defaults.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        version = try container.decodeIfPresent(Int.self, forKey: .version) ?? 1
+        entries = try container.decodeIfPresent([JournalEntry].self, forKey: .entries) ?? []
+        activeGoalID = try container.decodeIfPresent(String.self, forKey: .activeGoalID)
+        reachedStages = try container.decodeIfPresent([String: Int].self, forKey: .reachedStages) ?? [:]
+        customWorkouts = try container.decodeIfPresent([CustomWorkout].self, forKey: .customWorkouts) ?? []
+    }
 }
 
 /// Holds and persists `UserData` in `Application Support/userdata.json`.
@@ -23,10 +46,17 @@ final class UserDataStore {
     /// - Parameter fileURL: `nil` keeps everything in memory (previews).
     init(fileURL: URL?, initial: UserData = UserData()) {
         self.fileURL = fileURL
-        if let fileURL, let stored = try? Data(contentsOf: fileURL),
-           let decoded = try? JSONDecoder.userData.decode(UserData.self, from: stored) {
+        guard let fileURL, let stored = try? Data(contentsOf: fileURL) else {
+            data = initial
+            return
+        }
+        if let decoded = try? JSONDecoder.userData.decode(UserData.self, from: stored) {
             data = decoded
         } else {
+            // Never overwrite a file we cannot read: keep a copy next to it first.
+            let backup = fileURL.deletingPathExtension()
+                .appendingPathExtension("unreadable-\(Int(Date.now.timeIntervalSince1970)).json")
+            try? FileManager.default.copyItem(at: fileURL, to: backup)
             data = initial
         }
     }
@@ -53,6 +83,34 @@ final class UserDataStore {
         }
         persist()
     }
+
+    // MARK: Custom workouts
+
+    var customWorkouts: [CustomWorkout] { data.customWorkouts }
+
+    /// Adds the workout or replaces the one with the same ID.
+    func save(_ workout: CustomWorkout) {
+        if let index = data.customWorkouts.firstIndex(where: { $0.id == workout.id }) {
+            data.customWorkouts[index] = workout
+        } else {
+            data.customWorkouts.append(workout)
+        }
+        persist()
+    }
+
+    /// Removes the workout. Journal entries of it stay and show as "Workout".
+    func delete(_ workout: CustomWorkout) {
+        data.customWorkouts.removeAll { $0.id == workout.id }
+        persist()
+    }
+
+    /// Catalog plan or custom workout for a plan ID.
+    func plan(_ id: String, in catalog: Catalog) -> WorkoutPlan? {
+        if let plan = catalog.plan(id) { return plan }
+        return data.customWorkouts.first { $0.planID == id }?.plan(in: catalog)
+    }
+
+    // MARK: Goals
 
     func setActiveGoal(_ goalID: String) {
         data.activeGoalID = goalID

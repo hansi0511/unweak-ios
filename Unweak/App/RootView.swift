@@ -29,8 +29,12 @@ enum AppTab: CaseIterable, Identifiable {
 /// navigation stack alive while another tab is shown.
 struct RootView: View {
     @AppStorage(Accent.storageKey) private var accent: Accent = .default
+    @AppStorage(AppLanguage.storageKey) private var storedLanguage = ""
     @State private var navigation = AppNavigation()
     @State private var store = UserDataStore(fileURL: UserDataStore.defaultFileURL)
+    @State private var reminders = ReminderSettings()
+
+    private var language: AppLanguage { AppLanguage.resolve(stored: storedLanguage) }
 
     var body: some View {
         @Bindable var navigation = navigation
@@ -51,9 +55,15 @@ struct RootView: View {
         .background(Theme.background.ignoresSafeArea())
         .environment(navigation)
         .environment(store)
+        .environment(reminders)
         .environment(\.accent, accent)
+        .environment(\.locale, language.locale)
         .tint(accent.color)
         .preferredColorScheme(.dark)
+        .task {
+            // Re-apply the reminders at launch, e.g. after the system cleared them.
+            await ReminderScheduler.apply(reminders.schedule, language: language)
+        }
     }
 
     /// The journal stack is driven by a path so that a finished workout can open its entry.

@@ -34,6 +34,7 @@ struct Badge: View {
         case free
         case subscription
         case selected
+        case custom
     }
 
     @Environment(\.accent) private var accent
@@ -48,6 +49,7 @@ struct Badge: View {
         case .free: "Free"
         case .subscription: "Pro"
         case .selected: "Selected"
+        case .custom: "Custom"
         }
     }
 
