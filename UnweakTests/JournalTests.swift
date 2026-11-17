@@ -291,6 +291,20 @@ struct UserDataStoreTests {
         #expect(store.reachedStages(of: time) == 0)
     }
 
+    @Test func stagesCanBeSetAndTakenBack() throws {
+        let store = UserDataStore(fileURL: nil)
+        let skill = try #require(Catalog.main.goals.first { $0.id == "frontLever" })
+        store.setReachedStages(3, of: skill)
+        #expect(store.reachedStages(of: skill) == 3)
+        // Taking back stage 2 (index 1) also takes back stage 3.
+        store.setReachedStages(1, of: skill)
+        #expect(store.reachedStages(of: skill) == 1)
+        store.setReachedStages(-2, of: skill)
+        #expect(store.reachedStages(of: skill) == 0)
+        store.setReachedStages(9, of: skill)
+        #expect(store.reachedStages(of: skill) == 5)
+    }
+
     @Test func unreadableFileStartsEmpty() throws {
         let file = temporaryFile()
         defer { try? FileManager.default.removeItem(at: file.deletingLastPathComponent()) }

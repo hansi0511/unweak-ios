@@ -117,6 +117,8 @@ struct SkillScreen: View {
     @Environment(SubscriptionStore.self) private var subscription
     @State private var isShowingSubscription = false
     @State private var shareContent: ShareContent?
+    /// Index of the reached stage the user wants to take back, while asking.
+    @State private var stageToTakeBack: Int?
     private let goal: Goal
     private let catalog: Catalog
 
@@ -197,10 +199,32 @@ struct SkillScreen: View {
             SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, label: "Goal progress")
 
             if case .stages = goal.kind {
-                VStack(spacing: 6) {
+                VStack(spacing: 8) {
                     ForEach(Array(goal.stageKeys.enumerated()), id: \.offset) { index, key in
-                        stageRow(number: index + 1, key: key, isReached: index < progress.reachedStages)
+                        stageRow(index: index, key: key, progress: progress)
                     }
+                }
+                .confirmationDialog(
+                    takeBackTitle,
+                    isPresented: Binding(
+                        get: { stageToTakeBack != nil },
+                        set: { if !$0 { stageToTakeBack = nil } }
+                    ),
+                    titleVisibility: .visible
+                ) {
+                    Button("Take back", role: .destructive) {
+                        if let index = stageToTakeBack {
+                            withAnimation(.easeOut(duration: 0.2)) {
+                                store.setReachedStages(index, of: goal)
+                            }
+                        }
+                        stageToTakeBack = nil
+                    }
+                    Button("Cancel", role: .cancel) {
+                        stageToTakeBack = nil
+                    }
+                } message: {
+                    Text("Later stages are taken back too.")
                 }
                 if !progress.isComplete {
                     Button {
@@ -224,24 +248,68 @@ struct SkillScreen: View {
         }
     }
 
-    private func stageRow(number: Int, key: String, isReached: Bool) -> some View {
-        HStack(spacing: 12) {
-            Image(systemName: isReached ? "checkmark.square.fill" : "square")
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundStyle(isReached ? accent.color : Theme.lineStrong)
-                .accessibilityHidden(true)
-            Text(verbatim: String(format: "%02d", number))
-                .font(.monoBold)
-                .foregroundStyle(Theme.textMuted)
-                .accessibilityHidden(true)
-            Text(catalog: key)
-                .font(.text(15))
-                .foregroundStyle(isReached ? Theme.text : Theme.textSoft)
-            Spacer(minLength: 0)
+    private var takeBackTitle: Text {
+        guard let index = stageToTakeBack, goal.stageKeys.indices.contains(index) else { return Text(verbatim: "") }
+        return Text("Take back “\(Text(catalog: goal.stageKeys[index]))”?")
+    }
+
+    /// One stage: small animation, number, name and check box. Tapping an open stage
+    /// reaches it (and all before it); tapping a reached one asks to take it back.
+    private func stageRow(index: Int, key: String, progress: GoalProgress) -> some View {
+        let isReached = index < progress.reachedStages
+        let isCurrent = index == progress.currentStageIndex && !progress.isComplete
+        let animations = goal.stageAnimations ?? []
+        return Button {
+            guard subscription.access.canUseSkills else {
+                isShowingSubscription = true
+                return
+            }
+            if isReached {
+                stageToTakeBack = index
+            } else {
+                withAnimation(.easeOut(duration: 0.2)) {
+                    store.setReachedStages(index + 1, of: goal)
+                }
+            }
+        } label: {
+            HStack(spacing: 12) {
+                if animations.indices.contains(index) {
+                    StickyManView(animations[index])
+                        .frame(width: 64, height: 56)
+                        .opacity(isReached || isCurrent ? 1 : 0.55)
+                }
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(spacing: 6) {
+                        MonoLabel(verbatim: String(format: "%02d", index + 1))
+                        if isCurrent {
+                            MonoLabel("Now", color: accent.color, bold: true)
+                        }
+                    }
+                    Text(catalog: key)
+                        .font(.textSemibold(15))
+                        .foregroundStyle(isReached || isCurrent ? Theme.text : Theme.textSoft)
+                        .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: isReached ? "checkmark.square.fill" : "square")
+                    .font(.system(size: 22, weight: .semibold))
+                    .foregroundStyle(isReached ? accent.color : Theme.lineStrong)
+                    .frame(width: Theme.Layout.minTouchTarget, height: Theme.Layout.minTouchTarget)
+                    .accessibilityHidden(true)
+            }
+            .padding(.vertical, 6)
+            .padding(.horizontal, 10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Theme.surface)
+            .overlay(Rectangle().strokeBorder(isCurrent ? accent.color : Theme.line, lineWidth: isCurrent ? 2 : 1))
+            .contentShape(Rectangle())
         }
-        .frame(minHeight: 32)
-        .accessibilityElement(children: .combine)
+        .buttonStyle(PressFeedbackStyle())
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("Stage \(index + 1): \(Text(catalog: key))"))
         .accessibilityValue(isReached ? Text("Reached") : Text("Open"))
+        .accessibilityHint(isReached ? Text("Take back this stage") : Text("Mark as reached"))
     }
 
     @ViewBuilder
