@@ -114,7 +114,7 @@
 - Kopf: Zurück, bei Abo-Skills Marke „Abo“, rechts Info-Symbol, Label „Skill“, Name.
 - Panel mit animiertem Sticky Man.
 - Fortschritt: Stand rechts, fünf Segmente. Bei Skills mit Stufen die fünf Stufen als Karten: kleine Sticky-Man-Animation der Stufe, Nummer, Name, Info-Symbol und rechts ein Schalter „Beherrscht“. Die Stufe, an der der Nutzer arbeitet, ist mit „Jetzt“ und Rahmen in Akzentfarbe markiert. Tipp auf die Karte öffnet das Info-Fenster der Stufe. Schalter an markiert die Stufe und alle davor als erreicht; Schalter aus nimmt sie nach Rückfrage zurück, spätere Stufen ebenfalls. Darunter der gestrichelte Knopf „Stufe erreicht“. Bei Zeit-Skills Hinweis, dass die Bestzeit aus dem Tagebuch kommt.
-- Info-Fenster (Blatt, über das Info-Symbol oben rechts für den Skill oder über eine Stufen-Karte): Schließen-Knopf, „Skill“ bzw. „Stufe 2 / 5“, Name, Animation, Abschnitte „Muskeln“ (beanspruchte Muskeln) und „Was es bringt“ (kurze Erklärung).
+- Info-Fenster (Blatt, über das Info-Symbol oben rechts für den Skill oder über eine Stufen-Karte): Schließen-Knopf, „Skill“ bzw. „Stufe 2 / 5“, Name, Animation, Abschnitte „Muskeln“ (beanspruchte Muskeln) und „So geht’s“ (wie die Übung aussieht und was sie bringt).
 - „Als Ziel setzen“ (Hauptknopf) oder, wenn der Skill das aktive Ziel ist, Marke „Gewählt“ mit kurzem Hinweis.
 - „Workouts für diesen Skill“, von leicht nach schwer, wie in der Workouts-Liste.
 

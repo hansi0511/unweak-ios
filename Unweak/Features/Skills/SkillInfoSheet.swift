@@ -60,7 +60,7 @@ struct SkillInfoSheet: View {
             }
 
             section("Muscles", key: stageIndex.map { goal.stageMusclesKeys[$0] } ?? goal.musclesKey)
-            section("What it brings", key: stageIndex.map { goal.stageBenefitKeys[$0] } ?? goal.benefitKey)
+            section("How it’s done", key: stageIndex.map { goal.stageBenefitKeys[$0] } ?? goal.benefitKey)
         }
         .presentationDetents([.large])
         .presentationBackground(Theme.background)

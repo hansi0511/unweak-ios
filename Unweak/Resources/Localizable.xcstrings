@@ -1031,6 +1031,16 @@
         }
       }
     },
+    "How it’s done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So geht’s"
+          }
+        }
+      }
+    },
     "Image" : {
       "localizations" : {
         "de" : {
@@ -2574,16 +2584,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wochen in Folge"
-          }
-        }
-      }
-    },
-    "What it brings" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Was es bringt"
           }
         }
       }
