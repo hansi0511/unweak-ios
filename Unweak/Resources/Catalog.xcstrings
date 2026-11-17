@@ -1837,6 +1837,40 @@
         }
       }
     },
+    "goal.frontLever.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hält den ganzen Körper waagrecht unter der Stange, mit gestreckten Armen. Baut Zugkraft und Ganzkörperspannung auf wie kaum eine andere Übung."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Holds the whole body horizontal under the bar with straight arms. Builds pulling strength and full-body tension like few other exercises."
+          }
+        }
+      }
+    },
+    "goal.frontLever.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latissimus, Rumpf, hintere Schultern, Gesäß, Griffkraft"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lats, core, rear shoulders, glutes, grip"
+          }
+        }
+      }
+    },
     "goal.frontLever.name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1871,6 +1905,40 @@
         }
       }
     },
+    "goal.frontLever.stage1.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Knie an der Brust halten den Hebel kurz. Du lernst, den Körper mit gestreckten Armen waagrecht zu halten: die Basis für alle weiteren Stufen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knees at the chest keep the lever short. You learn to hold your body horizontal with straight arms: the base for every further stage."
+          }
+        }
+      }
+    },
+    "goal.frontLever.stage1.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latissimus, Rumpf, hintere Schultern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lats, core, rear shoulders"
+          }
+        }
+      }
+    },
     "goal.frontLever.stage2" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1884,6 +1952,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Advanced tuck"
+          }
+        }
+      }
+    },
+    "goal.frontLever.stage2.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Rücken ist flach, die Oberschenkel zeigen nach oben. Der längere Hebel belastet Latissimus und Rumpf deutlich stärker."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The back is flat and the thighs point up. The longer lever puts clearly more load on lats and core."
+          }
+        }
+      }
+    },
+    "goal.frontLever.stage2.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latissimus, Rumpf, hintere Schultern, unterer Rücken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lats, core, rear shoulders, lower back"
           }
         }
       }
@@ -1905,6 +2007,40 @@
         }
       }
     },
+    "goal.frontLever.stage3.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Bein ist gestreckt, das andere bleibt gebeugt. Überbrückt den großen Schritt vom Tuck zu den offenen Beinpositionen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One leg is straight, the other stays bent. Bridges the big step from the tuck to the open-leg positions."
+          }
+        }
+      }
+    },
+    "goal.frontLever.stage3.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latissimus, Rumpf, Gesäß, Hüftbeuger"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lats, core, glutes, hip flexors"
+          }
+        }
+      }
+    },
     "goal.frontLever.stage4" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1922,6 +2058,40 @@
         }
       }
     },
+    "goal.frontLever.stage4.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestreckte, gespreizte Beine: fast der volle Hebel, die Grätsche verkürzt ihn nur etwas. Kraft nahe am Ziel."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Straight, spread legs: almost the full lever, but the spread shortens it a little. Strength close to the goal."
+          }
+        }
+      }
+    },
+    "goal.frontLever.stage4.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latissimus, Rumpf, Gesäß, unterer Rücken, Adduktoren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lats, core, glutes, lower back, adductors"
+          }
+        }
+      }
+    },
     "goal.frontLever.stage5" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1935,6 +2105,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Full front lever"
+          }
+        }
+      }
+    },
+    "goal.frontLever.stage5.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Körper gestreckt von Kopf bis Fuß und waagrecht, mit gestreckten Armen gehalten: das Ziel dieses Skills."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Body straight from head to feet and horizontal, held with straight arms: the goal of this skill."
+          }
+        }
+      }
+    },
+    "goal.frontLever.stage5.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latissimus, Rumpf, Gesäß, hintere Schultern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lats, core, glutes, rear shoulders"
+          }
+        }
+      }
+    },
+    "goal.handstandPushUp.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das ganze Körpergewicht kopfüber drücken. Baut starke, stabile Schultern und volle Kontrolle im Handstand auf."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pressing your whole bodyweight upside down. Builds strong, stable shoulders and full control in the handstand."
+          }
+        }
+      }
+    },
+    "goal.handstandPushUp.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schultern, Trizeps, obere Brust, oberer Rücken, Rumpf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoulders, triceps, upper chest, upper back, core"
           }
         }
       }
@@ -1973,6 +2211,40 @@
         }
       }
     },
+    "goal.handstandPushUp.stage1.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hüfte hoch, Körper im umgekehrten V. Du lernst, mit einem Teil deines Gewichts senkrecht zu drücken."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips high, body in an upside-down V. You learn to press vertically with part of your bodyweight."
+          }
+        }
+      }
+    },
+    "goal.handstandPushUp.stage1.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schultern, Trizeps, obere Brust"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoulders, triceps, upper chest"
+          }
+        }
+      }
+    },
     "goal.handstandPushUp.stage2" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1986,6 +2258,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elevated pike push-up"
+          }
+        }
+      }
+    },
+    "goal.handstandPushUp.stage2.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Füße auf einem Kasten: mehr Gewicht auf den Händen und ein steilerer Winkel, näher am Handstand-Liegestütz."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feet on a box: more weight on your hands and a steeper angle, closer to the handstand push-up."
+          }
+        }
+      }
+    },
+    "goal.handstandPushUp.stage2.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schultern, Trizeps, Rumpf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoulders, triceps, core"
           }
         }
       }
@@ -2007,6 +2313,40 @@
         }
       }
     },
+    "goal.handstandPushUp.stage3.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das volle Körpergewicht kopfüber mit gestreckten Armen tragen. Gewöhnt dich an den Handstand und stärkt Schultern und Handgelenke."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carry your full bodyweight upside down on straight arms. Gets you used to the handstand and strengthens shoulders and wrists."
+          }
+        }
+      }
+    },
+    "goal.handstandPushUp.stage3.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schultern, Trizeps, Rumpf, Handgelenke"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoulders, triceps, core, wrists"
+          }
+        }
+      }
+    },
     "goal.handstandPushUp.stage4" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2020,6 +2360,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Half wall handstand push-up"
+          }
+        }
+      }
+    },
+    "goal.handstandPushUp.stage4.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erste Drückbewegungen mit vollem Körpergewicht, aber nur halb nach unten. Baut Kraft im oberen Teil der Bewegung auf."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First presses with your full bodyweight, but only halfway down. Builds strength in the top part of the movement."
+          }
+        }
+      }
+    },
+    "goal.handstandPushUp.stage4.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schultern, Trizeps, oberer Rücken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoulders, triceps, upper back"
           }
         }
       }
@@ -2041,6 +2415,74 @@
         }
       }
     },
+    "goal.handstandPushUp.stage5.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit dem Kopf bis zum Boden und zurück zu gestreckten Armen, mit vollem Körpergewicht: das Ziel dieses Skills."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Head down to the floor and back up to straight arms, with your full bodyweight: the goal of this skill."
+          }
+        }
+      }
+    },
+    "goal.handstandPushUp.stage5.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schultern, Trizeps, obere Brust, Rumpf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoulders, triceps, upper chest, core"
+          }
+        }
+      }
+    },
+    "goal.lSit30.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dreißig Sekunden im Stütz mit gestreckten Beinen vor dem Körper. Baut Kompressionskraft und stabile Schultern auf, die Basis für viele Turnelemente."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thirty seconds in support with straight legs held in front. Builds compression strength and stable shoulders, the base for many gymnastics skills."
+          }
+        }
+      }
+    },
+    "goal.lSit30.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hüftbeuger, Bauch, Trizeps, Schultern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hip flexors, abs, triceps, shoulders"
+          }
+        }
+      }
+    },
     "goal.lSit30.name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2054,6 +2496,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "L-sit 30 s"
+          }
+        }
+      }
+    },
+    "goal.muscleUp.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus dem Hang unter der Stange in einer Bewegung in den Stütz darüber. Verbindet explosives Ziehen und Drücken."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From hanging below the bar to support above it in one movement. Combines explosive pulling and pushing."
+          }
+        }
+      }
+    },
+    "goal.muscleUp.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latissimus, Bizeps, Brust, Trizeps, Schultern, Rumpf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lats, biceps, chest, triceps, shoulders, core"
           }
         }
       }
@@ -2092,6 +2568,40 @@
         }
       }
     },
+    "goal.muscleUp.stage1.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zehn saubere Klimmzüge am Stück: die Zugkraft, auf der der Muscle-up aufbaut."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten clean pull-ups in a row: the pulling strength the muscle-up is built on."
+          }
+        }
+      }
+    },
+    "goal.muscleUp.stage1.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latissimus, Bizeps, hintere Schultern, Griffkraft"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lats, biceps, rear shoulders, grip"
+          }
+        }
+      }
+    },
     "goal.muscleUp.stage2" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2105,6 +2615,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chest-to-bar pull-up"
+          }
+        }
+      }
+    },
+    "goal.muscleUp.stage2.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Höher und schneller ziehen, bis die Brust die Stange berührt. Diese Höhe brauchst du, um über die Stange zu kommen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull higher and faster until your chest touches the bar. You need this height to get over the bar."
+          }
+        }
+      }
+    },
+    "goal.muscleUp.stage2.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latissimus, Bizeps, mittlerer Rücken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lats, biceps, middle back"
           }
         }
       }
@@ -2126,6 +2670,40 @@
         }
       }
     },
+    "goal.muscleUp.stage3.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zehn Dips am Stück: die Drückkraft für den Teil über der Stange."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten dips in a row: the pushing strength for the part above the bar."
+          }
+        }
+      }
+    },
+    "goal.muscleUp.stage3.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brust, Trizeps, vordere Schultern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chest, triceps, front shoulders"
+          }
+        }
+      }
+    },
     "goal.muscleUp.stage4" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2143,6 +2721,40 @@
         }
       }
     },
+    "goal.muscleUp.stage4.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Im Stütz über der Stange beginnen und langsam in den Hang ablassen. Lehrt den Übergang über die Stange unter Kontrolle."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start in support above the bar and lower yourself slowly to the hang. Teaches the transition over the bar under control."
+          }
+        }
+      }
+    },
+    "goal.muscleUp.stage4.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latissimus, Brust, Trizeps, Schultern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lats, chest, triceps, shoulders"
+          }
+        }
+      }
+    },
     "goal.muscleUp.stage5" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2156,6 +2768,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muscle-up"
+          }
+        }
+      }
+    },
+    "goal.muscleUp.stage5.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziehen und Drücken in einer Bewegung vom Hang in den Stütz: das Ziel dieses Skills."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull and push in one movement from the hang to the support: the goal of this skill."
+          }
+        }
+      }
+    },
+    "goal.muscleUp.stage5.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latissimus, Brust, Trizeps, Schultern, Rumpf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lats, chest, triceps, shoulders, core"
+          }
+        }
+      }
+    },
+    "goal.pistolSquat.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine volle Kniebeuge auf einem Bein. Baut Kraft, Gleichgewicht und Beweglichkeit in Sprunggelenk und Hüfte auf, Bein für Bein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A full squat on one leg. Builds strength, balance and mobility in ankle and hip, one leg at a time."
+          }
+        }
+      }
+    },
+    "goal.pistolSquat.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oberschenkel vorne, Gesäß, Adduktoren, Waden, Rumpf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quadriceps, glutes, adductors, calves, core"
           }
         }
       }
@@ -2194,6 +2874,40 @@
         }
       }
     },
+    "goal.pistolSquat.stage1.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit beiden Beinen ganz nach unten. Öffnet Sprunggelenke und Hüfte für die tiefe Position, die du später auf einem Bein brauchst."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Both legs, all the way down. Opens ankles and hips for the deep position you need later on one leg."
+          }
+        }
+      }
+    },
+    "goal.pistolSquat.stage1.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oberschenkel vorne, Gesäß, Adduktoren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quadriceps, glutes, adductors"
+          }
+        }
+      }
+    },
     "goal.pistolSquat.stage2" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2207,6 +2921,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lunge"
+          }
+        }
+      }
+    },
+    "goal.pistolSquat.stage2.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das meiste Gewicht auf dem vorderen Bein, das hintere stützt. Erste Kraft und Balance auf einem Bein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Most of the weight on the front leg, the back leg supports. First single-leg strength and balance."
+          }
+        }
+      }
+    },
+    "goal.pistolSquat.stage2.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oberschenkel vorne, Gesäß, Oberschenkel hinten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quadriceps, glutes, hamstrings"
           }
         }
       }
@@ -2228,6 +2976,40 @@
         }
       }
     },
+    "goal.pistolSquat.stage3.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf einem Bein auf einen Kasten setzen und wieder aufstehen. Der Kasten begrenzt die Tiefe, so wächst die Kraft Schritt für Schritt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sit back onto a box on one leg and stand up again. The box limits the depth, so strength grows step by step."
+          }
+        }
+      }
+    },
+    "goal.pistolSquat.stage3.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oberschenkel vorne, Gesäß, Rumpf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quadriceps, glutes, core"
+          }
+        }
+      }
+    },
     "goal.pistolSquat.stage4" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2245,6 +3027,40 @@
         }
       }
     },
+    "goal.pistolSquat.stage4.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volle Tiefe auf einem Bein, die Hände an einer Stange helfen beim Gleichgewicht. Kraft und Beweglichkeit ganz unten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full depth on one leg, the hands on a pole help with balance. Strength and mobility at the bottom."
+          }
+        }
+      }
+    },
+    "goal.pistolSquat.stage4.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oberschenkel vorne, Gesäß, Waden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quadriceps, glutes, calves"
+          }
+        }
+      }
+    },
     "goal.pistolSquat.stage5" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2258,6 +3074,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Full pistol squat"
+          }
+        }
+      }
+    },
+    "goal.pistolSquat.stage5.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf einem Bein ganz nach unten und wieder hoch, ohne Hilfe: das Ziel dieses Skills."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All the way down on one leg and back up, without help: the goal of this skill."
+          }
+        }
+      }
+    },
+    "goal.pistolSquat.stage5.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oberschenkel vorne, Gesäß, Adduktoren, Rumpf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quadriceps, glutes, adductors, core"
+          }
+        }
+      }
+    },
+    "goal.plank5Min.benefit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fünf Minuten im geraden Unterarmstütz. Baut Ausdauer im Rumpf auf, verbessert die Haltung und schützt den unteren Rücken im Alltag."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Five minutes in a straight forearm plank. Builds endurance in the trunk, improves posture and protects the lower back in everyday life."
+          }
+        }
+      }
+    },
+    "goal.plank5Min.muscles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiefe Bauchmuskeln, gerader Bauch, Schultern, Gesäß"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deep abdominal muscles, straight abs, shoulders, glutes"
           }
         }
       }

@@ -231,6 +231,16 @@
         }
       }
     },
+    "About this skill" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Über diesen Skill"
+          }
+        }
+      }
+    },
     "Accent color" : {
       "localizations" : {
         "de" : {
@@ -1221,12 +1231,22 @@
         }
       }
     },
-    "Mark as reached" : {
+    "Mastered" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Als erreicht markieren"
+            "value" : "Beherrscht"
+          }
+        }
+      }
+    },
+    "Mastered: %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beherrscht: %@"
           }
         }
       }
@@ -1277,6 +1297,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Muscle-up"
+          }
+        }
+      }
+    },
+    "Muscles" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muskeln"
           }
         }
       }
@@ -1721,16 +1751,6 @@
         }
       }
     },
-    "Reached" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erreicht"
-          }
-        }
-      }
-    },
     "Record: %@" : {
       "localizations" : {
         "de" : {
@@ -2031,6 +2051,16 @@
         }
       }
     },
+    "Shows muscles and benefits" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeigt Muskeln und Nutzen"
+          }
+        }
+      }
+    },
     "Sign out" : {
       "localizations" : {
         "de" : {
@@ -2247,16 +2277,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zurücknehmen"
-          }
-        }
-      }
-    },
-    "Take back this stage" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stufe zurücknehmen"
           }
         }
       }
@@ -2554,6 +2574,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wochen in Folge"
+          }
+        }
+      }
+    },
+    "What it brings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was es bringt"
           }
         }
       }
