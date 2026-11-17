@@ -314,34 +314,37 @@ private struct SkillTeaser: View {
     }
 }
 
-/// Up to five suggested workouts as tiles that scroll sideways, in order: numbered
-/// 01 to 05 with an arrow between them; the first one says "Up next" and stands out in
-/// the accent color. Each tile starts its workout.
+/// Up to five suggested workouts as a carousel: one tile at a time sits in the middle,
+/// its neighbours peek in at the sides, and a swipe snaps to the next one. Numbered 01
+/// to 05; the first says "Up next" and stands out in the accent color.
 private struct NextWorkoutsRow: View {
     let plans: [WorkoutPlan]
     let catalog: Catalog
 
+    /// How far the neighbouring tiles peek in at each side.
+    private static let peek: CGFloat = 36
+    private static let spacing: CGFloat = 10
+
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 6) {
+            LazyHStack(spacing: Self.spacing) {
                 ForEach(Array(plans.enumerated()), id: \.element.id) { index, plan in
-                    if index > 0 {
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundStyle(Theme.textMuted)
-                            .accessibilityHidden(true)
-                    }
                     NavigationLink {
                         TrainingScreen(plan: plan, catalog: catalog)
                     } label: {
                         NextWorkoutTile(plan: plan, position: index + 1)
                     }
                     .buttonStyle(PressFeedbackStyle())
+                    .containerRelativeFrame(.horizontal) { width, _ in
+                        width - 2 * Self.peek
+                    }
                 }
             }
-            // The row runs to the screen edges while the tiles start in line with the content.
-            .padding(.horizontal, Theme.Layout.screenEdge)
+            .scrollTargetLayout()
         }
+        .scrollTargetBehavior(.viewAligned)
+        .contentMargins(.horizontal, Self.peek, for: .scrollContent)
+        // The carousel uses the full screen width.
         .padding(.horizontal, -Theme.Layout.screenEdge)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text("Next workouts"))
@@ -389,7 +392,7 @@ private struct NextWorkoutTile: View {
             Spacer(minLength: 0)
         }
         .padding(.horizontal, 12)
-        .frame(width: 232, height: 84, alignment: .leading)
+        .frame(maxWidth: .infinity, minHeight: 84, maxHeight: 84, alignment: .leading)
         .background(isFirst ? Theme.surfaceSelected : Theme.surface)
         .overlay(Rectangle().strokeBorder(isFirst ? accent.color : Theme.line, lineWidth: isFirst ? 2 : 1))
         .contentShape(Rectangle())

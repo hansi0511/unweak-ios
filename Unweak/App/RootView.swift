@@ -12,7 +12,7 @@ enum AppTab: CaseIterable, Identifiable {
         switch self {
         case .me: "Me"
         case .workouts: "Workouts"
-        case .journal: "Journal"
+        case .journal: "Journey"
         }
     }
 
@@ -20,7 +20,7 @@ enum AppTab: CaseIterable, Identifiable {
         switch self {
         case .me: "person"
         case .workouts: "figure.strengthtraining.functional"
-        case .journal: "list.bullet.rectangle"
+        case .journal: "map"
         }
     }
 }

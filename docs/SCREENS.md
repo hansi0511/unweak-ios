@@ -1,6 +1,6 @@
 # Screens
 
-13 Screens in Version 1. Die untere Navigation hat drei Tabs: Ich, Workouts, Tagebuch. Alle anderen Screens öffnen sich darüber und haben oben links einen Zurück-Knopf.
+13 Screens in Version 1. Die untere Navigation hat drei Tabs: Ich, Workouts, Journey. Alle anderen Screens öffnen sich darüber und haben oben links einen Zurück-Knopf.
 
 ## Navigation
 
@@ -22,11 +22,11 @@
 | Workouts | Abo-Plan ohne Abo | Abo |
 | Workouts | „Eigenes“ | Workout erstellen |
 | Training läuft | „Technik“ | Übungsdetail |
-| Training läuft | „Training beenden und speichern“ | Tagebuch |
-| Tagebuch | Plus oder Eintrag antippen | Tagebucheintrag |
+| Training läuft | „Training beenden und speichern“ | Journey |
+| Journey | Plus oder Training antippen | Tagebucheintrag |
 | Einstellungen | „Abo ansehen“ | Abo |
 | Tagebucheintrag, Ich, Skill | Teilen-Symbol | Teilen |
-| Tagebuch (Erfolge) | Erreichter Erfolg | Teilen |
+| Journey (Achievements) | Erreichter Erfolg | Teilen |
 | Einstellungen | „Abmelden“ | Anmeldung |
 
 ## 1 Ich (Tab)
@@ -36,7 +36,7 @@ Alles passt bei bis zu drei gelernten Skills ohne Scrollen auf ein iPhone 15; be
 - Kopf: Überschrift „Ich“ mit Pfeil in Akzentfarbe als Knopf zum Ich-Bereich (Level, Avatar, Einstellungen), rechts Teilen-Symbol (Woche und Serie).
 - Avatar-Bühne, mittig, höchstens 170 pt: Der Avatar (Körper, Farben und Extra wie gewählt) steht in einem Kreis in seiner Grundfarbe und atmet leicht. Um den Kreis liegt ein Ring aus so vielen Bögen, wie das Wochenziel Trainings hat; geschaffte Bögen leuchten in der Akzentfarbe.
 - Darunter eine dezente Mono-Zeile: „2 / 3 diese Woche · Serie 3 Wochen · Athlet“ (Körpername hell).
-- Die fünf nächsten Workouts als Kacheln (232 × 84 pt), seitlich verschiebbar und klar in Reihenfolge: Nummer 01 bis 05 über der Pose, ein kleiner Pfeil zwischen den Kacheln; daneben Name, Play-Symbol und Dauer. Die erste Kachel trägt „Als Nächstes“, Nummer und Pose in Akzentfarbe und einen Rahmen in Akzentfarbe. Ein Tipp startet das Training. Zuerst die Workouts der gelernten Skills, dann die allgemeinen, jeweils das am längsten nicht trainierte vorn; gratis nur Gratis-Workouts.
+- Die fünf nächsten Workouts als Karussell: Immer eine Kachel (84 pt hoch) steht mittig, die Nachbarn schauen links und rechts 36 pt herein, ein Wischen rastet auf der nächsten ein. Nummer 01 bis 05 über der Pose; daneben Name, Play-Symbol und Dauer. Die erste Kachel trägt „Als Nächstes“, Nummer und Pose in Akzentfarbe und einen Rahmen in Akzentfarbe. Ein Tipp startet das Training. Zuerst die Workouts der gelernten Skills, dann die allgemeinen, jeweils das am längsten nicht trainierte vorn; gratis nur Gratis-Workouts.
 - Nur mit Pro: Label „Deine Skills“ mit Link „Bearbeiten“. Er wechselt in den Workouts-Tab, Bereich „Skills“, zurück an dessen Anfang. Ohne gelernten Skill ein gestrichelter Knopf „Skills wählen“ mit demselben Ziel.
 - Je gelerntem Skill eine schmale Zeile: stille Pose der aktuellen Stufe, Name, Stand („Stufe 2 / 5 · Advanced Tuck“, bei Zeit-Skills „Bestzeit 1:20 / 5:00“ bzw. „Ziel 5:00“), feine Segmente und Pfeil. Ein Tipp öffnet die Skill-Seite; Stufen werden dort markiert.
 - Gratis-Version: statt der Skills eine schmale Zeile „Erreiche deinen ersten Skill“ mit Marke „Abo“, die zur Abo-Seite führt.
@@ -57,12 +57,17 @@ Alles passt bei bis zu drei gelernten Skills ohne Scrollen auf ein iPhone 15; be
 - Zeile mit Pausenzeit und nächster Übung.
 - Großer Knopf „Satz n erledigt“, nach dem letzten Satz „Nächste Übung“. Darunter „Training beenden und speichern“.
 
-## 4 Tagebuch (Tab)
+## 4 Journey (Tab)
 
-- Kopf: Monat, Überschrift, Plus-Knopf.
-- Umschalter mit zwei gleich breiten Feldern: „Tagebuch“ (Standard) und „Erfolge“.
-- **Tagebuch:** drei Kennzahlen (Trainings, Zeit, Rekorde), darunter die Liste: Wochentag und Datum, Sticky-Man-Pose, Planname, Dauer, darunter Übungszusammenfassung oder „Rekord: …“ in Akzentfarbe.
-- **Erfolge:** Zähler „4 / 12“ und alle zwölf Kacheln mit Wert und Bezeichnung, erreichte zuerst. Ein erreichter Erfolg öffnet Teilen.
+Der Tab heißt in beiden Sprachen „Journey“.
+
+- Kopf: Monat, Überschrift „Journey“, Plus-Knopf (Training nachtragen).
+- Umschalter mit zwei gleich breiten Feldern: „Stats“ (Standard) und „Achievements“.
+- **Stats:**
+  - Ganz oben „Rekorde“: der Bestwert jeder bisher trainierten Übung als Kachel (Pose, Wert in Akzentfarbe, Übungsname, Tag, an dem er erreicht wurde), seitlich verschiebbar, die neuesten zuerst. Ohne Trainings entfällt die Reihe.
+  - Darunter die drei Monatszahlen: Trainings, Zeit, Rekorde.
+  - Darunter „Letzte Trainings“: Wochentag und Datum, Sticky-Man-Pose, Planname, Dauer, darunter Übungszusammenfassung oder „Rekord: …“ in Akzentfarbe. Ein Tipp öffnet den Eintrag.
+- **Achievements:** Zähler „4 / 12“ und alle zwölf Kacheln mit Wert und Bezeichnung, erreichte zuerst. Ein erreichter Erfolg öffnet Teilen.
 
 ## 5 Workout erstellen
 
@@ -121,7 +126,7 @@ Alles passt bei bis zu drei gelernten Skills ohne Scrollen auf ein iPhone 15; be
 
 ## 12 Teilen
 
-- Öffnet sich als Blatt aus dem Tagebucheintrag (Teilen-Symbol im Kopf: Workout; im Rekord-Banner: Rekord), dem Tab „Ich“ (Teilen-Symbol im Kopf: Woche und Serie), dem Tagebuch (Bereich „Erfolge“: Tipp auf einen erreichten Erfolg) und der Skill-Seite (Teilen-Symbol beim Fortschritt).
+- Öffnet sich als Blatt aus dem Tagebucheintrag (Teilen-Symbol im Kopf: Workout; im Rekord-Banner: Rekord), dem Tab „Ich“ (Teilen-Symbol im Kopf: Woche und Serie), der Journey (Bereich „Achievements“: Tipp auf einen erreichten Erfolg) und der Skill-Seite (Teilen-Symbol beim Fortschritt).
 - Schließen-Knopf, Überschrift „Teilen“, Auswahl „Video“ (Standard) oder „Bild“ und „Story“ (9:16, Standard) oder „Post“ (4:5).
 - Vorschau (bei Video mit bewegtem Sticky Man; mit „Bewegung reduzieren“ steht er still): Raster-Hintergrund mit Eckmarkierungen in Akzentfarbe, „UNWEAK“ und Untertitel, Sticky Man groß in der Schlüsselpose, Art („Workout geschafft“, „Neuer Rekord“, „Erfolg freigeschaltet“, „Serie“, „Skill-Fortschritt“), Überschrift, Kennzahlen oder Segmente, unten Datum und Hashtags.
 - Hauptknopf „Video teilen“ bzw. „Bild teilen“ öffnet das iOS-Teilen-Menü (1080 px breit, Video als MP4 mit 30 Bildern pro Sekunde, mindestens 6 Sekunden, ohne Ton; dazu ein kurzer Text mit Hashtags). Während das Video entsteht, zeigt eine Segment-Leiste den Fortschritt. Hinweis, dass dort X, Facebook oder Instagram gewählt wird.

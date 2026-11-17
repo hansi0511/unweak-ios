@@ -134,7 +134,7 @@ struct CustomWorkoutEditor: View {
                 dismiss()
             }
         } message: {
-            Text("Journal entries of this workout are kept.")
+            Text("Workouts already saved in your Journey are kept.")
         }
     }
 }

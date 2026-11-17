@@ -1,18 +1,19 @@
 import SwiftUI
 
-/// The two areas of the journal tab.
+/// The two areas of the journey tab.
 private enum JournalArea {
-    case journal
+    /// Records per exercise, month figures and the workouts.
+    case stats
     case achievements
 }
 
-/// Journal tab: month figures and all workouts, newest first, with records highlighted;
-/// or, switched over, all achievements.
+/// Journey tab. "Stats": the best value of every exercise as tiles, the month figures and
+/// all workouts, newest first, with records highlighted. "Achievements": all achievements.
 struct JournalScreen: View {
     @Environment(\.locale) private var locale
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
-    @State private var area: JournalArea = .journal
+    @State private var area: JournalArea = .stats
     @State private var isPickingPlan = false
     @State private var shareContent: ShareContent?
     private let catalog: Catalog
@@ -31,15 +32,15 @@ struct JournalScreen: View {
         let entries = store.sortedEntries
 
         ScreenContainer {
-            ScreenHeader(label: MonoLabel(verbatim: monthTitle), title: "Journal") {
+            ScreenHeader(label: MonoLabel(verbatim: monthTitle), title: "Journey") {
                 IconButton(systemImage: "plus", accessibilityLabel: "Add workout") {
                     isPickingPlan = true
                 }
             }
 
             HStack(spacing: 8) {
-                SelectChip("Journal", isSelected: area == .journal, expands: true) {
-                    area = .journal
+                SelectChip("Stats", isSelected: area == .stats, expands: true) {
+                    area = .stats
                 }
                 SelectChip("Achievements", isSelected: area == .achievements, expands: true) {
                     area = .achievements
@@ -47,7 +48,12 @@ struct JournalScreen: View {
             }
 
             switch area {
-            case .journal:
+            case .stats:
+                let bests = stats.personalBests()
+                if !bests.isEmpty {
+                    PersonalBestsRow(bests: bests, catalog: catalog)
+                }
+
                 HStack(spacing: 10) {
                     MetricTile(value: Text(verbatim: "\(month.workouts)"), label: "Sessions")
                     MetricTile(value: ValueText.totalTime(month.seconds, locale: locale), label: "Time")
@@ -64,7 +70,9 @@ struct JournalScreen: View {
                         }
                     }
                 } else {
-                    VStack(spacing: 10) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        MonoLabel("Recent workouts")
+                            .accessibilityAddTraits(.isHeader)
                         ForEach(entries) { entry in
                             NavigationLink(value: JournalRoute.entry(entry.id)) {
                                 JournalRow(entry: entry, records: stats.records(in: entry), catalog: catalog)
@@ -99,6 +107,68 @@ struct JournalScreen: View {
         .sheet(item: $shareContent) { content in
             ShareSheet(content: content)
         }
+    }
+}
+
+/// The best value of every exercise as tiles that scroll sideways, most recent first.
+private struct PersonalBestsRow: View {
+    let bests: [PersonalBest]
+    let catalog: Catalog
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            MonoLabel("Records")
+                .accessibilityAddTraits(.isHeader)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(bests) { best in
+                        PersonalBestTile(best: best, exercise: catalog.exercise(best.exercise))
+                    }
+                }
+                // The row runs to the screen edges while the tiles start in line with the content.
+                .padding(.horizontal, Theme.Layout.screenEdge)
+            }
+            .padding(.horizontal, -Theme.Layout.screenEdge)
+        }
+    }
+}
+
+/// One exercise's best value: pose, value, exercise name and the day it was reached.
+private struct PersonalBestTile: View {
+    @Environment(\.accent) private var accent
+    @Environment(\.locale) private var locale
+    let best: PersonalBest
+    let exercise: Exercise?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            if let exercise {
+                StickyPoseView(exercise.pose)
+                    .accessibilityHidden(true)
+            }
+            ValueText.result(best.value, unit: best.unit)
+                .font(.metric)
+                .foregroundStyle(accent.color)
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
+            Group {
+                if let exercise {
+                    Text(catalog: exercise.nameKey)
+                } else {
+                    Text(verbatim: best.exercise)
+                }
+            }
+            .font(.textSemibold(13))
+            .foregroundStyle(Theme.text)
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
+            MonoLabel(verbatim: best.date.formatted(.dateTime.day().month(.abbreviated).locale(locale)))
+        }
+        .padding(12)
+        .frame(width: 132, alignment: .leading)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+        .accessibilityElement(children: .combine)
     }
 }
 

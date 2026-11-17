@@ -290,7 +290,7 @@ struct SkillScreen: View {
                     .buttonStyle(PressFeedbackStyle())
                 }
             } else {
-                Text("Your best time comes from the journal.")
+                Text("Your best time comes from your Journey.")
                     .font(.text(13))
                     .foregroundStyle(Theme.textMuted)
             }

@@ -1231,22 +1231,12 @@
         }
       }
     },
-    "Journal" : {
+    "Journey" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tagebuch"
-          }
-        }
-      }
-    },
-    "Journal entries of this workout are kept." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tagebucheinträge dieses Workouts bleiben erhalten."
+            "value" : "Journey"
           }
         }
       }
@@ -2001,6 +1991,16 @@
         }
       }
     },
+    "Recent workouts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letzte Trainings"
+          }
+        }
+      }
+    },
     "Record: %@" : {
       "localizations" : {
         "de" : {
@@ -2457,6 +2457,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Startet das Workout"
+          }
+        }
+      }
+    },
+    "Stats" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stats"
           }
         }
       }
@@ -2918,6 +2928,16 @@
         }
       }
     },
+    "Workouts already saved in your Journey are kept." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bereits gespeicherte Trainings in deiner Journey bleiben erhalten."
+          }
+        }
+      }
+    },
     "Workouts for this skill" : {
       "localizations" : {
         "de" : {
@@ -2968,12 +2988,12 @@
         }
       }
     },
-    "Your best time comes from the journal." : {
+    "Your best time comes from your Journey." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine Bestzeit kommt aus dem Tagebuch."
+            "value" : "Deine Bestzeit kommt aus deiner Journey."
           }
         }
       }
