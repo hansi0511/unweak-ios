@@ -261,6 +261,16 @@
         }
       }
     },
+    "Achievement unlocked" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erfolg freigeschaltet"
+          }
+        }
+      }
+    },
     "Achievements" : {
       "localizations" : {
         "de" : {
@@ -461,6 +471,16 @@
         }
       }
     },
+    "Choose X, Facebook or Instagram in the next step. Story fits Instagram and Facebook stories, Post fits the feed." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle im nächsten Schritt X, Facebook oder Instagram. Story passt für Instagram- und Facebook-Storys, Post für den Feed."
+          }
+        }
+      }
+    },
     "Close" : {
       "localizations" : {
         "de" : {
@@ -507,6 +527,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Workout erstellen"
+          }
+        }
+      }
+    },
+    "Creating video" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video wird erstellt"
+          }
+        }
+      }
+    },
+    "Creating video …" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video wird erstellt …"
           }
         }
       }
@@ -901,6 +941,16 @@
         }
       }
     },
+    "Image" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bild"
+          }
+        }
+      }
+    },
     "Imprint" : {
       "localizations" : {
         "de" : {
@@ -1117,6 +1167,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Muscle-up"
+          }
+        }
+      }
+    },
+    "My progress with Unweak. #unweak #calisthenics" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mein Fortschritt mit Unweak. #unweak #calisthenics"
           }
         }
       }
@@ -1387,6 +1447,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Plank"
+          }
+        }
+      }
+    },
+    "Post" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Post"
           }
         }
       }
@@ -1751,6 +1821,86 @@
         }
       }
     },
+    "Share" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilen"
+          }
+        }
+      }
+    },
+    "Share achievement" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erfolg teilen"
+          }
+        }
+      }
+    },
+    "Share image" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bild teilen"
+          }
+        }
+      }
+    },
+    "Share progress" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortschritt teilen"
+          }
+        }
+      }
+    },
+    "Share record" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rekord teilen"
+          }
+        }
+      }
+    },
+    "Share video" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video teilen"
+          }
+        }
+      }
+    },
+    "Share week" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Woche teilen"
+          }
+        }
+      }
+    },
+    "Share workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workout teilen"
+          }
+        }
+      }
+    },
     "Sign out" : {
       "localizations" : {
         "de" : {
@@ -1767,6 +1917,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Skill"
+          }
+        }
+      }
+    },
+    "Skill progress" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skill-Fortschritt"
           }
         }
       }
@@ -1857,6 +2017,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Training starten"
+          }
+        }
+      }
+    },
+    "Story" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Story"
+          }
+        }
+      }
+    },
+    "Streak" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serie"
           }
         }
       }
@@ -1957,6 +2137,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Die 10 Workouts bleiben gratis."
+          }
+        }
+      }
+    },
+    "The file could not be created. Try the other format or the image." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Datei konnte nicht erstellt werden. Versuch das andere Format oder das Bild."
           }
         }
       }
@@ -2108,6 +2298,16 @@
         }
       }
     },
+    "Video" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video"
+          }
+        }
+      }
+    },
     "View subscription" : {
       "localizations" : {
         "de" : {
@@ -2128,12 +2328,32 @@
         }
       }
     },
+    "Weeks in a row" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wochen in Folge"
+          }
+        }
+      }
+    },
     "Workout" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Training"
+          }
+        }
+      }
+    },
+    "Workout done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Workout geschafft"
           }
         }
       }

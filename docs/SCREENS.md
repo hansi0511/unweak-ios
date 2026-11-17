@@ -1,6 +1,6 @@
 # Screens
 
-Zwölf Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Workouts, Tagebuch. Alle anderen Screens öffnen sich darüber und haben oben links einen Zurück-Knopf.
+13 Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Workouts, Tagebuch. Alle anderen Screens öffnen sich darüber und haben oben links einen Zurück-Knopf.
 
 ## Navigation
 
@@ -22,6 +22,7 @@ Zwölf Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Wor
 | Training läuft | „Training beenden und speichern“ | Tagebuch |
 | Tagebuch | Plus oder Eintrag antippen | Tagebucheintrag |
 | Einstellungen | „Abo ansehen“ | Abo |
+| Tagebucheintrag, Dashboard, Skill | Teilen-Symbol oder erreichter Erfolg | Teilen |
 | Einstellungen | „Abmelden“ | Anmeldung |
 
 ## 1 Dashboard (Tab)
@@ -114,3 +115,10 @@ Zwölf Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Wor
 - Fortschritt: Stand rechts, fünf Segmente. Bei Skills mit Stufen die fünf Stufen als Liste (erreichte abgehakt) und gestrichelter Knopf „Stufe erreicht“; bei Zeit-Skills Hinweis, dass die Bestzeit aus dem Tagebuch kommt.
 - „Als Ziel setzen“ (Hauptknopf) oder, wenn der Skill das aktive Ziel ist, Marke „Gewählt“ mit kurzem Hinweis.
 - „Workouts für diesen Skill“, von leicht nach schwer, wie in der Workouts-Liste.
+
+## 13 Teilen
+
+- Öffnet sich als Blatt aus dem Tagebucheintrag (Teilen-Symbol im Kopf: Workout; im Rekord-Banner: Rekord), dem Dashboard (Teilen-Symbol im Kopf: Woche und Serie; Tipp auf einen erreichten Erfolg) und der Skill-Seite (Teilen-Symbol beim Fortschritt).
+- Schließen-Knopf, Überschrift „Teilen“, Auswahl „Video“ (Standard) oder „Bild“ und „Story“ (9:16, Standard) oder „Post“ (4:5).
+- Vorschau (bei Video mit bewegtem Sticky Man; mit „Bewegung reduzieren“ steht er still): Raster-Hintergrund mit Eckmarkierungen in Akzentfarbe, „UNWEAK“ und Untertitel, Sticky Man groß in der Schlüsselpose, Art („Workout geschafft“, „Neuer Rekord“, „Erfolg freigeschaltet“, „Serie“, „Skill-Fortschritt“), Überschrift, Kennzahlen oder Segmente, unten Datum und Hashtags.
+- Hauptknopf „Video teilen“ bzw. „Bild teilen“ öffnet das iOS-Teilen-Menü (1080 px breit, Video als MP4 mit 30 Bildern pro Sekunde, mindestens 6 Sekunden, ohne Ton; dazu ein kurzer Text mit Hashtags). Während das Video entsteht, zeigt eine Segment-Leiste den Fortschritt. Hinweis, dass dort X, Facebook oder Instagram gewählt wird.
