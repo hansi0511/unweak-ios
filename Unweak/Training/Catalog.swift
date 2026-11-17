@@ -123,6 +123,9 @@ struct Goal: Codable, Identifiable, Hashable, Sendable {
 
     let id: String
     let pose: StickyPose
+    /// Exercise behind the goal: its animation is shown on the dashboard and, for
+    /// time goals, its best journal value is the current best time.
+    let exercise: String
     let isFree: Bool
     let stageCount: Int?
     let targetSeconds: Int?
@@ -135,11 +138,34 @@ struct Goal: Codable, Identifiable, Hashable, Sendable {
     var stageKeys: [String] { (0..<(stageCount ?? 0)).map { "goal.\(id).stage\($0 + 1)" } }
 }
 
-/// The bundled training content: exercises, plans and goals from `Catalog.json`.
+/// A milestone computed from the journal, e.g. "10 pull-ups" or "25 workouts".
+struct Achievement: Codable, Identifiable, Hashable, Sendable {
+    enum Kind: String, Codable, Sendable {
+        /// Number of journal entries.
+        case workouts
+        /// Best repetitions of `exercise` in one set.
+        case reps
+        /// Best hold time of `exercise` in seconds.
+        case seconds
+        /// Weeks in a row with the weekly target reached.
+        case streak
+    }
+
+    let id: String
+    let kind: Kind
+    let threshold: Int
+    let exercise: String?
+
+    /// Text under the value, e.g. "Pull-ups".
+    var labelKey: String { "achievement.\(id).label" }
+}
+
+/// The bundled training content: exercises, plans, goals and achievements from `Catalog.json`.
 struct Catalog: Codable, Sendable {
     let exercises: [Exercise]
     let plans: [WorkoutPlan]
     let goals: [Goal]
+    let achievements: [Achievement]
 
     enum LoadError: Error {
         case missingFile
@@ -183,9 +209,20 @@ struct Catalog: Codable, Sendable {
 
     /// Every text key the catalog uses.
     var textKeys: [String] {
-        exercises.flatMap { [$0.nameKey] + $0.stepKeys + $0.mistakeKeys }
-            + plans.map(\.nameKey)
-            + goals.flatMap { [$0.nameKey] + $0.stageKeys }
+        // Built step by step: one long chain of `+` is too slow for the type checker.
+        var keys: [String] = []
+        for exercise in exercises {
+            keys.append(exercise.nameKey)
+            keys.append(contentsOf: exercise.stepKeys)
+            keys.append(contentsOf: exercise.mistakeKeys)
+        }
+        keys.append(contentsOf: plans.map(\.nameKey))
+        for goal in goals {
+            keys.append(goal.nameKey)
+            keys.append(contentsOf: goal.stageKeys)
+        }
+        keys.append(contentsOf: achievements.map(\.labelKey))
+        return keys
     }
 
     /// Broken references and inconsistent entries. Empty for valid data.
@@ -208,8 +245,20 @@ struct Catalog: Codable, Sendable {
                 }
             }
         }
-        for goal in goals where (goal.stageCount == nil) == (goal.targetSeconds == nil) {
-            problems.append("Goal \(goal.id) needs either stages or a target time")
+        for goal in goals {
+            if (goal.stageCount == nil) == (goal.targetSeconds == nil) {
+                problems.append("Goal \(goal.id) needs either stages or a target time")
+            }
+            if !ids.contains(goal.exercise) { problems.append("Goal \(goal.id): unknown exercise \(goal.exercise)") }
+        }
+        for achievement in achievements {
+            let needsExercise = achievement.kind == .reps || achievement.kind == .seconds
+            if needsExercise != (achievement.exercise != nil) {
+                problems.append("Achievement \(achievement.id): exercise does not match its kind")
+            }
+            if let exercise = achievement.exercise, !ids.contains(exercise) {
+                problems.append("Achievement \(achievement.id): unknown exercise \(exercise)")
+            }
         }
         return problems
     }

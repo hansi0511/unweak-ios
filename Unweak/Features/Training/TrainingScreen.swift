@@ -5,6 +5,7 @@ import SwiftUI
 struct TrainingScreen: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppNavigation.self) private var navigation: AppNavigation?
+    @Environment(UserDataStore.self) private var store
     @State private var session: TrainingSession?
     private let catalog: Catalog
 
@@ -28,12 +29,20 @@ struct TrainingScreen: View {
         .onDisappear { navigation?.isTabBarHidden = false }
     }
 
-    /// Ends the workout and shows the journal. Saving the entry follows in step 4.
+    /// Ends the workout, saves it to the journal and opens the entry there, so it can
+    /// be rated and corrected. A workout without any completed set is not saved.
     private func endWorkout(_ session: TrainingSession) {
-        session.finish(at: .now)
+        let now = Date.now
+        session.finish(at: now)
+        let entry = JournalEntry(session: session, endedAt: now)
         navigation?.isTabBarHidden = false
         dismiss()
-        navigation?.selectedTab = .journal
+        if entry.results.isEmpty {
+            navigation?.selectedTab = .journal
+        } else {
+            store.save(entry)
+            navigation?.showJournalEntry(entry.id)
+        }
     }
 }
 
@@ -246,6 +255,7 @@ private struct SetTiles: View {
             TrainingScreen(plan: plan)
         }
     }
+    .previewEnvironment()
 }
 
 #Preview("German") {
@@ -254,5 +264,6 @@ private struct SetTiles: View {
             TrainingScreen(plan: plan)
         }
     }
+    .previewEnvironment()
     .environment(\.locale, Locale(identifier: "de"))
 }

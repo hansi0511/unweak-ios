@@ -14,11 +14,14 @@ struct ChipLabel: View {
     private let title: LocalizedStringKey
     private let systemImage: String?
     private let style: Style
+    private let expands: Bool
 
-    init(_ title: LocalizedStringKey, systemImage: String? = nil, style: Style = .outline) {
+    /// - Parameter expands: Fill the available width (e.g. a full-width dashed button).
+    init(_ title: LocalizedStringKey, systemImage: String? = nil, style: Style = .outline, expands: Bool = false) {
         self.title = title
         self.systemImage = systemImage
         self.style = style
+        self.expands = expands
     }
 
     var body: some View {
@@ -37,6 +40,7 @@ struct ChipLabel: View {
         .foregroundStyle(style == .dashed ? accent.color : Theme.text)
         .padding(.horizontal, 14)
         .frame(minWidth: Theme.Layout.minTouchTarget, minHeight: Theme.Layout.minTouchTarget)
+        .frame(maxWidth: expands ? .infinity : nil)
         .overlay {
             switch style {
             case .dashed:

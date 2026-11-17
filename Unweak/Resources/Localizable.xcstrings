@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld / %lld workouts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld Trainings"
+          }
+        }
+      }
+    },
     "%lld min" : {
       "localizations" : {
         "de" : {
@@ -31,6 +41,46 @@
         }
       }
     },
+    "%lld reps" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld rep"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld reps"
+                }
+              }
+            }
+          }
+        },
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Wdh."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Wdh."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld s" : {
       "localizations" : {
         "de" : {
@@ -41,12 +91,82 @@
         }
       }
     },
+    "%lld sets" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld set"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sets"
+                }
+              }
+            }
+          }
+        },
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Satz"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Sätze"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Accent color" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Akzentfarbe"
+          }
+        }
+      }
+    },
+    "Achieved" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreicht"
+          }
+        }
+      }
+    },
+    "Achievements" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erfolge"
+          }
+        }
+      }
+    },
+    "Add workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Training hinzufügen"
           }
         }
       }
@@ -67,6 +187,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alle"
+          }
+        }
+      }
+    },
+    "All stages reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Stufen erreicht"
           }
         }
       }
@@ -107,6 +237,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Einsteiger"
+          }
+        }
+      }
+    },
+    "Best time %@ of %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestzeit %1$@ von %2$@"
+          }
+        }
+      }
+    },
+    "Change" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ändern"
+          }
+        }
+      }
+    },
+    "Choose goal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziel wählen"
+          }
+        }
+      }
+    },
+    "Choose the plan you trained." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle den Plan, den du trainiert hast."
           }
         }
       }
@@ -231,6 +401,16 @@
         }
       }
     },
+    "Easy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leicht"
+          }
+        }
+      }
+    },
     "Elapsed time" : {
       "localizations" : {
         "de" : {
@@ -281,6 +461,26 @@
         }
       }
     },
+    "Exercises %lld · Sets %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Übungen %1$lld · Sätze %2$lld"
+          }
+        }
+      }
+    },
+    "Finish a workout or tap + to add one." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beende ein Training oder tippe auf +, um eines nachzutragen."
+          }
+        }
+      }
+    },
     "Finish workout" : {
       "localizations" : {
         "de" : {
@@ -321,6 +521,26 @@
         }
       }
     },
+    "Goal progress" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortschritt zum Ziel"
+          }
+        }
+      }
+    },
+    "Goal reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziel erreicht"
+          }
+        }
+      }
+    },
     "Handstand" : {
       "localizations" : {
         "de" : {
@@ -351,12 +571,42 @@
         }
       }
     },
+    "Hard" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hart"
+          }
+        }
+      }
+    },
     "Harder" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schwerer"
+          }
+        }
+      }
+    },
+    "How did it feel?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie war es?"
+          }
+        }
+      }
+    },
+    "How did the workout go?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie lief das Training?"
           }
         }
       }
@@ -397,6 +647,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tagebuch"
+          }
+        }
+      }
+    },
+    "Just right" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passt"
+          }
+        }
+      }
+    },
+    "Keep going" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiter so"
           }
         }
       }
@@ -451,6 +721,16 @@
         }
       }
     },
+    "Less" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weniger"
+          }
+        }
+      }
+    },
     "Lime" : {
       "localizations" : {
         "de" : {
@@ -467,6 +747,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Ausfallschritt"
+          }
+        }
+      }
+    },
+    "More" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehr"
           }
         }
       }
@@ -501,6 +791,26 @@
         }
       }
     },
+    "New record" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuer Rekord"
+          }
+        }
+      }
+    },
+    "New records" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neue Rekorde"
+          }
+        }
+      }
+    },
     "Next" : {
       "localizations" : {
         "de" : {
@@ -531,12 +841,32 @@
         }
       }
     },
-    "No goal yet" : {
+    "Next stage: %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noch kein Ziel"
+            "value" : "Nächste Stufe: %@"
+          }
+        }
+      }
+    },
+    "Next workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nächstes Workout"
+          }
+        }
+      }
+    },
+    "No workouts yet" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch keine Trainings"
           }
         }
       }
@@ -547,6 +877,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keine"
+          }
+        }
+      }
+    },
+    "Not trained" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht trainiert"
+          }
+        }
+      }
+    },
+    "Note" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notiz"
           }
         }
       }
@@ -701,6 +1051,16 @@
         }
       }
     },
+    "Record: %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rekord: %@"
+          }
+        }
+      }
+    },
     "Records" : {
       "localizations" : {
         "de" : {
@@ -737,6 +1097,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pausenzeit"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern"
           }
         }
       }
@@ -841,12 +1211,82 @@
         }
       }
     },
+    "Stage %lld / %lld · %lld to go" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stufe %1$lld / %2$lld · Noch %3$lld"
+          }
+        }
+      }
+    },
+    "Stage reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stufe erreicht"
+          }
+        }
+      }
+    },
     "Start workout" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Training starten"
+          }
+        }
+      }
+    },
+    "Streak %lld weeks" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Streak %lld week"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Streak %lld weeks"
+                }
+              }
+            }
+          }
+        },
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Serie %lld Woche"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Serie %lld Wochen"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Target %@ · no time yet" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziel %@ · noch keine Zeit"
           }
         }
       }
@@ -901,6 +1341,16 @@
         }
       }
     },
+    "Trained" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trainiert"
+          }
+        }
+      }
+    },
     "Unlock all plans" : {
       "localizations" : {
         "de" : {
@@ -917,6 +1367,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Violett"
+          }
+        }
+      }
+    },
+    "Workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Training"
           }
         }
       }

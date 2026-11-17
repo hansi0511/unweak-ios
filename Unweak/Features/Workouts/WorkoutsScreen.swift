@@ -120,11 +120,13 @@ struct PlanRow: View {
     NavigationStack {
         WorkoutsScreen()
     }
+    .previewEnvironment()
 }
 
 #Preview("German") {
     NavigationStack {
         WorkoutsScreen()
     }
+    .previewEnvironment()
     .environment(\.locale, Locale(identifier: "de"))
 }

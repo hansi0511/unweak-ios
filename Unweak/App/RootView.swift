@@ -30,6 +30,7 @@ enum AppTab: CaseIterable, Identifiable {
 struct RootView: View {
     @AppStorage(Accent.storageKey) private var accent: Accent = .default
     @State private var navigation = AppNavigation()
+    @State private var store = UserDataStore(fileURL: UserDataStore.defaultFileURL)
 
     var body: some View {
         @Bindable var navigation = navigation
@@ -37,12 +38,10 @@ struct RootView: View {
             ZStack {
                 ForEach(AppTab.allCases) { tab in
                     let isActive = tab == navigation.selectedTab
-                    NavigationStack {
-                        content(for: tab)
-                    }
-                    .opacity(isActive ? 1 : 0)
-                    .allowsHitTesting(isActive)
-                    .accessibilityHidden(!isActive)
+                    stack(for: tab, journalPath: $navigation.journalPath)
+                        .opacity(isActive ? 1 : 0)
+                        .allowsHitTesting(isActive)
+                        .accessibilityHidden(!isActive)
                 }
             }
             if !navigation.isTabBarHidden {
@@ -51,17 +50,19 @@ struct RootView: View {
         }
         .background(Theme.background.ignoresSafeArea())
         .environment(navigation)
+        .environment(store)
         .environment(\.accent, accent)
         .tint(accent.color)
         .preferredColorScheme(.dark)
     }
 
+    /// The journal stack is driven by a path so that a finished workout can open its entry.
     @ViewBuilder
-    private func content(for tab: AppTab) -> some View {
+    private func stack(for tab: AppTab, journalPath: Binding<[JournalRoute]>) -> some View {
         switch tab {
-        case .dashboard: DashboardScreen()
-        case .workouts: WorkoutsScreen()
-        case .journal: JournalScreen()
+        case .dashboard: NavigationStack { DashboardScreen() }
+        case .workouts: NavigationStack { WorkoutsScreen() }
+        case .journal: NavigationStack(path: journalPath) { JournalScreen() }
         }
     }
 }
