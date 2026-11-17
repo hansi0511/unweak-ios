@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>V2 Ich</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+body{margin:0}
+a{color:#EAF2F5;text-decoration:none}a:hover{color:#FFFFFF}
+@keyframes av-breath{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+.av-breath{transform-origin:50% 88%;animation:av-breath 4s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.av-breath{animation:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #07090C; color: #EAF2F5; font-family: 'Inter', sans-serif; display: flex; flex-direction: column">
+<div style="flex-grow: 1; padding: 24px 20px 0; display: flex; flex-direction: column; gap: 22px">
+
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.5px">Ich</h1>
+
+<a href="V2-Profil.dc.html" aria-label="Dein Avatar und Level" style="align-self: center; display: flex; flex-direction: column; align-items: center; gap: 12px">
+<div style="position: relative; width: 190px; height: 190px">
+<div style="position: absolute; inset: 18px; border-radius: 50%; background: #0B1015"></div>
+<svg aria-hidden="true" viewBox="0 0 190 190" fill="none" style="position: absolute; inset: 0; width: 190px; height: 190px">
+<path d="{{ringOpen}}" stroke="#1E2A33" stroke-width="7"></path>
+<path d="{{ringDone}}" stroke="{{accent}}" stroke-width="7" style="filter: drop-shadow(0 0 5px {{glow}})"></path>
+</svg>
+<svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; inset: 30px; width: 130px; height: 130px; filter: drop-shadow(0 0 6px {{glow}})">
+<g class="av-breath">
+<path d="M50 29V63M42 38H58M42 38L33 22M58 38L67 22M50 63L41 88M50 63L59 88" stroke="{{accent}}" stroke-width="3.6"></path>
+<circle cx="50" cy="22" r="7" fill="#0B1015" stroke="{{accent}}" stroke-width="3.6"></circle>
+<path d="M43 19.55L57 18.15M57 18.15L63 21.3" stroke="#5CE1FF" stroke-width="2.4"></path>
+</g>
+</svg>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<div style="font-size: 17px; font-weight: 600"><span style="color: {{accent}}">2 von 3</span> Trainings diese Woche</div>
+<div style="font-size: 14px; color: #9FB0BC">3 Wochen in Folge geschafft</div>
+</div>
+</a>
+
+<div style="position: relative; border: 1px solid #1E2A33; background: #0B1015; padding: 18px; display: flex; flex-direction: column; gap: 16px">
+<div aria-hidden="true" style="position: absolute; top: -1px; left: -1px; width: 16px; height: 16px; border-top: 2px solid {{accent}}; border-left: 2px solid {{accent}}"></div>
+<div aria-hidden="true" style="position: absolute; bottom: -1px; right: -1px; width: 16px; height: 16px; border-bottom: 2px solid {{accent}}; border-right: 2px solid {{accent}}"></div>
+<div style="display: flex; align-items: center; gap: 14px">
+<svg aria-hidden="true" width="56" height="56" viewBox="0 0 48 48" fill="none" stroke="{{accent}}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><circle cx="24" cy="14" r="4"></circle><path d="M8 7h32M17 7l5 12M31 7l-5 12M24 19v13M24 32l-4 11M24 32l4 11"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 14px; color: #9FB0BC">Heute dran</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.4px">Pull Day</div>
+<div style="font-size: 14px; color: #C3CED6">21 min · 4 Übungen</div>
+</div>
+</div>
+<a href="V2-Training.dc.html" style="height: 56px; display: flex; align-items: center; justify-content: center; gap: 10px; background: {{accent}}; color: #07090C; box-shadow: 0 0 24px {{glow}}; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#07090C"><path d="M7 4l13 8-13 8z"></path></svg>Starten</a>
+</div>
+
+<a href="V2-Skill.dc.html" style="display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid #1E2A33; background: #0B1015">
+<svg aria-hidden="true" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="{{accent}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><circle cx="9" cy="22" r="4"></circle><path d="M6 7h36M15 7v14M14 22h28"></path></svg>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><div style="font-size: 16px; font-weight: 600">Dein Ziel: Front Lever</div><div style="font-size: 13px; color: #9FB0BC">2 / 5</div></div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px"><div style="height: 5px; background: {{accent}}"></div><div style="height: 5px; background: {{accent}}"></div><div style="height: 5px; background: #1E2A33"></div><div style="height: 5px; background: #1E2A33"></div><div style="height: 5px; background: #1E2A33"></div></div>
+</div>
+<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9FB0BC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+
+</div>
+
+<nav aria-label="Hauptnavigation" style="height: 76px; box-sizing: border-box; border-top: 1px solid #1E2A33; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 8px 12px 12px">
+<a href="V2-Ich.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 48px; font-size: 12px; font-weight: 600; color: {{accent}}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>Ich</a>
+<a href="V2-Workouts.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 48px; font-size: 12px; font-weight: 500; color: #9FB0BC"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M8 6v5a4 4 0 0 0 8 0V6"></path></svg>Workouts</a>
+<a href="V2-Journey.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 48px; font-size: 12px; font-weight: 500; color: #9FB0BC"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="19" r="2"></circle><circle cx="19" cy="5" r="2"></circle><path d="M7 19h7a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h7"></path></svg>Journey</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C6F24E","options":["#C6F24E","#5CE1FF","#FFB547","#FF7566","#FF7AB8","#A995FF"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+var accent = this.props.accent ?? '#C6F24E';
+var glow = /^#[0-9a-fA-F]{6}$/.test(accent) ? accent + '66' : accent;
+function arc(cx, cy, R, a0, a1) {
+var r0 = (a0 - 90) * Math.PI / 180, r1 = (a1 - 90) * Math.PI / 180;
+return 'M' + (cx + R * Math.cos(r0)).toFixed(2) + ' ' + (cy + R * Math.sin(r0)).toFixed(2) + 'A' + R + ' ' + R + ' 0 0 1 ' + (cx + R * Math.cos(r1)).toFixed(2) + ' ' + (cy + R * Math.sin(r1)).toFixed(2);
+}
+var ringDone = '', ringOpen = '';
+for (var i = 0; i < 3; i++) { var d = arc(95, 95, 91, i * 120 + 3, (i + 1) * 120 - 3); if (i < 2) ringDone += d; else ringOpen += d; }
+return { accent: accent, glow: glow, ringDone: ringDone, ringOpen: ringOpen };
+}
+}
+</script>
+</body>
+</html>

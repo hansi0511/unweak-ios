@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>V2 Skill Front Lever</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+body{margin:0}
+a{color:#EAF2F5;text-decoration:none}a:hover{color:#FFFFFF}
+@keyframes fl-lift{0%,18%{transform:rotate(0deg)}42%,80%{transform:rotate(-90deg)}100%{transform:rotate(0deg)}}
+.fl-body{transform-box:view-box;transform-origin:60px 62px;animation:fl-lift 6s cubic-bezier(.6,0,.3,1) infinite}
+@media (prefers-reduced-motion: reduce){.fl-body{animation:none;transform:rotate(-90deg)}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #07090C; color: #EAF2F5; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; padding: 20px 20px 24px; gap: 20px">
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<a href="V2-Skills.dc.html" aria-label="Zurück" style="width: 44px; height: 44px; border: 1px solid #1E2A33; background: #0B1015; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></a>
+<button type="button" onClick="{{toggleGoal}}" aria-pressed="{{goalPressed}}" style="height: 44px; padding: 0 14px; border: 1px solid {{accent}}; background: {{goalBg}}; color: {{goalFg}}; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer">{{goalLabel}}</button>
+</div>
+
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700; letter-spacing: -1px; line-height: 1">Front Lever</h1>
+
+<div style="height: 190px; flex-shrink: 0; border: 1px solid #1E2A33; background-color: #0B1015; background-image: linear-gradient(#111920 1px, transparent 1px), linear-gradient(90deg, #111920 1px, transparent 1px); background-size: 24px 24px; display: flex; align-items: center; justify-content: center">
+<svg role="img" aria-label="Animation: Front Lever" width="176" height="176" viewBox="0 0 160 160" fill="none" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 8px {{glow}})">
+<path d="M16 8v16h128V8" stroke="#EAF2F5" stroke-width="3"></path>
+<path d="M55 24l5 38M65 24l-5 38" stroke="{{accent}}" stroke-width="4"></path>
+<g class="fl-body" stroke="{{accent}}" stroke-width="5">
+<circle cx="60" cy="47" r="8" fill="#0B1015"></circle>
+<path d="M60 62v88"></path>
+</g>
+</svg>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700">Dein Weg</h2><div style="font-size: 14px; color: #9FB0BC">{{count}}</div></div>
+<div role="list" aria-label="Stufen" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="5">
+<div role="listitem" aria-label="{{s.aria}}" style="height: 58px; box-sizing: border-box; border: {{s.bw}} solid {{s.border}}; background: {{s.bg}}; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="{{s.tone}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h40M14 6v11M14 17h14"></path><path d="{{s.legs}}"></path><circle cx="9" cy="17" r="3.5"></circle></svg>
+</div>
+</sc-for>
+</div>
+</div>
+
+<sc-if value="{{notDone}}" hint-placeholder-val="{{true}}">
+<div style="border: 1px solid {{accent}}; background: #111920; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 14px; color: {{accent}}">Jetzt dran</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700">{{now.name}}</div>
+<div style="font-size: 15px; line-height: 1.4; color: #C3CED6">{{now.tip}}</div>
+</div>
+<button type="button" onClick="{{reach}}" style="height: 48px; border: 1px dashed {{accent}}; background: transparent; color: {{accent}}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Geschafft</button>
+</div>
+</sc-if>
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<div style="border: 1px solid {{accent}}; background: #111920; padding: 16px; font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: {{accent}}">Gemeistert!</div>
+</sc-if>
+
+<div style="flex-grow: 1"></div>
+
+<a href="V2-Training.dc.html" style="height: 60px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; gap: 10px; background: {{accent}}; color: #07090C; box-shadow: 0 0 24px {{glow}}; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#07090C"><path d="M7 4l13 8-13 8z"></path></svg>Passendes Workout starten</a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C6F24E","options":["#C6F24E","#5CE1FF","#FFB547","#FF7566","#FF7AB8","#A995FF"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { reached: 2, goal: true };
+}
+renderVals() {
+var accent = this.props.accent ?? '#C6F24E';
+var glow = /^#[0-9a-fA-F]{6}$/.test(accent) ? accent + '66' : accent;
+var self = this;
+var st = this.state || {};
+var reached = typeof st.reached === 'number' ? st.reached : 2;
+var goal = st.goal !== false;
+var list = [
+['Tuck', 'M28 17l-6 7l8 3', 'Knie zur Brust, Rücken gerade. Halte 10 Sekunden.'],
+['Advanced Tuck', 'M28 17l7 6l-7 4', 'Hüfte gestreckt, Knie gebeugt. Halte 10 Sekunden.'],
+['Ein Bein', 'M28 17H44M28 17l7 7l-7 4', 'Ein Bein gestreckt, eins gebeugt. Halte 8 Sekunden.'],
+['Straddle', 'M28 17l15 -5M28 17l15 5', 'Beide Beine gestreckt und gegrätscht. Halte 6 Sekunden.'],
+['Voller Front Lever', 'M28 17H44', 'Körper ganz gestreckt und waagrecht. Halte 5 Sekunden.']
+];
+var stages = list.map(function (s, i) {
+var isDone = i < reached, isNow = i === reached;
+return {
+legs: s[1], aria: 'Stufe ' + (i + 1) + ': ' + s[0] + (isDone ? ', geschafft' : (isNow ? ', jetzt dran' : '')),
+tone: isDone ? '#07090C' : (isNow ? accent : '#3A4954'),
+bg: isDone ? accent : '#0B1015',
+border: isNow ? accent : (isDone ? accent : '#1E2A33'), bw: isNow ? '2px' : '1px'
+};
+});
+var cur = list[Math.min(reached, 4)];
+return {
+accent: accent, glow: glow, stages: stages,
+count: reached >= 5 ? '5 von 5' : 'Stufe ' + (reached + 1) + ' von 5',
+now: { name: cur[0], tip: cur[2] },
+notDone: reached < 5, done: reached >= 5,
+reach: function () { self.setState({ reached: Math.min(5, reached + 1) }); },
+goalPressed: goal ? 'true' : 'false', goalLabel: goal ? '✓ Mein Ziel' : 'Als Ziel wählen',
+goalBg: goal ? 'transparent' : accent, goalFg: goal ? accent : '#07090C',
+toggleGoal: function () { self.setState({ goal: !goal }); }
+};
+}
+}
+</script>
+</body>
+</html>

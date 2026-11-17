@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>V2 Erfolge</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+body{margin:0}
+a{color:#EAF2F5;text-decoration:none}a:hover{color:#FFFFFF}
+
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #07090C; color: #EAF2F5; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; padding: 20px 20px 24px; gap: 20px">
+<a href="V2-Journey.dc.html" aria-label="Zurück zur Journey" style="width: 44px; height: 44px; border: 1px solid #1E2A33; background: #0B1015; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></a>
+<div style="display: flex; flex-direction: column; gap: 6px"><h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; letter-spacing: -0.6px; line-height: 1.05">Erfolge</h1><div style="font-size: 15px; color: #C3CED6">4 von 12 geschafft</div></div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{items}}" as="x" hint-placeholder-count="12">
+<a href="{{x.href}}" aria-label="{{x.aria}}" style="height: 104px; box-sizing: border-box; border: 1px solid {{x.border}}; background: #0B1015; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; opacity: {{x.op}}">
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: {{x.tone}}">{{x.value}}</div>
+<div style="font-size: 13px; line-height: 1.25; color: #C3CED6; padding: 0 4px">{{x.label}}</div>
+</a>
+</sc-for>
+</div>
+<div style="font-size: 14px; color: #9FB0BC">Tippe auf einen Erfolg, um ihn zu teilen.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C6F24E","options":["#C6F24E","#5CE1FF","#FFB547","#FF7566","#FF7AB8","#A995FF"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+
+renderVals() {
+var accent = this.props.accent ?? '#C6F24E';
+var glow = /^#[0-9a-fA-F]{6}$/.test(accent) ? accent + '66' : accent;
+var self = this;
+var st = this.state || {};
+var items = [
+['1', 'Erstes Training', true], ['10', 'Trainings', true], ['3:00', 'Plank', true], ['20 s', 'L-Sit', true],
+['25', 'Trainings', false], ['50', 'Trainings', false], ['10', 'Klimmzüge', false], ['20', 'Liegestütze', false],
+['30', 'Kniebeugen', false], ['5', 'Pistol Squats', false], ['4', 'Wochen in Folge', false], ['1', 'Muscle-up', false]
+].map(function (x) {
+return { value: x[0], label: x[1], op: x[2] ? '1' : '0.4', tone: x[2] ? accent : '#EAF2F5', border: x[2] ? accent : '#1E2A33', href: x[2] ? 'V2-Teilen.dc.html' : '#', aria: x[0] + ' ' + x[1] + (x[2] ? ', geschafft' : ', noch offen') };
+});
+return { accent: accent, glow: glow, items: items };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>V2 Abo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+body{margin:0}
+a{color:#EAF2F5;text-decoration:none}a:hover{color:#FFFFFF}
+
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #07090C; color: #EAF2F5; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; padding: 20px 20px 24px; gap: 22px">
+<div style="display: flex; align-items: center; justify-content: space-between"><a href="V2-Einstellungen.dc.html" aria-label="Schließen" style="width: 44px; height: 44px; border: 1px solid #1E2A33; background: #0B1015; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></a><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: #FFB547">PRO</div></div>
+<div style="display: flex; justify-content: center; padding-top: 4px">
+<svg role="img" aria-label="Sticky Man über der Stange" width="150" height="160" viewBox="0 0 140 150" fill="none" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 10px {{glow}})">
+<path d="M10 92h120M10 92v50M130 92v50" stroke="#EAF2F5" stroke-width="3"></path>
+<g stroke="{{accent}}" stroke-width="5"><circle cx="70" cy="24" r="9" fill="#07090C"></circle><path d="M56 40h28M56 40l-2 52M84 40l2 52M70 40v54M70 94l-5 40M70 94l5 40"></path></g>
+</svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; text-align: center"><h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.6px; line-height: 1.05">Alle Skills freischalten</h1><div style="font-size: 15px; color: #C3CED6">10 Workouts bleiben immer gratis.</div></div>
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 0 8px"><div style="display: flex; align-items: center; gap: 12px; font-size: 17px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M5 12l4 4 10-10"></path></svg>Alle 6 Skills</div><div style="display: flex; align-items: center; gap: 12px; font-size: 17px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M5 12l4 4 10-10"></path></svg>Ziele mit 5 Stufen</div><div style="display: flex; align-items: center; gap: 12px; font-size: 17px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M5 12l4 4 10-10"></path></svg>Unbegrenzt eigene Workouts</div></div>
+<div style="flex-grow: 1"></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{plans}}" as="p" hint-placeholder-count="2">
+<button type="button" onClick="{{p.pick}}" aria-pressed="{{p.pressed}}" style="position: relative; height: 92px; padding: 12px; border: 2px solid {{p.border}}; background: #0B1015; color: #EAF2F5; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; text-align: left; cursor: pointer">
+<div style="font-family: 'Inter', sans-serif; font-size: 14px; color: #C3CED6">{{p.label}}</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700">{{p.price}}</div>
+<div style="font-family: 'Inter', sans-serif; font-size: 13px; color: {{p.noteTone}}">{{p.note}}</div>
+</button>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<a href="V2-Skills.dc.html" style="height: 60px; display: flex; align-items: center; justify-content: center; background: {{accent}}; color: #07090C; box-shadow: 0 0 24px {{glow}}; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700">Pro starten</a>
+<div style="display: flex; justify-content: space-between; align-items: center"><button type="button" style="min-height: 44px; padding: 0; border: 0; background: transparent; color: #C3CED6; font-family: 'Inter', sans-serif; font-size: 14px; cursor: pointer">Käufe wiederherstellen</button><div style="font-size: 13px; color: #9FB0BC">Jederzeit kündbar</div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C6F24E","options":["#C6F24E","#5CE1FF","#FFB547","#FF7566","#FF7AB8","#A995FF"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { plan: 'year' }; }
+renderVals() {
+var accent = this.props.accent ?? '#C6F24E';
+var glow = /^#[0-9a-fA-F]{6}$/.test(accent) ? accent + '66' : accent;
+var self = this;
+var st = this.state || {};
+var plan = st.plan || 'year';
+var plans = [['year', 'Jahr', '29,90 €', '2,49 € pro Monat'], ['month', 'Monat', '4,90 €', 'monatlich']].map(function (p) {
+var on = p[0] === plan;
+return { label: p[1], price: p[2], note: p[3], noteTone: on ? accent : '#9FB0BC', pressed: on ? 'true' : 'false', border: on ? accent : '#1E2A33', pick: function () { self.setState({ plan: p[0] }); } };
+});
+return { accent: accent, glow: glow, plans: plans };
+}
+}
+</script>
+</body>
+</html>

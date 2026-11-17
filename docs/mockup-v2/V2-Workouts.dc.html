@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>V2 Workouts</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+body{margin:0}
+a{color:#EAF2F5;text-decoration:none}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #07090C; color: #EAF2F5; font-family: 'Inter', sans-serif; display: flex; flex-direction: column">
+<div style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 24px 20px 20px; display: flex; flex-direction: column; gap: 24px">
+
+<div style="display: flex; align-items: center; justify-content: space-between">
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.5px">Workouts</h1>
+<a href="V2-Erstellen.dc.html" aria-label="Eigenes Workout erstellen" style="width: 44px; height: 44px; border: 1px solid #3A4954; display: flex; align-items: center; justify-content: center; color: #EAF2F5"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></a>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700">Für dich</h2>
+<a href="V2-Training.dc.html" style="display: flex; align-items: center; gap: 14px; padding: 14px; border: 1px solid {{accent}}; background: #0B1015">
+<svg aria-hidden="true" width="52" height="52" viewBox="0 0 48 48" fill="none" stroke="{{accent}}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><circle cx="24" cy="14" r="4"></circle><path d="M8 7h32M17 7l5 12M31 7l-5 12M24 19v13M24 32l-4 11M24 32l4 11"></path></svg>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px"><div style="font-size: 18px; font-weight: 600">Pull Day</div><div style="font-size: 14px; color: #9FB0BC">21 min · Einsteiger</div></div>
+<div style="width: 44px; height: 44px; background: {{accent}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#07090C"><path d="M7 4l13 8-13 8z"></path></svg></div>
+</a>
+<a href="V2-Training.dc.html" style="display: flex; align-items: center; gap: 14px; padding: 14px; border: 1px solid #1E2A33; background: #0B1015">
+<svg aria-hidden="true" width="52" height="52" viewBox="0 0 48 48" fill="none" stroke="#EAF2F5" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><circle cx="9" cy="26" r="4"></circle><path d="M13 29L41 37M16 30v8h8"></path></svg>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px"><div style="font-size: 18px; font-weight: 600">Core &amp; Plank</div><div style="font-size: 14px; color: #9FB0BC">13 min · Einsteiger</div></div>
+<div style="width: 44px; height: 44px; border: 1px solid #3A4954; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#EAF2F5"><path d="M7 4l13 8-13 8z"></path></svg></div>
+</a>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700">Nach Bereich</h2>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{areas}}" as="r" hint-placeholder-count="4">
+<a href="V2-Bereich.dc.html" style="height: 112px; box-sizing: border-box; padding: 12px; border: 1px solid #1E2A33; background: #0B1015; display: flex; flex-direction: column; justify-content: space-between">
+<svg aria-hidden="true" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="{{accent}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="{{r.hx}}" cy="{{r.hy}}" r="4"></circle><path d="{{r.pose}}"></path></svg>
+<div style="display: flex; justify-content: space-between; align-items: baseline"><div style="font-size: 17px; font-weight: 600">{{r.name}}</div><div style="font-size: 13px; color: #9FB0BC">{{r.count}}</div></div>
+</a>
+</sc-for>
+</div>
+</div>
+
+<a href="V2-Skills.dc.html" style="position: relative; display: flex; align-items: center; gap: 14px; padding: 16px; border: 1px solid #1E2A33; background-color: #0B1015; background-image: linear-gradient(#111920 1px, transparent 1px), linear-gradient(90deg, #111920 1px, transparent 1px); background-size: 24px 24px">
+<svg aria-hidden="true" width="64" height="64" viewBox="0 0 48 48" fill="none" stroke="#FFB547" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><circle cx="9" cy="22" r="4"></circle><path d="M6 7h36M15 7v14M14 22h28"></path></svg>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; gap: 8px"><div style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700">Skills</div><div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: #FFB547">PRO</div></div>
+<div style="font-size: 14px; line-height: 1.35; color: #C3CED6">Front Lever, Muscle-up &amp; Co. in 5 Stufen</div>
+</div>
+<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9FB0BC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+
+</div>
+
+<nav aria-label="Hauptnavigation" style="height: 76px; flex-shrink: 0; box-sizing: border-box; border-top: 1px solid #1E2A33; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 8px 12px 12px">
+<a href="V2-Ich.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 48px; font-size: 12px; font-weight: 500; color: #9FB0BC"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>Ich</a>
+<a href="V2-Workouts.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 48px; font-size: 12px; font-weight: 600; color: {{accent}}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M8 6v5a4 4 0 0 0 8 0V6"></path></svg>Workouts</a>
+<a href="V2-Journey.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 48px; font-size: 12px; font-weight: 500; color: #9FB0BC"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="19" r="2"></circle><circle cx="19" cy="5" r="2"></circle><path d="M7 19h7a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h7"></path></svg>Journey</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C6F24E","options":["#C6F24E","#5CE1FF","#FFB547","#FF7566","#FF7AB8","#A995FF"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+var accent = this.props.accent ?? '#C6F24E';
+var areas = [
+['Push', '3 Workouts', 9, 24, 'M13 27L40 37M16 28v10'],
+['Pull', '3 Workouts', 24, 14, 'M8 7h32M17 7l5 12M31 7l-5 12M24 19v13M24 32l-4 11M24 32l4 11'],
+['Beine', '2 Workouts', 20, 9, 'M20 13l-2 14M18 27l13 2M31 29l-5 13M19 17l13 3'],
+['Core', '2 Workouts', 9, 26, 'M13 29L41 37M16 30v8h8']
+].map(function (a) { return { name: a[0], count: a[1], hx: a[2], hy: a[3], pose: a[4] }; });
+return { accent: accent, areas: areas };
+}
+}
+</script>
+</body>
+</html>
