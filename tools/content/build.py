@@ -26,6 +26,7 @@ for p in PL:
 for g in G:
     put(f"goal.{g['id']}.name", g['name'])
     d = {"id": g['id'], "pose": g['pose'], "exercise": g['exercise'], "plans": g['plans'], "isFree": g['isFree']}
+    if g.get('animation'): d["animation"] = g['animation']
     if g['stages']:
         for i, s in enumerate(g['stages'], 1): put(f"goal.{g['id']}.stage{i}", s)
         d["stageCount"] = len(g['stages'])

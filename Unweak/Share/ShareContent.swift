@@ -126,7 +126,7 @@ extension ShareContent {
             nameKey: goal.nameKey,
             state: state,
             filledSegments: progress.filledSegments,
-            animation: catalog.exercise(goal.exercise)?.animation ?? .frontLever
+            animation: catalog.animation(for: goal)
         ))
     }
 }

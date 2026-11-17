@@ -103,7 +103,7 @@ ex("wallHandstand", "skill", "beginner", "handstand", "handstand", "pikePushUp",
     ("Push the floor away, squeeze your legs together and look at your hands.", "Drück den Boden weg, schließ die Beine und schau zu deinen Händen.")],
    [("Strong arch in the lower back.", "Starkes Hohlkreuz."),
     ("Bent arms.", "Gebeugte Arme.")])
-ex("tuckFrontLever", "skill", "advanced", "frontLever", "frontLever", "kneeRaise", None,
+ex("tuckFrontLever", "skill", "advanced", "tuckFrontLever", "frontLever", "kneeRaise", None,
    ("Tuck front lever", "Tuck Front Lever"),
    [("Hang from the bar and pull your knees tightly to your chest.", "Häng an der Stange und zieh die Knie eng an die Brust."),
     ("Press the bar down with straight arms until your back is horizontal.", "Drück die Stange mit gestreckten Armen nach unten, bis der Rücken waagrecht ist."),
@@ -154,10 +154,12 @@ plan("muscleUpPath", ("Muscle-up path", "Muscle-up-Weg"), "skill", "advanced", "
 # for time goals, best time), ordered workouts from easy to hard, free,
 # stages (skill with stages) or targetSeconds (time goal)
 G = []
-def goal(id, name, pose, exercise, plans, free, stages=None, seconds=None):
-    G.append(dict(id=id, name=name, pose=pose, exercise=exercise, plans=plans, isFree=free, stages=stages, targetSeconds=seconds))
+def goal(id, name, pose, exercise, plans, free, stages=None, seconds=None, animation=None):
+    # animation: shown for the skill instead of the linked exercise's animation (optional)
+    G.append(dict(id=id, name=name, pose=pose, exercise=exercise, plans=plans, isFree=free, stages=stages, targetSeconds=seconds, animation=animation))
 goal("frontLever", ("Front lever", "Front Lever"), "frontLever", "tuckFrontLever", ["pullDay", "pullStrength", "frontLeverBuildUp"], False,
-     stages=[("Tuck", "Tuck"), ("Advanced tuck", "Advanced Tuck"), ("One leg", "Ein Bein"), ("Straddle", "Straddle"), ("Full front lever", "Voller Front Lever")])
+     stages=[("Tuck", "Tuck"), ("Advanced tuck", "Advanced Tuck"), ("One leg", "Ein Bein"), ("Straddle", "Straddle"), ("Full front lever", "Voller Front Lever")],
+     animation="frontLever")
 goal("plank5Min", ("Plank 5 min", "Plank 5 min"), "plank", "plank", ["corePlank", "coreStrength"], False, seconds=300)
 goal("handstandPushUp", ("Handstand push-up", "Handstand-Liegestütz"), "handstand", "pikePushUp", ["pushBasics", "pushPower", "handstandSchool"], False,
      stages=[("Pike push-up", "Pike-Liegestütz"), ("Elevated pike push-up", "Erhöhter Pike-Liegestütz"), ("Wall handstand hold", "Handstand an der Wand halten"), ("Half wall handstand push-up", "Halber Handstand-Liegestütz an der Wand"), ("Full wall handstand push-up", "Voller Handstand-Liegestütz an der Wand")])

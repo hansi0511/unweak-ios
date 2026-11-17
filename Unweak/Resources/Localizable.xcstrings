@@ -2288,6 +2288,16 @@
         }
       }
     },
+    "Tuck front lever animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Tuck Front Lever"
+          }
+        }
+      }
+    },
     "Unlimited custom workouts" : {
       "localizations" : {
         "de" : {

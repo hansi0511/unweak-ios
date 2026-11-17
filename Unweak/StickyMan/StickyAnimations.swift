@@ -7,6 +7,7 @@ import Foundation
 /// The raw values are used as identifiers in `Catalog.json`.
 enum StickyAnimation: String, CaseIterable, Codable, Sendable {
     case frontLever
+    case tuckFrontLever
     case pullUp
     case negativePullUp
     case pushUp
@@ -26,7 +27,7 @@ enum StickyAnimation: String, CaseIterable, Codable, Sendable {
     /// Key-pose animation behind the side-view cases.
     var bodyAnimation: BodyAnimation? {
         switch self {
-        case .frontLever, .pullUp, .negativePullUp: nil
+        case .frontLever, .tuckFrontLever, .pullUp, .negativePullUp: nil
         case .pushUp: .pushUp
         case .kneePushUp: .kneePushUp
         case .pikePushUp: .pikePushUp
@@ -46,7 +47,7 @@ enum StickyAnimation: String, CaseIterable, Codable, Sendable {
     /// Length of one loop in seconds.
     var duration: TimeInterval {
         switch self {
-        case .frontLever: FrontLeverAnimation.duration
+        case .frontLever, .tuckFrontLever: FrontLeverAnimation.duration
         case .pullUp: PullUpAnimation.duration
         case .negativePullUp: NegativePullUpAnimation.duration
         default: bodyAnimation?.duration ?? 3
@@ -56,7 +57,7 @@ enum StickyAnimation: String, CaseIterable, Codable, Sendable {
     /// Progress of the pose shown when "Reduce Motion" is on.
     var endPoseProgress: Double {
         switch self {
-        case .frontLever: FrontLeverAnimation.holdProgress
+        case .frontLever, .tuckFrontLever: FrontLeverAnimation.holdProgress
         case .pullUp: PullUpAnimation.topProgress
         case .negativePullUp: NegativePullUpAnimation.topProgress
         default: bodyAnimation?.endPoseProgress ?? 0
@@ -65,7 +66,7 @@ enum StickyAnimation: String, CaseIterable, Codable, Sendable {
 
     var canvas: CGSize {
         switch self {
-        case .frontLever: FrontLeverAnimation.canvas
+        case .frontLever, .tuckFrontLever: FrontLeverAnimation.canvas
         case .pullUp, .negativePullUp: PullUpAnimation.canvas
         default: bodyAnimation?.canvas ?? PullUpAnimation.canvas
         }
@@ -74,6 +75,7 @@ enum StickyAnimation: String, CaseIterable, Codable, Sendable {
     func figure(at progress: Double) -> StickyFigure {
         switch self {
         case .frontLever: FrontLeverAnimation.figure(at: progress)
+        case .tuckFrontLever: FrontLeverAnimation.figure(at: progress, tucked: true)
         case .pullUp: PullUpAnimation.figure(at: progress)
         case .negativePullUp: NegativePullUpAnimation.figure(at: progress)
         default: bodyAnimation?.figure(at: progress) ?? PullUpAnimation.figure(at: progress)
@@ -89,6 +91,7 @@ enum StickyAnimation: String, CaseIterable, Codable, Sendable {
     var accessibilityName: LocalizedStringResource {
         switch self {
         case .frontLever: "Front lever animation"
+        case .tuckFrontLever: "Tuck front lever animation"
         case .pullUp: "Pull-up animation"
         case .negativePullUp: "Negative pull-up animation"
         case .pushUp: "Push-up animation"
@@ -155,12 +158,26 @@ enum FrontLeverAnimation {
         angleKeys.value(at: progress)
     }
 
-    static func figure(at progress: Double) -> StickyFigure {
+    // Tuck variant: shorter torso, knees pulled to the chest (the chest faces +x while
+    // hanging and up while holding), shins folded back towards the hips.
+    static let tuckHip = CGPoint(x: 60, y: 102)
+    static let tuckKnee = CGPoint(x: 80, y: 88)
+    static let tuckFeet = CGPoint(x: 72, y: 108)
+
+    /// - Parameter tucked: Knees at the chest (tuck front lever) instead of straight legs.
+    static func figure(at progress: Double, tucked: Bool = false) -> StickyFigure {
         let degrees = angle(at: progress)
         let turn: (CGPoint) -> CGPoint = { $0.rotated(around: shoulder, degrees: degrees) }
         let raised = abs(degrees) / 90
         let w = StickyStyle.bodyWidth
         let arm = StickyStyle.armWidth
+        let hipPoint = tucked ? tuckHip : hip
+        let legs: [StickySegment] = tucked
+            ? [
+                StickySegment(from: turn(tuckHip), to: turn(tuckKnee), width: w),
+                StickySegment(from: turn(tuckKnee), to: turn(tuckFeet), width: w),
+            ]
+            : [StickySegment(from: turn(hip), to: turn(feet), width: w)]
 
         return StickyFigure(
             canvas: canvas,
@@ -169,9 +186,8 @@ enum FrontLeverAnimation {
             limbs: [
                 StickySegment(from: leftHand, to: shoulder, width: arm),
                 StickySegment(from: rightHand, to: shoulder, width: arm),
-                StickySegment(from: shoulder, to: turn(hip), width: w),
-                StickySegment(from: turn(hip), to: turn(feet), width: w),
-            ],
+                StickySegment(from: shoulder, to: turn(hipPoint), width: w),
+            ] + legs,
             apparatus: [
                 StickySegment(
                     from: CGPoint(x: 20, y: barY),
