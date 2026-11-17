@@ -33,6 +33,7 @@ struct RootView: View {
     @State private var navigation = AppNavigation()
     @State private var store = UserDataStore(fileURL: UserDataStore.defaultFileURL)
     @State private var reminders = ReminderSettings()
+    @State private var subscription = SubscriptionStore()
 
     private var language: AppLanguage { AppLanguage.resolve(stored: storedLanguage) }
 
@@ -56,6 +57,7 @@ struct RootView: View {
         .environment(navigation)
         .environment(store)
         .environment(reminders)
+        .environment(subscription)
         .environment(\.accent, accent)
         .environment(\.locale, language.locale)
         .tint(accent.color)

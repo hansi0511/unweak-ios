@@ -40,10 +40,11 @@ enum WorkoutsArea: Hashable {
 /// start the workout; subscription plans lead to the subscription page.
 struct WorkoutsScreen: View {
     @Environment(UserDataStore.self) private var store
+    @Environment(SubscriptionStore.self) private var subscription
     private let catalog: Catalog
     @State private var area: WorkoutsArea = .skills
     @State private var filter: WorkoutFilter = .all
-    @State private var subscriptionPlan: WorkoutPlan?
+    @State private var isShowingPaywall = false
     @State private var editing: CustomWorkout?
     @State private var deleting: CustomWorkout?
 
@@ -53,14 +54,24 @@ struct WorkoutsScreen: View {
 
     var body: some View {
         ScreenContainer {
-            ScreenHeader(label: MonoLabel("\(catalog.freePlanCount) plans free"), title: "Workouts") {
+            ScreenHeader(label: MonoLabel("\(catalog.freePlanCount) workouts free"), title: "Workouts") {
                 if area == .workouts {
-                    NavigationLink {
-                        CustomWorkoutEditor(workout: nil, catalog: catalog)
-                    } label: {
-                        ChipLabel("Custom", systemImage: "plus", style: .dashed)
+                    if subscription.access.canCreateCustomWorkout(existing: store.customWorkouts.count) {
+                        NavigationLink {
+                            CustomWorkoutEditor(workout: nil, catalog: catalog)
+                        } label: {
+                            ChipLabel("Custom", systemImage: "plus", style: .dashed)
+                        }
+                        .buttonStyle(PressFeedbackStyle())
+                    } else {
+                        // Free version: three custom workouts; more with Pro.
+                        Button {
+                            isShowingPaywall = true
+                        } label: {
+                            ChipLabel("Custom", systemImage: "lock.fill", style: .dashed)
+                        }
+                        .buttonStyle(PressFeedbackStyle())
                     }
-                    .buttonStyle(PressFeedbackStyle())
                 }
             }
 
@@ -80,8 +91,8 @@ struct WorkoutsScreen: View {
                 workoutsArea
             }
         }
-        .sheet(item: $subscriptionPlan) { _ in
-            SubscriptionPlaceholderSheet()
+        .sheet(isPresented: $isShowingPaywall) {
+            PaywallSheet()
         }
         .navigationDestination(item: $editing) { workout in
             CustomWorkoutEditor(workout: workout, catalog: catalog)
@@ -137,7 +148,7 @@ struct WorkoutsScreen: View {
                 }
                 ForEach(catalog.workoutPlans(category: filter.category)) { plan in
                     PlanLink(plan: plan, catalog: catalog) {
-                        subscriptionPlan = plan
+                        isShowingPaywall = true
                     }
                 }
             }
@@ -150,14 +161,15 @@ struct WorkoutsScreen: View {
     }
 }
 
-/// A plan row that starts the workout (free) or asks for the subscription (Pro).
+/// A plan row that starts the workout, or asks for the subscription if the plan needs Pro.
 struct PlanLink: View {
+    @Environment(SubscriptionStore.self) private var subscription
     let plan: WorkoutPlan
     let catalog: Catalog
     let onSubscriptionNeeded: () -> Void
 
     var body: some View {
-        if plan.isFree {
+        if subscription.access.canTrain(plan) {
             NavigationLink {
                 TrainingScreen(plan: plan, catalog: catalog)
             } label: {

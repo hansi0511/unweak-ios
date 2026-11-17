@@ -36,36 +36,3 @@ struct ComingLaterScreen: View {
         }
     }
 }
-
-/// Stand-in for the subscription page (step 7). Shown for subscription plans.
-struct SubscriptionPlaceholderSheet: View {
-    @Environment(\.dismiss) private var dismiss
-
-    var body: some View {
-        ScreenContainer {
-            HStack {
-                IconButton(systemImage: "xmark", accessibilityLabel: "Close") {
-                    dismiss()
-                }
-                Spacer()
-                Badge(kind: .subscription)
-            }
-            Text("Unlock all plans")
-                .font(.screenTitle)
-                .foregroundStyle(Theme.text)
-                .accessibilityAddTraits(.isHeader)
-            Text("The five beginner plans stay free.")
-                .font(.text(15))
-                .foregroundStyle(Theme.textSoft)
-            StickyManView(.muscleUp)
-                .frame(height: 200)
-                .frame(maxWidth: .infinity)
-            PlaceholderNote()
-        }
-        .presentationBackground(Theme.background)
-    }
-}
-
-#Preview("Subscription") {
-    SubscriptionPlaceholderSheet()
-}

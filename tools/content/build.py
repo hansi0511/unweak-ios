@@ -59,6 +59,10 @@ for g in G:
 # Every skill-category plan belongs to at least one skill.
 for p in PL:
     if p['category'] == "skill": assert any(p['id'] in g['plans'] for g in G), p['id']
+# Free version: the 10 general workouts. Skills and their own workouts are Pro.
+assert sum(p['isFree'] for p in PL) == 10, "exactly 10 free workouts"
+for p in PL: assert p['isFree'] == (p['category'] != "skill"), p['id']
+for g in G: assert not g['isFree'], g['id']
 for a in A:
     assert a['kind'] in ("workouts", "reps", "seconds", "streak"), a
     assert (a['exercise'] is not None) == (a['kind'] in ("reps", "seconds")), a

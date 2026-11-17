@@ -6,6 +6,7 @@ struct SettingsScreen: View {
     @Environment(\.locale) private var locale
     @Environment(\.openURL) private var openURL
     @Environment(ReminderSettings.self) private var reminders
+    @Environment(SubscriptionStore.self) private var subscription
     @AppStorage(Accent.storageKey) private var accent: Accent = .default
     @AppStorage(AppLanguage.storageKey) private var storedLanguage = ""
     @State private var isShowingSubscription = false
@@ -30,7 +31,7 @@ struct SettingsScreen: View {
                         Rectangle().fill(Theme.line).frame(height: 1)
                         HStack(spacing: 12) {
                             settingRow("Subscription") {
-                                Text("Free")
+                                if subscription.isPro { Text(verbatim: "Pro") } else { Text("Free") }
                             }
                             Button {
                                 isShowingSubscription = true
@@ -98,7 +99,7 @@ struct SettingsScreen: View {
             }
         }
         .sheet(isPresented: $isShowingSubscription) {
-            SubscriptionPlaceholderSheet()
+            PaywallSheet()
         }
         .onChange(of: storedLanguage) { _, _ in
             // Notification texts follow the app language.

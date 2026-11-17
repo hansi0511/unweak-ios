@@ -9,13 +9,20 @@ struct CatalogTests {
         let loaded = try Catalog.load()
         #expect(loaded.problems().isEmpty)
         #expect(loaded.exercises.count == 16)
-        #expect(loaded.plans.count == 7)
+        #expect(loaded.plans.count == 13)
         #expect(loaded.goals.count == 6)
         #expect(loaded.achievements.count == 12)
     }
 
-    @Test func fivePlansAreFree() {
-        #expect(catalog.freePlanCount == 5)
+    @Test func theFreeVersionHasTenGeneralWorkouts() {
+        #expect(catalog.freePlanCount == 10)
+        for plan in catalog.plans {
+            #expect(plan.isFree == (plan.category != .skill), "\(plan.id)")
+        }
+    }
+
+    @Test func skillsArePro() {
+        #expect(catalog.goals.allSatisfy { !$0.isFree })
     }
 
     @Test(arguments: ExerciseCategory.allCases)
@@ -196,7 +203,7 @@ struct SkillTests {
             #expect(!catalog.skillPlans(for: goal).isEmpty, "\(goal.id)")
         }
         let frontLever = try #require(catalog.goals.first { $0.id == "frontLever" })
-        #expect(catalog.skillPlans(for: frontLever).map(\.id) == ["pullDay", "frontLeverBuildUp"])
+        #expect(catalog.skillPlans(for: frontLever).map(\.id) == ["pullDay", "pullStrength", "frontLeverBuildUp"])
     }
 
     @Test func skillWorkoutsAreNotInTheWorkoutsArea() {
@@ -232,5 +239,54 @@ struct SkillTests {
         #expect(stats.nextWorkout(in: catalog, preferring: ["pullDay", "frontLeverBuildUp"])?.id == "pullDay")
         // Only Pro workouts in the skill: fall back to all free plans.
         #expect(stats.nextWorkout(in: catalog, preferring: ["muscleUpPath"])?.id == catalog.plans.first(where: \.isFree)?.id)
+    }
+}
+
+struct AccessTests {
+    private let catalog = Catalog.main
+
+    @Test func freeVersionTrainsGeneralWorkoutsOnly() throws {
+        let free = Access(isPro: false)
+        let general = try #require(catalog.plan("pushBasics"))
+        let skillWorkout = try #require(catalog.plan("frontLeverBuildUp"))
+        #expect(free.canTrain(general))
+        #expect(!free.canTrain(skillWorkout))
+        #expect(!free.canUseSkills)
+    }
+
+    @Test func proUnlocksEverything() throws {
+        let pro = Access(isPro: true)
+        #expect(catalog.plans.allSatisfy { pro.canTrain($0) })
+        #expect(pro.canUseSkills)
+        #expect(pro.canCreateCustomWorkout(existing: 50))
+    }
+
+    @Test func freeVersionAllowsThreeCustomWorkouts() {
+        let free = Access(isPro: false)
+        #expect(free.canCreateCustomWorkout(existing: 0))
+        #expect(free.canCreateCustomWorkout(existing: 2))
+        #expect(!free.canCreateCustomWorkout(existing: 3))
+        #expect(!free.canCreateCustomWorkout(existing: 4))
+    }
+
+    @Test func customWorkoutsAreAlwaysTrainable() {
+        let workout = CustomWorkout(name: "Mine", exercises: [catalog.defaultItem(for: "squat")])
+        #expect(Access(isPro: false).canTrain(workout.plan(in: catalog)))
+    }
+
+    @Test func proSuggestsTheSkillWorkoutsIncludingProOnes() throws {
+        let pullDay = JournalEntry(date: Date(timeIntervalSinceReferenceDate: 100), planID: "pullDay", durationSeconds: 60, results: [])
+        let pullStrength = JournalEntry(date: Date(timeIntervalSinceReferenceDate: 200), planID: "pullStrength", durationSeconds: 60, results: [])
+        let frontLever = try #require(catalog.goals.first { $0.id == "frontLever" })
+        let stats = JournalStats(entries: [pullDay, pullStrength])
+        let pro = stats.nextWorkout(in: catalog, access: Access(isPro: true), preferring: frontLever.plans)
+        #expect(pro?.id == "frontLeverBuildUp")
+        let free = stats.nextWorkout(in: catalog, access: Access(isPro: false), preferring: frontLever.plans)
+        #expect(free?.id == "pullDay")
+    }
+
+    @Test func withoutSkillOnlyGeneralWorkoutsAreSuggested() {
+        let suggestion = JournalStats(entries: []).nextWorkout(in: catalog, access: Access(isPro: true))
+        #expect(suggestion?.category != .skill)
     }
 }

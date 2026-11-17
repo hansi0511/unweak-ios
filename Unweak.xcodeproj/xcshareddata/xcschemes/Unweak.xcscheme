@@ -63,6 +63,9 @@
                ReferencedContainer = "container:Unweak.xcodeproj">
             </BuildableReference>
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "../../Unweak/Resources/Unweak.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

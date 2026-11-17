@@ -4,6 +4,8 @@ import SwiftUI
 struct DashboardScreen: View {
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
+    @Environment(SubscriptionStore.self) private var subscription
+    @State private var isShowingPaywall = false
     private let catalog: Catalog
 
     init(catalog: Catalog = .main) {
@@ -29,9 +31,17 @@ struct DashboardScreen: View {
                         store.markStageReached(of: goal)
                     }
                 }
+            } else {
+                // Free version: skills are Pro, so a teaser takes the place of the goal.
+                Button {
+                    isShowingPaywall = true
+                } label: {
+                    SkillTeaser()
+                }
+                .buttonStyle(PressFeedbackStyle())
             }
 
-            if let plan = stats.nextWorkout(in: catalog, preferring: activeGoal?.plans ?? []) {
+            if let plan = stats.nextWorkout(in: catalog, access: subscription.access, preferring: activeGoal?.plans ?? []) {
                 NavigationLink {
                     TrainingScreen(plan: plan, catalog: catalog)
                 } label: {
@@ -40,22 +50,36 @@ struct DashboardScreen: View {
                 .buttonStyle(PressFeedbackStyle())
             }
 
-            NavigationLink {
-                CustomWorkoutEditor(workout: nil, catalog: catalog)
-            } label: {
-                ChipLabel("Create custom workout", systemImage: "plus", style: .dashed, expands: true)
+            if subscription.access.canCreateCustomWorkout(existing: store.customWorkouts.count) {
+                NavigationLink {
+                    CustomWorkoutEditor(workout: nil, catalog: catalog)
+                } label: {
+                    ChipLabel("Create custom workout", systemImage: "plus", style: .dashed, expands: true)
+                }
+                .buttonStyle(PressFeedbackStyle())
+            } else {
+                Button {
+                    isShowingPaywall = true
+                } label: {
+                    ChipLabel("Create custom workout", systemImage: "lock.fill", style: .dashed, expands: true)
+                }
+                .buttonStyle(PressFeedbackStyle())
             }
-            .buttonStyle(PressFeedbackStyle())
 
             AchievementsSection(
                 progress: catalog.achievements.map { stats.progress(of: $0, target: target) }
             )
         }
+        .sheet(isPresented: $isShowingPaywall) {
+            PaywallSheet()
+        }
     }
 
+    /// The active skill; none in the free version (skills are Pro).
     private var activeGoal: Goal? {
+        guard subscription.access.canUseSkills else { return nil }
         let id = store.data.activeGoalID
-        return catalog.goals.first { $0.id == id } ?? catalog.goals.first { $0.isFree }
+        return catalog.goals.first { $0.id == id } ?? catalog.goals.first
     }
 
     private func header(week: WeekSummary, streak: Int) -> some View {
@@ -205,6 +229,34 @@ private struct GoalPanel: View {
         case .time:
             return progress.isComplete ? Text("Goal reached") : Text("Keep going")
         }
+    }
+}
+
+/// Free version: invites to the skills, which need Pro.
+private struct SkillTeaser: View {
+    var body: some View {
+        HUDPanel {
+            HStack(spacing: 12) {
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(spacing: 6) {
+                        MonoLabel("Skills")
+                        Badge(kind: .subscription)
+                    }
+                    Text("Reach your first skill")
+                        .font(.metric)
+                        .foregroundStyle(Theme.text)
+                    Text("Choose a skill like the front lever and get the workouts that build it.")
+                        .font(.text(13))
+                        .foregroundStyle(Theme.textSoft)
+                        .multilineTextAlignment(.leading)
+                }
+                Spacer(minLength: 0)
+                StickyManView(.frontLever)
+                    .frame(width: 110, height: 110)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
     }
 }
 

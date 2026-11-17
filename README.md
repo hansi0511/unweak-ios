@@ -6,7 +6,7 @@ Dieses Repository enthält die native iOS-App (Swift, SwiftUI). Die Android-App 
 
 ## Stand
 
-Schritt 5 von 7 (siehe `CLAUDE.md`): alles, was ohne Server läuft. Trainingsdaten, Workouts mit eigenen Workouts, Training, Übungsdetail, Tagebuch mit lokaler Speicherung, Dashboard mit Woche, Ziel und Erfolgen, Ziel wählen und Einstellungen mit Trainingserinnerung (lokale Mitteilungen), Akzentfarbe und Sprache. Konto (Schritt 6) und Abo (Schritt 7) sind noch Platzhalter. Trainingsinhalte und Erfolge sind Beispielinhalte, bis der echte Katalog steht. Offene Punkte zu den Animationen sammelt Issue #4.
+Schritte 1 bis 5 und 7 von 7 (siehe `CLAUDE.md`): alles ohne Server plus das Pro-Abo mit StoreKit 2. Gratis: 10 Workouts und 3 eigene Workouts; Pro: Skills mit ihren Workouts und unbegrenzt eigene Workouts. Konto (Schritt 6, Firebase) ist noch Platzhalter. Trainingsinhalte und Erfolge sind Beispielinhalte, bis der echte Katalog steht. Offene Punkte zu den Animationen sammelt Issue #4.
 
 Öffnen: `Unweak.xcodeproj` in Xcode 16 oder neuer. Mindestversion iOS 17. Die Bundle-ID `com.example.unweak` ist ein Platzhalter.
 
@@ -16,6 +16,7 @@ Schritt 5 von 7 (siehe `CLAUDE.md`): alles, was ohne Server läuft. Trainingsdat
 | `Unweak/Design` | Farben, Schriften, Akzentfarben und Bausteine (`Components/`) |
 | `Unweak/StickyMan` | Sticky Man: Gelenkpunkte, Animationen (Front Lever, Klimmzug), Listenposen, Darstellung |
 | `Unweak/Training` | Trainingsdaten (Übungen, Pläne, Ziele, Erfolge) und Ablauf eines Trainings |
+| `Unweak/Subscription` | Pro-Abo (StoreKit 2) und die Regeln, was gratis und was Pro ist |
 | `Unweak/Settings` | Sprache der App und Trainingserinnerungen |
 | `Unweak/Journal` | Tagebuch: Einträge, lokale Speicherung (`userdata.json`), Auswertungen für Woche, Serie, Rekorde und Erfolge |
 | `Unweak/Features` | Screens, je Bereich ein Ordner |

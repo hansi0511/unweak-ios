@@ -5,8 +5,10 @@ struct CustomWorkoutEditor: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accent) private var accent
     @Environment(UserDataStore.self) private var store
+    @Environment(SubscriptionStore.self) private var subscription
     @State private var draft: CustomWorkout
     @State private var isPickingExercise = false
+    @State private var isShowingPaywall = false
     @State private var isConfirmingDelete = false
     private let isExisting: Bool
     private let catalog: Catalog
@@ -89,6 +91,12 @@ struct CustomWorkoutEditor: View {
 
             VStack(spacing: 12) {
                 PrimaryButton("Save workout", systemImage: "checkmark") {
+                    let allowed = isExisting
+                        || subscription.access.canCreateCustomWorkout(existing: store.customWorkouts.count)
+                    guard allowed else {
+                        isShowingPaywall = true
+                        return
+                    }
                     var saved = draft
                     saved.name = draft.trimmedName
                     store.save(saved)
@@ -111,6 +119,9 @@ struct CustomWorkoutEditor: View {
                     .buttonStyle(PressFeedbackStyle())
                 }
             }
+        }
+        .sheet(isPresented: $isShowingPaywall) {
+            PaywallSheet()
         }
         .sheet(isPresented: $isPickingExercise) {
             ExercisePickerSheet(catalog: catalog) { exercise in
