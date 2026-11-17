@@ -11,6 +11,9 @@ struct CustomWorkoutEditor: View {
     private let isExisting: Bool
     private let catalog: Catalog
 
+    /// Skills have their own area in the workouts tab, so custom workouts use the others.
+    private static let categories: [ExerciseCategory] = ExerciseCategory.allCases.filter { $0 != .skill }
+
     /// - Parameter workout: The workout to edit, or `nil` for a new one.
     init(workout: CustomWorkout?, catalog: Catalog = .main) {
         _draft = State(initialValue: workout ?? CustomWorkout())
@@ -55,7 +58,7 @@ struct CustomWorkoutEditor: View {
                 MonoLabel("Category")
                 ScrollView(.horizontal) {
                     HStack(spacing: 8) {
-                        ForEach(ExerciseCategory.allCases, id: \.self) { category in
+                        ForEach(Self.categories, id: \.self) { category in
                             SelectChip(category.title, isSelected: draft.category == category) {
                                 draft.category = category
                             }

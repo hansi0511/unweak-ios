@@ -25,7 +25,7 @@ for p in PL:
     catalog["plans"].append({"id": p['id'], "category": p['category'], "level": p['level'], "pose": p['pose'], "isFree": p['isFree'], "exercises": items})
 for g in G:
     put(f"goal.{g['id']}.name", g['name'])
-    d = {"id": g['id'], "pose": g['pose'], "exercise": g['exercise'], "isFree": g['isFree']}
+    d = {"id": g['id'], "pose": g['pose'], "exercise": g['exercise'], "plans": g['plans'], "isFree": g['isFree']}
     if g['stages']:
         for i, s in enumerate(g['stages'], 1): put(f"goal.{g['id']}.stage{i}", s)
         d["stageCount"] = len(g['stages'])
@@ -52,7 +52,13 @@ for e in E:
 for p in PL:
     for x in p['exercises']: assert x['exercise'] in ids, x
     assert len({x['exercise'] for x in p['exercises']}) == len(p['exercises']), p['id']
-for g in G: assert g['exercise'] in ids, g
+plan_ids = {p['id'] for p in PL}
+for g in G:
+    assert g['exercise'] in ids, g
+    assert g['plans'] and all(p in plan_ids for p in g['plans']), g
+# Every skill-category plan belongs to at least one skill.
+for p in PL:
+    if p['category'] == "skill": assert any(p['id'] in g['plans'] for g in G), p['id']
 for a in A:
     assert a['kind'] in ("workouts", "reps", "seconds", "streak"), a
     assert (a['exercise'] is not None) == (a['kind'] in ("reps", "seconds")), a

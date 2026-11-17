@@ -1,6 +1,6 @@
 # Screens
 
-Elf Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Workouts, Tagebuch. Alle anderen Screens öffnen sich darüber und haben oben links einen Zurück-Knopf.
+Zwölf Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Workouts, Tagebuch. Alle anderen Screens öffnen sich darüber und haben oben links einen Zurück-Knopf.
 
 ## Navigation
 
@@ -11,6 +11,10 @@ Elf Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Workou
 | Dashboard | Karte „Nächstes Workout“ | Training läuft |
 | Dashboard | „Eigenes Workout erstellen“ | Workout erstellen |
 | Dashboard | Regler-Symbol oben rechts | Einstellungen |
+| Workouts | Umschalter „Skills“ / „Workouts“ | anderer Bereich |
+| Workouts (Skills) | Skill-Karte | Skill |
+| Skill | Gratis-Workout | Training läuft |
+| Skill | Abo-Workout oder „Als Ziel setzen“ bei Abo-Skill | Abo |
 | Workouts | Gratis-Plan | Training läuft |
 | Workouts | Abo-Plan ohne Abo | Abo |
 | Workouts | „Eigenes“ | Workout erstellen |
@@ -30,9 +34,10 @@ Elf Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Workou
 
 ## 2 Workouts (Tab)
 
-- Kopf: Label „5 Pläne gratis“, Überschrift, rechts Knopf „Eigenes“.
-- Filter: Alle, Push, Pull, Beine, Core, Skill. Einfachauswahl.
-- Liste: je Plan Sticky-Man-Pose, Name, „Kategorie · Dauer · Niveau“ und Marke „Gratis“ (Akzentfarbe) oder „Abo“ (Orange).
+- Kopf: Label „5 Pläne gratis“, Überschrift, rechts Knopf „Eigenes“ (nur im Bereich Workouts).
+- Umschalter mit zwei gleich breiten Feldern: „Skills“ (Standard) und „Workouts“.
+- **Skills:** ein Satz zur Erklärung, darunter je Skill eine große Karte im HUD-Stil: Sticky Man in der Schlüsselpose, Marke „Gewählt“ (aktives Ziel) oder „Abo“, Name, „Stufe 2 / 5 · 2 Workouts“ bzw. Bestzeit, fünf Segmente.
+- **Workouts:** Filter Alle, Push, Pull, Beine, Core (Einfachauswahl). Liste: zuerst eigene Workouts (Marke „Eigenes“), dann die Pläne ohne die Skill-Workouts; je Plan Sticky-Man-Pose, Name, „Kategorie · Dauer · Niveau“ und Marke „Gratis“ (Akzentfarbe) oder „Abo“ (Orange).
 
 ## 3 Training läuft
 
@@ -74,6 +79,7 @@ Elf Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Workou
 
 ## 8 Ziel wählen
 
+- Die Ziele sind die Skills aus dem Workouts-Tab.
 - Kopf: Zurück, Label „Ein Ziel zur Zeit“.
 - Liste der Ziele mit Pose, Name, Stand und Marke „Gewählt“ oder „Abo“. Einfachauswahl.
 - Knopf „Als Ziel setzen“.
@@ -99,3 +105,11 @@ Elf Screens in Version 1. Die untere Navigation hat drei Tabs: Dashboard, Workou
 - Darstellung: sechs Farbfelder, Sprache DE und EN.
 - Eine Zeile für Datenschutz, Nutzungsbedingungen und Impressum.
 - „Abmelden“ und „Konto löschen“ (rot) nebeneinander, Hinweis, dass Löschen endgültig ist. Vor dem Löschen eine Rückfrage zeigen.
+
+## 12 Skill
+
+- Kopf: Zurück, bei Abo-Skills Marke „Abo“, Label „Skill“, Name.
+- Panel mit animiertem Sticky Man.
+- Fortschritt: Stand rechts, fünf Segmente. Bei Skills mit Stufen die fünf Stufen als Liste (erreichte abgehakt) und gestrichelter Knopf „Stufe erreicht“; bei Zeit-Skills Hinweis, dass die Bestzeit aus dem Tagebuch kommt.
+- „Als Ziel setzen“ (Hauptknopf) oder, wenn der Skill das aktive Ziel ist, Marke „Gewählt“ mit kurzem Hinweis.
+- „Workouts für diesen Skill“, von leicht nach schwer, wie in der Workouts-Liste.

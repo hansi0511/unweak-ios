@@ -7,11 +7,14 @@ struct SelectChip: View {
 
     private let title: LocalizedStringKey
     private let isSelected: Bool
+    private let expands: Bool
     private let action: () -> Void
 
-    init(_ title: LocalizedStringKey, isSelected: Bool, action: @escaping () -> Void) {
+    /// - Parameter expands: Fill the available width, e.g. for a two-part switch.
+    init(_ title: LocalizedStringKey, isSelected: Bool, expands: Bool = false, action: @escaping () -> Void) {
         self.title = title
         self.isSelected = isSelected
+        self.expands = expands
         self.action = action
     }
 
@@ -25,6 +28,7 @@ struct SelectChip: View {
                 .foregroundStyle(isSelected ? Theme.onAccent : Theme.textSoft)
                 .padding(.horizontal, 14)
                 .frame(minWidth: Theme.Layout.minTouchTarget, minHeight: Theme.Layout.selectHeight)
+                .frame(maxWidth: expands ? .infinity : nil)
                 .background(isSelected ? accent.color : Color.clear)
                 .overlay(Rectangle().strokeBorder(isSelected ? accent.color : Theme.lineStrong, lineWidth: 1))
                 .contentShape(Rectangle())

@@ -133,6 +133,8 @@ struct Goal: Codable, Identifiable, Hashable, Sendable {
     /// Exercise behind the goal: its animation is shown on the dashboard and, for
     /// time goals, its best journal value is the current best time.
     let exercise: String
+    /// Workouts that build this skill, from easy to hard.
+    let plans: [String]
     let isFree: Bool
     let stageCount: Int?
     let targetSeconds: Int?
@@ -214,6 +216,17 @@ struct Catalog: Codable, Sendable {
 
     var freePlanCount: Int { plans.filter(\.isFree).count }
 
+    /// The workouts of a skill, from easy to hard.
+    func skillPlans(for goal: Goal) -> [WorkoutPlan] {
+        goal.plans.compactMap { plan($0) }
+    }
+
+    /// General workouts of a category (`nil` for all), without the skill workouts,
+    /// which are shown with their skills. Free plans come first.
+    func workoutPlans(category: ExerciseCategory?) -> [WorkoutPlan] {
+        filteredPlans(category: category).filter { $0.category != .skill }
+    }
+
     /// Every text key the catalog uses.
     var textKeys: [String] {
         // Built step by step: one long chain of `+` is too slow for the type checker.
@@ -257,6 +270,10 @@ struct Catalog: Codable, Sendable {
                 problems.append("Goal \(goal.id) needs either stages or a target time")
             }
             if !ids.contains(goal.exercise) { problems.append("Goal \(goal.id): unknown exercise \(goal.exercise)") }
+            if goal.plans.isEmpty { problems.append("Goal \(goal.id) has no workouts") }
+            for planID in goal.plans where plan(planID) == nil {
+                problems.append("Goal \(goal.id): unknown workout \(planID)")
+            }
         }
         for achievement in achievements {
             let needsExercise = achievement.kind == .reps || achievement.kind == .seconds

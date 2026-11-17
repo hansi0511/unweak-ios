@@ -80,7 +80,7 @@ private struct GoalRow: View {
                 Text(catalog: goal.nameKey)
                     .font(.textSemibold(17))
                     .foregroundStyle(Theme.text)
-                stateText
+                progress.stateText
                     .font(.mono)
                     .tracking(1)
                     .textCase(.uppercase)
@@ -99,18 +99,6 @@ private struct GoalRow: View {
         .overlay(Rectangle().strokeBorder(isSelected ? accent.color : Theme.line, lineWidth: isSelected ? 2 : 1))
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
-    }
-
-    private var stateText: Text {
-        switch goal.kind {
-        case .stages(let count):
-            return Text("Stage \(progress.reachedStages) / \(count)")
-        case .time(let target):
-            if let best = progress.bestSeconds {
-                return Text("Best \(ValueText.seconds(best)) / \(ValueText.seconds(target))")
-            }
-            return Text("Target \(ValueText.seconds(target))")
-        }
     }
 }
 

@@ -5,7 +5,11 @@ enum WorkoutFilter: Hashable, Identifiable {
     case all
     case category(ExerciseCategory)
 
-    static let allFilters: [WorkoutFilter] = [.all] + ExerciseCategory.allCases.map { .category($0) }
+    /// "All" and the general categories; skill workouts live in the Skills area.
+    static let allFilters: [WorkoutFilter] = {
+        let categories: [ExerciseCategory] = ExerciseCategory.allCases.filter { $0 != .skill }
+        return [.all] + categories.map { .category($0) }
+    }()
 
     var id: Self { self }
 
@@ -24,11 +28,20 @@ enum WorkoutFilter: Hashable, Identifiable {
     }
 }
 
-/// Workouts tab: predefined plans, filterable by category. Free plans start the
-/// workout; subscription plans lead to the subscription page.
+/// The two areas of the workouts tab.
+enum WorkoutsArea: Hashable {
+    /// Skills such as Front Lever, each with its matching workouts.
+    case skills
+    /// General workouts and custom workouts, filterable by category.
+    case workouts
+}
+
+/// Workouts tab with two areas: skills (highlighted, first) and workouts. Free plans
+/// start the workout; subscription plans lead to the subscription page.
 struct WorkoutsScreen: View {
     @Environment(UserDataStore.self) private var store
     private let catalog: Catalog
+    @State private var area: WorkoutsArea = .skills
     @State private var filter: WorkoutFilter = .all
     @State private var subscriptionPlan: WorkoutPlan?
     @State private var editing: CustomWorkout?
@@ -41,14 +54,55 @@ struct WorkoutsScreen: View {
     var body: some View {
         ScreenContainer {
             ScreenHeader(label: MonoLabel("\(catalog.freePlanCount) plans free"), title: "Workouts") {
-                NavigationLink {
-                    CustomWorkoutEditor(workout: nil, catalog: catalog)
-                } label: {
-                    ChipLabel("Custom", systemImage: "plus", style: .dashed)
+                if area == .workouts {
+                    NavigationLink {
+                        CustomWorkoutEditor(workout: nil, catalog: catalog)
+                    } label: {
+                        ChipLabel("Custom", systemImage: "plus", style: .dashed)
+                    }
+                    .buttonStyle(PressFeedbackStyle())
                 }
-                .buttonStyle(PressFeedbackStyle())
             }
 
+            HStack(spacing: 8) {
+                SelectChip("Skills", isSelected: area == .skills, expands: true) {
+                    area = .skills
+                }
+                SelectChip("Workouts", isSelected: area == .workouts, expands: true) {
+                    area = .workouts
+                }
+            }
+
+            switch area {
+            case .skills:
+                SkillList(catalog: catalog)
+            case .workouts:
+                workoutsArea
+            }
+        }
+        .sheet(item: $subscriptionPlan) { _ in
+            SubscriptionPlaceholderSheet()
+        }
+        .navigationDestination(item: $editing) { workout in
+            CustomWorkoutEditor(workout: workout, catalog: catalog)
+        }
+        .confirmationDialog(
+            "Delete this workout?",
+            isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } }),
+            titleVisibility: .visible,
+            presenting: deleting
+        ) { workout in
+            Button("Delete workout", role: .destructive) {
+                store.delete(workout)
+            }
+        } message: { _ in
+            Text("Journal entries of this workout are kept.")
+        }
+    }
+
+    /// Filter and list of the general and custom workouts.
+    private var workoutsArea: some View {
+        VStack(alignment: .leading, spacing: Theme.Layout.blockSpacing) {
             ScrollView(.horizontal) {
                 HStack(spacing: 8) {
                     ForEach(WorkoutFilter.allFilters) { item in
@@ -81,48 +135,41 @@ struct WorkoutsScreen: View {
                         }
                     }
                 }
-                ForEach(catalog.filteredPlans(category: filter.category)) { plan in
-                    if plan.isFree {
-                        NavigationLink {
-                            TrainingScreen(plan: plan, catalog: catalog)
-                        } label: {
-                            PlanRow(plan: plan)
-                        }
-                        .buttonStyle(PressFeedbackStyle())
-                    } else {
-                        Button {
-                            subscriptionPlan = plan
-                        } label: {
-                            PlanRow(plan: plan)
-                        }
-                        .buttonStyle(PressFeedbackStyle())
+                ForEach(catalog.workoutPlans(category: filter.category)) { plan in
+                    PlanLink(plan: plan, catalog: catalog) {
+                        subscriptionPlan = plan
                     }
                 }
             }
-        }
-        .sheet(item: $subscriptionPlan) { _ in
-            SubscriptionPlaceholderSheet()
-        }
-        .navigationDestination(item: $editing) { workout in
-            CustomWorkoutEditor(workout: workout, catalog: catalog)
-        }
-        .confirmationDialog(
-            "Delete this workout?",
-            isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } }),
-            titleVisibility: .visible,
-            presenting: deleting
-        ) { workout in
-            Button("Delete workout", role: .destructive) {
-                store.delete(workout)
-            }
-        } message: { _ in
-            Text("Journal entries of this workout are kept.")
         }
     }
 
     /// Custom workouts of the selected category, shown above the plans.
     private var customWorkouts: [CustomWorkout] {
         store.customWorkouts.filter { filter.category == nil || $0.category == filter.category }
+    }
+}
+
+/// A plan row that starts the workout (free) or asks for the subscription (Pro).
+struct PlanLink: View {
+    let plan: WorkoutPlan
+    let catalog: Catalog
+    let onSubscriptionNeeded: () -> Void
+
+    var body: some View {
+        if plan.isFree {
+            NavigationLink {
+                TrainingScreen(plan: plan, catalog: catalog)
+            } label: {
+                PlanRow(plan: plan)
+            }
+            .buttonStyle(PressFeedbackStyle())
+        } else {
+            Button(action: onSubscriptionNeeded) {
+                PlanRow(plan: plan)
+            }
+            .buttonStyle(PressFeedbackStyle())
+        }
     }
 }
 

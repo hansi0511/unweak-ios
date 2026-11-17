@@ -372,6 +372,10 @@
       "id": "frontLever",
       "pose": "frontLever",
       "exercise": "tuckFrontLever",
+      "plans": [
+        "pullDay",
+        "frontLeverBuildUp"
+      ],
       "isFree": true,
       "stageCount": 5
     },
@@ -379,6 +383,10 @@
       "id": "plank5Min",
       "pose": "plank",
       "exercise": "plank",
+      "plans": [
+        "corePlank",
+        "pushBasics"
+      ],
       "isFree": true,
       "targetSeconds": 300
     },
@@ -386,6 +394,10 @@
       "id": "handstandPushUp",
       "pose": "handstand",
       "exercise": "pikePushUp",
+      "plans": [
+        "pushBasics",
+        "handstandSchool"
+      ],
       "isFree": true,
       "stageCount": 5
     },
@@ -393,6 +405,9 @@
       "id": "lSit30",
       "pose": "lSit",
       "exercise": "lSit",
+      "plans": [
+        "corePlank"
+      ],
       "isFree": true,
       "targetSeconds": 30
     },
@@ -400,6 +415,9 @@
       "id": "pistolSquat",
       "pose": "pistolSquat",
       "exercise": "pistolSquat",
+      "plans": [
+        "legsNoEquipment"
+      ],
       "isFree": true,
       "stageCount": 5
     },
@@ -407,6 +425,10 @@
       "id": "muscleUp",
       "pose": "muscleUp",
       "exercise": "muscleUp",
+      "plans": [
+        "pullDay",
+        "muscleUpPath"
+      ],
       "isFree": false,
       "stageCount": 5
     }
