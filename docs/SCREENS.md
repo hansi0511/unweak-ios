@@ -8,8 +8,8 @@
 |---|---|---|
 | Anmeldung | Mit Apple oder Google anmelden | Ich |
 | Ich | „Dein Skill · Ändern“ | Ziel wählen |
-| Ich | Karte „Nächstes Workout“ | Training läuft |
-| Ich | „Anpassen“ auf der Avatar-Karte | Avatar anpassen |
+| Ich | Leiste „Nächstes Workout“ | Training läuft |
+| Ich | „Anpassen“ unter dem Avatar | Avatar anpassen |
 | Ich | Regler-Symbol oben rechts | Einstellungen |
 | Ich (Gratis) | Hinweis „Erreiche deinen ersten Skill“ | Abo |
 | Workouts | Umschalter „Skills“ / „Workouts“ | anderer Bereich |
@@ -30,10 +30,11 @@
 ## 1 Ich (Tab)
 
 - Kopf: Überschrift „Ich“, rechts Teilen-Symbol (Woche und Serie) und Regler-Symbol.
-- Avatar-Karte: links der Avatar (Körper, Farben, Grund und Extra wie gewählt, Eckmarkierungen oben links und unten rechts), rechts Label „Dein Avatar“, Name des Körpers, Weg zum nächsten Körper („Noch 7 Trainings bis Trainiert“, „Meistere einen Skill und werde zur Legende“, „Du bist eine Legende!“) und Knopf „Anpassen“.
-- Karte Wochenziel: Label „Diese Woche“, Serie in Wochen, „3 / 4 Trainings“, ein Segment pro Training des Wochenziels und der Hinweis „Noch 1 bis zum Wochenziel“ bzw. „Wochenziel erreicht“.
+- Avatar-Bühne, groß und mittig: Der Avatar (Körper, Farben und Extra wie gewählt) steht in einem Kreis in seiner Grundfarbe und atmet leicht. Um den Kreis liegt ein Ring aus so vielen Bögen, wie das Wochenziel Trainings hat; geschaffte Bögen leuchten in der Akzentfarbe.
+- Darunter dezent in Mono-Schrift: „2 / 3 diese Woche · Serie 3 Wochen“ und „Noch 1 bis zum Wochenziel“ bzw. „Wochenziel erreicht“.
+- Darunter mittig: Name des Körpers, Weg zum nächsten Körper („Noch 7 Trainings bis Trainiert“, „Meistere einen Skill und werde zur Legende“, „Du bist eine Legende!“) und Knopf „Anpassen“.
+- Schmale Leiste „Nächstes Workout“ mit Play-Symbol in Akzentfarbe, Name und Dauer: mit Pro aus den Workouts des aktiven Skills, gratis aus den Gratis-Workouts.
 - Skill-Panel (nur mit Pro) mit Raster-Hintergrund und Eckmarkierungen: Link „Dein Skill · Ändern“, Name des Skills. Darunter zwei Animationen nebeneinander mit Pfeil dazwischen: links „Jetzt“ mit der Animation der Stufe, an der der Nutzer gerade arbeitet (die nächste noch nicht erreichte, nach der letzten die letzte), und ihrem Namen; rechts „Ziel“ mit der Animation des Skills und dem Namen der letzten Stufe. Bei Zeit-Skills links die Bestzeit, rechts die Zielzeit, beide mit der Animation der Übung. Darunter fünf Segmente, „Stufe 2 / 5 · Noch 3 Stufen“ und der gestrichelte Knopf „Stufe erreicht“.
-- Karte „Nächstes Workout“ in Akzentfarbe mit Name, Dauer und Start-Symbol: mit Pro aus den Workouts des aktiven Skills, gratis aus den Gratis-Workouts.
 - Gratis-Version: statt Skill-Panel der Hinweis „Erreiche deinen ersten Skill“ mit Marke „Abo“, der zur Abo-Seite führt.
 
 ## 2 Workouts (Tab)

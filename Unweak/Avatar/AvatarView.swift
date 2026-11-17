@@ -17,6 +17,26 @@ enum AvatarShape: Equatable, Sendable {
     case band(center: CGPoint, radius: CGFloat, width: CGFloat)
     case rect(CGRect)
 
+    /// The same shape with every position moved by `transform`. Sizes stay the same.
+    func mapped(_ transform: (CGPoint) -> CGPoint) -> AvatarShape {
+        switch self {
+        case .line(let a, let b, let width):
+            .line(transform(a), transform(b), width: width)
+        case .curve(let a, let control, let b, let width):
+            .curve(transform(a), control: transform(control), transform(b), width: width)
+        case .dot(let center, let radius):
+            .dot(transform(center), radius: radius)
+        case .polygon(let points, let width, let fillOpacity):
+            .polygon(points.map(transform), width: width, fillOpacity: fillOpacity)
+        case .dome(let center, let radius):
+            .dome(center: transform(center), radius: radius)
+        case .band(let center, let radius, let width):
+            .band(center: transform(center), radius: radius, width: width)
+        case .rect(let rect):
+            .rect(CGRect(origin: transform(rect.origin), size: rect.size))
+        }
+    }
+
     /// Every point the shape touches, for bounds checks.
     var points: [CGPoint] {
         switch self {
@@ -41,11 +61,21 @@ struct AvatarFigure: Equatable, Sendable {
     let extra: [AvatarShape]
     let glows: Bool
 
-    init(body kind: AvatarBody, extra: AvatarExtra?) {
+    /// Largest lift of the head while breathing in, in grid units.
+    static let breathLift: CGFloat = 1.6
+
+    /// - Parameter breath: 0 (breathed out, the resting figure) to 1 (breathed in).
+    ///   Everything above the hips rises, the head most; legs and feet stay put.
+    init(body kind: AvatarBody, extra: AvatarExtra?, breath: CGFloat = 0) {
+        let restHead: CGPoint
+        let radius: CGFloat
+        let width: CGFloat
+        let hipY: CGFloat
+        let shapes: [AvatarShape]
         switch kind {
         case .start:
-            head = p(50, 24); headRadius = 6.5; lineWidth = 3
-            body = [
+            restHead = p(50, 24); radius = 6.5; width = 3; hipY = 63
+            shapes = [
                 .line(p(50, 30.5), p(50, 63), width: 3),
                 .line(p(50, 38), p(40, 55), width: 3),
                 .line(p(50, 38), p(60, 55), width: 3),
@@ -53,8 +83,8 @@ struct AvatarFigure: Equatable, Sendable {
                 .line(p(50, 63), p(58, 88), width: 3),
             ]
         case .athlete:
-            head = p(50, 22); headRadius = 7; lineWidth = 3.6
-            body = [
+            restHead = p(50, 22); radius = 7; width = 3.6; hipY = 63
+            shapes = [
                 .line(p(50, 29), p(50, 63), width: 3.6),
                 .line(p(42, 38), p(58, 38), width: 3.6),
                 .line(p(42, 38), p(33, 22), width: 3.6),
@@ -63,8 +93,8 @@ struct AvatarFigure: Equatable, Sendable {
                 .line(p(50, 63), p(59, 88), width: 3.6),
             ]
         case .trained, .legend:
-            head = p(50, 21); headRadius = 8; lineWidth = 4.6
-            body = [
+            restHead = p(50, 21); radius = 8; width = 4.6; hipY = 64
+            shapes = [
                 .line(p(50, 29), p(50, 38), width: 4.6),
                 .polygon([p(36, 38), p(64, 38), p(50, 64)], width: 4.6, fillOpacity: 0.3),
                 .curve(p(36, 38), control: p(24, 36), p(25, 24), width: 4.6),
@@ -75,9 +105,24 @@ struct AvatarFigure: Equatable, Sendable {
                 .curve(p(50, 64), control: p(62, 70), p(60, 89), width: 4.6),
             ]
         }
+        let extraShapes = extra.map { Self.shapes(for: $0, head: restHead, radius: radius) } ?? []
+
+        // Lift in proportion to the height above the hips: 0 at the hips, full from the
+        // center of the head up (head and extras move together).
+        let topY = restHead.y
+        let amount = min(max(breath, 0), 1) * Self.breathLift
+        let lift: (CGPoint) -> CGPoint = { point in
+            guard amount > 0, point.y < hipY else { return point }
+            let share = min(1, (hipY - point.y) / (hipY - topY))
+            return CGPoint(x: point.x, y: point.y - amount * share)
+        }
+
+        head = lift(restHead)
+        headRadius = radius
+        lineWidth = width
+        body = shapes.map { $0.mapped(lift) }
+        self.extra = extraShapes.map { $0.mapped(lift) }
         glows = kind == .legend
-        let (center, radius) = (head, headRadius)
-        self.extra = extra.map { Self.shapes(for: $0, head: center, radius: radius) } ?? []
     }
 
     /// Extras sit relative to the head, so they fit every body.
@@ -117,33 +162,99 @@ struct AvatarFigure: Equatable, Sendable {
     }
 }
 
-/// The user's avatar: figure, extra and background with corner marks. Static, so it
-/// needs no special handling for "Reduce Motion".
+extension AvatarStyle {
+    private static let night = Color(hex: 0x1E1733)
+
+    /// Color behind the figure.
+    var backgroundColor: Color {
+        switch background {
+        case .dark: Theme.surface
+        case .night: Self.night
+        case .inverted: color.color
+        }
+    }
+
+    /// Color of the figure: dark on an inverted background.
+    var figureColor: Color {
+        background == .inverted ? Theme.onAccent : color.color
+    }
+}
+
+/// The user's avatar: figure and extra, by default with its background and corner marks.
+/// It breathes gently; with "Reduce Motion" it stands still.
 struct AvatarView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private let style: AvatarStyle
     private let avatarBody: AvatarBody
     private let extra: AvatarExtra?
+    private let breathes: Bool
+    private let framed: Bool
+
+    /// Seconds for one breath in and out.
+    nonisolated static let breathDuration: TimeInterval = 4
 
     /// - Parameters:
     ///   - body: The body to draw (already resolved against the unlocks).
     ///   - extra: The extra to draw (already resolved against the unlocks).
-    init(style: AvatarStyle, body: AvatarBody, extra: AvatarExtra?) {
+    ///   - breathes: `false` for small previews, so a grid of them stays calm.
+    ///   - framed: `false` draws only the figure, for a container that paints the background.
+    init(style: AvatarStyle, body: AvatarBody, extra: AvatarExtra?, breathes: Bool = true, framed: Bool = true) {
         self.style = style
         self.avatarBody = body
         self.extra = extra
+        self.breathes = breathes
+        self.framed = framed
     }
 
-    private static let night = Color(hex: 0x1E1733)
+    /// Breath for a point in time: 0 (out) to 1 (in) and back once per `breathDuration`.
+    nonisolated static func breath(at date: Date) -> CGFloat {
+        let phase = date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: breathDuration) / breathDuration
+        return CGFloat((1 - cos(2 * .pi * phase)) / 2)
+    }
 
     var body: some View {
-        let figure = AvatarFigure(body: avatarBody, extra: extra)
-        let inverted = style.background == .inverted
-        let figureColor = inverted ? Theme.onAccent : style.color.color
-        let background: Color = switch style.background {
-        case .dark: Theme.surface
-        case .night: Self.night
-        case .inverted: style.color.color
+        let isMoving = breathes && !reduceMotion
+        TimelineView(.animation(minimumInterval: nil, paused: !isMoving)) { timeline in
+            AvatarCanvas(
+                figure: AvatarFigure(
+                    body: avatarBody,
+                    extra: extra,
+                    breath: isMoving ? Self.breath(at: timeline.date) : 0
+                ),
+                style: style
+            )
         }
+        .aspectRatio(1, contentMode: .fit)
+        .background(framed ? style.backgroundColor : Color.clear)
+        .overlay {
+            if framed && style.background != .inverted {
+                AvatarCornerMarks()
+                    .stroke(style.color.color, lineWidth: Theme.Layout.cornerMarkWidth)
+            }
+        }
+        .accessibilityElement()
+        .accessibilityLabel(Text("Avatar"))
+        .accessibilityValue(accessibilityValue)
+        .accessibilityAddTraits(.isImage)
+    }
+
+    private var accessibilityValue: Text {
+        let base = Text("\(Text(avatarBody.name)), \(Text(style.color.name))")
+        guard let extra else { return base }
+        return Text("\(base), \(Text(extra.name))")
+    }
+}
+
+/// Draws one `AvatarFigure` in the style's colors, scaled to the available square.
+private struct AvatarCanvas: View {
+    let figure: AvatarFigure
+    let style: AvatarStyle
+
+    var body: some View {
+        let figure = figure
+        let figureColor = style.figureColor
+        let background = style.backgroundColor
+        let extraColor = style.extraColor.color
 
         Canvas { context, size in
             let scale = min(size.width, size.height) / AvatarFigure.size
@@ -170,27 +281,10 @@ struct AvatarView: View {
                 layer.stroke(head, with: .color(figureColor), lineWidth: figure.lineWidth)
             }
             for shape in figure.extra {
-                Self.draw(shape, color: style.extraColor.color, in: &context)
+                Self.draw(shape, color: extraColor, in: &context)
             }
         }
-        .aspectRatio(1, contentMode: .fit)
-        .background(background)
-        .overlay {
-            if !inverted {
-                AvatarCornerMarks()
-                    .stroke(style.color.color, lineWidth: Theme.Layout.cornerMarkWidth)
-            }
-        }
-        .accessibilityElement()
-        .accessibilityLabel(Text("Avatar"))
-        .accessibilityValue(accessibilityValue)
-        .accessibilityAddTraits(.isImage)
-    }
-
-    private var accessibilityValue: Text {
-        let base = Text("\(Text(avatarBody.name)), \(Text(style.color.name))")
-        guard let extra else { return base }
-        return Text("\(base), \(Text(extra.name))")
+        .accessibilityHidden(true)
     }
 
     private static func draw(_ shape: AvatarShape, color: Color, in context: inout GraphicsContext) {
