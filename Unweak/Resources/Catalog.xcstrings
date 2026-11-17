@@ -1843,13 +1843,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hält den ganzen Körper waagrecht unter der Stange, mit gestreckten Armen. Baut Zugkraft und Ganzkörperspannung auf wie kaum eine andere Übung."
+            "value" : "Du schwebst waagrecht unter der Stange, die Arme gestreckt, als hätte die Schwerkraft gerade Pause. Kaum eine Übung baut so viel Zugkraft und Ganzkörperspannung auf, und spektakulär aussehen tut sie auch noch."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Holds the whole body horizontal under the bar with straight arms. Builds pulling strength and full-body tension like few other exercises."
+            "value" : "You float horizontally under the bar, arms straight, as if gravity had taken a day off. Few moves build pulling strength and full-body tension like this one, and it looks spectacular too."
           }
         }
       }
@@ -1860,13 +1860,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latissimus, Rumpf, hintere Schultern, Gesäß, Griffkraft"
+            "value" : "Dein breiter Rückenmuskel, der Latissimus, macht die Hauptarbeit und hält dich oben wie ein Regalbrett. Bauch und Po halten alles in einer geraden Linie, die hinteren Schultern sorgen für Ruhe und deine Hände halten fest."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lats, core, rear shoulders, glutes, grip"
+            "value" : "Your wide back muscles (the lats) do most of the work and keep you up like a shelf. Your belly and glutes hold everything in one straight line, the backs of your shoulders keep you steady, and your hands hang on tight."
           }
         }
       }
@@ -1911,13 +1911,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Knie an der Brust halten den Hebel kurz. Du lernst, den Körper mit gestreckten Armen waagrecht zu halten: die Basis für alle weiteren Stufen."
+            "value" : "Die Knie kuscheln sich an die Brust, du wirst zum kleinen Päckchen und hältst es waagrecht. So bleibt der Hebel kurz und du lernst die Position ganz in Ruhe kennen: der Startpunkt für alles, was noch kommt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Knees at the chest keep the lever short. You learn to hold your body horizontal with straight arms: the base for every further stage."
+            "value" : "Knees snuggled up to your chest, you roll into a small ball and hold it level. That keeps the lever short and lets you feel the position safely: the starting point for everything that follows."
           }
         }
       }
@@ -1928,13 +1928,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latissimus, Rumpf, hintere Schultern"
+            "value" : "Hier lernen Latissimus und Bauch, zusammenzuarbeiten, und die hinteren Schultern bekommen ihren ersten richtigen Job."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lats, core, rear shoulders"
+            "value" : "Your lats and belly start working together here, and the backs of your shoulders get their first real job."
           }
         }
       }
@@ -1962,13 +1962,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Rücken ist flach, die Oberschenkel zeigen nach oben. Der längere Hebel belastet Latissimus und Rumpf deutlich stärker."
+            "value" : "Das gleiche kleine Päckchen, nur ist dein Rücken jetzt flach wie ein Tisch und die Oberschenkel zeigen in den Himmel. Der Hebel wird länger und fühlt sich deutlich schwerer an. Hier zahlt sich Geduld aus."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The back is flat and the thighs point up. The longer lever puts clearly more load on lats and core."
+            "value" : "Same little package, but your back is now flat as a table and your thighs point to the sky. The lever gets longer, so it feels much heavier. Patience pays off here."
           }
         }
       }
@@ -1979,13 +1979,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latissimus, Rumpf, hintere Schultern, unterer Rücken"
+            "value" : "Latissimus und Bauch bekommen ordentlich mehr zu tun, und dein unterer Rücken hilft mit, damit er schön flach bleibt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lats, core, rear shoulders, lower back"
+            "value" : "Your lats and belly get a good deal more to do, and your lower back joins in to keep it nice and flat."
           }
         }
       }
@@ -2013,13 +2013,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein Bein ist gestreckt, das andere bleibt gebeugt. Überbrückt den großen Schritt vom Tuck zu den offenen Beinpositionen."
+            "value" : "Ein Bein streckt sich aus, das andere bleibt angewinkelt. Das ist die freundliche Brücke zwischen den kleinen und den langen Positionen, und mit Beinwechsel kommt keine Seite zu kurz."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "One leg is straight, the other stays bent. Bridges the big step from the tuck to the open-leg positions."
+            "value" : "One leg stretches out, the other stays tucked. This is the friendly bridge between the curled-up positions and the long ones, and you can switch legs to keep things fair."
           }
         }
       }
@@ -2030,13 +2030,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latissimus, Rumpf, Gesäß, Hüftbeuger"
+            "value" : "Neben Latissimus und Bauch helfen jetzt auch Po und Hüftbeuger, das gestreckte Bein oben zu halten."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lats, core, glutes, hip flexors"
+            "value" : "Besides your lats and belly, your glutes and hip flexors now help keep the straight leg up."
           }
         }
       }
@@ -2064,13 +2064,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gestreckte, gespreizte Beine: fast der volle Hebel, die Grätsche verkürzt ihn nur etwas. Kraft nahe am Ziel."
+            "value" : "Beide Beine gestreckt und weit gegrätscht, wie ein großes V. Die Grätsche macht den Hebel nur ein kleines bisschen kürzer als die volle Version: Du bist fast da!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Straight, spread legs: almost the full lever, but the spread shortens it a little. Strength close to the goal."
+            "value" : "Both legs straight and wide apart, like a big V. The spread makes the lever just a bit shorter than the full version: you are almost there!"
           }
         }
       }
@@ -2081,13 +2081,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latissimus, Rumpf, Gesäß, unterer Rücken, Adduktoren"
+            "value" : "Latissimus, Bauch und unterer Rücken arbeiten jetzt richtig, und Po und Innenseiten der Oberschenkel halten die Beine weit und gestreckt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lats, core, glutes, lower back, adductors"
+            "value" : "Your lats, belly and lower back are working at full power now, and your glutes and inner thighs keep the legs wide and straight."
           }
         }
       }
@@ -2115,13 +2115,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Körper gestreckt von Kopf bis Fuß und waagrecht, mit gestreckten Armen gehalten: das Ziel dieses Skills."
+            "value" : "Beine zusammen, Körper gestreckt, schwebend unter der Stange. Genau dafür hast du trainiert. Genieß den Moment, mach ein Foto und sei stolz!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Body straight from head to feet and horizontal, held with straight arms: the goal of this skill."
+            "value" : "Legs together, body straight, floating under the bar. This is the moment you have been training for. Enjoy it, take a photo, and be proud!"
           }
         }
       }
@@ -2132,13 +2132,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latissimus, Rumpf, Gesäß, hintere Schultern"
+            "value" : "Alles auf einmal: Latissimus, Bauch, Po und hintere Schultern halten dich von Kopf bis Fuß wie ein Brett."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lats, core, glutes, rear shoulders"
+            "value" : "Everything at once: lats, belly, glutes and the backs of your shoulders hold you from head to toe like a plank of wood."
           }
         }
       }
@@ -2149,13 +2149,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das ganze Körpergewicht kopfüber drücken. Baut starke, stabile Schultern und volle Kontrolle im Handstand auf."
+            "value" : "Kopfüber drückst du deinen ganzen Körper hinauf und hinunter. Das baut starke, stabile Schultern auf, und die Welt sieht von da unten herrlich anders aus."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pressing your whole bodyweight upside down. Builds strong, stable shoulders and full control in the handstand."
+            "value" : "Upside down, you press your whole body up and down. That builds strong, stable shoulders, and the world looks wonderfully different from down there."
           }
         }
       }
@@ -2166,13 +2166,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schultern, Trizeps, obere Brust, oberer Rücken, Rumpf"
+            "value" : "Deine Schultern sind hier die Stars, der Trizeps drückt fleißig mit. Obere Brust, oberer Rücken und Bauch sorgen dafür, dass alles schön übereinander bleibt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shoulders, triceps, upper chest, upper back, core"
+            "value" : "Your shoulders are the stars here, with your triceps pushing alongside. Upper chest, upper back and belly make sure everything stays stacked."
           }
         }
       }
@@ -2217,13 +2217,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hüfte hoch, Körper im umgekehrten V. Du lernst, mit einem Teil deines Gewichts senkrecht zu drücken."
+            "value" : "Die Hüfte geht hoch, dein Körper wird zum umgedrehten V, wie ein kleines Zelt. Du lernst, mit einem Teil deines Gewichts nach oben zu drücken, ganz sanft und ohne Höhenangst."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hips high, body in an upside-down V. You learn to press vertically with part of your bodyweight."
+            "value" : "Hips up high, your body makes an upside-down V like a little tent. You learn to press straight up with part of your weight, gently and without any fear of heights."
           }
         }
       }
@@ -2234,13 +2234,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schultern, Trizeps, obere Brust"
+            "value" : "Vor allem Schultern und Trizeps, mit ein bisschen Unterstützung von der oberen Brust."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shoulders, triceps, upper chest"
+            "value" : "Mostly your shoulders and triceps, with a little help from your upper chest."
           }
         }
       }
@@ -2268,13 +2268,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Füße auf einem Kasten: mehr Gewicht auf den Händen und ein steilerer Winkel, näher am Handstand-Liegestütz."
+            "value" : "Deine Füße klettern auf einen Kasten, so liegt mehr von dir auf den Händen. Der Winkel wird steiler und du schleichst dich näher an den echten Handstand-Liegestütz heran."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Feet on a box: more weight on your hands and a steeper angle, closer to the handstand push-up."
+            "value" : "Your feet climb onto a box, so more of you rests on your hands. The angle gets steeper and you creep closer to the real handstand push-up."
           }
         }
       }
@@ -2285,13 +2285,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schultern, Trizeps, Rumpf"
+            "value" : "Schultern und Trizeps bekommen mehr Gewicht zu tragen, und dein Bauch hält das Zelt schön stabil."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shoulders, triceps, core"
+            "value" : "Shoulders and triceps get more weight to carry, and your belly keeps the tent nice and steady."
           }
         }
       }
@@ -2319,13 +2319,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das volle Körpergewicht kopfüber mit gestreckten Armen tragen. Gewöhnt dich an den Handstand und stärkt Schultern und Handgelenke."
+            "value" : "Hochschwingen und an die Wand lehnen, die Wand hält dir den Rücken frei! Du gewöhnst dich ans Kopfüber-Sein und trägst dein volles Gewicht auf gestreckten Armen. Ruhig atmen und lächeln."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carry your full bodyweight upside down on straight arms. Gets you used to the handstand and strengthens shoulders and wrists."
+            "value" : "Kick up and lean against the wall, the wall has your back! You get used to being upside down and carry your full weight on straight arms. Breathe calmly and smile."
           }
         }
       }
@@ -2336,13 +2336,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schultern, Trizeps, Rumpf, Handgelenke"
+            "value" : "Schultern und Trizeps tragen dich, der Bauch hält dich gerade, und deine Handgelenke werden Tag für Tag kräftiger."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shoulders, triceps, core, wrists"
+            "value" : "Shoulders and triceps hold you up, your belly keeps you straight, and your wrists get stronger day by day."
           }
         }
       }
@@ -2370,13 +2370,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erste Drückbewegungen mit vollem Körpergewicht, aber nur halb nach unten. Baut Kraft im oberen Teil der Bewegung auf."
+            "value" : "Deine ersten echten Drückbewegungen kopfüber, vorerst nur bis zur Hälfte. Kleiner Weg, großer Schritt: Hier wächst die Kraft für die ganze Bewegung."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "First presses with your full bodyweight, but only halfway down. Builds strength in the top part of the movement."
+            "value" : "Your first real presses upside down, only halfway down for now. Small range, big step: this is where the strength for the full movement grows."
           }
         }
       }
@@ -2387,13 +2387,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schultern, Trizeps, oberer Rücken"
+            "value" : "Schultern und Trizeps drücken jetzt dein volles Gewicht, und dein oberer Rücken passt auf deine Schultern auf."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shoulders, triceps, upper back"
+            "value" : "Shoulders and triceps press your full weight now, and your upper back keeps your shoulders safe."
           }
         }
       }
@@ -2421,13 +2421,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mit dem Kopf bis zum Boden und zurück zu gestreckten Armen, mit vollem Körpergewicht: das Ziel dieses Skills."
+            "value" : "Den Kopf sanft bis zum Boden und wieder ganz hoch zu gestreckten Armen, mit deinem ganzen Gewicht. Das ist das Ziel dieses Skills: Geschafft!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Head down to the floor and back up to straight arms, with your full bodyweight: the goal of this skill."
+            "value" : "Head gently down to the floor and all the way back up to straight arms, with your whole weight. That is the goal of this skill: you did it!"
           }
         }
       }
@@ -2438,13 +2438,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schultern, Trizeps, obere Brust, Rumpf"
+            "value" : "Schultern, Trizeps, obere Brust und Bauch, alle zusammen als ein starkes Team."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shoulders, triceps, upper chest, core"
+            "value" : "Shoulders, triceps, upper chest and belly, all working together as one strong team."
           }
         }
       }
@@ -2455,13 +2455,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dreißig Sekunden im Stütz mit gestreckten Beinen vor dem Körper. Baut Kompressionskraft und stabile Schultern auf, die Basis für viele Turnelemente."
+            "value" : "Dreißig Sekunden in der Luft sitzen, die Beine gestreckt vor dir wie ein großes L. Das schenkt dir tolle Kompressionskraft und ruhige Schultern, eine prima Basis für viele Turnelemente."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Thirty seconds in support with straight legs held in front. Builds compression strength and stable shoulders, the base for many gymnastics skills."
+            "value" : "Thirty seconds sitting in the air, legs straight out in front of you like a capital L. It builds wonderful compression strength and steady shoulders, a great base for many gymnastics moves."
           }
         }
       }
@@ -2472,13 +2472,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hüftbeuger, Bauch, Trizeps, Schultern"
+            "value" : "Hüftbeuger und Bauch heben deine Beine, während Trizeps und Schultern dich nach oben und weg vom Boden drücken."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hip flexors, abs, triceps, shoulders"
+            "value" : "Your hip flexors and belly lift your legs, while your triceps and shoulders push you up and away from the floor."
           }
         }
       }
@@ -2506,13 +2506,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aus dem Hang unter der Stange in einer Bewegung in den Stütz darüber. Verbindet explosives Ziehen und Drücken."
+            "value" : "Aus dem Hang unter der Stange in einem einzigen Schwung oben drauf in den Stütz. Das verbindet explosives Ziehen und Drücken und fühlt sich ein bisschen an wie Fliegen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "From hanging below the bar to support above it in one movement. Combines explosive pulling and pushing."
+            "value" : "From hanging below the bar to sitting on top of it in one smooth swoop. It combines explosive pulling and pushing, and it feels like flying a little."
           }
         }
       }
@@ -2523,13 +2523,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latissimus, Bizeps, Brust, Trizeps, Schultern, Rumpf"
+            "value" : "Latissimus und Bizeps ziehen dich hoch, Brust, Trizeps und Schultern drücken dich oben drüber, und dein Bauch hält alles zusammen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lats, biceps, chest, triceps, shoulders, core"
+            "value" : "Lats and biceps pull you up, chest, triceps and shoulders push you over the top, and your belly ties it all together."
           }
         }
       }
@@ -2574,13 +2574,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zehn saubere Klimmzüge am Stück: die Zugkraft, auf der der Muscle-up aufbaut."
+            "value" : "Zehn saubere Klimmzüge am Stück, jedes Mal mit dem Kinn über die Stange. Das ist die Zugkraft, auf der dein Muscle-up später aufbaut."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ten clean pull-ups in a row: the pulling strength the muscle-up is built on."
+            "value" : "Ten clean pull-ups in a row, chin over the bar each time. This is the pulling strength your muscle-up will be built on."
           }
         }
       }
@@ -2591,13 +2591,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latissimus, Bizeps, hintere Schultern, Griffkraft"
+            "value" : "Latissimus und Bizeps ziehen, die hinteren Schultern helfen mit, und dein Griff wird mit jeder Wiederholung stärker."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lats, biceps, rear shoulders, grip"
+            "value" : "Your lats and biceps pull, the backs of your shoulders help, and your grip gets stronger with every rep."
           }
         }
       }
@@ -2625,13 +2625,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Höher und schneller ziehen, bis die Brust die Stange berührt. Diese Höhe brauchst du, um über die Stange zu kommen."
+            "value" : "Zieh höher und ein bisschen schneller, bis deine Brust die Stange umarmt. Genau diese Höhe brauchst du später, um über die Stange zu kommen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pull higher and faster until your chest touches the bar. You need this height to get over the bar."
+            "value" : "Pull higher and a little faster, until your chest gives the bar a hug. You need exactly this height to get over the bar later on."
           }
         }
       }
@@ -2642,13 +2642,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latissimus, Bizeps, mittlerer Rücken"
+            "value" : "Latissimus und Bizeps ziehen extra kräftig, und dein mittlerer Rücken zieht die Schulterblätter zusammen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lats, biceps, middle back"
+            "value" : "Lats and biceps pull extra hard, and your middle back squeezes your shoulder blades together."
           }
         }
       }
@@ -2676,13 +2676,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zehn Dips am Stück: die Drückkraft für den Teil über der Stange."
+            "value" : "Zehn Dips am Stück am Barren. Sie schenken dir die Drückkraft für den Teil des Muscle-ups, der über der Stange passiert."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ten dips in a row: the pushing strength for the part above the bar."
+            "value" : "Ten dips in a row on parallel bars. They give you the pushing strength for the part of the muscle-up that happens above the bar."
           }
         }
       }
@@ -2693,13 +2693,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Brust, Trizeps, vordere Schultern"
+            "value" : "Brust, Trizeps und vordere Schultern drücken dich vom Barren nach oben."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chest, triceps, front shoulders"
+            "value" : "Chest, triceps and the fronts of your shoulders push you up from the bars."
           }
         }
       }
@@ -2727,13 +2727,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Im Stütz über der Stange beginnen und langsam in den Hang ablassen. Lehrt den Übergang über die Stange unter Kontrolle."
+            "value" : "Oben auf der Stange beginnen und dich langsam, ganz langsam in den Hang ablassen. So lernt dein Körper den kniffligen Übergang über die Stange, in Ruhe und unter Kontrolle."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Start in support above the bar and lower yourself slowly to the hang. Teaches the transition over the bar under control."
+            "value" : "Start on top of the bar and lower yourself slowly, slowly into the hang. That is how your body learns the tricky transition over the bar, calmly and under control."
           }
         }
       }
@@ -2744,13 +2744,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latissimus, Brust, Trizeps, Schultern"
+            "value" : "Latissimus, Brust, Trizeps und Schultern arbeiten alle, während du dich langsam nach unten abbremst."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lats, chest, triceps, shoulders"
+            "value" : "Lats, chest, triceps and shoulders all work while slowly braking your way down."
           }
         }
       }
@@ -2778,13 +2778,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ziehen und Drücken in einer Bewegung vom Hang in den Stütz: das Ziel dieses Skills."
+            "value" : "Ziehen, durchschwingen, drücken: vom Hang bis oben auf die Stange in einem Zug. Das ist das Ziel dieses Skills. Willkommen da oben!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pull and push in one movement from the hang to the support: the goal of this skill."
+            "value" : "Pull, swing through and push: from hanging to sitting on top of the bar in one go. That is the goal of this skill. Welcome up there!"
           }
         }
       }
@@ -2795,13 +2795,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latissimus, Brust, Trizeps, Schultern, Rumpf"
+            "value" : "Latissimus, Brust, Trizeps, Schultern und Bauch, dein ganzer Oberkörper in einem großen Teamwork."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lats, chest, triceps, shoulders, core"
+            "value" : "Lats, chest, triceps, shoulders and belly, your whole upper body in one big team move."
           }
         }
       }
@@ -2812,13 +2812,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine volle Kniebeuge auf einem Bein. Baut Kraft, Gleichgewicht und Beweglichkeit in Sprunggelenk und Hüfte auf, Bein für Bein."
+            "value" : "Eine volle Kniebeuge auf nur einem Bein, das andere streckt sich nach vorne. Das baut Kraft, Gleichgewicht und Beweglichkeit in Sprunggelenk und Hüfte auf, und jedes Bein bekommt sein eigenes kleines Abenteuer."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A full squat on one leg. Builds strength, balance and mobility in ankle and hip, one leg at a time."
+            "value" : "A full squat on just one leg, the other one stretched out in front. It builds strength, balance and mobility in ankles and hips, and every leg gets its own little adventure."
           }
         }
       }
@@ -2829,13 +2829,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oberschenkel vorne, Gesäß, Adduktoren, Waden, Rumpf"
+            "value" : "Oberschenkel vorne und Po machen die schwere Arbeit, Innenseiten der Oberschenkel und Waden halten dich in Balance, und dein Bauch hält dich aufrecht."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quadriceps, glutes, adductors, calves, core"
+            "value" : "The fronts of your thighs and your glutes do the heavy lifting, your inner thighs and calves keep you balanced, and your belly keeps you upright."
           }
         }
       }
@@ -2880,13 +2880,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mit beiden Beinen ganz nach unten. Öffnet Sprunggelenke und Hüfte für die tiefe Position, die du später auf einem Bein brauchst."
+            "value" : "Mit beiden Beinen ganz tief runter, als würdest du dich auf einen winzigen Hocker setzen. Das öffnet Sprunggelenke und Hüfte für die tiefe Position, die du später auf einem Bein brauchst."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Both legs, all the way down. Opens ankles and hips for the deep position you need later on one leg."
+            "value" : "Sink all the way down on both legs, as if sitting on a tiny stool. This opens up your ankles and hips for the deep position you will need later on one leg."
           }
         }
       }
@@ -2897,13 +2897,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oberschenkel vorne, Gesäß, Adduktoren"
+            "value" : "Oberschenkel vorne, Po und Innenseiten der Oberschenkel, vorerst noch auf beiden Beinen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quadriceps, glutes, adductors"
+            "value" : "Fronts of the thighs, glutes and inner thighs, all on both legs for now."
           }
         }
       }
@@ -2931,13 +2931,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das meiste Gewicht auf dem vorderen Bein, das hintere stützt. Erste Kraft und Balance auf einem Bein."
+            "value" : "Ein großer Schritt nach vorn und runter. Das meiste Gewicht liegt auf dem vorderen Bein, das hintere hilft ein wenig: dein erster Vorgeschmack auf Kraft und Balance auf einem Bein."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Most of the weight on the front leg, the back leg supports. First single-leg strength and balance."
+            "value" : "A big step forward and down. Most of your weight rests on the front leg while the back one lends a hand: your first taste of single-leg strength and balance."
           }
         }
       }
@@ -2948,13 +2948,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oberschenkel vorne, Gesäß, Oberschenkel hinten"
+            "value" : "Oberschenkel vorne und hinten und dein Po, wobei das vordere Bein den Großteil übernimmt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quadriceps, glutes, hamstrings"
+            "value" : "Fronts and backs of the thighs and your glutes, with the front leg doing most of the work."
           }
         }
       }
@@ -2982,13 +2982,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auf einem Bein auf einen Kasten setzen und wieder aufstehen. Der Kasten begrenzt die Tiefe, so wächst die Kraft Schritt für Schritt."
+            "value" : "Auf einem Bein auf einen Kasten setzen und wieder aufstehen. Der Kasten fängt dich auf und bestimmt, wie tief es geht, so kann deine Kraft Schritt für Schritt wachsen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sit back onto a box on one leg and stand up again. The box limits the depth, so strength grows step by step."
+            "value" : "Sit down onto a box on one leg and stand up again. The box catches you and decides how deep you go, so your strength can grow step by step."
           }
         }
       }
@@ -2999,13 +2999,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oberschenkel vorne, Gesäß, Rumpf"
+            "value" : "Oberschenkel vorne und Po auf einem Bein, und dein Bauch hält dich aufrecht."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quadriceps, glutes, core"
+            "value" : "Fronts of the thighs and glutes on one leg, with your belly keeping you upright."
           }
         }
       }
@@ -3033,13 +3033,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volle Tiefe auf einem Bein, die Hände an einer Stange helfen beim Gleichgewicht. Kraft und Beweglichkeit ganz unten."
+            "value" : "Auf einem Bein ganz nach unten, während deine Hände sich an einer Stange oder am Türrahmen festhalten. Kraft und Beweglichkeit ganz unten, mit einem freundlichen Helfer an deiner Seite."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Full depth on one leg, the hands on a pole help with balance. Strength and mobility at the bottom."
+            "value" : "All the way down on one leg, while your hands hold on to a pole or doorframe for balance. Strength and mobility at the bottom, with a friendly helper by your side."
           }
         }
       }
@@ -3050,13 +3050,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oberschenkel vorne, Gesäß, Waden"
+            "value" : "Oberschenkel vorne, Po und Waden, vor allem ganz unten in der Tiefe."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quadriceps, glutes, calves"
+            "value" : "Fronts of the thighs, glutes and calves, especially down at the very bottom."
           }
         }
       }
@@ -3084,13 +3084,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auf einem Bein ganz nach unten und wieder hoch, ohne Hilfe: das Ziel dieses Skills."
+            "value" : "Auf einem Bein ganz runter und wieder hoch, ganz ohne Hilfe. Das ist das Ziel dieses Skills: Ein bisschen wackeln ist erlaubt, feiern ist Pflicht!"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All the way down on one leg and back up, without help: the goal of this skill."
+            "value" : "All the way down on one leg and back up, without any help. That is the goal of this skill: wobbling a little is allowed, celebrating is required!"
           }
         }
       }
@@ -3101,13 +3101,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oberschenkel vorne, Gesäß, Adduktoren, Rumpf"
+            "value" : "Oberschenkel vorne, Po, Innenseiten der Oberschenkel und Bauch, alle machen gemeinsam mit."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quadriceps, glutes, adductors, core"
+            "value" : "Fronts of the thighs, glutes, inner thighs and belly, all doing their part together."
           }
         }
       }
@@ -3118,13 +3118,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fünf Minuten im geraden Unterarmstütz. Baut Ausdauer im Rumpf auf, verbessert die Haltung und schützt den unteren Rücken im Alltag."
+            "value" : "Fünf ganze Minuten, gerade wie ein Brett auf den Unterarmen. Klingt einfach, schenkt dir aber einen Rumpf mit Ausdauer, eine bessere Haltung und einen zufriedeneren unteren Rücken im Alltag."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Five minutes in a straight forearm plank. Builds endurance in the trunk, improves posture and protects the lower back in everyday life."
+            "value" : "Five whole minutes, straight as a board on your forearms. It sounds simple, but it builds a trunk with staying power, better posture, and a happier lower back in everyday life."
           }
         }
       }
@@ -3135,13 +3135,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tiefe Bauchmuskeln, gerader Bauch, Schultern, Gesäß"
+            "value" : "Deine tiefen Bauchmuskeln legen sich wie ein Korsett um dich, die geraden Bauchmuskeln halten die Linie, und Schultern und Po helfen leise mit."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deep abdominal muscles, straight abs, shoulders, glutes"
+            "value" : "Your deep belly muscles wrap around you like a corset, your six-pack muscles keep the line, and your shoulders and glutes quietly help out."
           }
         }
       }
