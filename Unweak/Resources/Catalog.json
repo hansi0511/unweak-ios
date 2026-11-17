@@ -137,7 +137,7 @@
       "id": "tuckFrontLever",
       "category": "skill",
       "level": "advanced",
-      "animation": "frontLever",
+      "animation": "tuckFrontLever",
       "pose": "frontLever",
       "mistakeCount": 2,
       "easier": "kneeRaise"
@@ -552,6 +552,7 @@
         "frontLeverBuildUp"
       ],
       "isFree": false,
+      "animation": "frontLever",
       "stageCount": 5
     },
     {

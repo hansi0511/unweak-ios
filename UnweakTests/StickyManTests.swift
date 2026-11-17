@@ -218,3 +218,33 @@ struct StickyPoseTests {
         #expect(segments[1].to == CGPoint(x: 24, y: 38))
     }
 }
+
+struct TuckFrontLeverTests {
+    @Test func kneesArePulledToTheChestWhileHolding() {
+        let figure = StickyAnimation.tuckFrontLever.figure(at: FrontLeverAnimation.holdProgress)
+        let shoulder = FrontLeverAnimation.shoulder
+        let thigh = figure.limbs[3]
+        let shin = figure.limbs[4]
+        // Torso horizontal at shoulder height, knees above it (towards the chest), feet near the hips.
+        #expect(isClose(figure.limbs[2].to.y, shoulder.y, tolerance: 0.5))
+        #expect(thigh.to.y < shoulder.y - 10)
+        #expect(shin.to.x > thigh.to.x)
+    }
+
+    @Test func movesLikeTheFrontLever() {
+        #expect(StickyAnimation.tuckFrontLever.duration == StickyAnimation.frontLever.duration)
+        #expect(StickyAnimation.tuckFrontLever.endPoseProgress == StickyAnimation.frontLever.endPoseProgress)
+        let tuck = StickyAnimation.tuckFrontLever.figure(at: 0.3)
+        let straight = StickyAnimation.frontLever.figure(at: 0.3)
+        #expect(tuck.head == straight.head)
+    }
+
+    @Test func skillShowsTheFullLeverWhileTheExerciseShowsTheTuck() throws {
+        let catalog = Catalog.main
+        let skill = try #require(catalog.goals.first { $0.id == "frontLever" })
+        #expect(catalog.animation(for: skill) == .frontLever)
+        #expect(catalog.exercise("tuckFrontLever")?.animation == .tuckFrontLever)
+        let plank = try #require(catalog.goals.first { $0.id == "plank5Min" })
+        #expect(catalog.animation(for: plank) == .plank)
+    }
+}

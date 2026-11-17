@@ -138,6 +138,9 @@ struct Goal: Codable, Identifiable, Hashable, Sendable {
     let isFree: Bool
     let stageCount: Int?
     let targetSeconds: Int?
+    /// Animation for the skill, if it differs from the linked exercise's animation
+    /// (e.g. the full front lever, while the exercise is the tuck front lever).
+    var animation: StickyAnimation?
 
     var kind: Kind {
         if let stageCount { .stages(stageCount) } else { .time(seconds: targetSeconds ?? 0) }
@@ -215,6 +218,11 @@ struct Catalog: Codable, Sendable {
     }
 
     var freePlanCount: Int { plans.filter(\.isFree).count }
+
+    /// Animation shown for a skill: its own, else that of its linked exercise.
+    func animation(for goal: Goal) -> StickyAnimation {
+        goal.animation ?? exercise(goal.exercise)?.animation ?? .frontLever
+    }
 
     /// The workouts of a skill, from easy to hard.
     func skillPlans(for goal: Goal) -> [WorkoutPlan] {

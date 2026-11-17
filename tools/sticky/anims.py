@@ -18,7 +18,7 @@ def pushup_pose(shoulder_y, neck_up):
     dy = FLOOR - shoulder_y; dx = math.sqrt(89**2 - dy**2)
     sh = (foot[0]+dx, shoulder_y); hip, a = body_line(foot, sh)
     return P(hip, a, a+neck_up, [('p', hand, 1), ('p', (hand[0]+2, hand[1]), 1)], [('p', foot, 1), ('p', (foot[0]+2, foot[1]), 1)])
-up, down = pushup_pose(116, -8), pushup_pose(144, -4)
+up, down = pushup_pose(116, -8), pushup_pose(141, -4)
 ANIMS['pushUp'] = dict(canvas=(200,170), dur=3, end=0.0, app=[floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
 
 # --- knee push-up
@@ -27,7 +27,7 @@ def kpush(shoulder_y):
     dy = knee[1]-shoulder_y; dx = math.sqrt(66**2-dy**2); sh = (knee[0]+dx, shoulder_y)
     a = ang(knee, sh); hip = along(knee, a, THIGH)
     return P(hip, a, a-8, [('p', (132, FLOOR), 1), ('p', (134, FLOOR), 1)], [('p', kfoot, -1), ('p', (kfoot[0]+2, kfoot[1]), -1)])
-up, down = kpush(116), kpush(144)
+up, down = kpush(116), kpush(141)
 ANIMS['kneePushUp'] = dict(canvas=(200,170), dur=3, end=0.0, app=[floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
 
 # --- pike push-up
@@ -35,7 +35,7 @@ phand = (175, FLOOR); pfoot = (82, FLOOR)
 def pike(hip, sh, bend, neck=-5):
     return P(hip, ang(hip, sh), ang(hip, sh)+neck, [('p', phand, bend), ('p', (phand[0]+2, phand[1]), bend)], [('p', pfoot, 1), ('p', (pfoot[0]+2, pfoot[1]), 1)])
 uhip = (102, 114.5); ush = along(uhip, 35, TORSO)
-dsh = (150, 138); dhip = along(dsh, ang(dsh, (110, 122)), TORSO)
+dsh = (150, 138); dhip = circ(pfoot, THIGH + SHIN, dsh, TORSO, -1)  # straight legs: hip stays 47 from the feet
 up, down = pike(uhip, ush, -1), pike(dhip, dsh, -1, -10)
 ANIMS['pikePushUp'] = dict(canvas=(200,170), dur=3, end=0.0, app=[floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
 
@@ -60,7 +60,7 @@ ANIMS['row'] = dict(canvas=(200,170), dur=3, end=0.45, app=[((135,95),(165,95)),
 sf1, sf2 = (102, FLOOR), (98, FLOOR)
 def squat(hip, torso, arm):
     return P(hip, torso, torso, [('a', arm, arm+2), ('a', arm+4, arm+6)], [('p', sf1, -1), ('p', sf2, -1)])
-up, down = squat((99, 111), -90, 8), squat((74, 131), -58, -4)
+up, down = squat((99, 110), -90, 8), squat((74, 131), -58, -4)
 ANIMS['squat'] = dict(canvas=(200,170), dur=3, end=0.0, app=[floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
 
 # --- lunge
@@ -74,7 +74,7 @@ ANIMS['lunge'] = dict(canvas=(200,170), dur=3, end=0.0, app=[floor()], keys=[(0,
 pf = (100, FLOOR)
 def pistol(hip, torso, free, arm):
     return P(hip, torso, torso, [('a', arm, arm+2), ('a', arm+4, arm+6)], [('p', pf, -1), ('a', free[0], free[1])])
-up, down = pistol((98, 111), -88, (70, 92), 10), pistol((82, 136), -62, (-6, -4), -6)
+up, down = pistol((99, 110), -88, (70, 92), 10), pistol((82, 136), -62, (-6, -4), -6)
 ANIMS['pistolSquat'] = dict(canvas=(200,170), dur=3.5, end=0.0, app=[floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
 
 # --- forearm plank (breathing)
@@ -97,8 +97,9 @@ ANIMS['kneeRaise'] = dict(canvas=(200,170), dur=3, end=0.5, app=[((60,20),(140,2
 lh = (100, 128)
 def lsit(leg, hip_y):
     return P((101, hip_y), -90, -90, [('p', lh, 1), ('p', (lh[0]+2, lh[1]), 1)], [('a', leg, leg), ('a', leg+2, leg+2)])
-rest, upp = lsit(28, 127), lsit(0, 127)
-ANIMS['lSit'] = dict(canvas=(200,170), dur=4, end=0.5, app=[((84,128),(118,128)), floor()], keys=[(0,rest),(0.25,upp),(0.75,upp),(1,rest)])
+# Legs stay at least horizontal: from horizontal, raised slightly above it, held, back.
+level, raised = lsit(0, 127), lsit(-12, 127)
+ANIMS['lSit'] = dict(canvas=(200,170), dur=4, end=0.5, app=[((84,128),(118,128)), floor()], keys=[(0,level),(0.3,raised),(0.7,raised),(1,level)])
 
 # --- handstand (balancing)
 hh = (100, FLOOR)

@@ -191,10 +191,8 @@ private struct GoalPanel: View {
                             .foregroundStyle(Theme.textSoft)
                     }
                     Spacer(minLength: 0)
-                    if let exercise = catalog.exercise(goal.exercise) {
-                        StickyManView(exercise.animation)
-                            .frame(width: 120, height: 120)
-                    }
+                    StickyManView(catalog.animation(for: goal))
+                        .frame(width: 120, height: 120)
                 }
 
                 SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, label: "Goal progress")

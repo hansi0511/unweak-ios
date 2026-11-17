@@ -77,12 +77,11 @@ private struct SkillCard: View {
         HUDPanel(padding: 14) {
             VStack(alignment: .leading, spacing: 12) {
                 HStack(alignment: .center, spacing: 14) {
-                    if let animation = catalog.exercise(goal.exercise)?.animation {
-                        // Static key pose: six moving figures in one list would be restless.
-                        StickyFigureCanvas(figure: animation.figure(at: animation.endPoseProgress), highlighted: !isLocked)
-                            .frame(width: 88, height: 88)
-                            .accessibilityHidden(true)
-                    }
+                    // Static key pose: six moving figures in one list would be restless.
+                    let animation = catalog.animation(for: goal)
+                    StickyFigureCanvas(figure: animation.figure(at: animation.endPoseProgress), highlighted: !isLocked)
+                        .frame(width: 88, height: 88)
+                        .accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: 6) {
                         HStack(spacing: 6) {
                             if isLocked {
@@ -149,12 +148,10 @@ struct SkillScreen: View {
                     .accessibilityAddTraits(.isHeader)
             }
 
-            if let animation = catalog.exercise(goal.exercise)?.animation {
-                HUDPanel(padding: 10) {
-                    StickyManView(animation)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 200)
-                }
+            HUDPanel(padding: 10) {
+                StickyManView(catalog.animation(for: goal))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 200)
             }
 
             progressSection(progress)
