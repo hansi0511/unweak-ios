@@ -111,6 +111,36 @@
         }
       }
     },
+    "Front lever" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front Lever"
+          }
+        }
+      }
+    },
+    "Front lever animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Front Lever"
+          }
+        }
+      }
+    },
+    "Handstand" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handstand"
+          }
+        }
+      }
+    },
     "In progress" : {
       "localizations" : {
         "de" : {
@@ -131,6 +161,16 @@
         }
       }
     },
+    "L-sit" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L-Sit"
+          }
+        }
+      }
+    },
     "Legs" : {
       "localizations" : {
         "de" : {
@@ -147,6 +187,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lime"
+          }
+        }
+      }
+    },
+    "Muscle-up" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muscle-up"
           }
         }
       }
@@ -191,6 +241,26 @@
         }
       }
     },
+    "Pistol squat" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol Squat"
+          }
+        }
+      }
+    },
+    "Plank" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plank"
+          }
+        }
+      }
+    },
     "Pro" : {
       "localizations" : {
         "de" : {
@@ -211,12 +281,42 @@
         }
       }
     },
+    "Pull-up" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klimmzug"
+          }
+        }
+      }
+    },
+    "Pull-up animation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animation Klimmzug"
+          }
+        }
+      }
+    },
     "Push" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Push"
+          }
+        }
+      }
+    },
+    "Push-up" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liegestütz"
           }
         }
       }
@@ -287,6 +387,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Skill"
+          }
+        }
+      }
+    },
+    "Squat" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kniebeuge"
           }
         }
       }
