@@ -121,6 +121,10 @@ struct MeScreen: View {
 /// The avatar large in the middle, framed by a ring that fills with the workouts of
 /// this week; below it the week in short, the name of the body and the next workouts.
 private struct AvatarStage: View {
+    private static let ringSize: CGFloat = 170
+    /// Width of the column left (Customize) and right (empty) of the ring.
+    private static let sideWidth: CGFloat = 72
+
     let style: AvatarStyle
     let unlocks: AvatarUnlocks
     let week: WeekSummary
@@ -132,17 +136,45 @@ private struct AvatarStage: View {
         let current = unlocks.body(for: style)
 
         VStack(spacing: 12) {
-            ZStack {
-                Circle()
-                    .fill(style.backgroundColor)
-                    .padding(16)
-                WeekRing(total: week.target, filled: week.workouts)
-                AvatarView(style: style, body: current, extra: unlocks.extra(for: style), framed: false)
-                    .padding(26)
+            HStack(spacing: 8) {
+                // "Customize" on the left; an empty column of the same width on the right
+                // keeps the avatar centered.
+                NavigationLink {
+                    ProfileScreen(catalog: catalog)
+                } label: {
+                    VStack(spacing: 6) {
+                        Image(systemName: "paintbrush.pointed")
+                            .font(.system(size: 18, weight: .semibold))
+                            .frame(width: Theme.Layout.minTouchTarget, height: Theme.Layout.minTouchTarget)
+                            .overlay(Rectangle().strokeBorder(Theme.lineStrong, lineWidth: 1))
+                        Text("Customize")
+                            .font(.mono)
+                            .textCase(.uppercase)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
+                    }
+                    .foregroundStyle(Theme.text)
+                    .frame(width: Self.sideWidth)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(PressFeedbackStyle())
+                .accessibilityLabel(Text("Customize avatar"))
+
+                ZStack {
+                    Circle()
+                        .fill(style.backgroundColor)
+                        .padding(16)
+                    WeekRing(total: week.target, filled: week.workouts)
+                    AvatarView(style: style, body: current, extra: unlocks.extra(for: style), framed: false)
+                        .padding(26)
+                }
+                .frame(width: Self.ringSize, height: Self.ringSize)
+                .frame(maxWidth: .infinity)
+
+                Color.clear
+                    .frame(width: Self.sideWidth, height: 1)
+                    .accessibilityHidden(true)
             }
-            .frame(maxWidth: 170)
-            .aspectRatio(1, contentMode: .fit)
-            .frame(maxWidth: .infinity)
 
             HStack(spacing: 6) {
                 Text("\(week.workouts) / \(week.target) this week")
@@ -336,7 +368,8 @@ private struct NextWorkoutsRow: View {
                     }
                     .buttonStyle(PressFeedbackStyle())
                     .containerRelativeFrame(.horizontal) { width, _ in
-                        width - 2 * Self.peek
+                        // The width is 0 in the first layout pass; never hand out a negative one.
+                        max(0, width - 2 * Self.peek)
                     }
                 }
             }

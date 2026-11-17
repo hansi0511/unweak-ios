@@ -741,6 +741,26 @@
         }
       }
     },
+    "Customize" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anpassen"
+          }
+        }
+      }
+    },
+    "Customize avatar" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avatar anpassen"
+          }
+        }
+      }
+    },
     "Cyan" : {
       "localizations" : {
         "de" : {

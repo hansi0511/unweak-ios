@@ -10,7 +10,7 @@
 | Ich | „Bearbeiten“ bei „Deine Skills“ oder „Skills wählen“ | Workouts, Bereich „Skills“ |
 | Ich | Name und Animationen eines Skill-Panels | Skill |
 | Ich | Kachel bei den nächsten Workouts | Training läuft |
-| Ich | Überschrift „Ich ›“ | Ich-Bereich |
+| Ich | Überschrift „Ich ›“ oder „Anpassen“ neben dem Avatar | Ich-Bereich |
 | Ich-Bereich | Zeile „Einstellungen“ | Einstellungen |
 | Ich (Gratis) | Hinweis „Erreiche deinen ersten Skill“ | Abo |
 | Workouts | Umschalter „Skills“ / „Workouts“ | anderer Bereich |
@@ -34,7 +34,8 @@
 Alles passt bei bis zu drei gelernten Skills ohne Scrollen auf ein iPhone 15; bei mehr Skills oder kleineren Geräten scrollt der Tab.
 
 - Kopf: Überschrift „Ich“ mit Pfeil in Akzentfarbe als Knopf zum Ich-Bereich (Level, Avatar, Einstellungen), rechts Teilen-Symbol (Woche und Serie).
-- Avatar-Bühne, mittig, höchstens 170 pt: Der Avatar (Körper, Farben und Extra wie gewählt) steht in einem Kreis in seiner Grundfarbe und atmet leicht. Um den Kreis liegt ein Ring aus so vielen Bögen, wie das Wochenziel Trainings hat; geschaffte Bögen leuchten in der Akzentfarbe.
+- Links neben dem Avatar der Knopf „Anpassen“ (Pinsel-Symbol mit Beschriftung), der den Ich-Bereich mit der Avatar-Anpassung öffnet; rechts eine gleich breite leere Spalte, damit der Avatar mittig bleibt.
+- Avatar-Bühne, mittig, 170 pt: Der Avatar (Körper, Farben und Extra wie gewählt) steht in einem Kreis in seiner Grundfarbe und atmet leicht. Um den Kreis liegt ein Ring aus so vielen Bögen, wie das Wochenziel Trainings hat; geschaffte Bögen leuchten in der Akzentfarbe.
 - Darunter eine dezente Mono-Zeile: „2 / 3 diese Woche · Serie 3 Wochen · Athlet“ (Körpername hell).
 - Die fünf nächsten Workouts als Karussell: Immer eine Kachel (84 pt hoch) steht mittig, die Nachbarn schauen links und rechts 36 pt herein, ein Wischen rastet auf der nächsten ein. Nummer 01 bis 05 über der Pose; daneben Name, Play-Symbol und Dauer. Die erste Kachel trägt „Als Nächstes“, Nummer und Pose in Akzentfarbe und einen Rahmen in Akzentfarbe. Ein Tipp startet das Training. Zuerst die Workouts der gelernten Skills, dann die allgemeinen, jeweils das am längsten nicht trainierte vorn; gratis nur Gratis-Workouts.
 - Nur mit Pro: Label „Deine Skills“ mit Link „Bearbeiten“. Er wechselt in den Workouts-Tab, Bereich „Skills“, zurück an dessen Anfang. Ohne gelernten Skill ein gestrichelter Knopf „Skills wählen“ mit demselben Ziel.
