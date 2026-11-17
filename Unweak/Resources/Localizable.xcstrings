@@ -451,6 +451,16 @@
         }
       }
     },
+    "Cancel" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        }
+      }
+    },
     "Category" : {
       "localizations" : {
         "de" : {
@@ -1141,6 +1151,16 @@
         }
       }
     },
+    "Later stages are taken back too." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spätere Stufen werden ebenfalls zurückgenommen."
+          }
+        }
+      }
+    },
     "Legal" : {
       "localizations" : {
         "de" : {
@@ -1197,6 +1217,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abo verwalten"
+          }
+        }
+      }
+    },
+    "Mark as reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als erreicht markieren"
           }
         }
       }
@@ -2091,6 +2121,16 @@
         }
       }
     },
+    "Stage %lld: %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stufe %1$lld: %2$@"
+          }
+        }
+      }
+    },
     "Stage reached" : {
       "localizations" : {
         "de" : {
@@ -2197,6 +2237,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abo"
+          }
+        }
+      }
+    },
+    "Take back" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurücknehmen"
+          }
+        }
+      }
+    },
+    "Take back this stage" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stufe zurücknehmen"
+          }
+        }
+      }
+    },
+    "Take back “%@”?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ zurücknehmen?"
           }
         }
       }

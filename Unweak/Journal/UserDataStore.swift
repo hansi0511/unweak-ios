@@ -123,8 +123,15 @@ final class UserDataStore {
 
     /// Marks the next stage of a skill goal as reached.
     func markStageReached(of goal: Goal) {
+        setReachedStages(reachedStages(of: goal) + 1, of: goal)
+    }
+
+    /// Sets how many stages of a skill goal are reached (0...stage count). Stages build
+    /// on each other: reaching stage n reaches all before it, taking it back takes back
+    /// all after it.
+    func setReachedStages(_ reached: Int, of goal: Goal) {
         guard case .stages(let count) = goal.kind else { return }
-        data.reachedStages[goal.id] = min(count, reachedStages(of: goal) + 1)
+        data.reachedStages[goal.id] = min(max(reached, 0), count)
         persist()
     }
 
