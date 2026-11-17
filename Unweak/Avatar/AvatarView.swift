@@ -62,7 +62,7 @@ struct AvatarFigure: Equatable, Sendable {
     let glows: Bool
 
     /// Largest lift of the head while breathing in, in grid units.
-    static let breathLift: CGFloat = 1.6
+    static let breathLift: CGFloat = 2.8
 
     /// - Parameter breath: 0 (breathed out, the resting figure) to 1 (breathed in).
     ///   Everything above the hips rises, the head most; legs and feet stay put.

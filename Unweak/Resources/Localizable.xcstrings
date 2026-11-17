@@ -81,12 +81,12 @@
         }
       }
     },
-    "%lld more workouts to %@" : {
+    "%lld more workouts" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noch %1$lld Trainings bis %2$@"
+            "value" : "Noch %lld Trainings"
           }
         }
       }
@@ -191,16 +191,6 @@
         }
       }
     },
-    "%lld to go for your weekly target" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch %lld bis zum Wochenziel"
-          }
-        }
-      }
-    },
     "%lld workouts" : {
       "localizations" : {
         "en" : {
@@ -297,6 +287,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Konto und Abo"
+          }
+        }
+      }
+    },
+    "Account, subscription, reminders, color, language" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konto, Abo, Erinnerungen, Farbe, Sprache"
           }
         }
       }
@@ -767,16 +767,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eigenes"
-          }
-        }
-      }
-    },
-    "Customize" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anpassen"
           }
         }
       }
@@ -1431,6 +1421,36 @@
         }
       }
     },
+    "Level" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Level"
+          }
+        }
+      }
+    },
+    "Level progress" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Level-Fortschritt"
+          }
+        }
+      }
+    },
+    "Level, avatar and settings" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Level, Avatar und Einstellungen"
+          }
+        }
+      }
+    },
     "Lime" : {
       "localizations" : {
         "de" : {
@@ -1487,16 +1507,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Einen Skill meistern"
-          }
-        }
-      }
-    },
-    "Master a skill to become a legend" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Meistere einen Skill und werde zur Legende"
           }
         }
       }
@@ -2828,6 +2838,16 @@
         }
       }
     },
+    "Unlocked" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Freigeschaltet"
+          }
+        }
+      }
+    },
     "Video" : {
       "localizations" : {
         "de" : {
@@ -2898,16 +2918,6 @@
         }
       }
     },
-    "Weekly target reached" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wochenziel erreicht"
-          }
-        }
-      }
-    },
     "Weeks in a row" : {
       "localizations" : {
         "de" : {
@@ -2964,16 +2974,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jährlich"
-          }
-        }
-      }
-    },
-    "You are a legend!" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Du bist eine Legende!"
           }
         }
       }

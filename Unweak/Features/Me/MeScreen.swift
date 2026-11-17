@@ -3,6 +3,7 @@ import SwiftUI
 /// "Me" tab: the avatar, the weekly target, the skill being learned (Pro) and the next
 /// workout. Free: a teaser for the skills takes the place of the skill.
 struct MeScreen: View {
+    @Environment(\.accent) private var accent
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
     @Environment(SubscriptionStore.self) private var subscription
@@ -75,39 +76,43 @@ struct MeScreen: View {
 
     private func header(week: WeekSummary, streak: Int) -> some View {
         HStack(alignment: .center, spacing: 12) {
-            Text("Me")
-                .font(.screenTitle)
-                .foregroundStyle(Theme.text)
-                .accessibilityAddTraits(.isHeader)
+            // The title opens the Me area: level, avatar and settings.
+            NavigationLink {
+                ProfileScreen(catalog: catalog)
+            } label: {
+                HStack(spacing: 8) {
+                    Text("Me")
+                        .font(.screenTitle)
+                        .foregroundStyle(Theme.text)
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundStyle(accent.color)
+                }
+                .frame(minHeight: Theme.Layout.minTouchTarget)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(PressFeedbackStyle())
+            .accessibilityAddTraits(.isHeader)
+            .accessibilityHint(Text("Level, avatar and settings"))
             Spacer(minLength: 0)
             if week.workouts > 0 || streak > 0 {
                 IconButton(systemImage: "square.and.arrow.up", accessibilityLabel: "Share week") {
                     shareContent = .streakCard(week: week, weeks: streak)
                 }
             }
-            NavigationLink {
-                SettingsScreen()
-            } label: {
-                IconButtonLabel(systemImage: "slider.horizontal.3")
-            }
-            .buttonStyle(PressFeedbackStyle())
-            .accessibilityLabel(Text("Settings"))
         }
     }
 }
 
 /// The avatar large in the middle, framed by a ring that fills with the workouts of
-/// this week; below it the week in short, the body with "Customize" and the next workout.
+/// this week; below it the week in short, the name of the body and the next workout.
 private struct AvatarStage: View {
-    @Environment(\.accent) private var accent
     let style: AvatarStyle
     let unlocks: AvatarUnlocks
     let week: WeekSummary
     let streak: Int
     let nextPlan: WorkoutPlan?
     let catalog: Catalog
-
-    private var remaining: Int { max(0, week.target - week.workouts) }
 
     var body: some View {
         let current = unlocks.body(for: style)
@@ -125,49 +130,24 @@ private struct AvatarStage: View {
             .aspectRatio(1, contentMode: .fit)
             .frame(maxWidth: .infinity)
 
-            VStack(spacing: 4) {
-                HStack(spacing: 6) {
-                    Text("\(week.workouts) / \(week.target) this week")
-                    if streak > 0 {
-                        Text(verbatim: "·")
-                        Text("Streak \(streak) weeks")
-                    }
-                }
-                .foregroundStyle(Theme.textSoft)
-                Group {
-                    if remaining == 0 {
-                        Text("Weekly target reached")
-                            .foregroundStyle(accent.color)
-                    } else {
-                        Text("\(remaining) to go for your weekly target")
-                            .foregroundStyle(Theme.textMuted)
-                    }
+            HStack(spacing: 6) {
+                Text("\(week.workouts) / \(week.target) this week")
+                if streak > 0 {
+                    Text(verbatim: "·")
+                    Text("Streak \(streak) weeks")
                 }
             }
+            .foregroundStyle(Theme.textSoft)
             .font(.mono)
             .tracking(1)
             .textCase(.uppercase)
             .multilineTextAlignment(.center)
             .accessibilityElement(children: .combine)
 
-            VStack(spacing: 6) {
-                Text(current.name)
-                    .font(.metric)
-                    .foregroundStyle(Theme.text)
-                nextBodyText
-                    .font(.text(13))
-                    .foregroundStyle(Theme.textSoft)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-                NavigationLink {
-                    AvatarEditorScreen(catalog: catalog)
-                } label: {
-                    ChipLabel("Customize", systemImage: "paintbrush.pointed")
-                }
-                .buttonStyle(PressFeedbackStyle())
-                .padding(.top, 4)
-            }
-            .frame(maxWidth: .infinity)
+            Text(current.name)
+                .font(.metric)
+                .foregroundStyle(Theme.text)
+                .frame(maxWidth: .infinity)
 
             if let nextPlan {
                 NavigationLink {
@@ -178,15 +158,6 @@ private struct AvatarStage: View {
                 .buttonStyle(PressFeedbackStyle())
             }
         }
-    }
-
-    /// How the avatar grows next.
-    private var nextBodyText: Text {
-        guard let next = unlocks.nextBody else { return Text("You are a legend!") }
-        if let missing = unlocks.workoutsToNextBody {
-            return Text("\(missing) more workouts to \(Text(next.name))")
-        }
-        return Text("Master a skill to become a legend")
     }
 }
 

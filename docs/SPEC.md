@@ -26,15 +26,15 @@ Stand: 16. November 2026. Alle Punkte unter „Entschieden“ stammen von Hansi.
 
 ## Funktionen
 
-1. **Ich** (erster Tab): Avatar mit Körper und Weg zum nächsten Körper, Knopf „Anpassen“; Wochenziel (Trainings diese Woche als Segmente, Serie); mit Pro der aktive Skill mit Animation, daneben der aktuelle Stand als Animation der Stufe, an der der Nutzer arbeitet, und Stufenanzeige; nächstes Workout für alle (mit Pro aus dem Skill, gratis aus den Gratis-Workouts). Gratis statt Skill ein Hinweis auf die Skills.
-11. **Avatar anpassen:** Körper (automatisch oder ein erreichter), Farbe, zweite Farbe für das Extra, Grund (dunkel, Nacht, invertiert) und ein Extra (Stirnband, Kappe, Visier, Kopfhörer, Medaille, Krone). Gesperrtes zeigt, was es freischaltet.
+1. **Ich** (erster Tab): großer, atmender Avatar mit Wochenring (ein Bogen pro Training des Wochenziels) und Körpername, dezent die Woche und die Serie; mit Pro der aktive Skill mit Animation, daneben der aktuelle Stand als Animation der Stufe, an der der Nutzer arbeitet, und Stufenanzeige; nächstes Workout für alle (mit Pro aus dem Skill, gratis aus den Gratis-Workouts). Gratis statt Skill ein Hinweis auf die Skills.
+11. **Ich-Bereich** (über die Überschrift „Ich“): Level des Avatars mit dem Weg zum nächsten Körper, Avatar anpassen und Einstellungen. **Avatar anpassen:** Körper (automatisch oder ein erreichter), Farbe, zweite Farbe für das Extra, Grund (dunkel, Nacht, invertiert) und ein Extra (Stirnband, Kappe, Visier, Kopfhörer, Medaille, Krone). Gesperrtes zeigt, was es freischaltet.
 2. **Workouts:** zwei Bereiche mit Umschalter. **Skills** (zuerst, hervorgehoben, nur mit Pro; in der Gratis-Version führen die Karten zur Abo-Seite): je Skill eine Karte; die Skill-Seite zeigt Animation, Stufen bzw. Bestzeit, „Als Ziel setzen“ und die passenden Workouts von leicht nach schwer. **Workouts**: die 10 allgemeinen Workouts (gratis) und eigene Workouts, filterbar nach Push, Pull, Beine, Core. Workouts, die Pro brauchen, führen ohne Abo zur Abo-Seite.
 3. **Training:** eine Übung pro Bildschirm, Sätze abhaken, Pausenzeit, nächste Übung, am Ende Speichern ins Tagebuch.
 4. **Übungsdetail:** Animation, Technikschritte, häufige Fehler, leichtere und schwerere Variante.
 5. **Eigenes Workout:** Name, Kategorie, Übungen aus dem Katalog hinzufügen und entfernen. Gratis bis zu 3, mit Pro unbegrenzt.
 6. **Tagebuch:** Monatszahlen, Liste der Trainings, Rekorde hervorgehoben; im zweiten Bereich „Erfolge“ alle zwölf Erfolge; Eintrag mit Übungen, Bewertung (leicht, passt, hart) und Notiz.
 7. **Ziele = Skills:** ein Ziel zur Zeit, wählbar aus der Liste der Skills (im Tab „Ich“ oder auf der Skill-Seite). Skills mit Stufen haben fünf Stufen, die der Nutzer selbst als erreicht markiert und wieder zurücknehmen kann; Zeit-Skills (Plank 5 min, L-Sit 30 s) übernehmen die Bestzeit aus dem Tagebuch. Jede Stufe hat eine eigene Sticky-Man-Animation. Skill und Stufen haben je ein Info-Fenster mit den beanspruchten Muskeln und dem Nutzen. Das nächste Workout im Tab „Ich“ kommt mit Pro aus dem aktiven Skill.
-8. **Einstellungen:** Konto, Abo, Trainingserinnerung, Farbe, Sprache, Rechtliches, Abmelden, Konto löschen.
+8. **Einstellungen** (aus dem Ich-Bereich): Konto, Abo, Trainingserinnerung, Farbe, Sprache, Rechtliches, Abmelden, Konto löschen.
 9. **Teilen:** aus dem Tagebucheintrag (Workout, Rekord), dem Tab „Ich“ (Woche/Serie), dem Tagebuch (erreichte Erfolge) und der Skill-Seite (Fortschritt). Vorschau mit Wahl des Formats, dann das iOS-Teilen-Menü.
 10. **Anmeldung und Abo-Seite.** Abo mit StoreKit 2: Jahr oder Monat, Käufe wiederherstellen, Abo verwalten.
 
