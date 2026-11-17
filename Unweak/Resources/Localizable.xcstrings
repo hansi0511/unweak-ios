@@ -421,16 +421,6 @@
         }
       }
     },
-    "All stages reached" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alle Stufen erreicht"
-          }
-        }
-      }
-    },
     "Appearance" : {
       "localizations" : {
         "de" : {
@@ -531,16 +521,6 @@
         }
       }
     },
-    "Best time %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bestzeit %@"
-          }
-        }
-      }
-    },
     "Best time %@ of %@" : {
       "localizations" : {
         "de" : {
@@ -607,16 +587,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wähle einen Skill und bekomm die Workouts, die dich dorthin bringen."
-          }
-        }
-      }
-    },
-    "Choose a skill like the front lever and get the workouts that build it." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wähle einen Skill wie den Front Lever und bekomm die Workouts, die dich dorthin bringen."
           }
         }
       }
@@ -1071,32 +1041,12 @@
         }
       }
     },
-    "Goal" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ziel"
-          }
-        }
-      }
-    },
     "Goal progress" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fortschritt zum Ziel"
-          }
-        }
-      }
-    },
-    "Goal reached" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ziel erreicht"
           }
         }
       }
@@ -1307,16 +1257,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Passt"
-          }
-        }
-      }
-    },
-    "Keep going" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Weiter so"
           }
         }
       }
@@ -1757,16 +1697,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keine Übung gefunden."
-          }
-        }
-      }
-    },
-    "No time yet" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch keine Zeit"
           }
         }
       }
@@ -2467,16 +2397,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stufe %1$lld / %2$lld"
-          }
-        }
-      }
-    },
-    "Stage %lld / %lld · %lld to go" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stufe %1$lld / %2$lld · Noch %3$lld"
           }
         }
       }

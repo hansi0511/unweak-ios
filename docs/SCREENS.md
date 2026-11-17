@@ -31,14 +31,15 @@
 
 ## 1 Ich (Tab)
 
+Alles passt bei bis zu drei gelernten Skills ohne Scrollen auf ein iPhone 15; bei mehr Skills oder kleineren Geräten scrollt der Tab.
+
 - Kopf: Überschrift „Ich“ mit Pfeil in Akzentfarbe als Knopf zum Ich-Bereich (Level, Avatar, Einstellungen), rechts Teilen-Symbol (Woche und Serie).
-- Avatar-Bühne, groß und mittig: Der Avatar (Körper, Farben und Extra wie gewählt) steht in einem Kreis in seiner Grundfarbe und atmet leicht. Um den Kreis liegt ein Ring aus so vielen Bögen, wie das Wochenziel Trainings hat; geschaffte Bögen leuchten in der Akzentfarbe.
-- Darunter dezent in Mono-Schrift: „2 / 3 diese Woche · Serie 3 Wochen“.
-- Darunter mittig: Name des Körpers.
+- Avatar-Bühne, mittig, höchstens 200 pt: Der Avatar (Körper, Farben und Extra wie gewählt) steht in einem Kreis in seiner Grundfarbe und atmet leicht. Um den Kreis liegt ein Ring aus so vielen Bögen, wie das Wochenziel Trainings hat; geschaffte Bögen leuchten in der Akzentfarbe.
+- Darunter eine dezente Mono-Zeile: „2 / 3 diese Woche · Serie 3 Wochen · Athlet“ (Körpername hell).
 - Schmale Leiste „Nächstes Workout“ mit Play-Symbol in Akzentfarbe, Name und Dauer: mit Pro aus den Workouts der gelernten Skills, gratis aus den Gratis-Workouts.
 - Nur mit Pro: Label „Deine Skills“ mit Link „Bearbeiten“. Er wechselt in den Workouts-Tab, Bereich „Skills“, zurück an dessen Anfang. Ohne gelernten Skill ein gestrichelter Knopf „Skills wählen“ mit demselben Ziel.
-- Je gelerntem Skill ein Skill-Panel mit Raster-Hintergrund und Eckmarkierungen. Name des Skills mit Pfeil und die beiden Animationen öffnen die Skill-Seite mit der Beschreibung. Darunter zwei Animationen nebeneinander mit Pfeil dazwischen: links „Jetzt“ mit der Animation der Stufe, an der der Nutzer gerade arbeitet (die nächste noch nicht erreichte, nach der letzten die letzte), und ihrem Namen; rechts „Ziel“ mit der Animation des Skills und dem Namen der letzten Stufe. Bei Zeit-Skills links die Bestzeit, rechts die Zielzeit, beide mit der Animation der Übung. Darunter fünf Segmente, „Stufe 2 / 5 · Noch 3 Stufen“ und der gestrichelte Knopf „Stufe erreicht“.
-- Gratis-Version: statt Skill-Panel der Hinweis „Erreiche deinen ersten Skill“ mit Marke „Abo“, der zur Abo-Seite führt.
+- Je gelerntem Skill eine schmale Zeile: stille Pose der aktuellen Stufe, Name, Stand („Stufe 2 / 5 · Advanced Tuck“, bei Zeit-Skills „Bestzeit 1:20 / 5:00“ bzw. „Ziel 5:00“), feine Segmente und Pfeil. Ein Tipp öffnet die Skill-Seite; Stufen werden dort markiert.
+- Gratis-Version: statt der Skills eine schmale Zeile „Erreiche deinen ersten Skill“ mit Marke „Abo“, die zur Abo-Seite führt.
 
 ## 2 Workouts (Tab)
 
