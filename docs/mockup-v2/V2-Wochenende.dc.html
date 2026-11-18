@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>V2 Wochenabschluss</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+body{margin:0}
+a{color:#EAF2F5;text-decoration:none}a:hover{color:#FFFFFF}
+
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #07090C; color: #EAF2F5; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; padding: 20px 20px 24px; gap: 20px">
+<div style="display: flex; align-items: center; justify-content: space-between"><a href="V2-Ich.dc.html" aria-label="Schließen" style="width: 44px; height: 44px; border: 1px solid #1E2A33; background: #0B1015; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></a><div style="font-size: 14px; color: #9FB0BC">Woche 46</div></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<div style="font-size: 15px; color: {{accent}}">Platz 3 von 20</div>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700; letter-spacing: -0.6px; line-height: 1.05">Aufgestiegen!</h1>
+</div>
+<div style="display: flex; align-items: flex-end; gap: 10px; padding: 0 8px">
+<div style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px">
+<svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: block; width: 64px; height: 64px; flex-shrink: 0; ">
+<path d="{{p2.fillD}}" fill="{{p2.fg}}" fill-opacity="{{p2.fillOp}}" stroke="none"></path>
+<path d="{{p2.lines}}" stroke="{{p2.fg}}" stroke-width="{{p2.w}}"></path>
+<circle cx="{{p2.hx}}" cy="{{p2.hy}}" r="{{p2.r}}" fill="#07090C" stroke="{{p2.fg}}" stroke-width="{{p2.w}}"></circle>
+<path d="{{p2.solid}}" fill="{{p2.fg}}" stroke="none"></path>
+<path d="{{p2.exFill}}" fill="{{p2.exColor}}" stroke="none"></path>
+<path d="{{p2.exLine}}" stroke="{{p2.exColor}}" stroke-width="{{p2.exW}}"></path>
+</svg>
+<div style="font-size: 14px; font-weight: 500; color: #EAF2F5">k.lever</div>
+<div style="width: 100%; height: 96px; box-sizing: border-box; border: 1px solid #1E2A33; background: #0B1015; display: flex; justify-content: center; padding-top: 10px; font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: #EAF2F5">2</div>
+</div>
+<div style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px">
+<svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: block; width: 76px; height: 76px; flex-shrink: 0; ">
+<path d="{{p1.fillD}}" fill="{{p1.fg}}" fill-opacity="{{p1.fillOp}}" stroke="none"></path>
+<path d="{{p1.lines}}" stroke="{{p1.fg}}" stroke-width="{{p1.w}}"></path>
+<circle cx="{{p1.hx}}" cy="{{p1.hy}}" r="{{p1.r}}" fill="#07090C" stroke="{{p1.fg}}" stroke-width="{{p1.w}}"></circle>
+<path d="{{p1.solid}}" fill="{{p1.fg}}" stroke="none"></path>
+<path d="{{p1.exFill}}" fill="{{p1.exColor}}" stroke="none"></path>
+<path d="{{p1.exLine}}" stroke="{{p1.exColor}}" stroke-width="{{p1.exW}}"></path>
+</svg>
+<div style="font-size: 14px; font-weight: 500; color: #EAF2F5">mara_moves</div>
+<div style="width: 100%; height: 132px; box-sizing: border-box; border: 1px solid #1E2A33; background: #0B1015; display: flex; justify-content: center; padding-top: 10px; font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: #EAF2F5">1</div>
+</div>
+<div style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px">
+<svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: block; width: 64px; height: 64px; flex-shrink: 0; ">
+<path d="{{p3.fillD}}" fill="{{p3.fg}}" fill-opacity="{{p3.fillOp}}" stroke="none"></path>
+<path d="{{p3.lines}}" stroke="{{p3.fg}}" stroke-width="{{p3.w}}"></path>
+<circle cx="{{p3.hx}}" cy="{{p3.hy}}" r="{{p3.r}}" fill="#07090C" stroke="{{p3.fg}}" stroke-width="{{p3.w}}"></circle>
+<path d="{{p3.solid}}" fill="{{p3.fg}}" stroke="none"></path>
+<path d="{{p3.exFill}}" fill="{{p3.exColor}}" stroke="none"></path>
+<path d="{{p3.exLine}}" stroke="{{p3.exColor}}" stroke-width="{{p3.exW}}"></path>
+</svg>
+<div style="font-size: 14px; font-weight: 700; color: {{accent}}">Du</div>
+<div style="width: 100%; height: 72px; box-sizing: border-box; border: 1px solid {{accent}}; background: #111920; display: flex; justify-content: center; padding-top: 10px; font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: {{accent}}">3</div>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 14px; padding: 16px; border: 1px solid #FFD36B; background: #0B1015; box-shadow: 0 0 24px #FFD36B33">
+<svg aria-hidden="true" width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#FFD36B" stroke-width="2.6" stroke-linejoin="round" style="flex-shrink: 0"><path d="M24 4l17 8v12c0 10-7 17-17 20C14 41 7 34 7 24V12z"></path><path d="M16 23l6 6 10-12" stroke-linecap="round"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 4px"><div style="font-size: 14px; color: #9FB0BC">Ab Montag</div><div style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #FFD36B">Gold-Liga</div></div>
+</div>
+<div style="flex-grow: 1"></div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<a href="V2-Ich.dc.html" style="height: 60px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; gap: 10px; background: {{accent}}; color: #07090C; box-shadow: 0 0 24px {{glow}}; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700">Weiter</a>
+<a href="V2-Teilen.dc.html" style="min-height: 44px; display: flex; align-items: center; justify-content: center; font-size: 15px; color: #C3CED6">Aufstieg teilen</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C6F24E","options":["#C6F24E","#5CE1FF","#FFB547","#FF7566","#FF7AB8","#A995FF"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+
+renderVals() {
+var accent = this.props.accent ?? '#C6F24E';
+var glow = /^#[0-9a-fA-F]{6}$/.test(accent) ? accent + '66' : accent;
+var self = this;
+var st = this.state || {};
+
+var BODY = {
+start: { hx: 50, hy: 24, r: 6.5, w: 3, lines: 'M50 30.5V63M50 38L40 55M50 38L60 55M50 63L42 88M50 63L58 88', fill: 'M0 0', op: 0, solid: 'M0 0' },
+athlete: { hx: 50, hy: 22, r: 7, w: 3.6, lines: 'M50 29V63M42 38H58M42 38L33 22M58 38L67 22M50 63L41 88M50 63L59 88', fill: 'M0 0', op: 0, solid: 'M0 0' },
+trained: { hx: 50, hy: 21, r: 8, w: 4.6, lines: 'M50 29V38M36 38L64 38L50 64ZM36 38Q24 36 25 24M64 38Q76 36 75 24M50 64Q38 70 40 89M50 64Q62 70 60 89', fill: 'M36 38L64 38L50 64Z', op: 0.3, solid: 'M21.8 22a3.2 3.2 0 1 0 6.4 0a3.2 3.2 0 1 0 -6.4 0M71.8 22a3.2 3.2 0 1 0 6.4 0a3.2 3.2 0 1 0 -6.4 0' }
+};
+function fig(body, color, extra, exColor) {
+var b = BODY[body];
+var hx = b.hx, hy = b.hy, r = b.r, x = 'M0 0', xf = 'M0 0', xw = 2.4;
+if (extra === 'headband') x = 'M' + (hx - r) + ' ' + (hy - 0.35 * r).toFixed(2) + 'L' + (hx + r) + ' ' + (hy - 0.55 * r).toFixed(2) + 'l6 ' + (0.45 * r).toFixed(2);
+if (extra === 'visor') { x = 'M' + (hx - r - 0.5) + ' ' + (hy - 0.5) + 'H' + (hx + r + 0.5); xw = 3.2; }
+if (extra === 'crown') { var t = hy - r; xf = 'M' + (hx - r) + ' ' + (t - 1.5) + 'L' + (hx - r) + ' ' + (t - 8) + 'L' + (hx - r / 2) + ' ' + (t - 4.5) + 'L' + hx + ' ' + (t - 10) + 'L' + (hx + r / 2) + ' ' + (t - 4.5) + 'L' + (hx + r) + ' ' + (t - 8) + 'L' + (hx + r) + ' ' + (t - 1.5) + 'Z'; }
+if (extra === 'cap') { var R = r + 1.2; xf = 'M' + (hx - R) + ' ' + hy + 'A' + R + ' ' + R + ' 0 0 1 ' + (hx + R) + ' ' + hy + 'Z'; x = 'M' + hx + ' ' + (hy - 0.15 * r).toFixed(2) + 'H' + (hx + r + 6); xw = 2.6; }
+return { fg: color, w: b.w, hx: hx, hy: hy, r: r, lines: b.lines, fillD: b.fill, fillOp: b.op, solid: b.solid, exLine: x, exFill: xf, exW: xw, exColor: exColor || '#EAF2F5' };
+}
+return { accent: accent, glow: glow, p1: fig('trained', '#FF7AB8', 'crown', '#C9D3DB'), p2: fig('trained', '#5CE1FF', 'visor', '#EAF2F5'), p3: fig('athlete', accent, 'headband', '#5CE1FF') };
+}
+}
+</script>
+</body>
+</html>

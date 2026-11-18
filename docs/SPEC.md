@@ -8,7 +8,7 @@ Stand: 16. November 2026. Alle Punkte unter „Entschieden“ stammen von Hansi.
 |---|---|
 | Name | Unweak, Untertitel „Progress from week to week“. Marken- und Domainprüfung steht noch aus. |
 | Plattformen | Zwei native Apps. Zuerst iOS (dieses Repository), danach Android als Nachbau. |
-| Umfang | Ohne Influencer-Tab. Der kommt nur bei Erfolg als Version 2. |
+| Umfang | Mit Wochen-Liga und Duell (`docs/SOCIAL.md`). Ohne Influencer-Tab; der kommt nur bei Erfolg als Version 2. |
 | Konto | Von Anfang an, Anmeldung mit Apple oder Google. Fortschritt wird im Konto gesichert. |
 | Preis | Gratis: 10 Workouts und bis zu 3 eigene Workouts, keine Skills. Pro-Abo (4,90 pro Monat oder 29,90 pro Jahr, Euro und Dollar): alle Workouts, alle Skills mit ihren Workouts, Skills als Ziel, unbegrenzt eigene Workouts. |
 | Server | Firebase (Anmeldung mit Apple und Google, Sicherung der Daten). |
@@ -60,4 +60,4 @@ Vor dem jeweiligen Schritt mit Hansi klären.
 
 ## Nicht in Version 1
 
-Influencer-Tab, Folgen, Feed, eigene Workouts teilen, Moderation, Anbindung an Apple Health.
+Influencer-Tab, Folgen, Feed, eigene Workouts teilen, Moderation von Inhalten (außer Anzeigenamen), Anbindung an Apple Health.
