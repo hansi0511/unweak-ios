@@ -151,8 +151,8 @@ final class UserDataStore {
     func setLearning(_ learning: Bool, _ goal: Goal, in catalog: Catalog) {
         var ids = activeGoalIDs(in: catalog)
         if learning {
-            guard !ids.contains(goal.id) else { return }
-            ids.append(goal.id)
+            // Still saved when already in the list: the default skill becomes a real choice.
+            if !ids.contains(goal.id) { ids.append(goal.id) }
         } else {
             ids.removeAll { $0 == goal.id }
         }
