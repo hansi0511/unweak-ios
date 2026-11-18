@@ -1,12 +1,15 @@
 import SwiftUI
 
-/// Running workout: one exercise per screen, sets to tick off, rest countdown,
-/// next exercise. The tab bar is hidden while it is shown.
+/// Running workout (Design V2, `V2-Training`): one exercise per screen with one large
+/// number, set dots and one main button. After "Set done" the rest starts on its own and
+/// the number counts down ("Skip rest"). After the last set of the last exercise,
+/// "Finish workout" shows "Workout done" in place. The tab bar is hidden meanwhile.
 struct TrainingScreen: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppNavigation.self) private var navigation: AppNavigation?
-    @Environment(UserDataStore.self) private var store
     @State private var session: TrainingSession?
+    /// Set once the workout is finished: the entry shown on "Workout done".
+    @State private var doneEntry: JournalEntry?
     private let catalog: Catalog
 
     init(plan: WorkoutPlan, catalog: Catalog = .main) {
@@ -16,9 +19,13 @@ struct TrainingScreen: View {
 
     var body: some View {
         Group {
-            if let session {
+            if let doneEntry {
+                WorkoutDoneScreen(entry: doneEntry, mode: .afterWorkout, catalog: catalog)
+            } else if let session {
                 TrainingContent(session: session, catalog: catalog) {
-                    endWorkout(session)
+                    finish(session)
+                } onQuit: {
+                    quit(session)
                 }
             } else {
                 ComingLaterScreen(title: "Workouts")
@@ -29,222 +36,191 @@ struct TrainingScreen: View {
         .onDisappear { navigation?.isTabBarHidden = false }
     }
 
-    /// Ends the workout, saves it to the journal and opens the entry there, so it can
-    /// be rated and corrected. A workout without any completed set is not saved.
-    private func endWorkout(_ session: TrainingSession) {
+    /// Ends the workout and shows "Workout done".
+    private func finish(_ session: TrainingSession) {
         let now = Date.now
         session.finish(at: now)
-        let entry = JournalEntry(session: session, endedAt: now)
-        navigation?.isTabBarHidden = false
-        dismiss()
+        withAnimation(.easeOut(duration: 0.2)) {
+            doneEntry = JournalEntry(session: session, endedAt: now)
+        }
+    }
+
+    /// ✕ confirmed: with at least one set done the workout ends like "Finish workout";
+    /// without any, it closes without saving.
+    private func quit(_ session: TrainingSession) {
+        let entry = JournalEntry(session: session, endedAt: .now)
         if entry.results.isEmpty {
-            navigation?.selectedTab = .journal
+            dismiss()
         } else {
-            store.save(entry)
-            navigation?.showJournalEntry(entry.id)
+            finish(session)
         }
     }
 }
 
 private struct TrainingContent: View {
+    @Environment(\.accent) private var accent
     let session: TrainingSession
     let catalog: Catalog
-    let onEnd: () -> Void
+    let onFinish: () -> Void
+    let onQuit: () -> Void
+    @State private var isConfirmingQuit = false
 
     private var step: TrainingSession.Step { session.current }
 
     var body: some View {
-        ScreenContainer {
-            header
+        TimelineView(.periodic(from: .now, by: 1)) { context in
+            let now = context.date
+            let action = session.primaryAction(at: now)
 
-            VStack(alignment: .leading, spacing: 8) {
-                SegmentedProgress(
-                    total: session.steps.count,
-                    filled: session.stepIndex + 1,
-                    label: "Exercises"
-                )
-                targetLabel
-                HStack(alignment: .firstTextBaseline, spacing: 12) {
-                    Text(catalog: step.exercise.nameKey)
-                        .font(.exerciseTitle)
-                        .foregroundStyle(Theme.text)
-                        .minimumScaleFactor(0.6)
-                        .lineLimit(2)
-                        .accessibilityAddTraits(.isHeader)
-                    Spacer(minLength: 0)
-                    NavigationLink {
-                        ExerciseDetailScreen(exercise: step.exercise, catalog: catalog)
-                    } label: {
-                        ChipLabel("Technique")
-                    }
-                    .buttonStyle(PressFeedbackStyle())
-                }
-            }
+            ScreenContainer {
+                header
 
-            HUDPanel(padding: 10) {
+                Text(catalog: step.exercise.nameKey)
+                    .font(.grotesk(34))
+                    .foregroundStyle(Theme.text)
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(2)
+                    .frame(maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
+                    .accessibilityAddTraits(.isHeader)
+
                 StickyManView(step.exercise.animation)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 200)
+                    .frame(height: 210)
+                    .id(step.exercise.id)
+
+                bigNumber(at: now)
+
+                setDots
+
+                mainButton(action)
             }
-            .id(step.exercise.id)
-
-            SetTiles(total: step.item.sets, completed: session.completedSets, target: step.item.target)
-
-            restAndNextRow
-
-            VStack(spacing: 12) {
-                PrimaryButton(primaryTitle, systemImage: primaryIcon) {
-                    if session.primaryAction == .finish {
-                        onEnd()
-                    } else {
-                        withAnimation(.easeOut(duration: 0.2)) {
-                            session.performPrimaryAction(at: .now)
-                        }
-                    }
-                }
-                SecondaryButton("End and save workout", action: onEnd)
-            }
+        }
+        .confirmationDialog("End workout?", isPresented: $isConfirmingQuit, titleVisibility: .visible) {
+            Button("End workout", role: .destructive, action: onQuit)
+            Button("Continue", role: .cancel) {}
+        } message: {
+            Text("Sets you have done are saved.")
         }
     }
 
+    /// ✕, one segment per exercise, "?" for the technique.
     private var header: some View {
         HStack(spacing: 12) {
-            BackButton()
-            session.plan.title
-                .font(.textSemibold(15))
-                .foregroundStyle(Theme.textSoft)
-                .lineLimit(1)
-            Spacer(minLength: 0)
-            TimelineView(.periodic(from: session.startedAt, by: 1)) { context in
-                MonoLabel(verbatim: TimeText.clock(session.elapsedSeconds(at: context.date)), color: Theme.text, bold: true)
-                    .monospacedDigit()
-                    .accessibilityLabel(Text("Elapsed time"))
-                    .accessibilityValue(Text(verbatim: TimeText.clock(session.elapsedSeconds(at: context.date))))
+            IconButton(systemImage: "xmark", accessibilityLabel: "End workout") {
+                isConfirmingQuit = true
             }
+            SegmentedProgress(
+                total: session.steps.count,
+                filled: session.stepIndex + 1,
+                height: 5,
+                label: "Exercises"
+            )
+            NavigationLink {
+                ExerciseDetailScreen(exercise: step.exercise, catalog: catalog)
+            } label: {
+                Text(verbatim: "?")
+                    .font(.buttonTitle)
+                    .foregroundStyle(Theme.text)
+                    .frame(width: Theme.Layout.minTouchTarget, height: Theme.Layout.minTouchTarget)
+                    .overlay(Rectangle().strokeBorder(Theme.lineStrong, lineWidth: 1))
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(PressFeedbackStyle())
+            .accessibilityLabel(Text("How the exercise works"))
         }
     }
 
-    private var targetLabel: some View {
-        let number = session.stepIndex + 1
-        let count = session.steps.count
-        let sets = step.item.sets
-        switch step.item.target {
-        case .reps(let reps):
-            return MonoLabel("Exercise \(number) / \(count) · \(sets) × \(reps) reps")
-        case .seconds(let seconds):
-            return MonoLabel("Exercise \(number) / \(count) · \(sets) × \(seconds) s")
-        }
-    }
-
-    private var restAndNextRow: some View {
-        TimelineView(.periodic(from: .now, by: 1)) { context in
-            let remaining = session.restRemaining(at: context.date)
-            HStack(alignment: .top, spacing: 12) {
-                VStack(alignment: .leading, spacing: 4) {
-                    if remaining > 0 {
-                        MonoLabel("Rest", color: Theme.text)
-                    } else {
-                        MonoLabel("Rest time")
-                    }
-                    Text(verbatim: TimeText.clock(remaining > 0 ? remaining : step.item.rest))
-                        .font(.metric)
-                        .monospacedDigit()
-                        .foregroundStyle(Theme.text)
-                }
-                .accessibilityElement(children: .combine)
-                Spacer(minLength: 0)
-                VStack(alignment: .trailing, spacing: 4) {
-                    MonoLabel("Next")
-                    if let next = session.next {
-                        Text(catalog: next.exercise.nameKey)
-                            .font(.textSemibold(15))
-                            .foregroundStyle(Theme.textSoft)
-                            .multilineTextAlignment(.trailing)
-                    } else {
-                        Text("Last exercise")
-                            .font(.textSemibold(15))
-                            .foregroundStyle(Theme.textSoft)
+    /// Repetitions or seconds of the set; during the rest the remaining rest time.
+    private func bigNumber(at now: Date) -> some View {
+        let resting = session.isResting(at: now)
+        return VStack(spacing: 4) {
+            Group {
+                if resting {
+                    Text(verbatim: TimeText.clock(session.restRemaining(at: now)))
+                } else {
+                    switch step.item.target {
+                    case .reps(let reps): Text(verbatim: "\(reps)")
+                    case .seconds(let seconds): Text(verbatim: "\(seconds)")
                     }
                 }
-                .accessibilityElement(children: .combine)
             }
+            .font(.grotesk(72))
+            .monospacedDigit()
+            .foregroundStyle(resting ? accent.color : Theme.text)
+            Group {
+                if resting {
+                    Text("Rest")
+                } else {
+                    switch step.item.target {
+                    case .reps: Text("Repetitions")
+                    case .seconds: Text("Seconds")
+                    }
+                }
+            }
+            .font(.text(17))
+            .foregroundStyle(Theme.textSoft)
         }
+        .frame(maxWidth: .infinity)
+        .accessibilityElement(children: .combine)
     }
 
-    private var primaryTitle: LocalizedStringKey {
-        switch session.primaryAction {
-        case .completeSet(let number): "Set \(number) done"
+    /// One dot per set (done filled, current outlined) and "Set 3 of 4".
+    private var setDots: some View {
+        let total = step.item.sets
+        let done = session.completedSets
+        return VStack(spacing: 8) {
+            HStack(spacing: 10) {
+                ForEach(0..<total, id: \.self) { index in
+                    Circle()
+                        .fill(index < done ? accent.color : Color.clear)
+                        .overlay(Circle().strokeBorder(index < done ? accent.color : (index == done ? Theme.text : Theme.lineStrong), lineWidth: 2))
+                        .frame(width: 14, height: 14)
+                }
+            }
+            .accessibilityHidden(true)
+            Group {
+                if session.isExerciseComplete {
+                    Text("All sets done")
+                } else {
+                    Text("Set \(session.currentSetNumber) of \(total)")
+                }
+            }
+            .font(.text(15))
+            .foregroundStyle(Theme.textSoft)
+        }
+        .frame(maxWidth: .infinity)
+        .accessibilityElement(children: .combine)
+    }
+
+    private func mainButton(_ action: TrainingSession.PrimaryAction) -> some View {
+        Button {
+            if action == .finish {
+                onFinish()
+            } else {
+                withAnimation(.easeOut(duration: 0.2)) {
+                    session.performPrimaryAction(at: .now)
+                }
+            }
+        } label: {
+            Text(title(for: action))
+                .font(.grotesk(20))
+                .foregroundStyle(action == .skipRest ? accent.color : Theme.onAccent)
+                .frame(maxWidth: .infinity, minHeight: 64)
+                .background(action == .skipRest ? Color.clear : accent.color)
+                .overlay(Rectangle().strokeBorder(accent.color, lineWidth: action == .skipRest ? 1.5 : 0))
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(PressFeedbackStyle())
+        .glow(action == .skipRest ? .clear : accent.color, radius: Theme.Glow.medium)
+    }
+
+    private func title(for action: TrainingSession.PrimaryAction) -> LocalizedStringKey {
+        switch action {
+        case .completeSet: "Set done"
+        case .skipRest: "Skip rest"
         case .nextExercise: "Next exercise"
         case .finish: "Finish workout"
-        }
-    }
-
-    private var primaryIcon: String {
-        switch session.primaryAction {
-        case .completeSet: "checkmark"
-        case .nextExercise: "arrow.right"
-        case .finish: "flag.checkered"
-        }
-    }
-}
-
-/// One tile per set: done (accent fill), current (bright outline), open (dark).
-private struct SetTiles: View {
-    @Environment(\.accent) private var accent
-    let total: Int
-    let completed: Int
-    let target: ExerciseTarget
-
-    var body: some View {
-        HStack(spacing: 8) {
-            ForEach(0..<total, id: \.self) { index in
-                tile(index)
-            }
-        }
-    }
-
-    private func tile(_ index: Int) -> some View {
-        let isDone = index < completed
-        let isCurrent = index == completed
-        return VStack(spacing: 2) {
-            if isDone {
-                Image(systemName: "checkmark")
-                    .font(.system(size: 16, weight: .bold))
-            } else {
-                targetText
-                    .font(.metric)
-                    .monospacedDigit()
-            }
-            Text("Set \(index + 1)")
-                .font(.mono)
-                .textCase(.uppercase)
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
-        }
-        .foregroundStyle(isDone ? Theme.onAccent : (isCurrent ? Theme.text : Theme.textMuted))
-        .frame(maxWidth: .infinity, minHeight: 64)
-        .background(isDone ? accent.color : (isCurrent ? Theme.surfaceSelected : Theme.surface))
-        .overlay(
-            Rectangle().strokeBorder(
-                isDone ? accent.color : (isCurrent ? Theme.text : Theme.line),
-                lineWidth: isCurrent ? 2 : 1
-            )
-        )
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("Set \(index + 1)"))
-        .accessibilityValue(Text(stateLabel(isDone: isDone, isCurrent: isCurrent)))
-    }
-
-    private func stateLabel(isDone: Bool, isCurrent: Bool) -> LocalizedStringKey {
-        if isDone { return "Done" }
-        if isCurrent { return "Current" }
-        return "Open"
-    }
-
-    private var targetText: Text {
-        switch target {
-        case .reps(let reps): Text(verbatim: "\(reps)")
-        case .seconds(let seconds): Text("\(seconds) s")
         }
     }
 }

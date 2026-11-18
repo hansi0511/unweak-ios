@@ -1,76 +1,65 @@
 import SwiftUI
 
-extension GoalProgress {
-    /// Short state: "Stage 2 / 5", "Best 1:20 / 5:00" or "Target 5:00".
-    var stateText: Text {
-        switch goal.kind {
-        case .stages(let count):
-            return Text("Stage \(reachedStages) / \(count)")
-        case .time(let target):
-            if let bestSeconds {
-                return Text("Best \(ValueText.seconds(bestSeconds)) / \(ValueText.seconds(target))")
-            }
-            return Text("Target \(ValueText.seconds(target))")
-        }
-    }
-}
-
-/// The skills area of the workouts tab: one large card per skill.
-struct SkillList: View {
+/// Skills (Design V2, `V2-Skills`): two columns of tiles with pose, name and five
+/// segments; skills being learned carry "Your goal" and an accent outline. Without Pro
+/// every tile opens the subscription page.
+struct SkillsScreen: View {
     @Environment(UserDataStore.self) private var store
     @Environment(SubscriptionStore.self) private var subscription
     @State private var isShowingPaywall = false
-    let catalog: Catalog
+    private let catalog: Catalog
+
+    init(catalog: Catalog = .main) {
+        self.catalog = catalog
+    }
+
+    private let columns = [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)]
 
     var body: some View {
         let stats = JournalStats(entries: store.entries)
         let canUseSkills = subscription.access.canUseSkills
         let learning = canUseSkills ? Set(store.activeGoalIDs(in: catalog)) : []
 
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Choose a skill and get the workouts that build it.")
-                .font(.text(15))
-                .foregroundStyle(Theme.textSoft)
-            ForEach(catalog.goals) { goal in
-                let isLearning = learning.contains(goal.id)
-                let card = SkillCard(
-                    progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
-                    workoutCount: goal.plans.count,
-                    isActive: isLearning,
-                    isLocked: !canUseSkills,
-                    catalog: catalog
-                )
-                Group {
+        ScreenContainer {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    BackButton()
+                    Spacer()
+                    Badge(kind: .subscription)
+                }
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Skills")
+                        .font(.grotesk(36))
+                        .foregroundStyle(Theme.text)
+                        .accessibilityAddTraits(.isHeader)
+                    Text("Choose a goal. You learn it in 5 stages.")
+                        .font(.text(15))
+                        .foregroundStyle(Theme.textSoft)
+                }
+            }
+
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(catalog.goals) { goal in
+                    let tile = SkillTile(
+                        progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
+                        isGoal: learning.contains(goal.id),
+                        isLocked: !canUseSkills
+                    )
                     if canUseSkills {
                         NavigationLink {
                             SkillScreen(goal: goal, catalog: catalog)
                         } label: {
-                            card
+                            tile
                         }
                         .buttonStyle(PressFeedbackStyle())
                     } else {
-                        // Skills need Pro: the card opens the subscription page.
                         Button {
                             isShowingPaywall = true
                         } label: {
-                            card
+                            tile
                         }
                         .buttonStyle(PressFeedbackStyle())
                     }
-                }
-                // Lies over the space the card keeps free at its bottom, so it is not
-                // part of the card's own button.
-                .overlay(alignment: .bottom) {
-                    LearnSkillButton(isLearning: isLearning, isLocked: !canUseSkills) {
-                        guard canUseSkills else {
-                            isShowingPaywall = true
-                            return
-                        }
-                        withAnimation(.easeOut(duration: 0.15)) {
-                            store.setLearning(!isLearning, goal, in: catalog)
-                        }
-                    }
-                    .padding(14)
                 }
             }
         }
@@ -80,86 +69,59 @@ struct SkillList: View {
     }
 }
 
-/// Large skill card: Sticky Man in the skill's key pose, name, state, workouts, progress.
-private struct SkillCard: View {
+/// One skill tile: pose, "Your goal" when learned, name and five segments.
+private struct SkillTile: View {
+    @Environment(\.accent) private var accent
     let progress: GoalProgress
-    let workoutCount: Int
-    let isActive: Bool
+    let isGoal: Bool
     let isLocked: Bool
-    let catalog: Catalog
 
     private var goal: Goal { progress.goal }
 
     var body: some View {
-        HUDPanel(padding: 14) {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack(alignment: .center, spacing: 14) {
-                    // Static key pose: six moving figures in one list would be restless.
-                    let animation = catalog.animation(for: goal)
-                    StickyFigureCanvas(figure: animation.figure(at: animation.endPoseProgress), highlighted: !isLocked)
-                        .frame(width: 88, height: 88)
-                        .accessibilityHidden(true)
-                    VStack(alignment: .leading, spacing: 6) {
-                        HStack(spacing: 6) {
-                            if isLocked {
-                                Badge(kind: .subscription)
-                            } else if isActive {
-                                Badge(kind: .selected)
-                            }
-                        }
-                        Text(catalog: goal.nameKey)
-                            .font(.metric)
-                            .foregroundStyle(Theme.text)
-                            .multilineTextAlignment(.leading)
-                        MetaLine([progress.stateText, Text("\(workoutCount) workouts")])
-                    }
-                    Spacer(minLength: 0)
-                    Image(systemName: isLocked ? "lock.fill" : "chevron.right")
-                        .font(.system(size: 14, weight: .bold))
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .top) {
+                StickyPoseView(goal.pose, highlighted: !isLocked)
+                    .accessibilityHidden(true)
+                Spacer(minLength: 0)
+                if isGoal {
+                    Text("Your goal")
+                        .font(.text(12))
+                        .foregroundStyle(accent.color)
+                } else if isLocked {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 12, weight: .bold))
                         .foregroundStyle(Theme.textMuted)
                         .accessibilityHidden(true)
                 }
-                SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, label: "Goal progress")
-                // Room for the learn button, which lies over the card.
-                Color.clear
-                    .frame(height: Theme.Layout.minTouchTarget)
-                    .accessibilityHidden(true)
             }
+            Spacer(minLength: 0)
+            Text(catalog: goal.nameKey)
+                .font(.textSemibold(16))
+                .foregroundStyle(Theme.text)
+                .lineLimit(2)
+                .multilineTextAlignment(.leading)
+            SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, height: 4, label: "Goal progress")
         }
+        .padding(12)
+        .frame(maxWidth: .infinity, minHeight: 150, maxHeight: 150, alignment: .leading)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(isGoal ? accent.color : Theme.line, lineWidth: isGoal ? 2 : 1))
+        .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
+        .accessibilityValue(isGoal ? Text("Your goal") : (isLocked ? Text("Locked") : Text(verbatim: "")))
         .accessibilityAddTraits(.isButton)
     }
 }
 
-/// "Learn this skill", or "Learning" with a check once the skill is learned; tapping it
-/// again stops learning. Without Pro it shows a lock.
-struct LearnSkillButton: View {
-    let isLearning: Bool
-    let isLocked: Bool
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            if isLearning {
-                ChipLabel("Learning", systemImage: "checkmark", style: .outline, expands: true)
-            } else {
-                ChipLabel("Learn this skill", systemImage: isLocked ? "lock.fill" : "plus", style: .dashed, expands: true)
-            }
-        }
-        .buttonStyle(PressFeedbackStyle())
-        .accessibilityHint(isLearning ? Text("Tap to stop learning") : Text("Adds the skill to the Me tab"))
-    }
-}
-
-/// One skill: animation, stages or best time, set as goal, and its workouts from easy to hard.
+/// One skill (Design V2, `V2-Skill`): "My goal" in the header, the animation, "Your
+/// path" with five stage tiles (tap for the stage's info and the "Mastered" switch),
+/// "Now" with what to do and "Done", and "Start matching workout".
 struct SkillScreen: View {
     @Environment(\.accent) private var accent
     @Environment(UserDataStore.self) private var store
     @Environment(SubscriptionStore.self) private var subscription
     @State private var isShowingSubscription = false
-    @State private var shareContent: ShareContent?
-    /// Index of the reached stage the user wants to take back, while asking.
-    @State private var stageToTakeBack: Int?
     /// Info sheet shown for the skill or one of its stages.
     @State private var info: SkillInfo?
     private let goal: Goal
@@ -170,7 +132,7 @@ struct SkillScreen: View {
         self.catalog = catalog
     }
 
-    private var isActive: Bool {
+    private var isGoal: Bool {
         subscription.access.canUseSkills && store.isLearning(goal, in: catalog)
     }
 
@@ -183,12 +145,8 @@ struct SkillScreen: View {
                 HStack {
                     BackButton()
                     Spacer()
-                    Badge(kind: .subscription)
-                    IconButton(systemImage: "info.circle", accessibilityLabel: "About this skill") {
-                        info = .skill
-                    }
+                    goalButton
                 }
-                MonoLabel("Skill")
                 Text(catalog: goal.nameKey)
                     .font(.exerciseTitle)
                     .foregroundStyle(Theme.text)
@@ -196,218 +154,254 @@ struct SkillScreen: View {
                     .accessibilityAddTraits(.isHeader)
             }
 
-            goalSection
-
             HUDPanel(padding: 10) {
                 StickyManView(catalog.animation(for: goal))
                     .frame(maxWidth: .infinity)
-                    .frame(height: 200)
+                    .frame(height: 190)
+                    .overlay(alignment: .topTrailing) {
+                        IconButton(systemImage: "info.circle", accessibilityLabel: "About this skill") {
+                            info = .skill
+                        }
+                    }
             }
 
-            progressSection(progress)
+            switch goal.kind {
+            case .stages:
+                pathSection(progress)
+                nowCard(progress)
+            case .time(let target):
+                timeSection(progress, target: target)
+            }
 
-            VStack(alignment: .leading, spacing: 10) {
-                MonoLabel("Workouts for this skill")
-                Text("From easy to hard.")
-                    .font(.text(13))
-                    .foregroundStyle(Theme.textMuted)
-                ForEach(catalog.skillPlans(for: goal)) { plan in
-                    PlanLink(plan: plan, catalog: catalog) {
-                        isShowingSubscription = true
+            if let plan = catalog.plan(forStage: progress.currentStageIndex ?? 0, of: goal) {
+                if subscription.access.canTrain(plan) {
+                    NavigationLink {
+                        TrainingScreen(plan: plan, catalog: catalog)
+                    } label: {
+                        mainButtonLabel
                     }
+                    .buttonStyle(PressFeedbackStyle())
+                    .glow(accent.color, radius: Theme.Glow.medium)
+                } else {
+                    Button {
+                        isShowingSubscription = true
+                    } label: {
+                        mainButtonLabel
+                    }
+                    .buttonStyle(PressFeedbackStyle())
+                    .glow(accent.color, radius: Theme.Glow.medium)
                 }
             }
         }
         .sheet(isPresented: $isShowingSubscription) {
             PaywallSheet()
         }
-        .sheet(item: $shareContent) { content in
-            ShareSheet(content: content)
-        }
         .sheet(item: $info) { info in
             SkillInfoSheet(goal: goal, info: info, catalog: catalog)
         }
     }
 
-    @ViewBuilder
-    private func progressSection(_ progress: GoalProgress) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                MonoLabel("Progress")
-                Spacer()
-                if progress.filledSegments > 0 || progress.reachedStages > 0 {
-                    IconButton(systemImage: "square.and.arrow.up", accessibilityLabel: "Share progress") {
-                        shareContent = .skillCard(progress, catalog: catalog)
-                    }
-                }
-                progress.stateText
-                    .font(.monoBold)
-                    .textCase(.uppercase)
-                    .foregroundStyle(Theme.text)
-            }
-            SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, label: "Goal progress")
+    // MARK: Header
 
-            if case .stages = goal.kind {
-                VStack(spacing: 8) {
-                    ForEach(Array(goal.stageKeys.enumerated()), id: \.offset) { index, key in
-                        stageRow(index: index, key: key, progress: progress)
-                    }
-                }
-                .confirmationDialog(
-                    takeBackTitle,
-                    isPresented: Binding(
-                        get: { stageToTakeBack != nil },
-                        set: { if !$0 { stageToTakeBack = nil } }
-                    ),
-                    titleVisibility: .visible
-                ) {
-                    Button("Take back", role: .destructive) {
-                        if let index = stageToTakeBack {
-                            withAnimation(.easeOut(duration: 0.2)) {
-                                store.setReachedStages(index, of: goal)
-                            }
-                        }
-                        stageToTakeBack = nil
-                    }
-                    Button("Cancel", role: .cancel) {
-                        stageToTakeBack = nil
-                    }
-                } message: {
-                    Text("Later stages are taken back too.")
-                }
-                if !progress.isComplete {
-                    Button {
-                        guard subscription.access.canUseSkills else {
-                            isShowingSubscription = true
-                            return
-                        }
-                        withAnimation(.easeOut(duration: 0.2)) {
-                            store.markStageReached(of: goal)
-                        }
-                    } label: {
-                        ChipLabel("Stage reached", systemImage: "checkmark", style: .dashed, expands: true)
-                    }
-                    .buttonStyle(PressFeedbackStyle())
-                }
-            } else {
-                Text("Your best time comes from your Journey.")
-                    .font(.text(13))
-                    .foregroundStyle(Theme.textMuted)
+    /// "✓ My goal" or "Choose as goal"; toggles learning the skill.
+    private var goalButton: some View {
+        Button {
+            guard subscription.access.canUseSkills else {
+                isShowingSubscription = true
+                return
             }
-        }
-    }
-
-    private var takeBackTitle: Text {
-        guard let index = stageToTakeBack, goal.stageKeys.indices.contains(index) else { return Text(verbatim: "") }
-        return Text("Take back “\(Text(catalog: goal.stageKeys[index]))”?")
-    }
-
-    /// One stage: small animation, number and name open the stage's info sheet; the
-    /// switch at the end shows whether the stage is mastered. Switching it on reaches the
-    /// stage (and all before it); switching it off asks to take it back.
-    private func stageRow(index: Int, key: String, progress: GoalProgress) -> some View {
-        let isReached = index < progress.reachedStages
-        let isCurrent = index == progress.currentStageIndex && !progress.isComplete
-        let animations = goal.stageAnimations ?? []
-        let mastered = Binding<Bool>(
-            get: { isReached },
-            set: { newValue in
-                guard subscription.access.canUseSkills else {
-                    isShowingSubscription = true
-                    return
-                }
-                if newValue {
-                    withAnimation(.easeOut(duration: 0.2)) {
-                        store.setReachedStages(index + 1, of: goal)
-                    }
-                } else {
-                    stageToTakeBack = index
-                }
+            withAnimation(.easeOut(duration: 0.15)) {
+                store.setLearning(!isGoal, goal, in: catalog)
             }
-        )
-        return HStack(spacing: 10) {
-            Button {
-                info = .stage(index)
-            } label: {
-                HStack(spacing: 12) {
-                    if animations.indices.contains(index) {
-                        StickyManView(animations[index])
-                            .frame(width: 64, height: 56)
-                            .opacity(isReached || isCurrent ? 1 : 0.55)
-                    }
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack(spacing: 6) {
-                            MonoLabel(verbatim: String(format: "%02d", index + 1))
-                            if isCurrent {
-                                MonoLabel("Now", color: accent.color, bold: true)
-                            }
-                        }
-                        Text(catalog: key)
-                            .font(.textSemibold(15))
-                            .foregroundStyle(isReached || isCurrent ? Theme.text : Theme.textSoft)
-                            .multilineTextAlignment(.leading)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    Spacer(minLength: 0)
-                    Image(systemName: "info.circle")
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(Theme.textMuted)
+        } label: {
+            HStack(spacing: 6) {
+                if isGoal {
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 12, weight: .bold))
                         .accessibilityHidden(true)
+                    Text("My goal")
+                } else {
+                    Text("Choose as goal")
                 }
-                .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget, alignment: .leading)
-                .contentShape(Rectangle())
             }
-            .buttonStyle(PressFeedbackStyle())
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(Text("Stage \(index + 1): \(Text(catalog: key))"))
-            .accessibilityHint(Text("Shows muscles and benefits"))
-
-            Toggle(isOn: mastered) {
-                Text("Mastered")
-            }
-            .labelsHidden()
-            .tint(accent.color)
-            .frame(minWidth: Theme.Layout.minTouchTarget, minHeight: Theme.Layout.minTouchTarget)
-            .accessibilityLabel(Text("Mastered: \(Text(catalog: key))"))
+            .font(.text(14))
+            .foregroundStyle(isGoal ? Theme.onAccent : accent.color)
+            .padding(.horizontal, 14)
+            .frame(minHeight: Theme.Layout.minTouchTarget)
+            .background(isGoal ? accent.color : Color.clear)
+            .overlay(Rectangle().strokeBorder(accent.color, lineWidth: 1))
+            .contentShape(Rectangle())
         }
-        .padding(.vertical, 6)
-        .padding(.horizontal, 10)
-        .background(Theme.surface)
-        .overlay(Rectangle().strokeBorder(isCurrent ? accent.color : Theme.line, lineWidth: isCurrent ? 2 : 1))
+        .buttonStyle(PressFeedbackStyle())
+        .accessibilityHint(isGoal ? Text("Tap to stop learning") : Text("Adds the skill to the Me tab"))
     }
 
-    /// "Learn this skill" as the main button, or "Learning" once the skill is learned
-    /// (tapping it stops learning).
-    @ViewBuilder
-    private var goalSection: some View {
-        if isActive {
-            LearnSkillButton(isLearning: true, isLocked: false) {
-                withAnimation(.easeOut(duration: 0.15)) {
-                    store.setLearning(false, goal, in: catalog)
-                }
-            }
-        } else {
-            PrimaryButton("Learn this skill", systemImage: "scope") {
-                if subscription.access.canUseSkills {
-                    withAnimation(.easeOut(duration: 0.15)) {
-                        store.setLearning(true, goal, in: catalog)
+    // MARK: Stages
+
+    /// "Your path" with "Stage 3 of 5" and five stage tiles.
+    private func pathSection(_ progress: GoalProgress) -> some View {
+        let count = goal.stageKeys.count
+        let reached = progress.reachedStages
+        let animations = goal.stageAnimations ?? []
+        return VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .firstTextBaseline) {
+                Text("Your path")
+                    .font(.buttonTitle)
+                    .foregroundStyle(Theme.text)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer()
+                Group {
+                    if progress.isComplete {
+                        Text("\(count) of \(count)")
+                    } else {
+                        Text("Stage \(reached + 1) of \(count)")
                     }
-                } else {
-                    isShowingSubscription = true
+                }
+                .font(.text(14))
+                .foregroundStyle(Theme.textMuted)
+            }
+            HStack(spacing: 6) {
+                ForEach(0..<count, id: \.self) { index in
+                    StageTile(
+                        animation: animations.indices.contains(index) ? animations[index] : nil,
+                        isReached: index < reached,
+                        isCurrent: index == reached
+                    ) {
+                        info = .stage(index)
+                    }
+                    .accessibilityLabel(Text("Stage \(index + 1): \(Text(catalog: goal.stageKeys[index]))"))
                 }
             }
         }
+    }
+
+    /// "Now": the current stage with what to do and "Done", or "Mastered!" at the end.
+    @ViewBuilder
+    private func nowCard(_ progress: GoalProgress) -> some View {
+        if progress.isComplete {
+            Text("Mastered!")
+                .font(.grotesk(22))
+                .foregroundStyle(accent.color)
+                .padding(16)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Theme.surface)
+                .overlay(Rectangle().strokeBorder(accent.color, lineWidth: 1))
+        } else if let index = progress.currentStageIndex {
+            VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Now")
+                        .font(.text(14))
+                        .foregroundStyle(Theme.textMuted)
+                    Text(catalog: goal.stageKeys[index])
+                        .font(.grotesk(22))
+                        .foregroundStyle(Theme.text)
+                    Text(catalog: goal.stageTipKeys[index])
+                        .font(.text(15))
+                        .foregroundStyle(Theme.textSoft)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .accessibilityElement(children: .combine)
+                Button {
+                    guard subscription.access.canUseSkills else {
+                        isShowingSubscription = true
+                        return
+                    }
+                    withAnimation(.easeOut(duration: 0.2)) {
+                        store.markStageReached(of: goal)
+                    }
+                } label: {
+                    Text("Done")
+                        .font(.text(15))
+                        .foregroundStyle(accent.color)
+                        .frame(maxWidth: .infinity, minHeight: 48)
+                        .overlay(Rectangle().strokeBorder(accent.color, style: StrokeStyle(lineWidth: 1, dash: [6, 4])))
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(PressFeedbackStyle())
+                .accessibilityHint(Text("Marks this stage as reached"))
+            }
+            .padding(16)
+            .background(Theme.surface)
+            .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+        }
+    }
+
+    /// Time skills: five segments with the best time, and where it comes from.
+    private func timeSection(_ progress: GoalProgress, target: Int) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .firstTextBaseline) {
+                Text("Your path")
+                    .font(.buttonTitle)
+                    .foregroundStyle(Theme.text)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer()
+                Group {
+                    if let best = progress.bestSeconds {
+                        Text("Best \(ValueText.seconds(best)) of \(ValueText.seconds(target))")
+                    } else {
+                        Text("Target \(ValueText.seconds(target))")
+                    }
+                }
+                .font(.text(14))
+                .foregroundStyle(Theme.textMuted)
+            }
+            SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, height: 8, label: "Goal progress")
+            Text("Your best time comes from your Journey.")
+                .font(.text(15))
+                .foregroundStyle(Theme.textSoft)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    private var mainButtonLabel: some View {
+        HStack(spacing: 10) {
+            Image(systemName: "play.fill")
+                .font(.system(size: 16, weight: .bold))
+                .accessibilityHidden(true)
+            Text("Start matching workout")
+                .font(.buttonTitle)
+        }
+        .foregroundStyle(Theme.onAccent)
+        .frame(maxWidth: .infinity, minHeight: Theme.Layout.primaryButtonHeight)
+        .background(accent.color)
+        .contentShape(Rectangle())
+    }
+}
+
+/// One stage on "Your path": still pose; reached ones filled, the current one with an
+/// accent outline, later ones dimmed. Tapping opens the stage's info.
+private struct StageTile: View {
+    @Environment(\.accent) private var accent
+    let animation: StickyAnimation?
+    let isReached: Bool
+    let isCurrent: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            ZStack {
+                if let animation {
+                    StickyFigureCanvas(figure: animation.figure(at: animation.endPoseProgress), highlighted: isReached || isCurrent)
+                        .padding(6)
+                }
+            }
+            .frame(maxWidth: .infinity, minHeight: 58, maxHeight: 58)
+            .background(isReached ? accent.color.opacity(0.18) : Theme.surface)
+            .overlay(Rectangle().strokeBorder(isCurrent ? accent.color : Theme.line, lineWidth: isCurrent ? 2 : 1))
+            .opacity(isReached || isCurrent ? 1 : 0.45)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(PressFeedbackStyle())
+        .accessibilityValue(isReached ? Text("Reached") : (isCurrent ? Text("Now") : Text("Open")))
+        .accessibilityHint(Text("Shows muscles and how it is done"))
     }
 }
 
 #Preview("Skills") {
     NavigationStack {
-        ScrollView {
-            SkillList(catalog: .main)
-                .padding(Theme.Layout.screenEdge)
-        }
-        .background(Theme.background)
+        SkillsScreen()
     }
+    .environment(SubscriptionStore.preview(isPro: true))
     .previewEnvironment()
 }
 
@@ -417,6 +411,7 @@ struct SkillScreen: View {
             SkillScreen(goal: goal)
         }
     }
+    .environment(SubscriptionStore.preview(isPro: true))
     .previewEnvironment()
     .environment(\.locale, Locale(identifier: "de"))
 }

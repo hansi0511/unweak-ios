@@ -43,7 +43,7 @@ struct RootView: View {
             ZStack {
                 ForEach(AppTab.allCases) { tab in
                     let isActive = tab == navigation.selectedTab
-                    stack(for: tab, journalPath: $navigation.journalPath)
+                    stack(for: tab, workoutsPath: $navigation.workoutsPath, journalPath: $navigation.journalPath)
                         .opacity(isActive ? 1 : 0)
                         .allowsHitTesting(isActive)
                         .accessibilityHidden(!isActive)
@@ -70,10 +70,14 @@ struct RootView: View {
 
     /// The journal stack is driven by a path so that a finished workout can open its entry.
     @ViewBuilder
-    private func stack(for tab: AppTab, journalPath: Binding<[JournalRoute]>) -> some View {
+    private func stack(
+        for tab: AppTab,
+        workoutsPath: Binding<[WorkoutsRoute]>,
+        journalPath: Binding<[JournalRoute]>
+    ) -> some View {
         switch tab {
         case .me: NavigationStack { MeScreen() }
-        case .workouts: NavigationStack { WorkoutsScreen() }.id(navigation.workoutsStackID)
+        case .workouts: NavigationStack(path: workoutsPath) { WorkoutsScreen() }
         case .journal: NavigationStack(path: journalPath) { JournalScreen() }
         }
     }

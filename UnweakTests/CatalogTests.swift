@@ -144,6 +144,26 @@ struct TrainingSessionTests {
         #expect(session.primaryAction == .completeSet(1))
     }
 
+    @Test func duringTheRestTheButtonSkipsIt() throws {
+        let session = try makeSession()
+        session.completeSet(at: start)
+        #expect(session.isResting(at: start))
+        #expect(session.primaryAction(at: start) == .skipRest)
+        #expect(session.primaryAction(at: start.addingTimeInterval(61)) == .completeSet(2))
+
+        session.performPrimaryAction(at: start)
+        #expect(!session.isResting(at: start))
+        #expect(session.completedSets == 1, "skipping the rest does not count a set")
+        #expect(session.primaryAction(at: start) == .completeSet(2))
+    }
+
+    @Test func noRestAfterTheLastSetOfAnExercise() throws {
+        let session = try makeSession()
+        for _ in 0..<3 { session.completeSet(at: start) }
+        #expect(!session.isResting(at: start))
+        #expect(session.primaryAction(at: start) == .nextExercise)
+    }
+
     @Test func lastExerciseEndsWithFinish() throws {
         let session = try makeSession()
         while session.primaryAction != .finish {
@@ -185,13 +205,21 @@ struct TimeTextTests {
     }
 }
 
-struct WorkoutFilterTests {
-    @Test func offersAllAndTheGeneralCategoriesButNotSkill() {
-        #expect(WorkoutFilter.allFilters.count == ExerciseCategory.allCases.count)
-        #expect(WorkoutFilter.allFilters.first == .all)
-        #expect(!WorkoutFilter.allFilters.contains(.category(.skill)))
-        #expect(WorkoutFilter.all.category == nil)
-        #expect(WorkoutFilter.category(.legs).category == .legs)
+struct AreaTests {
+    @Test func theFourAreasWithoutSkills() {
+        #expect(ExerciseCategory.areas == [.push, .pull, .legs, .core])
+        #expect(!ExerciseCategory.areas.contains(.skill))
+    }
+
+    @Test func stagesAreSpreadOverTheSkillWorkouts() throws {
+        let catalog = Catalog.main
+        let frontLever = try #require(catalog.goals.first { $0.id == "frontLever" })
+        // Three workouts over five stages: 0, 0, 1, 1, 2.
+        let ids = (0..<5).compactMap { catalog.plan(forStage: $0, of: frontLever)?.id }
+        #expect(ids == ["pullDay", "pullDay", "pullStrength", "pullStrength", "frontLeverBuildUp"])
+        #expect(catalog.plan(forStage: 9, of: frontLever)?.id == "frontLeverBuildUp")
+        let plank = try #require(catalog.goals.first { $0.id == "plank5Min" })
+        #expect(catalog.plan(forStage: 3, of: plank)?.id == plank.plans.first)
     }
 }
 

@@ -20,6 +20,33 @@ enum ExerciseCategory: String, Codable, CaseIterable, Sendable {
     }
 }
 
+extension ExerciseCategory {
+    /// The areas of the workouts tab, in order. Skill workouts are reached via the skills.
+    static let areas: [ExerciseCategory] = [.push, .pull, .legs, .core]
+
+    /// One sentence under the area's title.
+    var areaDescription: LocalizedStringKey {
+        switch self {
+        case .push: "For chest, shoulders and arms"
+        case .pull: "For back and arms"
+        case .legs: "For legs and glutes"
+        case .core: "For belly and trunk"
+        case .skill: "Skills in 5 stages"
+        }
+    }
+
+    /// Pose on the area's tile.
+    var areaPose: StickyPose {
+        switch self {
+        case .push: .pushUp
+        case .pull: .pullUp
+        case .legs: .squat
+        case .core: .plank
+        case .skill: .frontLever
+        }
+    }
+}
+
 enum ExerciseLevel: String, Codable, CaseIterable, Sendable {
     case beginner
     case intermediate
@@ -156,6 +183,8 @@ struct Goal: Codable, Identifiable, Hashable, Sendable {
     /// Info sheet texts of each stage, in stage order.
     var stageMusclesKeys: [String] { stageKeys.map { "\($0).muscles" } }
     var stageBenefitKeys: [String] { stageKeys.map { "\($0).benefit" } }
+    /// "Now" on the skill page: what to do in each stage.
+    var stageTipKeys: [String] { stageKeys.map { "\($0).tip" } }
 }
 
 /// A milestone computed from the journal, e.g. "10 pull-ups" or "25 workouts".
@@ -242,6 +271,17 @@ struct Catalog: Codable, Sendable {
         return animations[index]
     }
 
+    /// The workout that fits a stage of a skill: the skill's workouts (easy to hard) are
+    /// spread evenly over its stages. Time skills and out-of-range stages get the first
+    /// or last workout.
+    func plan(forStage index: Int, of goal: Goal) -> WorkoutPlan? {
+        let plans = skillPlans(for: goal)
+        guard !plans.isEmpty else { return nil }
+        guard case .stages(let count) = goal.kind, count > 0 else { return plans.first }
+        let stage = min(max(index, 0), count - 1)
+        return plans[min(stage * plans.count / count, plans.count - 1)]
+    }
+
     /// The workouts of a skill, from easy to hard.
     func skillPlans(for goal: Goal) -> [WorkoutPlan] {
         goal.plans.compactMap { plan($0) }
@@ -270,6 +310,7 @@ struct Catalog: Codable, Sendable {
             keys.append(contentsOf: goal.stageKeys)
             keys.append(contentsOf: goal.stageMusclesKeys)
             keys.append(contentsOf: goal.stageBenefitKeys)
+            keys.append(contentsOf: goal.stageTipKeys)
         }
         keys.append(contentsOf: achievements.map(\.labelKey))
         return keys

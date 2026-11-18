@@ -15,6 +15,8 @@ final class TrainingSession {
     enum PrimaryAction: Equatable {
         /// Mark set n (1-based) as done.
         case completeSet(Int)
+        /// End the running rest early.
+        case skipRest
         case nextExercise
         case finish
     }
@@ -49,21 +51,40 @@ final class TrainingSession {
     /// 1-based number of the set that is up next (the last set once all are done).
     var currentSetNumber: Int { min(completedSets + 1, current.item.sets) }
 
+    /// What the large button does next, not counting a running rest.
     var primaryAction: PrimaryAction {
         if !isExerciseComplete { return .completeSet(completedSets + 1) }
         return isLastExercise ? .finish : .nextExercise
     }
 
+    /// What the large button does at `now`: "Skip rest" while a rest runs.
+    func primaryAction(at now: Date) -> PrimaryAction {
+        isResting(at: now) ? .skipRest : primaryAction
+    }
+
+    /// Whether a rest is running at `now`.
+    func isResting(at now: Date) -> Bool {
+        restRemaining(at: now) > 0
+    }
+
+    /// Marks the next set as done. The rest starts on its own, except after the last set
+    /// of an exercise: then the next exercise or the end follows.
     func completeSet(at now: Date) {
         guard !isFinished, !isExerciseComplete else { return }
         completedSets += 1
-        restEndsAt = now.addingTimeInterval(TimeInterval(current.item.rest))
+        restEndsAt = isExerciseComplete ? nil : now.addingTimeInterval(TimeInterval(current.item.rest))
+    }
+
+    /// Ends the running rest early.
+    func skipRest() {
+        restEndsAt = nil
     }
 
     func goToNextExercise() {
         guard !isFinished, !isLastExercise else { return }
         stepIndex += 1
         completedSets = 0
+        restEndsAt = nil
     }
 
     func finish(at now: Date) {
@@ -74,8 +95,9 @@ final class TrainingSession {
 
     /// Runs the primary action.
     func performPrimaryAction(at now: Date) {
-        switch primaryAction {
+        switch primaryAction(at: now) {
         case .completeSet: completeSet(at: now)
+        case .skipRest: skipRest()
         case .nextExercise: goToNextExercise()
         case .finish: finish(at: now)
         }

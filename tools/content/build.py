@@ -30,10 +30,11 @@ for g in G:
     d = {"id": g['id'], "pose": g['pose'], "exercise": g['exercise'], "plans": g['plans'], "isFree": g['isFree']}
     if g.get('animation'): d["animation"] = g['animation']
     if g['stages']:
-        for i, (name, _, muscles, benefit) in enumerate(g['stages'], 1):
+        for i, (name, _, muscles, benefit, tip) in enumerate(g['stages'], 1):
             put(f"goal.{g['id']}.stage{i}", name)
             put(f"goal.{g['id']}.stage{i}.muscles", muscles)
             put(f"goal.{g['id']}.stage{i}.benefit", benefit)
+            put(f"goal.{g['id']}.stage{i}.tip", tip)
         d["stageCount"] = len(g['stages'])
         d["stageAnimations"] = [s[1] for s in g['stages']]
     else:
