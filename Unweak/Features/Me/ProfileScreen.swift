@@ -1,11 +1,30 @@
 import SwiftUI
 
-/// The "Me" area, opened from the title of the Me tab: the level of the avatar, its
-/// customization (body, colors, background, extra) and the settings. Locked bodies and
-/// extras show what unlocks them. Every choice is saved at once.
+/// The three tabs of the Me area.
+private enum ProfileTab: CaseIterable, Hashable {
+    case body
+    case colors
+    case extras
+
+    var title: LocalizedStringKey {
+        switch self {
+        case .body: "Body"
+        case .colors: "Colors"
+        case .extras: "Extras"
+        }
+    }
+}
+
+/// The Me area (Design V2, `V2-Profil`), opened from the avatar in the Me tab: the level
+/// with the way to the next body, and the avatar customization in three tabs — body,
+/// colors, extras. Locked tiles are dimmed with a lock; tapping one shows what unlocks
+/// it below the grid. Every choice is saved at once. Settings open from the top right.
 struct ProfileScreen: View {
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
+    @State private var tab: ProfileTab = .body
+    /// What unlocks the locked tile tapped last; `nil` shows the general hint.
+    @State private var lockedHint: AvatarUnlock?
     private let catalog: Catalog
 
     init(catalog: Catalog = .main) {
@@ -28,124 +47,128 @@ struct ProfileScreen: View {
         let currentExtra = unlocks.extra(for: style)
 
         ScreenContainer {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    BackButton()
-                    Spacer()
+            HStack {
+                BackButton()
+                Spacer()
+                NavigationLink {
+                    SettingsScreen()
+                } label: {
+                    IconButtonLabel(systemImage: "slider.horizontal.3")
                 }
-                Text("Me")
-                    .font(.screenTitle)
-                    .foregroundStyle(Theme.text)
-                    .accessibilityAddTraits(.isHeader)
+                .buttonStyle(PressFeedbackStyle())
+                .accessibilityLabel(Text("Settings"))
             }
 
-            AvatarView(style: style, body: currentBody, extra: currentExtra)
-                .frame(width: 200, height: 200)
-                .frame(maxWidth: .infinity)
+            LevelHeader(style: style, body: currentBody, extra: currentExtra, unlocks: unlocks)
 
-            section("Level") {
-                Text("Your avatar grows with your training. Achievements and skills unlock more.")
-                    .font(.text(15))
-                    .foregroundStyle(Theme.textSoft)
-                    .fixedSize(horizontal: false, vertical: true)
-                VStack(spacing: 8) {
-                    ForEach(AvatarBody.allCases) { body in
-                        LevelRow(
-                            level: body,
-                            unlocks: unlocks,
-                            style: style,
-                            extra: currentExtra,
-                            requirement: requirement(body.unlock)
-                        )
-                    }
-                }
-            }
-
-            MonoLabel("Your avatar", color: Theme.text, bold: true)
-                .accessibilityAddTraits(.isHeader)
-                .padding(.top, 6)
-
-            section("Body") {
-                LazyVGrid(columns: columns, spacing: 10) {
-                    OptionTile(
-                        title: "Automatic",
-                        caption: Text("Grows with you"),
-                        isSelected: style.body == nil,
-                        isLocked: false
-                    ) {
-                        AvatarView(style: style, body: unlocks.highestBody, extra: currentExtra, breathes: false)
-                    } action: {
-                        update { $0.body = nil }
-                    }
-                    ForEach(AvatarBody.allCases) { body in
-                        let isLocked = !unlocks.isUnlocked(body)
-                        OptionTile(
-                            title: body.name,
-                            caption: isLocked ? requirement(body.unlock) : nil,
-                            isSelected: style.body == body,
-                            isLocked: isLocked
-                        ) {
-                            AvatarView(style: style, body: body, extra: currentExtra, breathes: false)
-                        } action: {
-                            update { $0.body = body }
+            VStack(alignment: .leading, spacing: 14) {
+                HStack(spacing: 6) {
+                    ForEach(ProfileTab.allCases, id: \.self) { item in
+                        SegmentButton(item.title, isSelected: tab == item) {
+                            tab = item
+                            lockedHint = nil
                         }
                     }
                 }
-            }
 
-            section("Color") {
+                switch tab {
+                case .body:
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        OptionTile(title: "Automatic", isSelected: style.body == nil, isLocked: false) {
+                            AvatarView(style: style, body: unlocks.highestBody, extra: currentExtra, breathes: false)
+                        } action: {
+                            update { $0.body = nil }
+                        }
+                        ForEach(AvatarBody.allCases) { body in
+                            let isLocked = !unlocks.isUnlocked(body)
+                            OptionTile(title: body.name, isSelected: style.body == body, isLocked: isLocked) {
+                                AvatarView(style: style, body: body, extra: currentExtra, breathes: false)
+                            } action: {
+                                if isLocked {
+                                    lockedHint = body.unlock
+                                } else {
+                                    update { $0.body = body }
+                                }
+                            }
+                        }
+                    }
+                    hintLine
+                case .colors:
+                    colorsTab(style)
+                case .extras:
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        OptionTile(title: "None", isSelected: currentExtra == nil, isLocked: false) {
+                            AvatarView(style: style, body: currentBody, extra: nil, breathes: false)
+                        } action: {
+                            update { $0.extra = nil }
+                        }
+                        ForEach(AvatarExtra.allCases) { extra in
+                            let isLocked = !unlocks.isUnlocked(extra)
+                            OptionTile(title: extra.name, isSelected: currentExtra == extra, isLocked: isLocked) {
+                                AvatarView(style: style, body: currentBody, extra: extra, breathes: false)
+                            } action: {
+                                if isLocked {
+                                    lockedHint = extra.unlock
+                                } else {
+                                    update { $0.extra = extra }
+                                }
+                            }
+                        }
+                    }
+                    hintLine
+                }
+            }
+        }
+    }
+
+    private func colorsTab(_ style: AvatarStyle) -> some View {
+        VStack(alignment: .leading, spacing: 18) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Figure")
+                    .font(.text(15))
+                    .foregroundStyle(Theme.textSoft)
                 ColorRow(selection: style.color) { color in
                     update { $0.color = color }
                 }
+                .accessibilityLabel(Text("Color of the figure"))
             }
-
-            section("Second color") {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Extra")
+                    .font(.text(15))
+                    .foregroundStyle(Theme.textSoft)
                 ColorRow(selection: style.extraColor) { color in
                     update { $0.extraColor = color }
                 }
+                .accessibilityLabel(Text("Color of the extra"))
             }
-
-            section("Background") {
-                HStack(spacing: 8) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Background")
+                    .font(.text(15))
+                    .foregroundStyle(Theme.textSoft)
+                HStack(spacing: 6) {
                     ForEach(AvatarBackground.allCases) { background in
-                        SelectChip(background.name, isSelected: style.background == background, expands: true) {
+                        SegmentButton(background.name, isSelected: style.background == background) {
                             update { $0.background = background }
                         }
                     }
                 }
             }
-
-            section("Extras") {
-                LazyVGrid(columns: columns, spacing: 10) {
-                    OptionTile(title: "None", caption: nil, isSelected: currentExtra == nil, isLocked: false) {
-                        AvatarView(style: style, body: currentBody, extra: nil, breathes: false)
-                    } action: {
-                        update { $0.extra = nil }
-                    }
-                    ForEach(AvatarExtra.allCases) { extra in
-                        let isLocked = !unlocks.isUnlocked(extra)
-                        OptionTile(
-                            title: extra.name,
-                            caption: isLocked ? requirement(extra.unlock) : nil,
-                            isSelected: currentExtra == extra,
-                            isLocked: isLocked
-                        ) {
-                            AvatarView(style: style, body: currentBody, extra: extra, breathes: false)
-                        } action: {
-                            update { $0.extra = extra }
-                        }
-                    }
-                }
-            }
-
-            NavigationLink {
-                SettingsScreen()
-            } label: {
-                SettingsRow()
-            }
-            .buttonStyle(PressFeedbackStyle())
-            .padding(.top, 6)
         }
+    }
+
+    /// Below the grid: how to see conditions, or the condition of the tapped locked tile.
+    private var hintLine: some View {
+        Group {
+            if let lockedHint, let requirement = AvatarRequirementText.text(for: lockedHint, catalog: catalog) {
+                Text("Locked: \(requirement)")
+                    .foregroundStyle(Theme.text)
+            } else {
+                Text("Tap a locked item to see how to unlock it.")
+                    .foregroundStyle(Theme.textMuted)
+            }
+        }
+        .font(.text(14))
+        .fixedSize(horizontal: false, vertical: true)
     }
 
     private func update(_ change: (inout AvatarStyle) -> Void) {
@@ -153,17 +176,11 @@ struct ProfileScreen: View {
         change(&style)
         store.setAvatar(style)
     }
+}
 
-    private func section(_ title: LocalizedStringKey, @ViewBuilder content: () -> some View) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            MonoLabel(title)
-                .accessibilityAddTraits(.isHeader)
-            content()
-        }
-    }
-
-    /// What unlocks a locked body or extra.
-    private func requirement(_ unlock: AvatarUnlock) -> Text? {
+/// What unlocks a locked body or extra, as a short phrase ("From 50 workouts").
+enum AvatarRequirementText {
+    static func text(for unlock: AvatarUnlock, catalog: Catalog) -> Text? {
         switch unlock {
         case .always:
             return nil
@@ -182,98 +199,74 @@ struct ProfileScreen: View {
     }
 }
 
-/// One level of the avatar: still preview, name and its state — unlocked, the next one
-/// with the workouts still missing, or what unlocks it.
-private struct LevelRow: View {
+/// Avatar (132 pt, breathing) next to "Level", the body's name, a bar towards the next
+/// body and how many workouts are still missing.
+private struct LevelHeader: View {
     @Environment(\.accent) private var accent
-    let level: AvatarBody
-    let unlocks: AvatarUnlocks
     let style: AvatarStyle
+    let avatarBody: AvatarBody
     let extra: AvatarExtra?
-    let requirement: Text?
+    let unlocks: AvatarUnlocks
+
+    init(style: AvatarStyle, body: AvatarBody, extra: AvatarExtra?, unlocks: AvatarUnlocks) {
+        self.style = style
+        self.avatarBody = body
+        self.extra = extra
+        self.unlocks = unlocks
+    }
+
+    /// Share of the way to the next body that is unlocked by workouts; `nil` otherwise.
+    private var fraction: Double? {
+        guard let next = unlocks.nextBody, case .workouts(let count) = next.unlock, count > 0 else { return nil }
+        return min(1, Double(unlocks.workouts) / Double(count))
+    }
 
     var body: some View {
-        let isUnlocked = unlocks.isUnlocked(level)
-        let isNext = unlocks.nextBody == level
-        HStack(spacing: 12) {
-            AvatarView(style: style, body: level, extra: extra, breathes: false)
-                .frame(width: 56, height: 56)
-                .opacity(isUnlocked || isNext ? 1 : 0.45)
-            VStack(alignment: .leading, spacing: 6) {
-                Text(level.name)
-                    .font(.textSemibold(15))
+        HStack(spacing: 18) {
+            AvatarView(style: style, body: avatarBody, extra: extra)
+                .frame(width: 132, height: 132)
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Level")
+                    .font(.text(14))
+                    .foregroundStyle(Theme.textMuted)
+                Text(unlocks.highestBody.name)
+                    .font(.grotesk(28))
                     .foregroundStyle(Theme.text)
-                if isUnlocked {
-                    MonoLabel("Unlocked", color: accent.color, bold: true)
-                } else if isNext, case .workouts(let count) = level.unlock {
-                    Text("\(max(0, count - unlocks.workouts)) more workouts")
-                        .font(.text(13))
-                        .foregroundStyle(Theme.textSoft)
-                    SegmentedProgress(total: 10, filled: unlocks.workouts * 10 / max(count, 1), height: 4, label: "Level progress")
-                } else if let requirement {
-                    requirement
-                        .font(.text(13))
-                        .foregroundStyle(Theme.textMuted)
-                        .fixedSize(horizontal: false, vertical: true)
+                if let fraction {
+                    GeometryReader { proxy in
+                        ZStack(alignment: .leading) {
+                            Rectangle().fill(Theme.line)
+                            Rectangle()
+                                .fill(accent.color)
+                                .frame(width: max(0, proxy.size.width * fraction))
+                        }
+                    }
+                    .frame(height: 6)
+                    .accessibilityHidden(true)
                 }
-            }
-            Spacer(minLength: 0)
-            if isUnlocked {
-                Image(systemName: "checkmark")
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(accent.color)
-                    .accessibilityHidden(true)
-            } else {
-                Image(systemName: "lock.fill")
-                    .font(.system(size: 12, weight: .bold))
-                    .foregroundStyle(Theme.textMuted)
-                    .accessibilityHidden(true)
-            }
-        }
-        .padding(10)
-        .background(Theme.surface)
-        .overlay(Rectangle().strokeBorder(isNext ? accent.color : Theme.line, lineWidth: isNext ? 2 : 1))
-        .accessibilityElement(children: .combine)
-    }
-}
-
-/// Row that opens the settings.
-private struct SettingsRow: View {
-    var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: "slider.horizontal.3")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundStyle(Theme.text)
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Settings")
-                    .font(.textSemibold(15))
-                    .foregroundStyle(Theme.text)
-                Text("Account, subscription, reminders, color, language")
+                nextText
                     .font(.text(13))
-                    .foregroundStyle(Theme.textMuted)
+                    .foregroundStyle(Theme.textSoft)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            Spacer(minLength: 0)
-            Image(systemName: "chevron.right")
-                .font(.system(size: 14, weight: .bold))
-                .foregroundStyle(Theme.textMuted)
-                .accessibilityHidden(true)
+            .accessibilityElement(children: .combine)
         }
-        .padding(12)
-        .frame(minHeight: Theme.Layout.minTouchTarget)
-        .background(Theme.surface)
-        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
-        .accessibilityElement(children: .combine)
-        .accessibilityAddTraits(.isButton)
+    }
+
+    private var nextText: Text {
+        guard let next = unlocks.nextBody else { return Text("All levels reached") }
+        if let missing = unlocks.workoutsToNextBody {
+            return Text("\(missing) more workouts to \(Text(next.name).foregroundColor(Theme.text))")
+        }
+        return Text("Master a skill to become a legend")
     }
 }
 
-/// A selectable tile with a small avatar preview, a title and an optional caption.
-/// Locked tiles are dimmed, show a lock and cannot be chosen.
+/// A tile with a large still preview and a name. Locked tiles are dimmed with a lock and
+/// no text; tapping them reports the tap so the screen can show the condition.
 private struct OptionTile<Preview: View>: View {
     @Environment(\.accent) private var accent
     let title: LocalizedStringKey
-    let caption: Text?
     let isSelected: Bool
     let isLocked: Bool
     @ViewBuilder let preview: () -> Preview
@@ -281,54 +274,40 @@ private struct OptionTile<Preview: View>: View {
 
     var body: some View {
         Button(action: action) {
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(spacing: 6) {
                 preview()
                     .frame(maxWidth: .infinity)
-                    .overlay(alignment: .topTrailing) {
+                    .opacity(isLocked ? 0.35 : 1)
+                    .overlay {
                         if isLocked {
                             Image(systemName: "lock.fill")
-                                .font(.system(size: 11, weight: .bold))
+                                .font(.system(size: 14, weight: .bold))
                                 .foregroundStyle(Theme.text)
-                                .padding(5)
-                                .background(Theme.background.opacity(0.8))
                                 .accessibilityHidden(true)
                         }
                     }
                 Text(title)
-                    .font(.textSemibold(13))
-                    .foregroundStyle(Theme.text)
+                    .font(.text(13))
+                    .foregroundStyle(isLocked ? Theme.textMuted : Theme.text)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
-                if let caption {
-                    caption
-                        .font(.text(11))
-                        .foregroundStyle(Theme.textMuted)
-                        .multilineTextAlignment(.leading)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
             }
-            .padding(6)
-            .frame(maxWidth: .infinity, alignment: .topLeading)
+            .padding(EdgeInsets(top: 8, leading: 4, bottom: 10, trailing: 4))
+            .frame(maxWidth: .infinity)
+            .background(isSelected ? Theme.surfaceSelected : Theme.surface)
             .overlay(Rectangle().strokeBorder(isSelected ? accent.color : Theme.line, lineWidth: isSelected ? 2 : 1))
-            .opacity(isLocked ? 0.5 : 1)
             .contentShape(Rectangle())
         }
         .buttonStyle(PressFeedbackStyle())
-        .disabled(isLocked)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(title))
-        .accessibilityValue(accessibilityValue)
+        .accessibilityValue(isLocked ? Text("Locked") : Text(verbatim: ""))
+        .accessibilityHint(isLocked ? Text("Shows how to unlock it") : Text(verbatim: ""))
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
-    }
-
-    private var accessibilityValue: Text {
-        guard isLocked else { return Text(verbatim: "") }
-        guard let caption else { return Text("Locked") }
-        return Text("Locked, \(caption)")
     }
 }
 
-/// Seven color swatches, 44 pt each.
+/// Seven color circles, 32 pt in a 44 pt touch area.
 private struct ColorRow: View {
     let selection: AvatarColor
     let onSelect: (AvatarColor) -> Void
@@ -342,8 +321,8 @@ private struct ColorRow: View {
                 } label: {
                     Circle()
                         .fill(color.color)
-                        .frame(width: 28, height: 28)
-                        .padding(4)
+                        .frame(width: 32, height: 32)
+                        .padding(3)
                         .overlay(Circle().strokeBorder(isSelected ? Theme.text : Color.clear, lineWidth: 2))
                         .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget)
                         .contentShape(Rectangle())
@@ -353,6 +332,7 @@ private struct ColorRow: View {
                 .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
             }
         }
+        .accessibilityElement(children: .contain)
     }
 }
 

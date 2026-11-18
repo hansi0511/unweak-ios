@@ -41,6 +41,10 @@ extension Font {
     static var metric: Font { app(.spaceGroteskBold, size: 22, relativeTo: .title2) }
     /// Space Grotesk Bold 18 – primary button titles.
     static var buttonTitle: Font { app(.spaceGroteskBold, size: 18, relativeTo: .headline) }
+    /// Space Grotesk Bold in any size, e.g. 26 to 28 for card and screen headlines in V2.
+    static func grotesk(_ size: CGFloat) -> Font {
+        app(.spaceGroteskBold, size: size, relativeTo: size >= 24 ? .title : .headline)
+    }
 
     /// Inter Regular, 13 to 17 – body text and lists.
     static func text(_ size: CGFloat = 15) -> Font {
