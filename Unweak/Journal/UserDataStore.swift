@@ -11,9 +11,16 @@ struct UserData: Codable, Equatable, Sendable {
     var activeGoalIDs: [String]?
     /// Number of reached stages per skill goal.
     var reachedStages: [String: Int] = [:]
+    /// When each reached stage was reached, per skill goal (for league points).
+    /// Shorter than the number of reached stages for stages from older versions.
+    var stageReachedDates: [String: [Date]] = [:]
     var customWorkouts: [CustomWorkout] = []
     /// How the user's avatar looks.
     var avatar = AvatarStyle()
+    /// Leagues in which the user finished first; each unlocks its crown.
+    var leagueWins: [League] = []
+    /// How often the user won a duel ("Duel winner" badge).
+    var duelWins = 0
 
     init(
         entries: [JournalEntry] = [],
@@ -42,8 +49,11 @@ struct UserData: Codable, Equatable, Sendable {
             activeGoalIDs = [id]
         }
         reachedStages = try container.decodeIfPresent([String: Int].self, forKey: .reachedStages) ?? [:]
+        stageReachedDates = try container.decodeIfPresent([String: [Date]].self, forKey: .stageReachedDates) ?? [:]
         customWorkouts = try container.decodeIfPresent([CustomWorkout].self, forKey: .customWorkouts) ?? []
         avatar = try container.decodeIfPresent(AvatarStyle.self, forKey: .avatar) ?? AvatarStyle()
+        leagueWins = (try? container.decodeIfPresent([League].self, forKey: .leagueWins)) ?? []
+        duelWins = try container.decodeIfPresent(Int.self, forKey: .duelWins) ?? 0
     }
 }
 
@@ -165,16 +175,28 @@ final class UserDataStore {
     }
 
     /// Marks the next stage of a skill goal as reached.
-    func markStageReached(of goal: Goal) {
-        setReachedStages(reachedStages(of: goal) + 1, of: goal)
+    func markStageReached(of goal: Goal, at date: Date = .now) {
+        setReachedStages(reachedStages(of: goal) + 1, of: goal, at: date)
     }
 
     /// Sets how many stages of a skill goal are reached (0...stage count). Stages build
     /// on each other: reaching stage n reaches all before it, taking it back takes back
     /// all after it.
-    func setReachedStages(_ reached: Int, of goal: Goal) {
+    /// Newly reached stages are dated with `date`; taken back ones lose their date.
+    func setReachedStages(_ reached: Int, of goal: Goal, at date: Date = .now) {
         guard case .stages(let count) = goal.kind else { return }
-        data.reachedStages[goal.id] = min(max(reached, 0), count)
+        let old = reachedStages(of: goal)
+        let new = min(max(reached, 0), count)
+        var dates = data.stageReachedDates[goal.id] ?? []
+        if new > old {
+            dates.append(contentsOf: Array(repeating: date, count: new - old))
+        } else if new < old {
+            // Older stages may have no date; drop the dates of the stages taken back.
+            let missing = max(0, old - dates.count)
+            dates = Array(dates.prefix(max(0, new - missing)))
+        }
+        data.reachedStages[goal.id] = new
+        data.stageReachedDates[goal.id] = dates.isEmpty ? nil : dates
         persist()
     }
 
@@ -182,6 +204,20 @@ final class UserDataStore {
 
     func setAvatar(_ style: AvatarStyle) {
         data.avatar = style
+        persist()
+    }
+
+    // MARK: League
+
+    /// Records first place in a league; its crown stays unlocked.
+    func addLeagueWin(_ league: League) {
+        guard !data.leagueWins.contains(league) else { return }
+        data.leagueWins.append(league)
+        persist()
+    }
+
+    func addDuelWin() {
+        data.duelWins += 1
         persist()
     }
 

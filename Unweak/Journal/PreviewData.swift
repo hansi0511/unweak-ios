@@ -14,11 +14,15 @@ extension UserDataStore {
                 entry.results[0].value += 2 // a record in the newest workout
             }
             entry.rating = WorkoutRating.allCases[index % WorkoutRating.allCases.count]
+            entry.addedByHand = nil // trained in the app, so it counts for the league
             entries.append(entry)
         }
         var data = UserData(entries: entries)
         data.activeGoalIDs = catalog.goals.first.map { [$0.id] }
-        if let goal = catalog.goals.first { data.reachedStages[goal.id] = 2 }
+        if let goal = catalog.goals.first {
+            data.reachedStages[goal.id] = 2
+            data.stageReachedDates[goal.id] = [now.addingTimeInterval(-20 * 86_400), now.addingTimeInterval(-86_400)]
+        }
         return UserDataStore(fileURL: nil, initial: data)
     }
 }
@@ -30,5 +34,6 @@ extension View {
             .environment(AppNavigation())
             .environment(ReminderSettings(defaults: UserDefaults(suiteName: "unweak.preview") ?? .standard))
             .environment(SubscriptionStore.preview(isPro: false))
+            .environment(LeagueStore.preview())
     }
 }

@@ -39,6 +39,9 @@ struct JournalEntry: Codable, Identifiable, Hashable, Sendable {
     var results: [ExerciseResult]
     var rating: WorkoutRating?
     var note: String
+    /// `true` for a workout added by hand in the Journey. Such workouts count for the
+    /// Journey, the streak and the level, but bring no league points. Missing in older files.
+    var addedByHand: Bool?
 
     init(
         id: UUID = UUID(),
@@ -47,7 +50,8 @@ struct JournalEntry: Codable, Identifiable, Hashable, Sendable {
         durationSeconds: Int,
         results: [ExerciseResult],
         rating: WorkoutRating? = nil,
-        note: String = ""
+        note: String = "",
+        addedByHand: Bool? = nil
     ) {
         self.id = id
         self.date = date
@@ -56,7 +60,10 @@ struct JournalEntry: Codable, Identifiable, Hashable, Sendable {
         self.results = results
         self.rating = rating
         self.note = note
+        self.addedByHand = addedByHand
     }
+
+    var isAddedByHand: Bool { addedByHand ?? false }
 
     var totalSets: Int { results.reduce(0) { $0 + $1.sets } }
 }
@@ -96,7 +103,8 @@ extension JournalEntry {
             date: date,
             planID: plan.id,
             durationSeconds: plan.estimatedSeconds,
-            results: plan.exercises.map { ExerciseResult($0, sets: $0.sets) }
+            results: plan.exercises.map { ExerciseResult($0, sets: $0.sets) },
+            addedByHand: true
         )
     }
 }
