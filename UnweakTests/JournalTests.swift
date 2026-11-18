@@ -238,7 +238,9 @@ struct AchievementAndGoalTests {
     @Test func nextWorkoutsForFreeUsersAreFreePlans() {
         let next = stats([]).nextWorkouts(in: catalog, count: 5)
         #expect(next.count == 5)
-        #expect(next.allSatisfy(\.isFree))
+        // Computed before #expect: the macro turns a key path argument into a throwing call.
+        let allFree = next.allSatisfy { $0.isFree }
+        #expect(allFree)
         #expect(next.first?.id == stats([]).nextWorkout(in: catalog)?.id)
         #expect(stats([]).nextWorkouts(in: catalog, count: 0).isEmpty)
     }
