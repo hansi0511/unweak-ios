@@ -1,7 +1,7 @@
 import StoreKit
 import SwiftUI
 
-/// Subscription page (SCREENS.md 7): unlock skills and unlimited custom workouts.
+/// Subscription page (Design V2, `V2-Abo`): unlock skills and unlimited custom workouts.
 /// Shows the active state with "Manage subscription" once Pro is active.
 struct PaywallSheet: View {
     @Environment(\.dismiss) private var dismiss
@@ -20,26 +20,27 @@ struct PaywallSheet: View {
                 Badge(kind: .subscription)
             }
 
+            StickyFigureCanvas(figure: StickyAnimation.muscleUp.figure(at: StickyAnimation.muscleUp.endPoseProgress))
+                .frame(height: 150)
+                .frame(maxWidth: .infinity)
+                .accessibilityHidden(true)
+
             VStack(alignment: .leading, spacing: 8) {
                 Text("Unlock all skills")
-                    .font(.screenTitle)
+                    .font(.grotesk(32))
                     .foregroundStyle(Theme.text)
                     .accessibilityAddTraits(.isHeader)
-                Text("The 10 workouts stay free.")
+                Text("10 workouts always stay free.")
                     .font(.text(15))
                     .foregroundStyle(Theme.textSoft)
             }
 
-            StickyFigureCanvas(figure: StickyAnimation.muscleUp.figure(at: StickyAnimation.muscleUp.endPoseProgress))
-                .frame(height: 170)
-                .frame(maxWidth: .infinity)
-                .accessibilityHidden(true)
-
-            VStack(alignment: .leading, spacing: 12) {
-                benefit("All skills with their workouts, from easy to hard")
-                benefit("Set a skill as your goal and track its stages")
+            VStack(alignment: .leading, spacing: 14) {
+                benefit("All 6 skills")
+                benefit("Goals with 5 stages")
                 benefit("Unlimited custom workouts")
             }
+            .padding(.horizontal, 8)
 
             if subscription.isPro {
                 activeSection
@@ -74,9 +75,17 @@ struct PaywallSheet: View {
                         .foregroundStyle(Theme.text)
                 }
             }
-            SecondaryButton("Manage subscription") {
+            Button {
                 isManaging = true
+            } label: {
+                Text("Manage subscription")
+                    .font(.text(15))
+                    .foregroundStyle(Theme.text)
+                    .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget)
+                    .overlay(Rectangle().strokeBorder(Theme.lineStrong, lineWidth: 1))
+                    .contentShape(Rectangle())
             }
+            .buttonStyle(PressFeedbackStyle())
         }
     }
 
@@ -109,27 +118,32 @@ struct PaywallSheet: View {
                         Button {
                             Task { await subscription.loadProducts() }
                         } label: {
-                            ChipLabel("Try again", systemImage: "arrow.clockwise")
+                            Label("Try again", systemImage: "arrow.clockwise")
+                                .font(.text(15))
+                                .foregroundStyle(Theme.text)
+                                .frame(minHeight: Theme.Layout.minTouchTarget)
                         }
                         .buttonStyle(PressFeedbackStyle())
                     }
                 }
             case .loaded:
-                if let yearly = subscription.yearly {
-                    PlanOption(
-                        title: "Yearly",
-                        price: yearly.displayPrice,
-                        detail: Text("Equals \((yearly.price / 12).formatted(yearly.priceFormatStyle)) per month"),
-                        isSelected: selectedID == yearly.id
-                    ) { selectedID = yearly.id }
-                }
-                if let monthly = subscription.monthly {
-                    PlanOption(
-                        title: "Monthly",
-                        price: monthly.displayPrice,
-                        detail: nil,
-                        isSelected: selectedID == monthly.id
-                    ) { selectedID = monthly.id }
+                HStack(spacing: 10) {
+                    if let yearly = subscription.yearly {
+                        PlanOption(
+                            title: "Year",
+                            price: yearly.displayPrice,
+                            detail: Text("\((yearly.price / 12).formatted(yearly.priceFormatStyle)) per month"),
+                            isSelected: selectedID == yearly.id
+                        ) { selectedID = yearly.id }
+                    }
+                    if let monthly = subscription.monthly {
+                        PlanOption(
+                            title: "Month",
+                            price: monthly.displayPrice,
+                            detail: Text("monthly"),
+                            isSelected: selectedID == monthly.id
+                        ) { selectedID = monthly.id }
+                    }
                 }
             }
         }
@@ -141,7 +155,7 @@ struct PaywallSheet: View {
         }
 
         VStack(spacing: 12) {
-            PrimaryButton("Start subscription", systemImage: "arrow.right") {
+            PrimaryButton("Start Pro") {
                 startPurchase()
             }
             .disabled(isWorking || selectedProduct == nil)
@@ -154,9 +168,7 @@ struct PaywallSheet: View {
                 }
             } label: {
                 Text("Restore purchases")
-                    .font(.monoBold)
-                    .tracking(1)
-                    .textCase(.uppercase)
+                    .font(.text(14))
                     .foregroundStyle(Theme.textSoft)
                     .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget)
                     .contentShape(Rectangle())
@@ -165,9 +177,17 @@ struct PaywallSheet: View {
             .disabled(isWorking)
         }
 
-        Text("The subscription renews automatically unless you cancel it at least 24 hours before the end of the period in your Apple ID settings. Payment is charged to your Apple ID.")
-            .font(.text(13))
-            .foregroundStyle(Theme.textMuted)
+        VStack(spacing: 6) {
+            Text("Cancel anytime")
+                .font(.text(13))
+                .foregroundStyle(Theme.textSoft)
+            // Required by the App Store on subscription pages.
+            Text("The subscription renews automatically unless you cancel it at least 24 hours before the end of the period in your Apple ID settings. Payment is charged to your Apple ID.")
+                .font(.text(11))
+                .foregroundStyle(Theme.textMuted)
+                .multilineTextAlignment(.center)
+        }
+        .frame(maxWidth: .infinity)
     }
 
     private var selectedProduct: Product? {
@@ -191,20 +211,20 @@ struct PaywallSheet: View {
     }
 
     private func benefit(_ text: LocalizedStringKey) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: 10) {
+        HStack(alignment: .firstTextBaseline, spacing: 12) {
             Image(systemName: "checkmark")
-                .font(.system(size: 13, weight: .bold))
+                .font(.system(size: 14, weight: .bold))
                 .foregroundStyle(Theme.subscription)
                 .accessibilityHidden(true)
             Text(text)
-                .font(.text(15))
+                .font(.text(17))
                 .foregroundStyle(Theme.text)
                 .fixedSize(horizontal: false, vertical: true)
         }
     }
 }
 
-/// Selectable subscription option: period, price and an optional detail line.
+/// Selectable subscription option as a tile: period, price and a note below.
 private struct PlanOption: View {
     let title: LocalizedStringKey
     let price: String
@@ -214,28 +234,25 @@ private struct PlanOption: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 12) {
-                Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
-                    .font(.system(size: 20))
-                    .foregroundStyle(isSelected ? Theme.subscription : Theme.lineStrong)
-                    .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(title)
-                        .font(.textSemibold(17))
-                        .foregroundStyle(Theme.text)
-                    if let detail {
-                        detail
-                            .font(.text(13))
-                            .foregroundStyle(Theme.textMuted)
-                    }
-                }
-                Spacer(minLength: 0)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.text(14))
+                    .foregroundStyle(Theme.textSoft)
                 Text(verbatim: price)
-                    .font(.metric)
+                    .font(.grotesk(22))
                     .foregroundStyle(Theme.text)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+                if let detail {
+                    detail
+                        .font(.text(13))
+                        .foregroundStyle(Theme.textMuted)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                }
             }
-            .padding(14)
-            .frame(minHeight: 64)
+            .padding(12)
+            .frame(maxWidth: .infinity, minHeight: 92, alignment: .leading)
             .background(isSelected ? Theme.surfaceSelected : Theme.surface)
             .overlay(Rectangle().strokeBorder(isSelected ? Theme.subscription : Theme.line, lineWidth: isSelected ? 2 : 1))
             .contentShape(Rectangle())
