@@ -1,22 +1,32 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ / %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ / %2$@"
+          }
+        }
+      }
+    },
+    "%@ of %lld workouts this week" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ von %2$lld Trainings diese Woche"
+          }
+        }
+      }
+    },
     "%@, %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@, %2$@"
-          }
-        }
-      }
-    },
-    "%lld / %lld this week" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld / %2$lld diese Woche"
           }
         }
       }
@@ -81,12 +91,22 @@
         }
       }
     },
-    "%lld more workouts" : {
+    "%lld min · %lld exercises" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noch %lld Trainings"
+            "value" : "%1$lld min · %2$lld Übungen"
+          }
+        }
+      }
+    },
+    "%lld more workouts to %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch %1$lld Trainings bis %2$@"
           }
         }
       }
@@ -191,6 +211,16 @@
         }
       }
     },
+    "%lld weeks in a row done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Wochen in Folge geschafft"
+          }
+        }
+      }
+    },
     "%lld workouts" : {
       "localizations" : {
         "en" : {
@@ -277,26 +307,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Konto"
-          }
-        }
-      }
-    },
-    "Account and subscription" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konto und Abo"
-          }
-        }
-      }
-    },
-    "Account, subscription, reminders, color, language" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konto, Abo, Erinnerungen, Farbe, Sprache"
           }
         }
       }
@@ -411,22 +421,22 @@
         }
       }
     },
+    "All levels reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Level erreicht"
+          }
+        }
+      }
+    },
     "All skills with their workouts, from easy to hard" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alle Skills mit ihren Workouts, von leicht nach schwer"
-          }
-        }
-      }
-    },
-    "Appearance" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Darstellung"
           }
         }
       }
@@ -581,32 +591,22 @@
         }
       }
     },
+    "Choose a goal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziel wählen"
+          }
+        }
+      }
+    },
     "Choose a skill and get the workouts that build it." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wähle einen Skill und bekomm die Workouts, die dich dorthin bringen."
-          }
-        }
-      }
-    },
-    "Choose at least one day." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wähle mindestens einen Tag."
-          }
-        }
-      }
-    },
-    "Choose skills" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skills wählen"
           }
         }
       }
@@ -647,6 +647,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Farbe"
+          }
+        }
+      }
+    },
+    "Color of the extra" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Farbe des Extras"
+          }
+        }
+      }
+    },
+    "Color of the figure" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Farbe der Figur"
+          }
+        }
+      }
+    },
+    "Colors" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Farben"
           }
         }
       }
@@ -801,16 +831,6 @@
         }
       }
     },
-    "Deleting your account is permanent. Both are available once you are signed in." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Das Löschen des Kontos ist endgültig. Beides ist verfügbar, sobald du angemeldet bist."
-          }
-        }
-      }
-    },
     "Dip animation" : {
       "localizations" : {
         "de" : {
@@ -831,12 +851,32 @@
         }
       }
     },
+    "Due today" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute dran"
+          }
+        }
+      }
+    },
     "e.g. Morning push" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "z. B. Morgen-Push"
+          }
+        }
+      }
+    },
+    "Earlier" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Früher"
           }
         }
       }
@@ -961,12 +1001,32 @@
         }
       }
     },
+    "Extra" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extra"
+          }
+        }
+      }
+    },
     "Extras" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extras"
+          }
+        }
+      }
+    },
+    "Figure" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Figur"
           }
         }
       }
@@ -1041,22 +1101,22 @@
         }
       }
     },
+    "Front lever, muscle-up and more in 5 stages" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front Lever, Muscle-up & Co. in 5 Stufen"
+          }
+        }
+      }
+    },
     "Goal progress" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fortschritt zum Ziel"
-          }
-        }
-      }
-    },
-    "Grows with you" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wächst mit dir"
           }
         }
       }
@@ -1301,12 +1361,32 @@
         }
       }
     },
+    "Later" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Später"
+          }
+        }
+      }
+    },
     "Later stages are taken back too." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spätere Stufen werden ebenfalls zurückgenommen."
+          }
+        }
+      }
+    },
+    "Learn a skill in 5 stages" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lerne einen Skill in 5 Stufen"
           }
         }
       }
@@ -1381,26 +1461,6 @@
         }
       }
     },
-    "Level progress" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Level-Fortschritt"
-          }
-        }
-      }
-    },
-    "Level, avatar and settings" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Level, Avatar und Einstellungen"
-          }
-        }
-      }
-    },
     "Lime" : {
       "localizations" : {
         "de" : {
@@ -1421,12 +1481,12 @@
         }
       }
     },
-    "Locked, %@" : {
+    "Locked: %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gesperrt, %@"
+            "value" : "Gesperrt: %@"
           }
         }
       }
@@ -1457,6 +1517,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Einen Skill meistern"
+          }
+        }
+      }
+    },
+    "Master a skill to become a legend" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meistere einen Skill und werde zur Legende"
           }
         }
       }
@@ -1647,16 +1717,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nächstes Ziel"
-          }
-        }
-      }
-    },
-    "Next workouts" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nächste Workouts"
           }
         }
       }
@@ -1981,16 +2041,6 @@
         }
       }
     },
-    "Reach your first skill" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erreiche deinen ersten Skill"
-          }
-        }
-      }
-    },
     "Recent workouts" : {
       "localizations" : {
         "de" : {
@@ -2037,16 +2087,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erinnerung"
-          }
-        }
-      }
-    },
-    "Reminders are off." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erinnerungen sind aus."
           }
         }
       }
@@ -2127,16 +2167,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Übungen suchen"
-          }
-        }
-      }
-    },
-    "Second color" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zweite Farbe"
           }
         }
       }
@@ -2301,22 +2331,22 @@
         }
       }
     },
+    "Shows how to unlock it" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeigt, wie du es freischaltest"
+          }
+        }
+      }
+    },
     "Shows muscles and benefits" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zeigt Muskeln und Nutzen"
-          }
-        }
-      }
-    },
-    "Shows the skill with its stages" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeigt den Skill mit seinen Stufen"
           }
         }
       }
@@ -2451,16 +2481,6 @@
         }
       }
     },
-    "Starts the workout" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Startet das Workout"
-          }
-        }
-      }
-    },
     "Stats" : {
       "localizations" : {
         "de" : {
@@ -2501,46 +2521,6 @@
         }
       }
     },
-    "Streak %lld weeks" : {
-      "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Streak %lld week"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Streak %lld weeks"
-                }
-              }
-            }
-          }
-        },
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Serie %lld Woche"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Serie %lld Wochen"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "Subscription" : {
       "localizations" : {
         "de" : {
@@ -2567,6 +2547,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "„%@“ zurücknehmen?"
+          }
+        }
+      }
+    },
+    "Tap a locked item to see how to unlock it." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe auf ein gesperrtes Teil, um zu sehen, wie du es freischaltest."
           }
         }
       }
@@ -2738,12 +2728,12 @@
         }
       }
     },
-    "Training reminder" : {
+    "Training days" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trainingserinnerung"
+            "value" : "Trainingstage"
           }
         }
       }
@@ -2788,42 +2778,12 @@
         }
       }
     },
-    "Unlocked" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Freigeschaltet"
-          }
-        }
-      }
-    },
-    "Up next" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Als Nächstes"
-          }
-        }
-      }
-    },
     "Video" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Video"
-          }
-        }
-      }
-    },
-    "View subscription" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abo ansehen"
           }
         }
       }
@@ -2898,16 +2858,6 @@
         }
       }
     },
-    "Workout %lld: %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Workout %1$lld: %2$@"
-          }
-        }
-      }
-    },
     "Workout done" : {
       "localizations" : {
         "de" : {
@@ -2958,32 +2908,12 @@
         }
       }
     },
-    "You will get a notification on %@ at %@." : {
+    "Your avatar and level" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Du bekommst %1$@ um %2$@ eine Mitteilung."
-          }
-        }
-      }
-    },
-    "Your avatar" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dein Avatar"
-          }
-        }
-      }
-    },
-    "Your avatar grows with your training. Achievements and skills unlock more." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dein Avatar wächst mit deinem Training. Erfolge und Skills schalten noch mehr frei."
+            "value" : "Dein Avatar und Level"
           }
         }
       }
@@ -2998,12 +2928,12 @@
         }
       }
     },
-    "Your skills" : {
+    "Your goal: %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine Skills"
+            "value" : "Dein Ziel: %@"
           }
         }
       }

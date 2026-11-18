@@ -1,15 +1,14 @@
 import SwiftUI
 
-/// "Me" tab: the avatar, the weekly target, the skill being learned (Pro) and the next
-/// workout. Free: a teaser for the skills takes the place of the skill.
+/// "Me" tab (Design V2, `V2-Ich`): the avatar with the weekly ring, which opens the Me
+/// area; the workout due today with "Start"; and one row for the goal (Pro) or the skills
+/// teaser (free).
 struct MeScreen: View {
-    @Environment(\.accent) private var accent
     @Environment(AppNavigation.self) private var navigation: AppNavigation?
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
     @Environment(SubscriptionStore.self) private var subscription
     @State private var isShowingPaywall = false
-    @State private var shareContent: ShareContent?
     private let catalog: Catalog
 
     init(catalog: Catalog = .main) {
@@ -24,149 +23,142 @@ struct MeScreen: View {
         let unlocks = AvatarUnlocks(stats: stats, catalog: catalog, weeklyTarget: target) {
             store.reachedStages(of: $0)
         }
-        let goals = activeGoals
+        let goals = subscription.access.canUseSkills ? store.activeGoals(in: catalog) : []
+        // Pro: first from the skills being learned. Free: from the free workouts.
+        let today = stats.nextWorkout(in: catalog, access: subscription.access, preferring: goals.flatMap(\.plans))
 
         ScreenContainer {
-            header(week: week, streak: streak)
+            Text("Me")
+                .font(.screenTitle)
+                .foregroundStyle(Theme.text)
+                .accessibilityAddTraits(.isHeader)
 
-            AvatarStage(
-                style: store.data.avatar,
-                unlocks: unlocks,
-                week: week,
-                streak: streak,
-                // Pro: first from the skills being learned. Free: from the free workouts.
-                nextPlans: stats.nextWorkouts(
-                    in: catalog,
-                    access: subscription.access,
-                    preferring: goals.flatMap(\.plans),
-                    count: 5
-                ),
-                catalog: catalog
-            )
-
-            if subscription.access.canUseSkills {
-                VStack(spacing: 8) {
-                    SkillsHeader {
-                        navigation?.showSkills()
-                    }
-                    if goals.isEmpty {
-                        Button {
-                            navigation?.showSkills()
-                        } label: {
-                            ChipLabel("Choose skills", systemImage: "plus", style: .dashed, expands: true)
-                        }
-                        .buttonStyle(PressFeedbackStyle())
-                    }
-                    ForEach(goals) { goal in
-                        SkillRow(
-                            progress: stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal)),
-                            catalog: catalog
-                        )
-                    }
-                }
-            } else {
-                // Free version: skills are Pro, so a teaser takes the place of the skills.
-                Button {
-                    isShowingPaywall = true
-                } label: {
-                    SkillTeaser()
-                }
-                .buttonStyle(PressFeedbackStyle())
+            NavigationLink {
+                ProfileScreen(catalog: catalog)
+            } label: {
+                AvatarWithWeek(
+                    style: store.data.avatar,
+                    avatarBody: unlocks.body(for: store.data.avatar),
+                    extra: unlocks.extra(for: store.data.avatar),
+                    week: week,
+                    streak: streak
+                )
             }
+            .buttonStyle(PressFeedbackStyle())
+            .frame(maxWidth: .infinity)
+            .accessibilityHint(Text("Your avatar and level"))
+
+            if let today {
+                TodayCard(plan: today, catalog: catalog)
+            }
+
+            goalRow(goals: goals, stats: stats)
         }
         .sheet(isPresented: $isShowingPaywall) {
             PaywallSheet()
         }
-        .sheet(item: $shareContent) { content in
-            ShareSheet(content: content)
-        }
     }
 
-    /// The skills being learned; none in the free version (skills are Pro).
-    private var activeGoals: [Goal] {
-        guard subscription.access.canUseSkills else { return [] }
-        return store.activeGoals(in: catalog)
-    }
-
-    private func header(week: WeekSummary, streak: Int) -> some View {
-        HStack(alignment: .center, spacing: 12) {
-            // The title opens the Me area: level, avatar and settings.
-            NavigationLink {
-                ProfileScreen(catalog: catalog)
+    /// Pro with a goal: the first skill being learned. Pro without: a row to choose one.
+    /// Free: the skills teaser, which opens the subscription page.
+    @ViewBuilder
+    private func goalRow(goals: [Goal], stats: JournalStats) -> some View {
+        if !subscription.access.canUseSkills {
+            Button {
+                isShowingPaywall = true
             } label: {
-                HStack(spacing: 8) {
-                    Text("Me")
-                        .font(.screenTitle)
-                        .foregroundStyle(Theme.text)
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundStyle(accent.color)
+                GoalRowLabel(pose: .frontLever, title: Text("Skills"), badge: true) {
+                    Text("Front lever, muscle-up and more in 5 stages")
+                        .font(.text(13))
+                        .foregroundStyle(Theme.textMuted)
                 }
-                .frame(minHeight: Theme.Layout.minTouchTarget)
-                .contentShape(Rectangle())
             }
             .buttonStyle(PressFeedbackStyle())
-            .accessibilityAddTraits(.isHeader)
-            .accessibilityHint(Text("Level, avatar and settings"))
-            Spacer(minLength: 0)
-            if week.workouts > 0 || streak > 0 {
-                IconButton(systemImage: "square.and.arrow.up", accessibilityLabel: "Share week") {
-                    shareContent = .streakCard(week: week, weeks: streak)
+        } else if let goal = goals.first {
+            let progress = stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal))
+            NavigationLink {
+                SkillScreen(goal: goal, catalog: catalog)
+            } label: {
+                GoalRowLabel(
+                    pose: goal.pose,
+                    title: Text("Your goal: \(Text(catalog: goal.nameKey))"),
+                    badge: false
+                ) {
+                    HStack(spacing: 10) {
+                        progress.shortStateText
+                            .font(.text(13))
+                            .foregroundStyle(Theme.textMuted)
+                        SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, height: 5, label: "Goal progress")
+                    }
                 }
             }
+            .buttonStyle(PressFeedbackStyle())
+        } else {
+            Button {
+                navigation?.showSkills()
+            } label: {
+                GoalRowLabel(pose: .frontLever, title: Text("Choose a goal"), badge: false) {
+                    Text("Learn a skill in 5 stages")
+                        .font(.text(13))
+                        .foregroundStyle(Theme.textMuted)
+                }
+            }
+            .buttonStyle(PressFeedbackStyle())
         }
     }
 }
 
-/// The avatar large in the middle, framed by a ring that fills with the workouts of
-/// this week; below it the week in short, the name of the body and the next workouts.
-private struct AvatarStage: View {
+extension GoalProgress {
+    /// "2 / 5" for skills with stages, "1:20 / 5:00" or "5:00" for time skills.
+    var shortStateText: Text {
+        switch goal.kind {
+        case .stages(let count):
+            return Text(verbatim: "\(reachedStages) / \(count)")
+        case .time(let target):
+            if let bestSeconds {
+                return Text("\(ValueText.seconds(bestSeconds)) / \(ValueText.seconds(target))")
+            }
+            return ValueText.seconds(target)
+        }
+    }
+}
+
+/// The avatar (190 pt) in its weekly ring, with "2 of 3 workouts this week" and the streak.
+private struct AvatarWithWeek: View {
+    @Environment(\.accent) private var accent
     let style: AvatarStyle
-    let unlocks: AvatarUnlocks
+    let avatarBody: AvatarBody
+    let extra: AvatarExtra?
     let week: WeekSummary
     let streak: Int
-    let nextPlans: [WorkoutPlan]
-    let catalog: Catalog
+
+    private static let size: CGFloat = 190
 
     var body: some View {
-        let current = unlocks.body(for: style)
-
         VStack(spacing: 12) {
             ZStack {
                 Circle()
                     .fill(style.backgroundColor)
-                    .padding(16)
+                    .padding(18)
                 WeekRing(total: week.target, filled: week.workouts)
-                AvatarView(style: style, body: current, extra: unlocks.extra(for: style), framed: false)
-                    .padding(26)
+                AvatarView(style: style, body: avatarBody, extra: extra, framed: false)
+                    .padding(30)
             }
-            .frame(maxWidth: 170)
-            .aspectRatio(1, contentMode: .fit)
-            .frame(maxWidth: .infinity)
+            .frame(width: Self.size, height: Self.size)
 
-            HStack(spacing: 6) {
-                Text("\(week.workouts) / \(week.target) this week")
-                if streak > 0 {
-                    Text(verbatim: "·")
-                    Text("Streak \(streak) weeks")
-                }
-                Text(verbatim: "·")
-                Text(current.name)
+            VStack(spacing: 4) {
+                Text("\(Text(verbatim: "\(week.workouts)").foregroundColor(accent.color)) of \(week.target) workouts this week")
+                    .font(.textSemibold(17))
                     .foregroundStyle(Theme.text)
+                if streak > 0 {
+                    Text("\(streak) weeks in a row done")
+                        .font(.text(14))
+                        .foregroundStyle(Theme.textMuted)
+                }
             }
-            .lineLimit(1)
-            .minimumScaleFactor(0.7)
-            .foregroundStyle(Theme.textSoft)
-            .font(.mono)
-            .tracking(1)
-            .textCase(.uppercase)
             .multilineTextAlignment(.center)
-            .accessibilityElement(children: .combine)
-
-            if !nextPlans.isEmpty {
-                NextWorkoutsRow(plans: nextPlans, catalog: catalog)
-            }
         }
+        .contentShape(Rectangle())
     }
 }
 
@@ -178,7 +170,7 @@ private struct WeekRing: View {
 
     /// Gap between two arcs, as a share of the full circle.
     private static let gap = 0.015
-    private static let lineWidth: CGFloat = 6
+    private static let lineWidth: CGFloat = 7
 
     var body: some View {
         let count = max(total, 1)
@@ -202,101 +194,89 @@ private struct WeekRing: View {
     }
 }
 
-/// "Your skills" with "Edit", which opens the skills in the workouts tab.
-private struct SkillsHeader: View {
+/// "Due today": pose, workout name, duration and number of exercises, and "Start".
+/// The only card on the screen with corner marks.
+private struct TodayCard: View {
     @Environment(\.accent) private var accent
-    let onEdit: () -> Void
-
-    var body: some View {
-        HStack {
-            MonoLabel("Your skills")
-                .accessibilityAddTraits(.isHeader)
-            Spacer()
-            Button(action: onEdit) {
-                Text("Edit")
-                    .font(.monoBold)
-                    .tracking(1)
-                    .textCase(.uppercase)
-                    .foregroundStyle(accent.color)
-                    .frame(minWidth: Theme.Layout.minTouchTarget, minHeight: Theme.Layout.minTouchTarget)
-                    .contentShape(Rectangle())
-            }
-            .buttonStyle(PressFeedbackStyle())
-            .accessibilityLabel(Text("Choose skills"))
-        }
-    }
-}
-
-/// One skill being learned, as a slim row: still pose of the current stage, name, state
-/// with the current stage, fine segments. Opens the skill page; stages are marked there.
-private struct SkillRow: View {
-    @Environment(\.accent) private var accent
-    let progress: GoalProgress
+    let plan: WorkoutPlan
     let catalog: Catalog
 
-    private var goal: Goal { progress.goal }
-
     var body: some View {
-        let animation = catalog.currentAnimation(for: progress)
-        NavigationLink {
-            SkillScreen(goal: goal, catalog: catalog)
-        } label: {
-            HStack(spacing: 12) {
-                StickyFigureCanvas(figure: animation.figure(at: animation.endPoseProgress))
-                    .frame(width: 44, height: 44)
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(spacing: 14) {
+                StickyPoseView(plan.pose)
+                    .scaleEffect(56 / StickyPose.canvas.width)
+                    .frame(width: 56, height: 56)
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(catalog: goal.nameKey)
-                        .font(.textSemibold(15))
-                        .foregroundStyle(Theme.text)
-                        .lineLimit(1)
-                    stateLine
-                        .font(.mono)
+                    Text("Due today")
+                        .font(.text(14))
                         .foregroundStyle(Theme.textMuted)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.8)
-                    SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, height: 4, label: "Goal progress")
+                    plan.title
+                        .font(.grotesk(26))
+                        .foregroundStyle(Theme.text)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.7)
+                    Text("\(plan.estimatedMinutes) min · \(plan.exercises.count) exercises")
+                        .font(.text(14))
+                        .foregroundStyle(Theme.textSoft)
                 }
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(accent.color)
-                    .accessibilityHidden(true)
+                Spacer(minLength: 0)
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
-            .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget, alignment: .leading)
-            .background(Theme.surface)
-            .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
-            .contentShape(Rectangle())
-        }
-        .buttonStyle(PressFeedbackStyle())
-        .accessibilityElement(children: .combine)
-        .accessibilityHint(Text("Shows the skill with its stages"))
-    }
+            .accessibilityElement(children: .combine)
 
-    /// "Stage 2 / 5 · Advanced tuck", or the best or target time.
-    private var stateLine: Text {
-        guard let index = progress.currentStageIndex, !progress.isComplete,
-              goal.stageKeys.indices.contains(index)
-        else { return progress.stateText }
-        return progress.stateText + Text(verbatim: " · ") + Text(catalog: goal.stageKeys[index])
+            NavigationLink {
+                TrainingScreen(plan: plan, catalog: catalog)
+            } label: {
+                HStack(spacing: 10) {
+                    Image(systemName: "play.fill")
+                        .font(.system(size: 16, weight: .bold))
+                        .accessibilityHidden(true)
+                    Text("Start")
+                        .font(.buttonTitle)
+                }
+                .foregroundStyle(Theme.onAccent)
+                .frame(maxWidth: .infinity, minHeight: 56)
+                .background(accent.color)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(PressFeedbackStyle())
+            .glow(accent.color, radius: Theme.Glow.medium)
+        }
+        .padding(18)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+        .overlay {
+            DiagonalCornerMarks()
+                .stroke(accent.color, lineWidth: Theme.Layout.cornerMarkWidth)
+                .accessibilityHidden(true)
+        }
     }
 }
 
-/// Free version: invites to the skills, which need Pro.
-private struct SkillTeaser: View {
+/// A slim row: pose, a title line and a detail below, an optional "PRO" badge and a chevron.
+private struct GoalRowLabel<Detail: View>: View {
+    let pose: StickyPose
+    let title: Text
+    let badge: Bool
+    @ViewBuilder let detail: () -> Detail
+
     var body: some View {
-        HStack(spacing: 12) {
-            StickyPoseView(.frontLever)
+        HStack(spacing: 14) {
+            StickyPoseView(pose)
                 .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 4) {
-                HStack(spacing: 6) {
-                    MonoLabel("Skills")
-                    Badge(kind: .subscription)
+            VStack(alignment: .leading, spacing: 6) {
+                HStack(spacing: 8) {
+                    title
+                        .font(.textSemibold(16))
+                        .foregroundStyle(Theme.text)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                    if badge {
+                        Badge(kind: .subscription)
+                    }
                 }
-                Text("Reach your first skill")
-                    .font(.textSemibold(15))
-                    .foregroundStyle(Theme.text)
+                detail()
             }
             Spacer(minLength: 0)
             Image(systemName: "chevron.right")
@@ -304,102 +284,14 @@ private struct SkillTeaser: View {
                 .foregroundStyle(Theme.textMuted)
                 .accessibilityHidden(true)
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
         .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget, alignment: .leading)
         .background(Theme.surface)
         .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
-        .accessibilityElement(children: .combine)
-        .accessibilityAddTraits(.isButton)
-    }
-}
-
-/// Up to five suggested workouts as a carousel: one tile at a time sits in the middle,
-/// its neighbours peek in at the sides, and a swipe snaps to the next one. Numbered 01
-/// to 05; the first says "Up next" and stands out in the accent color.
-private struct NextWorkoutsRow: View {
-    let plans: [WorkoutPlan]
-    let catalog: Catalog
-
-    /// How far the neighbouring tiles peek in at each side.
-    private static let peek: CGFloat = 36
-    private static let spacing: CGFloat = 10
-
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: Self.spacing) {
-                ForEach(Array(plans.enumerated()), id: \.element.id) { index, plan in
-                    NavigationLink {
-                        TrainingScreen(plan: plan, catalog: catalog)
-                    } label: {
-                        NextWorkoutTile(plan: plan, position: index + 1)
-                    }
-                    .buttonStyle(PressFeedbackStyle())
-                    .containerRelativeFrame(.horizontal) { width, _ in
-                        width - 2 * Self.peek
-                    }
-                }
-            }
-            .scrollTargetLayout()
-        }
-        .scrollTargetBehavior(.viewAligned)
-        .contentMargins(.horizontal, Self.peek, for: .scrollContent)
-        // The carousel uses the full screen width.
-        .padding(.horizontal, -Theme.Layout.screenEdge)
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel(Text("Next workouts"))
-    }
-}
-
-/// One suggested workout: its place in the order, pose, name and duration.
-private struct NextWorkoutTile: View {
-    @Environment(\.accent) private var accent
-    let plan: WorkoutPlan
-    /// 1 for the main suggestion.
-    let position: Int
-
-    private var isFirst: Bool { position == 1 }
-
-    var body: some View {
-        HStack(alignment: .center, spacing: 10) {
-            VStack(spacing: 4) {
-                Text(verbatim: String(format: "%02d", position))
-                    .font(.monoBold)
-                    .foregroundStyle(isFirst ? accent.color : Theme.textMuted)
-                StickyPoseView(plan.pose, highlighted: isFirst)
-            }
-            .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 4) {
-                if isFirst {
-                    MonoLabel("Up next", color: accent.color, bold: true)
-                }
-                plan.title
-                    .font(.textSemibold(15))
-                    .foregroundStyle(Theme.text)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.leading)
-                    .fixedSize(horizontal: false, vertical: true)
-                HStack(spacing: 4) {
-                    Image(systemName: "play.fill")
-                        .font(.system(size: 9, weight: .bold))
-                        .foregroundStyle(accent.color)
-                        .accessibilityHidden(true)
-                    ValueText.minutes(plan.estimatedSeconds)
-                        .font(.mono)
-                        .foregroundStyle(Theme.textMuted)
-                }
-            }
-            Spacer(minLength: 0)
-        }
-        .padding(.horizontal, 12)
-        .frame(maxWidth: .infinity, minHeight: 84, maxHeight: 84, alignment: .leading)
-        .background(isFirst ? Theme.surfaceSelected : Theme.surface)
-        .overlay(Rectangle().strokeBorder(isFirst ? accent.color : Theme.line, lineWidth: isFirst ? 2 : 1))
         .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(Text("Workout \(position): \(plan.title)"))
         .accessibilityAddTraits(.isButton)
-        .accessibilityHint(Text("Starts the workout"))
     }
 }
 

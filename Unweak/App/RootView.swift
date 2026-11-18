@@ -112,9 +112,7 @@ struct HUDTabBar: View {
                     .frame(height: 24)
                     .accessibilityHidden(true)
                 Text(tab.title)
-                    .font(.monoBold)
-                    .tracking(1)
-                    .textCase(.uppercase)
+                    .font(.textSemibold(12))
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
             }

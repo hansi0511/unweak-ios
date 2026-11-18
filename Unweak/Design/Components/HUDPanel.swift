@@ -56,6 +56,25 @@ struct GridBackground: View {
     }
 }
 
+/// Two L-shaped marks, top left and bottom right (Design V2: only on the most important
+/// card of a screen), drawn inside the rect's bounds.
+struct DiagonalCornerMarks: Shape {
+    var length: CGFloat = 16
+    var lineWidth: CGFloat = Theme.Layout.cornerMarkWidth
+
+    func path(in rect: CGRect) -> Path {
+        let r = rect.insetBy(dx: lineWidth / 2, dy: lineWidth / 2)
+        var path = Path()
+        path.move(to: CGPoint(x: r.minX, y: r.minY + length))
+        path.addLine(to: CGPoint(x: r.minX, y: r.minY))
+        path.addLine(to: CGPoint(x: r.minX + length, y: r.minY))
+        path.move(to: CGPoint(x: r.maxX, y: r.maxY - length))
+        path.addLine(to: CGPoint(x: r.maxX, y: r.maxY))
+        path.addLine(to: CGPoint(x: r.maxX - length, y: r.maxY))
+        return path
+    }
+}
+
 /// Four L-shaped marks in the corners of the rect, drawn inside its bounds.
 struct CornerMarks: Shape {
     var length: CGFloat = Theme.Layout.cornerMarkLength

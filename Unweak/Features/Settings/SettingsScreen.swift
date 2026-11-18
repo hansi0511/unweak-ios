@@ -1,7 +1,8 @@
 import SwiftUI
 
-/// Settings, opened from the Me area (ProfileScreen): account and subscription, training reminder,
-/// accent color, language, legal and account actions.
+/// Settings (Design V2, `V2-Einstellungen`), opened from the top right of the Me area:
+/// grouped rows without explanations — account, subscription, reminder with days and
+/// time, accent color, language, legal — and the account actions at the bottom.
 struct SettingsScreen: View {
     @Environment(\.locale) private var locale
     @Environment(\.openURL) private var openURL
@@ -15,91 +16,119 @@ struct SettingsScreen: View {
     private var language: AppLanguage { AppLanguage.resolve(stored: storedLanguage) }
 
     var body: some View {
+        let schedule = reminders.schedule
+
         ScreenContainer {
-            HStack {
+            VStack(alignment: .leading, spacing: 14) {
                 BackButton()
-                Spacer()
+                Text("Settings")
+                    .font(.grotesk(28))
+                    .foregroundStyle(Theme.text)
+                    .accessibilityAddTraits(.isHeader)
             }
-            ScreenHeader(label: MonoLabel(verbatim: "Unweak"), title: "Settings")
 
-            section("Account and subscription") {
-                Card {
-                    VStack(alignment: .leading, spacing: 14) {
-                        settingRow("Account") {
-                            Text("Not signed in")
-                        }
-                        Rectangle().fill(Theme.line).frame(height: 1)
-                        HStack(spacing: 12) {
-                            settingRow("Subscription") {
-                                if subscription.isPro { Text(verbatim: "Pro") } else { Text("Free") }
-                            }
-                            Button {
-                                isShowingSubscription = true
-                            } label: {
-                                ChipLabel("View subscription", style: .dashed)
-                            }
-                            .buttonStyle(PressFeedbackStyle())
-                        }
+            VStack(spacing: 10) {
+                SettingsGroup {
+                    SettingsRow("Account") {
+                        // Sign-in comes with step 6; until then nobody is signed in.
+                        Text("Not signed in")
+                            .font(.text(15))
+                            .foregroundStyle(Theme.textMuted)
                     }
                 }
-            }
 
-            section("Training reminder") {
-                reminderCard
-            }
-
-            section("Appearance") {
-                Card {
-                    VStack(alignment: .leading, spacing: 16) {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("Accent color")
-                                .font(.textSemibold(15))
-                                .foregroundStyle(Theme.text)
-                            HStack(spacing: 10) {
-                                ForEach(Accent.allCases) { item in
-                                    AccentSwatch(accent: item, isSelected: item == accent) {
-                                        accent = item
-                                    }
-                                }
-                            }
-                        }
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("Language")
-                                .font(.textSemibold(15))
-                                .foregroundStyle(Theme.text)
+                Button {
+                    isShowingSubscription = true
+                } label: {
+                    SettingsGroup {
+                        SettingsRow("Subscription") {
                             HStack(spacing: 8) {
-                                ForEach(AppLanguage.allCases) { item in
-                                    SelectChip(LocalizedStringKey(item.code), isSelected: item == language) {
-                                        storedLanguage = AppLanguage.storedValue(for: item)
-                                    }
-                                    .accessibilityLabel(Text(verbatim: item.locale.localizedString(forLanguageCode: item.rawValue) ?? item.code))
-                                }
+                                if subscription.isPro { Text(verbatim: "Pro") } else { Text("Free") }
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: 13, weight: .bold))
+                                    .accessibilityHidden(true)
                             }
+                            .font(.text(15))
+                            .foregroundStyle(Theme.textMuted)
                         }
                     }
                 }
+                .buttonStyle(PressFeedbackStyle())
+
+                SettingsGroup {
+                    SettingsRow("Reminder") {
+                        Toggle(isOn: Binding(
+                            get: { schedule.isEnabled },
+                            set: { setReminder(enabled: $0) }
+                        )) {
+                            Text("Reminder")
+                        }
+                        .labelsHidden()
+                        .tint(accent.color)
+                        .frame(minWidth: 60, minHeight: Theme.Layout.minTouchTarget)
+                    }
+                    if schedule.isEnabled {
+                        reminderDetails(schedule)
+                    }
+                    if isPermissionDenied {
+                        permissionHint
+                    }
+                }
+
+                SettingsGroup {
+                    SettingsRow("Color") {
+                        HStack(spacing: 0) {
+                            ForEach(Accent.allCases) { item in
+                                AccentSwatch(accent: item, isSelected: item == accent) {
+                                    accent = item
+                                }
+                            }
+                        }
+                        .accessibilityElement(children: .contain)
+                        .accessibilityLabel(Text("Accent color"))
+                    }
+                }
+
+                SettingsGroup {
+                    SettingsRow("Language") {
+                        HStack(spacing: 0) {
+                            ForEach(AppLanguage.allCases) { item in
+                                SegmentButton(LocalizedStringKey(item.code), isSelected: item == language) {
+                                    storedLanguage = AppLanguage.storedValue(for: item)
+                                }
+                                .accessibilityLabel(Text(verbatim: item.locale.localizedString(forLanguageCode: item.rawValue) ?? item.code))
+                            }
+                        }
+                        .frame(width: 120)
+                    }
+                }
+
+                NavigationLink {
+                    LegalScreen()
+                } label: {
+                    SettingsGroup {
+                        SettingsRow("Legal") {
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 13, weight: .bold))
+                                .foregroundStyle(Theme.textMuted)
+                                .accessibilityHidden(true)
+                        }
+                    }
+                }
+                .buttonStyle(PressFeedbackStyle())
             }
 
-            section("Legal") {
-                // One row if it fits, otherwise stacked (long German labels).
-                ViewThatFits(in: .horizontal) {
-                    HStack(spacing: 8) { legalLinks }
-                    VStack(alignment: .leading, spacing: 8) { legalLinks }
-                }
-            }
-
-            VStack(alignment: .leading, spacing: 10) {
-                HStack(spacing: 10) {
-                    accountButton("Sign out", color: Theme.text)
-                    accountButton("Delete account", color: Theme.danger)
-                }
-                Text("Deleting your account is permanent. Both are available once you are signed in.")
-                    .font(.text(13))
-                    .foregroundStyle(Theme.textMuted)
+            HStack(spacing: 24) {
+                accountButton("Sign out", color: Theme.text)
+                accountButton("Delete account", color: Theme.danger)
+                Spacer(minLength: 0)
             }
         }
         .sheet(isPresented: $isShowingSubscription) {
             PaywallSheet()
+        }
+        .onChange(of: schedule) { _, newValue in
+            reschedule(newValue)
         }
         .onChange(of: storedLanguage) { _, _ in
             // Notification texts follow the app language.
@@ -109,75 +138,65 @@ struct SettingsScreen: View {
 
     // MARK: Reminder
 
-    private var reminderCard: some View {
-        let schedule = reminders.schedule
-        return Card {
-            VStack(alignment: .leading, spacing: 16) {
-                Toggle(isOn: Binding(
-                    get: { schedule.isEnabled },
-                    set: { setReminder(enabled: $0) }
-                )) {
-                    Text("Reminder")
-                        .font(.textSemibold(15))
-                        .foregroundStyle(Theme.text)
-                }
-                .tint(accentColor)
-                .frame(minHeight: Theme.Layout.minTouchTarget)
-
-                VStack(alignment: .leading, spacing: 16) {
-                    HStack(spacing: 4) {
-                        ForEach(ReminderSchedule.displayOrder, id: \.self) { weekday in
-                            DayChip(
-                                title: ReminderText.shortName(weekday, locale: locale),
-                                accessibilityName: ReminderText.fullName(weekday, locale: locale),
-                                isSelected: schedule.weekdays.contains(weekday)
-                            ) {
-                                reminders.schedule.toggle(weekday)
-                            }
-                        }
-                    }
-
-                    CounterControl(label: "Time", value: Text(verbatim: ReminderText.time(schedule, locale: locale))) {
-                        reminders.schedule.shiftTime(by: -1)
-                    } increase: {
-                        reminders.schedule.shiftTime(by: 1)
-                    }
-                }
-                .disabled(!schedule.isEnabled)
-                .opacity(schedule.isEnabled ? 1 : 0.4)
-
-                reminderSummary(schedule)
-                    .font(.text(15))
-                    .foregroundStyle(Theme.textSoft)
-
-                if isPermissionDenied {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Notifications are turned off for Unweak in the iOS settings.")
-                            .font(.text(13))
-                            .foregroundStyle(Theme.danger)
-                        Button {
-                            if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
-                        } label: {
-                            ChipLabel("Open iOS settings")
-                        }
-                        .buttonStyle(PressFeedbackStyle())
+    /// Seven round day buttons and the time with − / +.
+    private func reminderDetails(_ schedule: ReminderSchedule) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 4) {
+                ForEach(ReminderSchedule.displayOrder, id: \.self) { weekday in
+                    DayChip(
+                        title: ReminderText.shortName(weekday, locale: locale),
+                        accessibilityName: ReminderText.fullName(weekday, locale: locale),
+                        isSelected: schedule.weekdays.contains(weekday)
+                    ) {
+                        reminders.schedule.toggle(weekday)
                     }
                 }
             }
+            .accessibilityElement(children: .contain)
+            .accessibilityLabel(Text("Training days"))
+
+            HStack(spacing: 4) {
+                Text("Time")
+                    .font(.text(15))
+                    .foregroundStyle(Theme.textSoft)
+                Spacer(minLength: 0)
+                StepButton(symbol: "minus", label: "Earlier") {
+                    reminders.schedule.shiftTime(by: -1)
+                }
+                Text(verbatim: ReminderText.time(schedule, locale: locale))
+                    .font(.grotesk(20))
+                    .foregroundStyle(Theme.text)
+                    .frame(width: 70)
+                StepButton(symbol: "plus", label: "Later") {
+                    reminders.schedule.shiftTime(by: 1)
+                }
+            }
         }
-        .onChange(of: schedule) { _, newValue in
-            reschedule(newValue)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .overlay(alignment: .top) {
+            Rectangle().fill(Theme.line).frame(height: 1)
         }
     }
 
-    private var accentColor: Color { accent.color }
-
-    private func reminderSummary(_ schedule: ReminderSchedule) -> Text {
-        if !schedule.isEnabled { return Text("Reminders are off.") }
-        if schedule.weekdays.isEmpty { return Text("Choose at least one day.") }
-        let days = ReminderText.dayList(schedule, locale: locale)
-        let time = ReminderText.time(schedule, locale: locale)
-        return Text("You will get a notification on \(days) at \(time).")
+    private var permissionHint: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Notifications are turned off for Unweak in the iOS settings.")
+                .font(.text(13))
+                .foregroundStyle(Theme.danger)
+                .fixedSize(horizontal: false, vertical: true)
+            Button {
+                if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
+            } label: {
+                Text("Open iOS settings")
+                    .font(.textSemibold(15))
+                    .foregroundStyle(Theme.text)
+                    .frame(minHeight: Theme.Layout.minTouchTarget)
+            }
+            .buttonStyle(PressFeedbackStyle())
+        }
+        .padding(.horizontal, 16)
+        .padding(.bottom, 8)
     }
 
     private func setReminder(enabled: Bool) {
@@ -199,54 +218,14 @@ struct SettingsScreen: View {
         }
     }
 
-    // MARK: Building blocks
-
-    private func section<Content: View>(_ title: LocalizedStringKey, @ViewBuilder content: () -> Content) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            MonoLabel(title)
-            content()
-        }
-    }
-
-    private func settingRow<Value: View>(_ title: LocalizedStringKey, @ViewBuilder value: () -> Value) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            MonoLabel(title)
-            value()
-                .font(.textSemibold(15))
-                .foregroundStyle(Theme.text)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .accessibilityElement(children: .combine)
-    }
-
-    @ViewBuilder
-    private var legalLinks: some View {
-        legalLink("Privacy")
-        legalLink("Terms")
-        legalLink("Imprint")
-    }
-
-    /// Legal texts are still open (docs/SPEC.md); until then a placeholder page.
-    private func legalLink(_ title: LocalizedStringKey) -> some View {
-        NavigationLink {
-            ComingLaterScreen(title: title)
-        } label: {
-            ChipLabel(title)
-                .fixedSize()
-        }
-        .buttonStyle(PressFeedbackStyle())
-    }
-
     /// Sign out and delete account work from step 6 on (sign-in); until then disabled.
+    /// Delete account will ask before it acts.
     private func accountButton(_ title: LocalizedStringKey, color: Color) -> some View {
         Button {} label: {
             Text(title)
-                .font(.monoBold)
-                .tracking(1)
-                .textCase(.uppercase)
+                .font(.text(15))
                 .foregroundStyle(color)
-                .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget)
-                .overlay(Rectangle().strokeBorder(color, lineWidth: 1))
+                .frame(minHeight: Theme.Layout.minTouchTarget)
         }
         .buttonStyle(PressFeedbackStyle())
         .disabled(true)
@@ -254,7 +233,47 @@ struct SettingsScreen: View {
     }
 }
 
-/// Weekday button for the reminder: 44 pt high, fills its share of the row.
+/// A group of settings rows on the surface color with a thin outline.
+private struct SettingsGroup<Content: View>: View {
+    @ViewBuilder let content: () -> Content
+
+    var body: some View {
+        VStack(spacing: 0) {
+            content()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+    }
+}
+
+/// One settings row: title on the left (Inter 16), the value or control on the right.
+private struct SettingsRow<Value: View>: View {
+    private let title: LocalizedStringKey
+    private let value: Value
+
+    init(_ title: LocalizedStringKey, @ViewBuilder value: () -> Value) {
+        self.title = title
+        self.value = value()
+    }
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Text(title)
+                .font(.text(16))
+                .foregroundStyle(Theme.text)
+            Spacer(minLength: 0)
+            value
+        }
+        .padding(.leading, 16)
+        .padding(.trailing, 8)
+        .frame(minHeight: 56)
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+    }
+}
+
+/// Round weekday button for the reminder, 44 pt.
 private struct DayChip: View {
     @Environment(\.accent) private var accent
     let title: String
@@ -265,23 +284,42 @@ private struct DayChip: View {
     var body: some View {
         Button(action: action) {
             Text(verbatim: title)
-                .font(.monoBold)
-                .textCase(.uppercase)
+                .font(.text(13))
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
                 .foregroundStyle(isSelected ? Theme.onAccent : Theme.textSoft)
-                .frame(maxWidth: .infinity, minHeight: Theme.Layout.selectHeight)
-                .background(isSelected ? accent.color : Color.clear)
-                .overlay(Rectangle().strokeBorder(isSelected ? accent.color : Theme.lineStrong, lineWidth: 1))
-                .contentShape(Rectangle())
+                .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget)
+                .background(Circle().fill(isSelected ? accent.color : Color.clear))
+                .overlay(Circle().strokeBorder(isSelected ? accent.color : Theme.lineStrong, lineWidth: 1))
+                .contentShape(Circle())
         }
         .buttonStyle(PressFeedbackStyle())
         .accessibilityLabel(Text(verbatim: accessibilityName))
-        .accessibilityAddTraits(isSelected ? .isSelected : [])
+        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
     }
 }
 
-/// Square color field, 44 pt, outlined when selected.
+/// Square − / + button, 44 pt.
+private struct StepButton: View {
+    let symbol: String
+    let label: LocalizedStringKey
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: symbol)
+                .font(.system(size: 16, weight: .bold))
+                .foregroundStyle(Theme.text)
+                .frame(width: Theme.Layout.minTouchTarget, height: Theme.Layout.minTouchTarget)
+                .overlay(Rectangle().strokeBorder(Theme.lineStrong, lineWidth: 1))
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(PressFeedbackStyle())
+        .accessibilityLabel(Text(label))
+    }
+}
+
+/// Accent color circle (24 pt) in a 40 × 44 pt touch area, ringed when selected.
 struct AccentSwatch: View {
     private let accent: Accent
     private let isSelected: Bool
@@ -295,17 +333,53 @@ struct AccentSwatch: View {
 
     var body: some View {
         Button(action: action) {
-            Rectangle()
+            Circle()
                 .fill(accent.color)
-                .padding(isSelected ? 4 : 0)
-                .frame(width: Theme.Layout.minTouchTarget, height: Theme.Layout.minTouchTarget)
-                .overlay(Rectangle().strokeBorder(isSelected ? Theme.text : Color.clear, lineWidth: 2))
-                .glow(isSelected ? accent.color : .clear, radius: Theme.Glow.small)
+                .frame(width: 24, height: 24)
+                .padding(3)
+                .overlay(Circle().strokeBorder(isSelected ? Theme.text : Color.clear, lineWidth: 2))
+                .frame(width: 40, height: Theme.Layout.minTouchTarget)
                 .contentShape(Rectangle())
         }
         .buttonStyle(PressFeedbackStyle())
         .accessibilityLabel(Text(accent.name))
-        .accessibilityAddTraits(isSelected ? .isSelected : [])
+        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
+    }
+}
+
+/// Legal texts are still open (docs/SPEC.md); each row leads to a placeholder page.
+private struct LegalScreen: View {
+    var body: some View {
+        ScreenContainer {
+            VStack(alignment: .leading, spacing: 14) {
+                BackButton()
+                Text("Legal")
+                    .font(.grotesk(28))
+                    .foregroundStyle(Theme.text)
+                    .accessibilityAddTraits(.isHeader)
+            }
+            SettingsGroup {
+                row("Privacy")
+                Rectangle().fill(Theme.line).frame(height: 1)
+                row("Terms")
+                Rectangle().fill(Theme.line).frame(height: 1)
+                row("Imprint")
+            }
+        }
+    }
+
+    private func row(_ title: LocalizedStringKey) -> some View {
+        NavigationLink {
+            ComingLaterScreen(title: title)
+        } label: {
+            SettingsRow(title) {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 13, weight: .bold))
+                    .foregroundStyle(Theme.textMuted)
+                    .accessibilityHidden(true)
+            }
+        }
+        .buttonStyle(PressFeedbackStyle())
     }
 }
 
