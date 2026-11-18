@@ -33,9 +33,4 @@ final class AppNavigation {
         selectedTab = .workouts
     }
 
-    /// Switches to the journal and opens the given entry.
-    func showJournalEntry(_ id: JournalEntry.ID) {
-        journalPath = [.entry(id)]
-        selectedTab = .journal
-    }
 }

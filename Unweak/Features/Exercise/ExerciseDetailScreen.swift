@@ -1,6 +1,8 @@
 import SwiftUI
 
-/// Exercise detail: animation, technique steps, common mistakes, easier and harder variant.
+/// Technique of an exercise (Design V2, `V2-Uebung`): animation, three short numbered
+/// steps, one hint with a warning sign (the most common mistake) and the easier and
+/// harder variant as tiles.
 struct ExerciseDetailScreen: View {
     @Environment(\.accent) private var accent
     private let exercise: Exercise
@@ -14,116 +16,106 @@ struct ExerciseDetailScreen: View {
     var body: some View {
         ScreenContainer {
             VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    BackButton()
-                    Spacer()
-                }
-                MetaLine([Text(exercise.category.title), Text(exercise.level.title)])
+                BackButton()
                 Text(catalog: exercise.nameKey)
-                    .font(.exerciseTitle)
+                    .font(.grotesk(36))
                     .foregroundStyle(Theme.text)
                     .minimumScaleFactor(0.6)
                     .accessibilityAddTraits(.isHeader)
             }
 
-            HUDPanel(padding: 10) {
-                StickyManView(exercise.animation)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 200)
-            }
+            StickyManView(exercise.animation)
+                .frame(maxWidth: .infinity)
+                .frame(height: 200)
 
-            VStack(alignment: .leading, spacing: 12) {
-                MonoLabel("How it works")
+            VStack(alignment: .leading, spacing: 14) {
                 ForEach(Array(exercise.stepKeys.enumerated()), id: \.offset) { index, key in
-                    HStack(alignment: .firstTextBaseline, spacing: 12) {
-                        Text(verbatim: String(format: "%02d", index + 1))
-                            .font(.monoBold)
+                    HStack(alignment: .firstTextBaseline, spacing: 14) {
+                        Text(verbatim: "\(index + 1)")
+                            .font(.grotesk(20))
                             .foregroundStyle(accent.color)
+                            .frame(width: 16, alignment: .leading)
                             .accessibilityHidden(true)
                         Text(catalog: key)
-                            .font(.text(15))
-                            .foregroundStyle(Theme.textSoft)
+                            .font(.text(16))
+                            .foregroundStyle(Theme.text)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                     .accessibilityElement(children: .combine)
                 }
             }
 
-            if !exercise.mistakeKeys.isEmpty {
-                Card {
-                    VStack(alignment: .leading, spacing: 10) {
-                        MonoLabel("Common mistakes", color: Theme.danger, bold: true)
-                        ForEach(exercise.mistakeKeys, id: \.self) { key in
-                            HStack(alignment: .firstTextBaseline, spacing: 10) {
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 11, weight: .bold))
-                                    .foregroundStyle(Theme.danger)
-                                    .accessibilityHidden(true)
-                                Text(catalog: key)
-                                    .font(.text(15))
-                                    .foregroundStyle(Theme.textSoft)
-                                    .fixedSize(horizontal: false, vertical: true)
-                            }
-                        }
-                    }
+            if let mistake = exercise.mistakeKeys.first {
+                HStack(alignment: .firstTextBaseline, spacing: 12) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundStyle(Theme.subscription)
+                        .accessibilityHidden(true)
+                    Text(catalog: mistake)
+                        .font(.text(15))
+                        .foregroundStyle(Theme.text)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
+                .padding(14)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Theme.surface)
+                .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
                 .accessibilityElement(children: .combine)
+                .accessibilityLabel(Text("Watch out: \(Text(catalog: mistake))"))
             }
 
-            HStack(alignment: .top, spacing: 10) {
-                VariantTile(label: "Easier", exercise: exercise.easier.flatMap(catalog.exercise), catalog: catalog)
-                VariantTile(label: "Harder", exercise: exercise.harder.flatMap(catalog.exercise), catalog: catalog)
+            let easier = exercise.easier.flatMap(catalog.exercise)
+            let harder = exercise.harder.flatMap(catalog.exercise)
+            if easier != nil || harder != nil {
+                HStack(alignment: .top, spacing: 10) {
+                    if let easier {
+                        VariantTile(label: "Too hard?", exercise: easier, catalog: catalog)
+                    }
+                    if let harder {
+                        VariantTile(label: "Too easy?", exercise: harder, catalog: catalog)
+                    }
+                }
             }
         }
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 
-/// Tile linking to the easier or harder variant; shows a dash if there is none.
+/// Tile with the easier or harder variant; opens its technique.
 private struct VariantTile: View {
     let label: LocalizedStringKey
-    let exercise: Exercise?
+    let exercise: Exercise
     let catalog: Catalog
 
     var body: some View {
-        if let exercise {
-            NavigationLink {
-                ExerciseDetailScreen(exercise: exercise, catalog: catalog)
-            } label: {
-                content(name: Text(catalog: exercise.nameKey), pose: exercise.pose)
+        NavigationLink {
+            ExerciseDetailScreen(exercise: exercise, catalog: catalog)
+        } label: {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(label)
+                    .font(.text(13))
+                    .foregroundStyle(Theme.textMuted)
+                Text(catalog: exercise.nameKey)
+                    .font(.textSemibold(15))
+                    .foregroundStyle(Theme.text)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            .buttonStyle(PressFeedbackStyle())
-        } else {
-            content(name: Text(verbatim: "–"), pose: nil)
-                .accessibilityLabel(Text(label))
-                .accessibilityValue(Text("None"))
+            .padding(EdgeInsets(top: 12, leading: 14, bottom: 12, trailing: 14))
+            .frame(maxWidth: .infinity, minHeight: Theme.Layout.minTouchTarget, alignment: .leading)
+            .background(Theme.surface)
+            .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+            .contentShape(Rectangle())
         }
-    }
-
-    private func content(name: Text, pose: StickyPose?) -> some View {
-        Card(padding: 12) {
-            VStack(alignment: .leading, spacing: 8) {
-                MonoLabel(label)
-                HStack(spacing: 8) {
-                    if let pose {
-                        StickyPoseView(pose)
-                            .accessibilityHidden(true)
-                    }
-                    name
-                        .font(.textSemibold(15))
-                        .foregroundStyle(Theme.text)
-                        .multilineTextAlignment(.leading)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-            }
-        }
-        .frame(minHeight: Theme.Layout.minTouchTarget)
+        .buttonStyle(PressFeedbackStyle())
         .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
     }
 }
 
 #Preview {
     NavigationStack {
-        if let exercise = Catalog.main.exercise("pushUp") {
+        if let exercise = Catalog.main.exercise("pullUp") {
             ExerciseDetailScreen(exercise: exercise)
         }
     }

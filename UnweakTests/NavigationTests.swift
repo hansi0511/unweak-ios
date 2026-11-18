@@ -14,12 +14,4 @@ struct NavigationTests {
         // Only the skills are on the stack; screens pushed before are gone.
         #expect(navigation.workoutsPath == [.skills])
     }
-
-    @Test func showJournalEntryOpensTheEntry() {
-        let navigation = AppNavigation()
-        let id = UUID()
-        navigation.showJournalEntry(id)
-        #expect(navigation.selectedTab == .journal)
-        #expect(navigation.journalPath == [.entry(id)])
-    }
 }

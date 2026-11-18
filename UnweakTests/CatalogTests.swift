@@ -144,6 +144,26 @@ struct TrainingSessionTests {
         #expect(session.primaryAction == .completeSet(1))
     }
 
+    @Test func duringTheRestTheButtonSkipsIt() throws {
+        let session = try makeSession()
+        session.completeSet(at: start)
+        #expect(session.isResting(at: start))
+        #expect(session.primaryAction(at: start) == .skipRest)
+        #expect(session.primaryAction(at: start.addingTimeInterval(61)) == .completeSet(2))
+
+        session.performPrimaryAction(at: start)
+        #expect(!session.isResting(at: start))
+        #expect(session.completedSets == 1, "skipping the rest does not count a set")
+        #expect(session.primaryAction(at: start) == .completeSet(2))
+    }
+
+    @Test func noRestAfterTheLastSetOfAnExercise() throws {
+        let session = try makeSession()
+        for _ in 0..<3 { session.completeSet(at: start) }
+        #expect(!session.isResting(at: start))
+        #expect(session.primaryAction(at: start) == .nextExercise)
+    }
+
     @Test func lastExerciseEndsWithFinish() throws {
         let session = try makeSession()
         while session.primaryAction != .finish {

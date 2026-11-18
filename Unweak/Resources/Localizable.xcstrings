@@ -1,12 +1,32 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
     "%@ / %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ / %2$@"
+          }
+        }
+      }
+    },
+    "%@ done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ geschafft"
           }
         }
       }
@@ -271,6 +291,16 @@
         }
       }
     },
+    "+ Add note" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+ Notiz hinzufügen"
+          }
+        }
+      }
+    },
     "about %lld min" : {
       "localizations" : {
         "de" : {
@@ -391,6 +421,16 @@
         }
       }
     },
+    "Adjust values" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Werte anpassen"
+          }
+        }
+      }
+    },
     "Advanced" : {
       "localizations" : {
         "de" : {
@@ -427,6 +467,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alle Level erreicht"
+          }
+        }
+      }
+    },
+    "All sets done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Sätze geschafft"
           }
         }
       }
@@ -701,12 +751,12 @@
         }
       }
     },
-    "Common mistakes" : {
+    "Continue" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Häufige Fehler"
+            "value" : "Weitermachen"
           }
         }
       }
@@ -767,16 +817,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Krone"
-          }
-        }
-      }
-    },
-    "Current" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktuell"
           }
         }
       }
@@ -901,16 +941,6 @@
         }
       }
     },
-    "Easier" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leichter"
-          }
-        }
-      }
-    },
     "Easy" : {
       "localizations" : {
         "de" : {
@@ -941,16 +971,6 @@
         }
       }
     },
-    "Elapsed time" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trainingszeit"
-          }
-        }
-      }
-    },
     "Elevated pike push-up animation" : {
       "localizations" : {
         "de" : {
@@ -961,12 +981,22 @@
         }
       }
     },
-    "End and save workout" : {
+    "End workout" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Training beenden und speichern"
+            "value" : "Training beenden"
+          }
+        }
+      }
+    },
+    "End workout?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Training beenden?"
           }
         }
       }
@@ -977,26 +1007,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Entspricht %@ pro Monat"
-          }
-        }
-      }
-    },
-    "Exercise %lld / %lld · %lld × %lld reps" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Übung %1$lld / %2$lld · %3$lld × %4$lld Wdh."
-          }
-        }
-      }
-    },
-    "Exercise %lld / %lld · %lld × %lld s" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Übung %1$lld / %2$lld · %3$lld × %4$lld s"
           }
         }
       }
@@ -1231,16 +1241,6 @@
         }
       }
     },
-    "Harder" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schwerer"
-          }
-        }
-      }
-    },
     "Headband" : {
       "localizations" : {
         "de" : {
@@ -1261,12 +1261,12 @@
         }
       }
     },
-    "How did it feel?" : {
+    "Hide values" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wie war es?"
+            "value" : "Werte ausblenden"
           }
         }
       }
@@ -1281,22 +1281,32 @@
         }
       }
     },
-    "How it works" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "So geht's"
-          }
-        }
-      }
-    },
     "How it’s done" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "So geht’s"
+          }
+        }
+      }
+    },
+    "How the exercise works" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So geht die Übung"
+          }
+        }
+      }
+    },
+    "How was it?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie war's?"
           }
         }
       }
@@ -1407,16 +1417,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sprache"
-          }
-        }
-      }
-    },
-    "Last exercise" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Letzte Übung"
           }
         }
       }
@@ -1611,6 +1611,16 @@
         }
       }
     },
+    "Minutes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minuten"
+          }
+        }
+      }
+    },
     "Mono" : {
       "localizations" : {
         "de" : {
@@ -1731,22 +1741,12 @@
         }
       }
     },
-    "New records" : {
+    "New record:" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neue Rekorde"
-          }
-        }
-      }
-    },
-    "Next" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nächste"
+            "value" : "Neuer Rekord:"
           }
         }
       }
@@ -1827,16 +1827,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nicht angemeldet"
-          }
-        }
-      }
-    },
-    "Note" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Notiz"
           }
         }
       }
@@ -2091,6 +2081,16 @@
         }
       }
     },
+    "Rating" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewertung"
+          }
+        }
+      }
+    },
     "Reached" : {
       "localizations" : {
         "de" : {
@@ -2107,6 +2107,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Letzte Trainings"
+          }
+        }
+      }
+    },
+    "Record" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rekord"
           }
         }
       }
@@ -2161,6 +2171,16 @@
         }
       }
     },
+    "Repetitions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiederholungen"
+          }
+        }
+      }
+    },
     "Reps" : {
       "localizations" : {
         "de" : {
@@ -2177,16 +2197,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pause"
-          }
-        }
-      }
-    },
-    "Rest time" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pausenzeit"
           }
         }
       }
@@ -2271,12 +2281,12 @@
         }
       }
     },
-    "Set %lld done" : {
+    "Set %lld of %lld" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Satz %lld erledigt"
+            "value" : "Satz %1$lld von %2$lld"
           }
         }
       }
@@ -2291,12 +2301,32 @@
         }
       }
     },
+    "Set done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satz geschafft"
+          }
+        }
+      }
+    },
     "Sets" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sätze"
+          }
+        }
+      }
+    },
+    "Sets you have done are saved." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erledigte Sätze werden gespeichert."
           }
         }
       }
@@ -2351,16 +2381,6 @@
         }
       }
     },
-    "Share record" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rekord teilen"
-          }
-        }
-      }
-    },
     "Share video" : {
       "localizations" : {
         "de" : {
@@ -2377,16 +2397,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Woche teilen"
-          }
-        }
-      }
-    },
-    "Share workout" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Workout teilen"
           }
         }
       }
@@ -2457,6 +2467,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Skills in 5 Stufen"
+          }
+        }
+      }
+    },
+    "Skip rest" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause überspringen"
           }
         }
       }
@@ -2788,6 +2808,26 @@
         }
       }
     },
+    "Too easy?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zu leicht?"
+          }
+        }
+      }
+    },
+    "Too hard?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zu schwer?"
+          }
+        }
+      }
+    },
     "Trained" : {
       "localizations" : {
         "de" : {
@@ -2894,6 +2934,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Handstand-Liegestütz an der Wand"
+          }
+        }
+      }
+    },
+    "Watch out: %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Achtung: %@"
           }
         }
       }

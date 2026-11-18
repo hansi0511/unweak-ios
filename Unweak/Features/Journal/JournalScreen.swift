@@ -93,11 +93,11 @@ struct JournalScreen: View {
             switch route {
             case .entry(let id):
                 if let entry = store.entry(id) {
-                    JournalEntryScreen(entry: entry, catalog: catalog)
+                    WorkoutDoneScreen(entry: entry, mode: .existing, catalog: catalog)
                 }
             case .newEntry(let planID):
                 if let plan = store.plan(planID, in: catalog) {
-                    JournalEntryScreen(entry: JournalEntry(plan: plan, date: .now), catalog: catalog)
+                    WorkoutDoneScreen(entry: JournalEntry(plan: plan, date: .now), mode: .addedByHand, catalog: catalog)
                 }
             }
         }
