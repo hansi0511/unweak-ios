@@ -152,7 +152,7 @@ struct AvatarFigure: Equatable, Sendable {
                 .line(p(h.x + 5, h.y + r + 2), p(h.x, h.y + r + 10), width: 1.8),
                 .dot(p(h.x, h.y + r + 12), radius: 2.8),
             ]
-        case .crown:
+        case .crown, .bronzeCrown, .silverCrown, .goldCrown, .diamondCrown:
             let top = h.y - r
             return [.polygon([
                 p(h.x - r, top - 1.5), p(h.x - r, top - 8), p(h.x - r / 2, top - 4.5), p(h.x, top - 10),
@@ -221,7 +221,8 @@ struct AvatarView: View {
                     extra: extra,
                     breath: isMoving ? Self.breath(at: timeline.date) : 0
                 ),
-                style: style
+                style: style,
+                extraColor: extra?.fixedColor
             )
         }
         .aspectRatio(1, contentMode: .fit)
@@ -249,12 +250,14 @@ struct AvatarView: View {
 private struct AvatarCanvas: View {
     let figure: AvatarFigure
     let style: AvatarStyle
+    /// Overrides the style's extra color, e.g. for a league crown.
+    var extraColor: Color?
 
     var body: some View {
         let figure = figure
         let figureColor = style.figureColor
         let background = style.backgroundColor
-        let extraColor = style.extraColor.color
+        let extraColor = extraColor ?? style.extraColor.color
 
         Canvas { context, size in
             let scale = min(size.width, size.height) / AvatarFigure.size

@@ -1,6 +1,6 @@
 # Arbeitsanweisung
 
-Du baust die iOS-App „Unweak“. Lies zuerst `docs/SPEC.md`, `docs/DESIGN.md` und `docs/DESIGN-V2.md`. Für die Oberfläche gilt `docs/DESIGN-V2.md`; `docs/SCREENS.md` beschreibt den Stand davor und gilt nur noch, wo V2 nichts sagt. Sie sind verbindlich; wo sie schweigen, entscheide einfach und notiere die Annahme in der Pull-Request-Beschreibung.
+Du baust die iOS-App „Unweak“. Lies zuerst `docs/SPEC.md`, `docs/DESIGN.md`, `docs/DESIGN-V2.md` und `docs/SOCIAL.md`. Für die Oberfläche gilt `docs/DESIGN-V2.md`; `docs/SCREENS.md` beschreibt den Stand davor und gilt nur noch, wo V2 nichts sagt. Sie sind verbindlich; wo sie schweigen, entscheide einfach und notiere die Annahme in der Pull-Request-Beschreibung.
 
 ## Rahmen
 
@@ -19,6 +19,7 @@ Du baust die iOS-App „Unweak“. Lies zuerst `docs/SPEC.md`, `docs/DESIGN.md` 
 5. Eigenes Workout erstellen, Ziel wählen, Einstellungen (Erinnerungen als lokale Mitteilungen, Farbe, Sprache).
 6. Konto: Anmeldung mit Apple und Google, Sicherung und Abgleich der Daten, Konto löschen.
 7. Abo mit StoreKit 2: fünf Pläne gratis, der Rest hinter dem Abo, Käufe wiederherstellen.
+8. Wochen-Liga und Duell nach `docs/SOCIAL.md` (braucht das Konto aus Schritt 6).
 
 Schritte 1 bis 5 müssen ohne Server lauffähig sein. Für 6 und 7 zuerst die offenen Punkte in `docs/SPEC.md` mit Hansi klären.
 
@@ -31,6 +32,6 @@ Schritte 1 bis 5 müssen ohne Server lauffähig sein. Für 6 und 7 zuerst die of
 
 ## Nicht tun
 
-- Keine Influencer- oder Community-Funktionen. Die kommen erst in Version 2.
+- Keine Influencer- oder Community-Funktionen außer Wochen-Liga und Duell aus `docs/SOCIAL.md`: kein Feed, kein Folgen, keine geposteten Inhalte. Die kommen erst in Version 2.
 - Keine Schlüssel, Passwörter oder Zugangsdaten ins Repository.
 - Nicht direkt auf `main` arbeiten: pro Schritt ein Branch und ein Pull Request.

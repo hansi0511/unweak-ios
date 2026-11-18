@@ -7,6 +7,7 @@ enum ShareContent: Hashable, Identifiable {
     case achievement(Achievement)
     case streak(Streak)
     case skill(Skill)
+    case league(LeagueResult)
 
     var id: Self { self }
 
@@ -51,6 +52,15 @@ enum ShareContent: Hashable, Identifiable {
         let animation: StickyAnimation
     }
 
+    /// How a league week ended.
+    struct LeagueResult: Hashable {
+        let place: Int
+        let groupSize: Int
+        let outcome: WeekOutcome
+        /// The league from Monday on.
+        let league: League
+    }
+
     enum Title: Hashable {
         case catalog(String)
         case custom(String)
@@ -65,6 +75,7 @@ enum ShareContent: Hashable, Identifiable {
         case .achievement: .frontLever
         case .streak: .pullUp
         case .skill(let skill): skill.animation
+        case .league: .muscleUp
         }
     }
 }

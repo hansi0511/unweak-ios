@@ -66,6 +66,8 @@ enum AvatarUnlock: Equatable, Sendable {
     case achievement(String)
     /// Any skill completed (all stages, or the target time reached).
     case masteredSkill
+    /// First place in a week of this league.
+    case leagueWin(League)
 }
 
 /// The avatar's body. It grows with the training.
@@ -108,8 +110,24 @@ enum AvatarExtra: String, CaseIterable, Codable, Identifiable, Sendable {
     case headphones
     case medal
     case crown
+    /// Prizes for first place in a league week, a crown in the league's color.
+    case bronzeCrown
+    case silverCrown
+    case goldCrown
+    case diamondCrown
 
     var id: String { rawValue }
+
+    /// League crowns keep their league's color; other extras use the chosen extra color.
+    var fixedColor: Color? {
+        switch self {
+        case .bronzeCrown: League.bronze.color
+        case .silverCrown: League.silver.color
+        case .goldCrown: League.gold.color
+        case .diamondCrown: League.diamond.color
+        default: nil
+        }
+    }
 
     var unlock: AvatarUnlock {
         switch self {
@@ -119,6 +137,10 @@ enum AvatarExtra: String, CaseIterable, Codable, Identifiable, Sendable {
         case .visor: .achievement("streak4")
         case .medal: .achievement("workouts50")
         case .crown: .masteredSkill
+        case .bronzeCrown: .leagueWin(.bronze)
+        case .silverCrown: .leagueWin(.silver)
+        case .goldCrown: .leagueWin(.gold)
+        case .diamondCrown: .leagueWin(.diamond)
         }
     }
 
@@ -130,6 +152,10 @@ enum AvatarExtra: String, CaseIterable, Codable, Identifiable, Sendable {
         case .headphones: "Headphones"
         case .medal: "Medal"
         case .crown: "Crown"
+        case .bronzeCrown: "Bronze crown"
+        case .silverCrown: "Silver crown"
+        case .goldCrown: "Gold crown"
+        case .diamondCrown: "Diamond crown"
         }
     }
 }
@@ -176,15 +202,27 @@ struct AvatarUnlocks: Equatable, Sendable {
     /// IDs of achieved achievements.
     let achievements: Set<String>
     let hasMasteredSkill: Bool
+    /// Leagues with a first place.
+    let leagueWins: Set<League>
 
-    init(workouts: Int, achievements: Set<String>, hasMasteredSkill: Bool) {
+    init(workouts: Int, achievements: Set<String>, hasMasteredSkill: Bool, leagueWins: Set<League> = []) {
         self.workouts = workouts
         self.achievements = achievements
         self.hasMasteredSkill = hasMasteredSkill
+        self.leagueWins = leagueWins
     }
 
-    /// - Parameter reachedStages: Reached stages per skill, from `UserDataStore`.
-    init(stats: JournalStats, catalog: Catalog, weeklyTarget: Int, reachedStages: (Goal) -> Int) {
+    /// - Parameters:
+    ///   - leagueWins: Leagues with a first place, from `UserData`.
+    ///   - reachedStages: Reached stages per skill, from `UserDataStore`.
+    init(
+        stats: JournalStats,
+        catalog: Catalog,
+        weeklyTarget: Int,
+        leagueWins: Set<League> = [],
+        reachedStages: (Goal) -> Int
+    ) {
+        self.leagueWins = leagueWins
         workouts = stats.entries.count
         achievements = Set(
             catalog.achievements
@@ -202,6 +240,7 @@ struct AvatarUnlocks: Equatable, Sendable {
         case .workouts(let count): workouts >= count
         case .achievement(let id): achievements.contains(id)
         case .masteredSkill: hasMasteredSkill
+        case .leagueWin(let league): leagueWins.contains(league)
         }
     }
 

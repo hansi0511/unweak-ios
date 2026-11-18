@@ -2,16 +2,18 @@ import SwiftUI
 
 /// Settings (Design V2, `V2-Einstellungen`), opened from the top right of the Me area:
 /// grouped rows without explanations — account, subscription, reminder with days and
-/// time, accent color, language, legal — and the account actions at the bottom.
+/// time, accent color, language, league, legal — and the account actions at the bottom.
 struct SettingsScreen: View {
     @Environment(\.locale) private var locale
     @Environment(\.openURL) private var openURL
     @Environment(ReminderSettings.self) private var reminders
     @Environment(SubscriptionStore.self) private var subscription
+    @Environment(LeagueStore.self) private var league
     @AppStorage(Accent.storageKey) private var accent: Accent = .default
     @AppStorage(AppLanguage.storageKey) private var storedLanguage = ""
     @State private var isShowingSubscription = false
     @State private var isPermissionDenied = false
+    @State private var isEditingName = false
 
     private var language: AppLanguage { AppLanguage.resolve(stored: storedLanguage) }
 
@@ -103,6 +105,8 @@ struct SettingsScreen: View {
                     }
                 }
 
+                leagueGroup
+
                 NavigationLink {
                     LegalScreen()
                 } label: {
@@ -127,6 +131,9 @@ struct SettingsScreen: View {
         .sheet(isPresented: $isShowingSubscription) {
             PaywallSheet()
         }
+        .sheet(isPresented: $isEditingName) {
+            DisplayNameSheet()
+        }
         .onChange(of: schedule) { _, newValue in
             reschedule(newValue)
         }
@@ -134,6 +141,71 @@ struct SettingsScreen: View {
             // Notification texts follow the app language.
             reschedule(reminders.schedule)
         }
+    }
+
+    // MARK: League
+
+    /// Display name, taking part, blocked people (docs/SOCIAL.md).
+    private var leagueGroup: some View {
+        SettingsGroup {
+            Button {
+                isEditingName = true
+            } label: {
+                SettingsRow("Display name") {
+                    HStack(spacing: 8) {
+                        if let name = league.displayName {
+                            Text(verbatim: name)
+                        } else {
+                            Text("Not chosen")
+                        }
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 13, weight: .bold))
+                            .accessibilityHidden(true)
+                    }
+                    .font(.text(15))
+                    .foregroundStyle(Theme.textMuted)
+                    .lineLimit(1)
+                }
+            }
+            .buttonStyle(PressFeedbackStyle())
+            divider
+            SettingsRow("Take part in the league") {
+                Toggle(isOn: Binding(get: { league.isTakingPart }, set: { league.setTakingPart($0) })) {
+                    Text("Take part in the league")
+                }
+                .labelsHidden()
+                .tint(accent.color)
+                .frame(minWidth: 60, minHeight: Theme.Layout.minTouchTarget)
+            }
+            if !league.isTakingPart {
+                Text("You are not placed in a group, cannot be challenged, and your name is not shown anywhere.")
+                    .font(.text(13))
+                    .foregroundStyle(Theme.textMuted)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 12)
+            }
+            divider
+            NavigationLink {
+                BlockedUsersScreen()
+            } label: {
+                SettingsRow("Blocked users") {
+                    HStack(spacing: 8) {
+                        Text(verbatim: "\(league.blocked.count)")
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 13, weight: .bold))
+                            .accessibilityHidden(true)
+                    }
+                    .font(.text(15))
+                    .foregroundStyle(Theme.textMuted)
+                }
+            }
+            .buttonStyle(PressFeedbackStyle())
+        }
+    }
+
+    private var divider: some View {
+        Rectangle().fill(Theme.line).frame(height: 1)
     }
 
     // MARK: Reminder
@@ -344,6 +416,54 @@ struct AccentSwatch: View {
         .buttonStyle(PressFeedbackStyle())
         .accessibilityLabel(Text(accent.name))
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
+    }
+}
+
+/// People the user blocked in the league, each with "Unblock".
+private struct BlockedUsersScreen: View {
+    @Environment(\.accent) private var accent
+    @Environment(LeagueStore.self) private var league
+
+    var body: some View {
+        ScreenContainer {
+            VStack(alignment: .leading, spacing: 14) {
+                BackButton()
+                Text("Blocked users")
+                    .font(.grotesk(28))
+                    .foregroundStyle(Theme.text)
+                    .accessibilityAddTraits(.isHeader)
+            }
+            if league.blocked.isEmpty {
+                Text("You have not blocked anyone. Touch and hold a name in the league to block it.")
+                    .font(.text(15))
+                    .foregroundStyle(Theme.textSoft)
+                    .fixedSize(horizontal: false, vertical: true)
+            } else {
+                SettingsGroup {
+                    ForEach(league.blocked) { person in
+                        HStack(spacing: 12) {
+                            LeagueAvatarView(avatar: person.avatar)
+                            Text(verbatim: person.name)
+                                .font(.text(16))
+                                .foregroundStyle(Theme.text)
+                                .lineLimit(1)
+                            Spacer(minLength: 0)
+                            Button {
+                                league.unblock(person.id)
+                            } label: {
+                                Text("Unblock")
+                                    .font(.textSemibold(15))
+                                    .foregroundStyle(accent.color)
+                                    .frame(minWidth: Theme.Layout.minTouchTarget, minHeight: Theme.Layout.minTouchTarget)
+                            }
+                            .buttonStyle(PressFeedbackStyle())
+                        }
+                        .padding(.horizontal, 12)
+                        .frame(minHeight: 56)
+                    }
+                }
+            }
+        }
     }
 }
 

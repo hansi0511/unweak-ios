@@ -31,6 +31,16 @@
         }
       }
     },
+    "%@ no longer appears in your rankings and cannot challenge you." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ erscheint nicht mehr in deinen Ranglisten und kann dich nicht herausfordern."
+          }
+        }
+      }
+    },
     "%@ of %lld workouts this week" : {
       "localizations" : {
         "de" : {
@@ -77,6 +87,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld / %2$lld Trainings"
+          }
+        }
+      }
+    },
+    "%lld days left" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch %lld Tage"
           }
         }
       }
@@ -181,6 +201,16 @@
         }
       }
     },
+    "%lld of 7 days" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld von 7 Tagen"
+          }
+        }
+      }
+    },
     "%lld reps" : {
       "localizations" : {
         "en" : {
@@ -217,6 +247,16 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "%lld running" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld laufend"
           }
         }
       }
@@ -347,6 +387,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "10 Workouts bleiben immer gratis."
+          }
+        }
+      }
+    },
+    "3 to 20 characters: letters, digits, dot and underscore." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 bis 20 Zeichen: Buchstaben, Ziffern, Punkt und Unterstrich."
+          }
+        }
+      }
+    },
+    "A new stage of your skill" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine neue Stufe deines Skills"
           }
         }
       }
@@ -511,6 +571,26 @@
         }
       }
     },
+    "After three reports a name is hidden until it is checked." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach drei Meldungen wird ein Name ausgeblendet, bis er geprüft ist."
+          }
+        }
+      }
+    },
+    "Against whom?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gegen wen?"
+          }
+        }
+      }
+    },
     "All" : {
       "localizations" : {
         "de" : {
@@ -577,6 +657,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Pistol mit Hilfe"
+          }
+        }
+      }
+    },
+    "At least 3 characters" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mindestens 3 Zeichen"
+          }
+        }
+      }
+    },
+    "At most 20 characters" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Höchstens 20 Zeichen"
+          }
+        }
+      }
+    },
+    "At most one per day, from 10 minutes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Höchstens eins pro Tag, ab 10 Minuten"
           }
         }
       }
@@ -681,6 +791,36 @@
         }
       }
     },
+    "Block" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blockieren"
+          }
+        }
+      }
+    },
+    "Block this person?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Person blockieren?"
+          }
+        }
+      }
+    },
+    "Blocked users" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blockierte Nutzer"
+          }
+        }
+      }
+    },
     "Body" : {
       "localizations" : {
         "de" : {
@@ -697,6 +837,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Pistol auf Kasten"
+          }
+        }
+      }
+    },
+    "Bronze" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bronze"
+          }
+        }
+      }
+    },
+    "Bronze crown" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bronzekrone"
+          }
+        }
+      }
+    },
+    "Bronze League" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bronze-Liga"
           }
         }
       }
@@ -751,6 +921,36 @@
         }
       }
     },
+    "Challenge" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herausfordern"
+          }
+        }
+      }
+    },
+    "Challenge a friend" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Freund herausfordern"
+          }
+        }
+      }
+    },
+    "Change your name" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namen ändern"
+          }
+        }
+      }
+    },
     "Choose a goal" : {
       "localizations" : {
         "de" : {
@@ -787,6 +987,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wähle den Plan, den du trainiert hast."
+          }
+        }
+      }
+    },
+    "Choose your name" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle deinen Namen"
           }
         }
       }
@@ -991,6 +1201,36 @@
         }
       }
     },
+    "Diamond" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diamant"
+          }
+        }
+      }
+    },
+    "Diamond crown" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diamantkrone"
+          }
+        }
+      }
+    },
+    "Diamond League" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diamant-Liga"
+          }
+        }
+      }
+    },
     "Diamond push-up animation" : {
       "localizations" : {
         "de" : {
@@ -1011,6 +1251,16 @@
         }
       }
     },
+    "Display name" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anzeigename"
+          }
+        }
+      }
+    },
     "Done" : {
       "localizations" : {
         "de" : {
@@ -1027,6 +1277,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Heute dran"
+          }
+        }
+      }
+    },
+    "Duel" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duell"
+          }
+        }
+      }
+    },
+    "Duel winner" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duellsieger"
+          }
+        }
+      }
+    },
+    "e.g. 3 workouts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z. B. 3 Trainings"
           }
         }
       }
@@ -1111,6 +1391,16 @@
         }
       }
     },
+    "Every Monday you start in a new group with people at your level." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeden Montag startest du in einer neuen Gruppe mit Leuten auf deinem Level."
+          }
+        }
+      }
+    },
     "Exercises" : {
       "localizations" : {
         "de" : {
@@ -1161,12 +1451,42 @@
         }
       }
     },
+    "Finish a workout to join this week" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließ ein Training ab, um diese Woche mitzumachen"
+          }
+        }
+      }
+    },
     "Finish workout" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Training abschließen"
+          }
+        }
+      }
+    },
+    "First place in the %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Platz 1 in der %@"
+          }
+        }
+      }
+    },
+    "First place wins" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Platz 1 gewinnt"
           }
         }
       }
@@ -1241,6 +1561,16 @@
         }
       }
     },
+    "From Monday" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ab Montag"
+          }
+        }
+      }
+    },
     "Front lever" : {
       "localizations" : {
         "de" : {
@@ -1297,6 +1627,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ziele mit 5 Stufen"
+          }
+        }
+      }
+    },
+    "Gold" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gold"
+          }
+        }
+      }
+    },
+    "Gold crown" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goldkrone"
+          }
+        }
+      }
+    },
+    "Gold League" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gold-Liga"
           }
         }
       }
@@ -1441,6 +1801,16 @@
         }
       }
     },
+    "How you earn points" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So sammelst du Punkte"
+          }
+        }
+      }
+    },
     "Image" : {
       "localizations" : {
         "de" : {
@@ -1471,6 +1841,16 @@
         }
       }
     },
+    "Inappropriate" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anstößig"
+          }
+        }
+      }
+    },
     "Incline push-up animation" : {
       "localizations" : {
         "de" : {
@@ -1497,6 +1877,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Invertiert"
+          }
+        }
+      }
+    },
+    "Invite via link" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per Link einladen"
           }
         }
       }
@@ -1581,12 +1971,32 @@
         }
       }
     },
+    "Last day" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letzter Tag"
+          }
+        }
+      }
+    },
     "Later" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Später"
+          }
+        }
+      }
+    },
+    "League kept" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liga gehalten"
           }
         }
       }
@@ -1681,6 +2091,16 @@
         }
       }
     },
+    "Longest plank" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Längster Plank"
+          }
+        }
+      }
+    },
     "Lunge animation" : {
       "localizations" : {
         "de" : {
@@ -1771,6 +2191,16 @@
         }
       }
     },
+    "Midfield" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mittelfeld"
+          }
+        }
+      }
+    },
     "Minutes" : {
       "localizations" : {
         "de" : {
@@ -1817,6 +2247,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mehr"
+          }
+        }
+      }
+    },
+    "More skill stages" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehr Skill-Stufen"
           }
         }
       }
@@ -2001,6 +2441,16 @@
         }
       }
     },
+    "Not chosen" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht gewählt"
+          }
+        }
+      }
+    },
     "Not signed in" : {
       "localizations" : {
         "de" : {
@@ -2041,12 +2491,62 @@
         }
       }
     },
+    "Offensive" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beleidigend"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "On Sunday at midnight (UTC) the week is scored: the top 5 move up, the last 5 move down. Workouts added by hand bring no points." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonntag um Mitternacht (UTC) wird gewertet: Die Top 5 steigen auf, die letzten 5 ab. Nachgetragene Trainings bringen keine Punkte."
+          }
+        }
+      }
+    },
     "One-leg front lever animation" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Front Lever mit einem Bein"
+          }
+        }
+      }
+    },
+    "Only letters, digits, dot and underscore" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur Buchstaben, Ziffern, Punkt und Unterstrich"
+          }
+        }
+      }
+    },
+    "Only when you both have Pro" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur wenn ihr beide Pro habt"
           }
         }
       }
@@ -2077,6 +2577,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Orange"
+          }
+        }
+      }
+    },
+    "Other" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonstiges"
+          }
+        }
+      }
+    },
+    "Others in the league only see this name, your avatar and your points." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Andere sehen in der Liga nur diesen Namen, deinen Avatar und deine Punkte."
+          }
+        }
+      }
+    },
+    "Per week in a row" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro Woche in Folge"
           }
         }
       }
@@ -2121,6 +2651,56 @@
         }
       }
     },
+    "Place %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Platz %lld"
+          }
+        }
+      }
+    },
+    "Place %lld of %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Platz %lld von %lld"
+          }
+        }
+      }
+    },
+    "Place %lld of %lld · from Monday %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Platz %lld von %lld · ab Montag %@"
+          }
+        }
+      }
+    },
+    "Place %lld, %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Platz %lld, %@"
+          }
+        }
+      }
+    },
+    "Place %lld, %@, %lld points" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Platz %lld, %@, %lld Punkte"
+          }
+        }
+      }
+    },
     "Plank" : {
       "localizations" : {
         "de" : {
@@ -2141,6 +2721,16 @@
         }
       }
     },
+    "Please choose another name" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte wähle einen anderen Namen"
+          }
+        }
+      }
+    },
     "Prices could not be loaded. Check your internet connection." : {
       "localizations" : {
         "de" : {
@@ -2157,6 +2747,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Datenschutz"
+          }
+        }
+      }
+    },
+    "Prize: “Duel winner” badge" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewinn: Abzeichen „Duellsieger“"
           }
         }
       }
@@ -2187,6 +2787,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fortschritt"
+          }
+        }
+      }
+    },
+    "Promoted!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufgestiegen!"
+          }
+        }
+      }
+    },
+    "Promotion up to here" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufstieg bis hier"
+          }
+        }
+      }
+    },
+    "Promotion zone" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufstiegszone"
           }
         }
       }
@@ -2331,6 +2961,36 @@
         }
       }
     },
+    "Relegated" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abgestiegen"
+          }
+        }
+      }
+    },
+    "Relegation from here" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abstieg ab hier"
+          }
+        }
+      }
+    },
+    "Relegation zone" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abstiegszone"
+          }
+        }
+      }
+    },
     "Reminder" : {
       "localizations" : {
         "de" : {
@@ -2361,6 +3021,26 @@
         }
       }
     },
+    "Report" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Melden"
+          }
+        }
+      }
+    },
+    "Report name?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namen melden?"
+          }
+        }
+      }
+    },
     "Reps" : {
       "localizations" : {
         "de" : {
@@ -2387,6 +3067,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Käufe wiederherstellen"
+          }
+        }
+      }
+    },
+    "Sample data: other people appear once the league server is ready." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beispieldaten: Echte Mitspieler erscheinen, sobald der Liga-Server bereit ist."
           }
         }
       }
@@ -2571,6 +3261,36 @@
         }
       }
     },
+    "Silver" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Silber"
+          }
+        }
+      }
+    },
+    "Silver crown" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Silberkrone"
+          }
+        }
+      }
+    },
+    "Silver League" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Silber-Liga"
+          }
+        }
+      }
+    },
     "Skill" : {
       "localizations" : {
         "de" : {
@@ -2587,6 +3307,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Skill-Fortschritt"
+          }
+        }
+      }
+    },
+    "Skill stage reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skill-Stufe erreicht"
           }
         }
       }
@@ -2691,6 +3421,16 @@
         }
       }
     },
+    "Start a new duel" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neues Duell starten"
+          }
+        }
+      }
+    },
     "Start matching workout" : {
       "localizations" : {
         "de" : {
@@ -2761,6 +3501,16 @@
         }
       }
     },
+    "Take part in the league" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An der Liga teilnehmen"
+          }
+        }
+      }
+    },
     "Tap a locked item to see how to unlock it." : {
       "localizations" : {
         "de" : {
@@ -2821,6 +3571,26 @@
         }
       }
     },
+    "Thanks for reporting" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Danke für die Meldung"
+          }
+        }
+      }
+    },
+    "The best time of the week counts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Bestzeit der Woche zählt"
+          }
+        }
+      }
+    },
     "The file could not be created. Try the image instead." : {
       "localizations" : {
         "de" : {
@@ -2877,6 +3647,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Die Abos sind gerade nicht verfügbar. Bitte versuch es später noch einmal."
+          }
+        }
+      }
+    },
+    "This duel has ended." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Duell ist vorbei."
           }
         }
       }
@@ -2948,6 +3728,46 @@
         }
       }
     },
+    "Top %lld move up" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top %lld steigen auf"
+          }
+        }
+      }
+    },
+    "Touch and hold to report or block" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lange drücken zum Melden oder Blockieren"
+          }
+        }
+      }
+    },
+    "Train against me in a 7-day duel on Unweak." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tritt in Unweak 7 Tage im Duell gegen mich an."
+          }
+        }
+      }
+    },
+    "Train more often" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öfter trainieren"
+          }
+        }
+      }
+    },
     "Trained" : {
       "localizations" : {
         "de" : {
@@ -3004,6 +3824,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Tuck L-Sit"
+          }
+        }
+      }
+    },
+    "Unblock" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Freigeben"
           }
         }
       }
@@ -3098,6 +3928,36 @@
         }
       }
     },
+    "We check reported names." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wir prüfen gemeldete Namen."
+          }
+        }
+      }
+    },
+    "Week %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Woche %lld"
+          }
+        }
+      }
+    },
+    "Weekly league" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wochen-Liga"
+          }
+        }
+      }
+    },
     "Weekly target" : {
       "localizations" : {
         "de" : {
@@ -3108,12 +3968,92 @@
         }
       }
     },
+    "Weekly target reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wochenziel geschafft"
+          }
+        }
+      }
+    },
     "Weeks in a row" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wochen in Folge"
+          }
+        }
+      }
+    },
+    "What is it about?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Worum geht's?"
+          }
+        }
+      }
+    },
+    "Who holds the plank longer?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer hält den Plank länger?"
+          }
+        }
+      }
+    },
+    "Who reaches more skill stages?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer schafft mehr Skill-Stufen?"
+          }
+        }
+      }
+    },
+    "Who trains more often this week?" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer trainiert diese Woche öfter?"
+          }
+        }
+      }
+    },
+    "Whoever finishes more workouts in 7 days" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer in 7 Tagen mehr Trainings schafft"
+          }
+        }
+      }
+    },
+    "Whoever reaches more stages this week" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer diese Woche mehr Stufen schafft"
+          }
+        }
+      }
+    },
+    "Won %lld times" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld-mal gewonnen"
           }
         }
       }
@@ -3134,6 +4074,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Workout geschafft"
+          }
+        }
+      }
+    },
+    "Workout finished" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Training abgeschlossen"
           }
         }
       }
@@ -3164,6 +4114,76 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jahr"
+          }
+        }
+      }
+    },
+    "You" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du"
+          }
+        }
+      }
+    },
+    "You already have 3 running duels." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast schon 3 laufende Duelle."
+          }
+        }
+      }
+    },
+    "You are not placed in a group, cannot be challenged, and your name is not shown anywhere." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du wirst in keine Gruppe gelost, kannst nicht herausgefordert werden und dein Name wird nirgends angezeigt."
+          }
+        }
+      }
+    },
+    "You can change your name again on %@." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kannst deinen Namen am %@ wieder ändern."
+          }
+        }
+      }
+    },
+    "You can change your name once every 30 days." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kannst deinen Namen einmal in 30 Tagen ändern."
+          }
+        }
+      }
+    },
+    "You have not blocked anyone. Touch and hold a name in the league to block it." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast niemanden blockiert. Drück in der Liga lange auf einen Namen, um ihn zu blockieren."
+          }
+        }
+      }
+    },
+    "You join the league as soon as you finish a workout of at least 10 minutes this week." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du bist in der Liga dabei, sobald du diese Woche ein Training von mindestens 10 Minuten abschließt."
           }
         }
       }
