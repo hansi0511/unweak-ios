@@ -91,6 +91,16 @@
         }
       }
     },
+    "%lld min · %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld min · %2$@"
+          }
+        }
+      }
+    },
     "%lld min · %lld exercises" : {
       "localizations" : {
         "de" : {
@@ -257,16 +267,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "%lld workouts free" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld Workouts gratis"
           }
         }
       }
@@ -521,12 +521,12 @@
         }
       }
     },
-    "Best %@ / %@" : {
+    "Best %@ of %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bestzeit %1$@ / %2$@"
+            "value" : "Bestzeit %1$@ von %2$@"
           }
         }
       }
@@ -557,6 +557,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Pistol auf Kasten"
+          }
+        }
+      }
+    },
+    "By area" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach Bereich"
           }
         }
       }
@@ -601,12 +611,22 @@
         }
       }
     },
-    "Choose a skill and get the workouts that build it." : {
+    "Choose a goal. You learn it in 5 stages." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wähle einen Skill und bekomm die Workouts, die dich dorthin bringen."
+            "value" : "Wähle ein Ziel. Du lernst es in 5 Stufen."
+          }
+        }
+      }
+    },
+    "Choose as goal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als Ziel wählen"
           }
         }
       }
@@ -846,7 +866,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erledigt"
+            "value" : "Geschafft"
           }
         }
       }
@@ -1051,6 +1071,56 @@
         }
       }
     },
+    "For back and arms" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für Rücken und Arme"
+          }
+        }
+      }
+    },
+    "For belly and trunk" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für Bauch und Rumpf"
+          }
+        }
+      }
+    },
+    "For chest, shoulders and arms" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für Brust, Schultern und Arme"
+          }
+        }
+      }
+    },
+    "For legs and glutes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für Beine und Po"
+          }
+        }
+      }
+    },
+    "For you" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für dich"
+          }
+        }
+      }
+    },
     "Free" : {
       "localizations" : {
         "de" : {
@@ -1067,16 +1137,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ab %lld Trainings"
-          }
-        }
-      }
-    },
-    "From easy to hard." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Von leicht nach schwer."
           }
         }
       }
@@ -1371,42 +1431,12 @@
         }
       }
     },
-    "Later stages are taken back too." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spätere Stufen werden ebenfalls zurückgenommen."
-          }
-        }
-      }
-    },
     "Learn a skill in 5 stages" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lerne einen Skill in 5 Stufen"
-          }
-        }
-      }
-    },
-    "Learn this skill" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diesen Skill lernen"
-          }
-        }
-      }
-    },
-    "Learning" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lerne ich"
           }
         }
       }
@@ -1511,6 +1541,16 @@
         }
       }
     },
+    "Marks this stage as reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markiert diese Stufe als erreicht"
+          }
+        }
+      }
+    },
     "Master a skill" : {
       "localizations" : {
         "de" : {
@@ -1541,12 +1581,12 @@
         }
       }
     },
-    "Mastered: %@" : {
+    "Mastered!" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beherrscht: %@"
+            "value" : "Gemeistert!"
           }
         }
       }
@@ -1627,6 +1667,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muskeln"
+          }
+        }
+      }
+    },
+    "My goal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mein Ziel"
           }
         }
       }
@@ -1806,7 +1856,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jetzt"
+            "value" : "Jetzt dran"
           }
         }
       }
@@ -2037,6 +2087,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Liegestütz"
+          }
+        }
+      }
+    },
+    "Reached" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreicht"
           }
         }
       }
@@ -2341,12 +2401,12 @@
         }
       }
     },
-    "Shows muscles and benefits" : {
+    "Shows muscles and how it is done" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeigt Muskeln und Nutzen"
+            "value" : "Zeigt Muskeln und Ausführung"
           }
         }
       }
@@ -2391,6 +2451,16 @@
         }
       }
     },
+    "Skills in 5 stages" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skills in 5 Stufen"
+          }
+        }
+      }
+    },
     "Squat" : {
       "localizations" : {
         "de" : {
@@ -2431,6 +2501,16 @@
         }
       }
     },
+    "Stage %lld of %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stufe %1$lld von %2$lld"
+          }
+        }
+      }
+    },
     "Stage %lld: %@" : {
       "localizations" : {
         "de" : {
@@ -2441,22 +2521,22 @@
         }
       }
     },
-    "Stage reached" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stufe erreicht"
-          }
-        }
-      }
-    },
     "Start" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Start"
+          }
+        }
+      }
+    },
+    "Start matching workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passendes Workout starten"
           }
         }
       }
@@ -2531,22 +2611,12 @@
         }
       }
     },
-    "Take back" : {
+    "Switching off also takes back the later stages." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zurücknehmen"
-          }
-        }
-      }
-    },
-    "Take back “%@”?" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "„%@“ zurücknehmen?"
+            "value" : "Ausschalten nimmt auch die späteren Stufen zurück."
           }
         }
       }
@@ -2888,16 +2958,6 @@
         }
       }
     },
-    "Workouts for this skill" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Workouts für diesen Skill"
-          }
-        }
-      }
-    },
     "Yearly" : {
       "localizations" : {
         "de" : {
@@ -2928,12 +2988,32 @@
         }
       }
     },
+    "Your goal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Ziel"
+          }
+        }
+      }
+    },
     "Your goal: %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dein Ziel: %@"
+          }
+        }
+      }
+    },
+    "Your path" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Weg"
           }
         }
       }

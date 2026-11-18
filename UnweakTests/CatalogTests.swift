@@ -185,13 +185,21 @@ struct TimeTextTests {
     }
 }
 
-struct WorkoutFilterTests {
-    @Test func offersAllAndTheGeneralCategoriesButNotSkill() {
-        #expect(WorkoutFilter.allFilters.count == ExerciseCategory.allCases.count)
-        #expect(WorkoutFilter.allFilters.first == .all)
-        #expect(!WorkoutFilter.allFilters.contains(.category(.skill)))
-        #expect(WorkoutFilter.all.category == nil)
-        #expect(WorkoutFilter.category(.legs).category == .legs)
+struct AreaTests {
+    @Test func theFourAreasWithoutSkills() {
+        #expect(ExerciseCategory.areas == [.push, .pull, .legs, .core])
+        #expect(!ExerciseCategory.areas.contains(.skill))
+    }
+
+    @Test func stagesAreSpreadOverTheSkillWorkouts() throws {
+        let catalog = Catalog.main
+        let frontLever = try #require(catalog.goals.first { $0.id == "frontLever" })
+        // Three workouts over five stages: 0, 0, 1, 1, 2.
+        let ids = (0..<5).compactMap { catalog.plan(forStage: $0, of: frontLever)?.id }
+        #expect(ids == ["pullDay", "pullDay", "pullStrength", "pullStrength", "frontLeverBuildUp"])
+        #expect(catalog.plan(forStage: 9, of: frontLever)?.id == "frontLeverBuildUp")
+        let plank = try #require(catalog.goals.first { $0.id == "plank5Min" })
+        #expect(catalog.plan(forStage: 3, of: plank)?.id == plank.plans.first)
     }
 }
 

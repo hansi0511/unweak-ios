@@ -129,4 +129,4 @@ Drei Tabs wie bisher: Ich, Workouts, Journey.
 ## Offen
 
 - Erster Start für Neulinge (drei Fragen: Ziel, Niveau, Trainingstage) ist noch nicht entworfen.
-- Texte „Jetzt dran“ je Skill-Stufe fehlen.
+- Texte „Jetzt dran“ je Skill-Stufe: als Entwurf in `tools/content/content.py` (fünfter Wert jeder Stufe); Haltezeiten und Wiederholungen müssen fachlich geprüft werden.

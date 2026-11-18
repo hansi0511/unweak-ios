@@ -6,15 +6,13 @@ import Testing
 struct NavigationTests {
     @Test func showSkillsOpensTheSkillsAreaAtItsRoot() {
         let navigation = AppNavigation()
-        navigation.workoutsArea = .workouts
-        let before = navigation.workoutsStackID
+        navigation.workoutsPath = [.area(.pull)]
 
         navigation.showSkills()
 
         #expect(navigation.selectedTab == .workouts)
-        #expect(navigation.workoutsArea == .skills)
-        // A new ID rebuilds the workouts stack, so pushed screens are gone.
-        #expect(navigation.workoutsStackID != before)
+        // Only the skills are on the stack; screens pushed before are gone.
+        #expect(navigation.workoutsPath == [.skills])
     }
 
     @Test func showJournalEntryOpensTheEntry() {

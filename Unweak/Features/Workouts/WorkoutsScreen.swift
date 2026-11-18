@@ -1,204 +1,213 @@
 import SwiftUI
 
-/// Filter of the workouts list: all plans or one category. Single selection.
-enum WorkoutFilter: Hashable, Identifiable {
-    case all
-    case category(ExerciseCategory)
-
-    /// "All" and the general categories; skill workouts live in the Skills area.
-    static let allFilters: [WorkoutFilter] = {
-        let categories: [ExerciseCategory] = ExerciseCategory.allCases.filter { $0 != .skill }
-        return [.all] + categories.map { .category($0) }
-    }()
-
-    var id: Self { self }
-
-    var title: LocalizedStringKey {
-        switch self {
-        case .all: "All"
-        case .category(let category): category.title
-        }
-    }
-
-    var category: ExerciseCategory? {
-        switch self {
-        case .all: nil
-        case .category(let category): category
-        }
-    }
-}
-
-/// The two areas of the workouts tab.
-enum WorkoutsArea: Hashable {
-    /// Skills such as Front Lever, each with its matching workouts.
-    case skills
-    /// General workouts and custom workouts, filterable by category.
-    case workouts
-}
-
-/// Workouts tab with two areas: skills (highlighted, first) and workouts. Free plans
-/// start the workout; subscription plans lead to the subscription page.
+/// Workouts tab (Design V2, `V2-Workouts`): two suggested workouts ("For you"), the four
+/// areas as tiles, and a card that leads to the skills. The plus creates a custom workout.
 struct WorkoutsScreen: View {
     @Environment(UserDataStore.self) private var store
     @Environment(SubscriptionStore.self) private var subscription
-    /// Holds the area, so that other tabs can open the skills; missing in some previews.
-    @Environment(AppNavigation.self) private var navigation: AppNavigation?
-    private let catalog: Catalog
-    @State private var localArea: WorkoutsArea = .skills
-    @State private var filter: WorkoutFilter = .all
     @State private var isShowingPaywall = false
-    @State private var editing: CustomWorkout?
-    @State private var deleting: CustomWorkout?
+    @State private var isCreating = false
+    private let catalog: Catalog
 
     init(catalog: Catalog = .main) {
         self.catalog = catalog
     }
 
-    private var area: WorkoutsArea {
-        get { navigation?.workoutsArea ?? localArea }
-        nonmutating set {
-            if let navigation {
-                navigation.workoutsArea = newValue
-            } else {
-                localArea = newValue
-            }
-        }
-    }
+    private let columns = [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)]
 
     var body: some View {
+        let stats = JournalStats(entries: store.entries)
+        let goals = subscription.access.canUseSkills ? store.activeGoals(in: catalog) : []
+        let suggestions = stats.nextWorkouts(
+            in: catalog,
+            access: subscription.access,
+            preferring: goals.flatMap(\.plans),
+            count: 2
+        )
+
         ScreenContainer {
-            ScreenHeader(label: MonoLabel("\(catalog.freePlanCount) workouts free"), title: "Workouts") {
-                if area == .workouts {
+            HStack {
+                Text("Workouts")
+                    .font(.screenTitle)
+                    .foregroundStyle(Theme.text)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer()
+                IconButton(systemImage: "plus", accessibilityLabel: "Create custom workout") {
                     if subscription.access.canCreateCustomWorkout(existing: store.customWorkouts.count) {
-                        NavigationLink {
-                            CustomWorkoutEditor(workout: nil, catalog: catalog)
-                        } label: {
-                            ChipLabel("Custom", systemImage: "plus", style: .dashed)
-                        }
-                        .buttonStyle(PressFeedbackStyle())
+                        isCreating = true
                     } else {
                         // Free version: three custom workouts; more with Pro.
-                        Button {
-                            isShowingPaywall = true
-                        } label: {
-                            ChipLabel("Custom", systemImage: "lock.fill", style: .dashed)
-                        }
-                        .buttonStyle(PressFeedbackStyle())
-                    }
-                }
-            }
-
-            HStack(spacing: 8) {
-                SelectChip("Skills", isSelected: area == .skills, expands: true) {
-                    area = .skills
-                }
-                SelectChip("Workouts", isSelected: area == .workouts, expands: true) {
-                    area = .workouts
-                }
-            }
-
-            switch area {
-            case .skills:
-                SkillList(catalog: catalog)
-            case .workouts:
-                workoutsArea
-            }
-        }
-        .sheet(isPresented: $isShowingPaywall) {
-            PaywallSheet()
-        }
-        .navigationDestination(item: $editing) { workout in
-            CustomWorkoutEditor(workout: workout, catalog: catalog)
-        }
-        .confirmationDialog(
-            "Delete this workout?",
-            isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } }),
-            titleVisibility: .visible,
-            presenting: deleting
-        ) { workout in
-            Button("Delete workout", role: .destructive) {
-                store.delete(workout)
-            }
-        } message: { _ in
-            Text("Workouts already saved in your Journey are kept.")
-        }
-    }
-
-    /// Filter and list of the general and custom workouts.
-    private var workoutsArea: some View {
-        VStack(alignment: .leading, spacing: Theme.Layout.blockSpacing) {
-            ScrollView(.horizontal) {
-                HStack(spacing: 8) {
-                    ForEach(WorkoutFilter.allFilters) { item in
-                        SelectChip(item.title, isSelected: item == filter) {
-                            filter = item
-                        }
-                    }
-                }
-            }
-            .scrollIndicators(.hidden)
-
-            VStack(spacing: 10) {
-                ForEach(customWorkouts) { workout in
-                    NavigationLink {
-                        TrainingScreen(plan: workout.plan(in: catalog), catalog: catalog)
-                    } label: {
-                        PlanRow(plan: workout.plan(in: catalog), badge: .custom)
-                    }
-                    .buttonStyle(PressFeedbackStyle())
-                    .contextMenu {
-                        Button {
-                            editing = workout
-                        } label: {
-                            Label("Edit", systemImage: "pencil")
-                        }
-                        Button(role: .destructive) {
-                            deleting = workout
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
-                    }
-                }
-                ForEach(catalog.workoutPlans(category: filter.category)) { plan in
-                    PlanLink(plan: plan, catalog: catalog) {
                         isShowingPaywall = true
                     }
                 }
             }
+
+            if !suggestions.isEmpty {
+                VStack(alignment: .leading, spacing: 10) {
+                    sectionTitle("For you")
+                    ForEach(Array(suggestions.enumerated()), id: \.element.id) { index, plan in
+                        NavigationLink {
+                            TrainingScreen(plan: plan, catalog: catalog)
+                        } label: {
+                            WorkoutCard(plan: plan, isHighlighted: index == 0)
+                        }
+                        .buttonStyle(PressFeedbackStyle())
+                    }
+                }
+            }
+
+            VStack(alignment: .leading, spacing: 10) {
+                sectionTitle("By area")
+                LazyVGrid(columns: columns, spacing: 10) {
+                    ForEach(ExerciseCategory.areas, id: \.self) { area in
+                        NavigationLink(value: WorkoutsRoute.area(area)) {
+                            AreaTile(area: area, count: workoutCount(in: area))
+                        }
+                        .buttonStyle(PressFeedbackStyle())
+                    }
+                }
+            }
+
+            NavigationLink(value: WorkoutsRoute.skills) {
+                SkillsCard()
+            }
+            .buttonStyle(PressFeedbackStyle())
+        }
+        .navigationDestination(for: WorkoutsRoute.self) { route in
+            switch route {
+            case .skills: SkillsScreen(catalog: catalog)
+            case .area(let area): AreaScreen(area: area, catalog: catalog)
+            }
+        }
+        .navigationDestination(isPresented: $isCreating) {
+            CustomWorkoutEditor(workout: nil, catalog: catalog)
+        }
+        .sheet(isPresented: $isShowingPaywall) {
+            PaywallSheet()
         }
     }
 
-    /// Custom workouts of the selected category, shown above the plans.
-    private var customWorkouts: [CustomWorkout] {
-        store.customWorkouts.filter { filter.category == nil || $0.category == filter.category }
+    /// Catalog plans and custom workouts of an area.
+    private func workoutCount(in area: ExerciseCategory) -> Int {
+        catalog.workoutPlans(category: area).count + store.customWorkouts.filter { $0.category == area }.count
+    }
+
+    private func sectionTitle(_ title: LocalizedStringKey) -> some View {
+        Text(title)
+            .font(.buttonTitle)
+            .foregroundStyle(Theme.text)
+            .accessibilityAddTraits(.isHeader)
     }
 }
 
-/// A plan row that starts the workout, or asks for the subscription if the plan needs Pro.
-struct PlanLink: View {
-    @Environment(SubscriptionStore.self) private var subscription
-    let plan: WorkoutPlan
-    let catalog: Catalog
-    let onSubscriptionNeeded: () -> Void
+/// One area tile: pose, name and number of workouts.
+private struct AreaTile: View {
+    let area: ExerciseCategory
+    let count: Int
 
     var body: some View {
-        if subscription.access.canTrain(plan) {
-            NavigationLink {
-                TrainingScreen(plan: plan, catalog: catalog)
-            } label: {
-                PlanRow(plan: plan)
-            }
-            .buttonStyle(PressFeedbackStyle())
-        } else {
-            Button(action: onSubscriptionNeeded) {
-                PlanRow(plan: plan)
-            }
-            .buttonStyle(PressFeedbackStyle())
+        VStack(alignment: .leading, spacing: 4) {
+            StickyPoseView(area.areaPose)
+                .accessibilityHidden(true)
+            Spacer(minLength: 0)
+            Text(area.title)
+                .font(.textSemibold(17))
+                .foregroundStyle(Theme.text)
+            Text("\(count) workouts")
+                .font(.text(13))
+                .foregroundStyle(Theme.textMuted)
         }
+        .padding(12)
+        .frame(maxWidth: .infinity, minHeight: 112, maxHeight: 112, alignment: .leading)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
     }
 }
 
-/// One plan in the list: pose, name, metadata and badge (Free, Pro or Custom).
+/// "Skills · PRO" with one sentence; opens the skills.
+private struct SkillsCard: View {
+    var body: some View {
+        HStack(spacing: 14) {
+            StickyPoseView(.frontLever)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 8) {
+                    Text("Skills")
+                        .font(.grotesk(20))
+                        .foregroundStyle(Theme.text)
+                    Badge(kind: .subscription)
+                }
+                Text("Front lever, muscle-up and more in 5 stages")
+                    .font(.text(14))
+                    .foregroundStyle(Theme.textSoft)
+                    .multilineTextAlignment(.leading)
+            }
+            Spacer(minLength: 0)
+            Image(systemName: "chevron.right")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(Theme.textMuted)
+                .accessibilityHidden(true)
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
+    }
+}
+
+/// A workout as a card (Design V2): pose, name, "21 min · Beginner", an optional badge
+/// and a play circle. Highlighted: accent outline and a filled play button.
+struct WorkoutCard: View {
+    @Environment(\.accent) private var accent
+    let plan: WorkoutPlan
+    var isHighlighted = false
+    var badge: Badge.Kind?
+
+    var body: some View {
+        HStack(spacing: 14) {
+            StickyPoseView(plan.pose)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 8) {
+                    plan.title
+                        .font(.textSemibold(18))
+                        .foregroundStyle(Theme.text)
+                        .multilineTextAlignment(.leading)
+                    if let badge {
+                        Badge(kind: badge)
+                    }
+                }
+                Text("\(plan.estimatedMinutes) min · \(Text(plan.level.title))")
+                    .font(.text(14))
+                    .foregroundStyle(Theme.textMuted)
+            }
+            Spacer(minLength: 0)
+            Image(systemName: "play.fill")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(isHighlighted ? Theme.onAccent : accent.color)
+                .frame(width: Theme.Layout.minTouchTarget, height: Theme.Layout.minTouchTarget)
+                .background(Circle().fill(isHighlighted ? accent.color : Color.clear))
+                .overlay(Circle().strokeBorder(accent.color, lineWidth: isHighlighted ? 0 : 1.5))
+                .accessibilityHidden(true)
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(isHighlighted ? accent.color : Theme.line, lineWidth: isHighlighted ? 2 : 1))
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
+    }
+}
+
+/// One plan in a list: pose, name, metadata and badge (Free, Pro or Custom). Used when
+/// adding a workout by hand in the Journey.
 struct PlanRow: View {
     private let plan: WorkoutPlan
     private let badge: Badge.Kind

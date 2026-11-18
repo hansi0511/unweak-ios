@@ -9,24 +9,27 @@ enum JournalRoute: Hashable {
     case newEntry(planID: String)
 }
 
-/// App-wide navigation state: the selected tab, the journal path and whether the
+/// Screens pushed in the workouts tab.
+enum WorkoutsRoute: Hashable {
+    case skills
+    /// The workouts of one area (push, pull, legs, core).
+    case area(ExerciseCategory)
+}
+
+/// App-wide navigation state: the selected tab, the workouts and journal paths and whether the
 /// tab bar is shown. Provided by `RootView` through the environment.
 @MainActor
 @Observable
 final class AppNavigation {
     var selectedTab: AppTab = .me
     var journalPath: [JournalRoute] = []
-    /// Area shown in the workouts tab.
-    var workoutsArea: WorkoutsArea = .skills
-    /// Changing it rebuilds the workouts stack, so that it starts at its root again.
-    private(set) var workoutsStackID = UUID()
+    var workoutsPath: [WorkoutsRoute] = []
     /// Hidden while a full-focus screen such as a running workout is shown.
     var isTabBarHidden = false
 
-    /// Switches to the workouts tab, back at its root, with the skills area shown.
+    /// Switches to the workouts tab and shows the skills, with nothing else on the stack.
     func showSkills() {
-        workoutsArea = .skills
-        workoutsStackID = UUID()
+        workoutsPath = [.skills]
         selectedTab = .workouts
     }
 

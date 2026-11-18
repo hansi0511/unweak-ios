@@ -1939,6 +1939,23 @@
         }
       }
     },
+    "goal.frontLever.stage1.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knie zur Brust, Rücken gerade. Halte 10 Sekunden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knees to your chest, back straight. Hold 10 seconds."
+          }
+        }
+      }
+    },
     "goal.frontLever.stage2" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1986,6 +2003,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your lats and belly get a good deal more to do, and your lower back joins in to keep it nice and flat."
+          }
+        }
+      }
+    },
+    "goal.frontLever.stage2.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hüfte gestreckt, Knie gebeugt, Rücken flach. Halte 10 Sekunden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips open, knees bent, back flat. Hold 10 seconds."
           }
         }
       }
@@ -2041,6 +2075,23 @@
         }
       }
     },
+    "goal.frontLever.stage3.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Bein gestreckt, eins gebeugt. Halte 8 Sekunden pro Seite."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One leg straight, one bent. Hold 8 seconds per side."
+          }
+        }
+      }
+    },
     "goal.frontLever.stage4" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2092,6 +2143,23 @@
         }
       }
     },
+    "goal.frontLever.stage4.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beide Beine gestreckt und gegrätscht. Halte 6 Sekunden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Both legs straight and spread wide. Hold 6 seconds."
+          }
+        }
+      }
+    },
     "goal.frontLever.stage5" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2139,6 +2207,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Everything at once: lats, belly, glutes and the backs of your shoulders hold you from head to toe like a plank of wood."
+          }
+        }
+      }
+    },
+    "goal.frontLever.stage5.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Körper ganz gestreckt und waagrecht. Halte 5 Sekunden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Body fully straight and level. Hold 5 seconds."
           }
         }
       }
@@ -2245,6 +2330,23 @@
         }
       }
     },
+    "goal.handstandPushUp.stage1.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hüfte hoch, Kopf zwischen die Hände. Schaffe 3 × 8."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips high, head between your hands. Do 3 sets of 8."
+          }
+        }
+      }
+    },
     "goal.handstandPushUp.stage2" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2292,6 +2394,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shoulders and triceps get more weight to carry, and your belly keeps the tent nice and steady."
+          }
+        }
+      }
+    },
+    "goal.handstandPushUp.stage2.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Füße auf dem Kasten, Hüfte über den Schultern. Schaffe 3 × 6."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feet on a box, hips above your shoulders. Do 3 sets of 6."
           }
         }
       }
@@ -2347,6 +2466,23 @@
         }
       }
     },
+    "goal.handstandPushUp.stage3.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rücken zur Wand, Arme gestreckt. Halte 30 Sekunden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back to the wall, arms straight. Hold 30 seconds."
+          }
+        }
+      }
+    },
     "goal.handstandPushUp.stage4" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2398,6 +2534,23 @@
         }
       }
     },
+    "goal.handstandPushUp.stage4.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An der Wand halb ablassen und hochdrücken. Schaffe 3 × 5."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower halfway down the wall and press up. Do 3 sets of 5."
+          }
+        }
+      }
+    },
     "goal.handstandPushUp.stage5" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2445,6 +2598,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shoulders, triceps, upper chest and belly, all working together as one strong team."
+          }
+        }
+      }
+    },
+    "goal.handstandPushUp.stage5.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopf bis zum Boden und ganz hoch. Schaffe 3 × 3."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Head to the floor and all the way up. Do 3 sets of 3."
           }
         }
       }
@@ -2602,6 +2772,23 @@
         }
       }
     },
+    "goal.muscleUp.stage1.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kinn über die Stange, ohne Schwung. Schaffe 10 am Stück."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chin over the bar, no swinging. Do 10 in a row."
+          }
+        }
+      }
+    },
     "goal.muscleUp.stage2" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2649,6 +2836,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lats and biceps pull extra hard, and your middle back squeezes your shoulder blades together."
+          }
+        }
+      }
+    },
+    "goal.muscleUp.stage2.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zieh, bis die Brust die Stange berührt. Schaffe 3 × 5."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull until your chest touches the bar. Do 3 sets of 5."
           }
         }
       }
@@ -2704,6 +2908,23 @@
         }
       }
     },
+    "goal.muscleUp.stage3.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schultern unten, Oberarme unten waagrecht. Schaffe 10 am Stück."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoulders down, upper arms level at the bottom. Do 10 in a row."
+          }
+        }
+      }
+    },
     "goal.muscleUp.stage4" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2755,6 +2976,23 @@
         }
       }
     },
+    "goal.muscleUp.stage4.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus dem Stütz über der Stange in 5 Sekunden ablassen. Schaffe 3 × 3."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From support above the bar, lower in 5 seconds. Do 3 sets of 3."
+          }
+        }
+      }
+    },
     "goal.muscleUp.stage5" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2802,6 +3040,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lats, chest, triceps, shoulders and belly, your whole upper body in one big team move."
+          }
+        }
+      }
+    },
+    "goal.muscleUp.stage5.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziehen, über die Stange drehen, in den Stütz drücken. Schaffe 1 saubere Wiederholung."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull, turn over the bar, press to support. Do 1 clean rep."
           }
         }
       }
@@ -2908,6 +3163,23 @@
         }
       }
     },
+    "goal.pistolSquat.stage1.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fersen am Boden, ganz nach unten. Halte unten 30 Sekunden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feet flat, all the way down. Hold the bottom 30 seconds."
+          }
+        }
+      }
+    },
     "goal.pistolSquat.stage2" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2955,6 +3227,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fronts and backs of the thighs and your glutes, with the front leg doing most of the work."
+          }
+        }
+      }
+    },
+    "goal.pistolSquat.stage2.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorderes Knie über dem Fuß. Schaffe 3 × 10 pro Bein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front knee over the foot. Do 3 sets of 10 per leg."
           }
         }
       }
@@ -3010,6 +3299,23 @@
         }
       }
     },
+    "goal.pistolSquat.stage3.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf einem Bein auf den Kasten setzen. Schaffe 3 × 5 pro Bein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sit back onto the box on one leg. Do 3 sets of 5 per leg."
+          }
+        }
+      }
+    },
     "goal.pistolSquat.stage4" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3061,6 +3367,23 @@
         }
       }
     },
+    "goal.pistolSquat.stage4.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An der Stange festhalten, ganz runter. Schaffe 3 × 5 pro Bein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold the pole, go all the way down. Do 3 sets of 5 per leg."
+          }
+        }
+      }
+    },
     "goal.pistolSquat.stage5" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3108,6 +3431,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fronts of the thighs, glutes, inner thighs and belly, all doing their part together."
+          }
+        }
+      }
+    },
+    "goal.pistolSquat.stage5.tip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganz runter und hoch, ohne Hilfe. Schaffe 3 pro Bein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All the way down and up, no help. Do 3 per leg."
           }
         }
       }
