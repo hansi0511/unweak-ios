@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>V2 Freund herausfordern</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+body{margin:0}
+a{color:#EAF2F5;text-decoration:none}a:hover{color:#FFFFFF}
+
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #07090C; color: #EAF2F5; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; padding: 20px 20px 24px; gap: 20px">
+<a href="V2-Duell.dc.html" aria-label="Schließen" style="width: 44px; height: 44px; border: 1px solid #1E2A33; background: #0B1015; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; letter-spacing: -0.6px; line-height: 1.05">Freund herausfordern</h1>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700">Worum geht's?</h2>
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="3">
+<button type="button" onClick="{{m.pick}}" aria-pressed="{{m.pressed}}" style="display: flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 14px; border: 2px solid {{m.border}}; background: {{m.bg}}; color: #EAF2F5; text-align: left; cursor: pointer"><div style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: {{m.tone}}">{{m.name}}</div><div style="font-family: 'Inter', sans-serif; font-size: 13px; color: #9FB0BC">{{m.sub}}</div></button>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700">Gegen wen?</h2>
+<sc-for list="{{friends}}" as="f" hint-placeholder-count="2">
+<button type="button" onClick="{{f.pick}}" aria-pressed="{{f.pressed}}" style="display: flex; align-items: center; gap: 12px; height: 60px; padding: 0 14px 0 10px; border: 2px solid {{f.border}}; background: {{f.bg}}; color: #EAF2F5; cursor: pointer"><svg aria-hidden="true" viewBox="0 0 100 100" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: block; width: 40px; height: 40px; flex-shrink: 0; ">
+<path d="{{f.av.fillD}}" fill="{{f.av.fg}}" fill-opacity="{{f.av.fillOp}}" stroke="none"></path>
+<path d="{{f.av.lines}}" stroke="{{f.av.fg}}" stroke-width="{{f.av.w}}"></path>
+<circle cx="{{f.av.hx}}" cy="{{f.av.hy}}" r="{{f.av.r}}" fill="#0B1015" stroke="{{f.av.fg}}" stroke-width="{{f.av.w}}"></circle>
+<path d="{{f.av.solid}}" fill="{{f.av.fg}}" stroke="none"></path>
+<path d="{{f.av.exFill}}" fill="{{f.av.exColor}}" stroke="none"></path>
+<path d="{{f.av.exLine}}" stroke="{{f.av.exColor}}" stroke-width="{{f.av.exW}}"></path>
+</svg><div style="flex-grow: 1; text-align: left; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600">{{f.name}}</div></button>
+</sc-for>
+<button type="button" style="height: 52px; border: 1px dashed {{accent}}; background: transparent; color: {{accent}}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer">Per Link einladen</button>
+</div>
+<div style="flex-grow: 1"></div>
+<a href="V2-Duell.dc.html" style="height: 60px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; gap: 10px; background: {{accent}}; color: #07090C; box-shadow: 0 0 24px {{glow}}; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700">Herausfordern</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C6F24E","options":["#C6F24E","#5CE1FF","#FFB547","#FF7566","#FF7AB8","#A995FF"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { mode: 'count', friend: 'mara' }; }
+renderVals() {
+var accent = this.props.accent ?? '#C6F24E';
+var glow = /^#[0-9a-fA-F]{6}$/.test(accent) ? accent + '66' : accent;
+var self = this;
+var st = this.state || {};
+
+var BODY = {
+start: { hx: 50, hy: 24, r: 6.5, w: 3, lines: 'M50 30.5V63M50 38L40 55M50 38L60 55M50 63L42 88M50 63L58 88', fill: 'M0 0', op: 0, solid: 'M0 0' },
+athlete: { hx: 50, hy: 22, r: 7, w: 3.6, lines: 'M50 29V63M42 38H58M42 38L33 22M58 38L67 22M50 63L41 88M50 63L59 88', fill: 'M0 0', op: 0, solid: 'M0 0' },
+trained: { hx: 50, hy: 21, r: 8, w: 4.6, lines: 'M50 29V38M36 38L64 38L50 64ZM36 38Q24 36 25 24M64 38Q76 36 75 24M50 64Q38 70 40 89M50 64Q62 70 60 89', fill: 'M36 38L64 38L50 64Z', op: 0.3, solid: 'M21.8 22a3.2 3.2 0 1 0 6.4 0a3.2 3.2 0 1 0 -6.4 0M71.8 22a3.2 3.2 0 1 0 6.4 0a3.2 3.2 0 1 0 -6.4 0' }
+};
+function fig(body, color, extra, exColor) {
+var b = BODY[body];
+var hx = b.hx, hy = b.hy, r = b.r, x = 'M0 0', xf = 'M0 0', xw = 2.4;
+if (extra === 'headband') x = 'M' + (hx - r) + ' ' + (hy - 0.35 * r).toFixed(2) + 'L' + (hx + r) + ' ' + (hy - 0.55 * r).toFixed(2) + 'l6 ' + (0.45 * r).toFixed(2);
+if (extra === 'visor') { x = 'M' + (hx - r - 0.5) + ' ' + (hy - 0.5) + 'H' + (hx + r + 0.5); xw = 3.2; }
+if (extra === 'crown') { var t = hy - r; xf = 'M' + (hx - r) + ' ' + (t - 1.5) + 'L' + (hx - r) + ' ' + (t - 8) + 'L' + (hx - r / 2) + ' ' + (t - 4.5) + 'L' + hx + ' ' + (t - 10) + 'L' + (hx + r / 2) + ' ' + (t - 4.5) + 'L' + (hx + r) + ' ' + (t - 8) + 'L' + (hx + r) + ' ' + (t - 1.5) + 'Z'; }
+if (extra === 'cap') { var R = r + 1.2; xf = 'M' + (hx - R) + ' ' + hy + 'A' + R + ' ' + R + ' 0 0 1 ' + (hx + R) + ' ' + hy + 'Z'; x = 'M' + hx + ' ' + (hy - 0.15 * r).toFixed(2) + 'H' + (hx + r + 6); xw = 2.6; }
+return { fg: color, w: b.w, hx: hx, hy: hy, r: r, lines: b.lines, fillD: b.fill, fillOp: b.op, solid: b.solid, exLine: x, exFill: xf, exW: xw, exColor: exColor || '#EAF2F5' };
+}
+function pick(list, key, cur) {
+return list.map(function (m) {
+var on = m[0] === cur;
+return { id: m[0], name: m[1], sub: m[2], pressed: on ? 'true' : 'false', border: on ? accent : '#1E2A33', bg: on ? '#111920' : '#0B1015', tone: on ? accent : '#EAF2F5', pick: function () { var o = {}; o[key] = m[0]; self.setState(o); } };
+});
+}
+var modes = pick([['count', 'Öfter trainieren', 'Wer in 7 Tagen mehr Trainings schafft'], ['plank', 'Längster Plank', 'Bestzeit der Woche zählt'], ['skill', 'Mehr Skill-Stufen', 'Wer diese Woche mehr Stufen schafft']], 'mode', st.mode || 'count');
+var avs = { mara: fig('trained', '#FF7AB8', 'headband', '#EAF2F5'), joe: fig('athlete', '#FFB547', 'cap', '#EAF2F5') };
+var friends = pick([['mara', 'mara_moves', ''], ['joe', 'bar.joe', '']], 'friend', st.friend || 'mara').map(function (f) { f.av = avs[f.id]; return f; });
+return { accent: accent, glow: glow, modes: modes, friends: friends };
+}
+}
+</script>
+</body>
+</html>
