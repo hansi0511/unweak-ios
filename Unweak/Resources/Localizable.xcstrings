@@ -41,6 +41,26 @@
         }
       }
     },
+    "%@ per month" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pro Monat"
+          }
+        }
+      }
+    },
+    "%@ · %lld min" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld min"
+          }
+        }
+      }
+    },
     "%@, %@" : {
       "localizations" : {
         "de" : {
@@ -147,6 +167,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld von %2$lld"
+          }
+        }
+      }
+    },
+    "%lld of %lld done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld geschafft"
           }
         }
       }
@@ -291,12 +321,32 @@
         }
       }
     },
+    "+ Add exercise" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+ Übung hinzufügen"
+          }
+        }
+      }
+    },
     "+ Add note" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "+ Notiz hinzufügen"
+          }
+        }
+      }
+    },
+    "10 workouts always stay free." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 Workouts bleiben immer gratis."
           }
         }
       }
@@ -406,7 +456,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Training hinzufügen"
+            "value" : "Training nachtragen"
           }
         }
       }
@@ -417,6 +467,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fügt den Skill zum Tab „Ich“ hinzu"
+          }
+        }
+      }
+    },
+    "Adjust sets and target" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sätze und Ziel anpassen"
           }
         }
       }
@@ -461,6 +521,16 @@
         }
       }
     },
+    "All 6 skills" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle 6 Skills"
+          }
+        }
+      }
+    },
     "All levels reached" : {
       "localizations" : {
         "de" : {
@@ -481,12 +551,12 @@
         }
       }
     },
-    "All skills with their workouts, from easy to hard" : {
+    "Area" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alle Skills mit ihren Workouts, von leicht nach schwer"
+            "value" : "Bereich"
           }
         }
       }
@@ -631,22 +701,22 @@
         }
       }
     },
+    "Cancel anytime" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jederzeit kündbar"
+          }
+        }
+      }
+    },
     "Cap" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kappe"
-          }
-        }
-      }
-    },
-    "Category" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kategorie"
           }
         }
       }
@@ -687,16 +757,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wähle den Plan, den du trainiert hast."
-          }
-        }
-      }
-    },
-    "Choose X, Facebook or Instagram in the next step. Story fits Instagram and Facebook stories, Post fits the feed." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wähle im nächsten Schritt X, Facebook oder Instagram. Story passt für Instagram- und Facebook-Storys, Post für den Feed."
           }
         }
       }
@@ -777,16 +837,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eigenes Workout erstellen"
-          }
-        }
-      }
-    },
-    "Create workout" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Workout erstellen"
           }
         }
       }
@@ -1001,32 +1051,12 @@
         }
       }
     },
-    "Equals %@ per month" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Entspricht %@ pro Monat"
-          }
-        }
-      }
-    },
     "Exercises" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Übungen"
-          }
-        }
-      }
-    },
-    "Exercises %lld · Sets %lld" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Übungen %1$lld · Sätze %2$lld"
           }
         }
       }
@@ -1187,6 +1217,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fortschritt zum Ziel"
+          }
+        }
+      }
+    },
+    "Goals with 5 stages" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziele mit 5 Stufen"
           }
         }
       }
@@ -1377,6 +1417,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Passt"
+          }
+        }
+      }
+    },
+    "Kind" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Art"
           }
         }
       }
@@ -1631,12 +1681,22 @@
         }
       }
     },
-    "Monthly" : {
+    "Month" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Monatlich"
+            "value" : "Monat"
+          }
+        }
+      }
+    },
+    "monthly" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "monatlich"
           }
         }
       }
@@ -1751,6 +1811,16 @@
         }
       }
     },
+    "New workout" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neues Workout"
+          }
+        }
+      }
+    },
     "Next exercise" : {
       "localizations" : {
         "de" : {
@@ -1801,16 +1871,6 @@
         }
       }
     },
-    "No workouts yet" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch keine Trainings"
-          }
-        }
-      }
-    },
     "None" : {
       "localizations" : {
         "de" : {
@@ -1827,6 +1887,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nicht angemeldet"
+          }
+        }
+      }
+    },
+    "Not trained" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht trainiert"
           }
         }
       }
@@ -1947,16 +2017,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Plank"
-          }
-        }
-      }
-    },
-    "Post" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Post"
           }
         }
       }
@@ -2221,16 +2281,6 @@
         }
       }
     },
-    "Save workout" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Workout speichern"
-          }
-        }
-      }
-    },
     "Search exercises" : {
       "localizations" : {
         "de" : {
@@ -2261,16 +2311,6 @@
         }
       }
     },
-    "Sessions" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trainings"
-          }
-        }
-      }
-    },
     "Set %lld" : {
       "localizations" : {
         "de" : {
@@ -2287,16 +2327,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Satz %1$lld von %2$lld"
-          }
-        }
-      }
-    },
-    "Set a skill as your goal and track its stages" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einen Skill als Ziel setzen und seine Stufen verfolgen"
           }
         }
       }
@@ -2361,32 +2391,12 @@
         }
       }
     },
-    "Share image" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bild teilen"
-          }
-        }
-      }
-    },
     "Share progress" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fortschritt teilen"
-          }
-        }
-      }
-    },
-    "Share video" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Video teilen"
           }
         }
       }
@@ -2561,12 +2571,12 @@
         }
       }
     },
-    "Start subscription" : {
+    "Start Pro" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abo starten"
+            "value" : "Pro starten"
           }
         }
       }
@@ -2577,26 +2587,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Training starten"
-          }
-        }
-      }
-    },
-    "Stats" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stats"
-          }
-        }
-      }
-    },
-    "Story" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Story"
           }
         }
       }
@@ -2651,6 +2641,16 @@
         }
       }
     },
+    "Tap an achievement to share it." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe auf einen Erfolg, um ihn zu teilen."
+          }
+        }
+      }
+    },
     "Tap to stop learning" : {
       "localizations" : {
         "de" : {
@@ -2691,22 +2691,12 @@
         }
       }
     },
-    "The 10 workouts stay free." : {
+    "The file could not be created. Try the image instead." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die 10 Workouts bleiben gratis."
-          }
-        }
-      }
-    },
-    "The file could not be created. Try the other format or the image." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Datei konnte nicht erstellt werden. Versuch das andere Format oder das Bild."
+            "value" : "Die Datei konnte nicht erstellt werden. Versuch es mit dem Bild."
           }
         }
       }
@@ -2834,6 +2824,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trainiert"
+          }
+        }
+      }
+    },
+    "trained" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "trainiert"
           }
         }
       }
@@ -3008,12 +3008,12 @@
         }
       }
     },
-    "Yearly" : {
+    "Year" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jährlich"
+            "value" : "Jahr"
           }
         }
       }

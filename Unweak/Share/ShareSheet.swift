@@ -10,15 +10,16 @@ enum ShareMedia: String, CaseIterable, Identifiable {
     var id: Self { self }
 }
 
-/// Preview of the share card with a choice of video or image and of format, then the
-/// iOS share sheet (X, Facebook, Instagram and everything else installed).
+/// Share (Design V2, `V2-Teilen`): preview of the share card as video or image (Story format),
+/// then the iOS share sheet (X, Facebook, Instagram and everything else installed).
 struct ShareSheet: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accent) private var accent
     @Environment(\.locale) private var locale
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var media: ShareMedia = .video
-    @State private var format: ShareFormat = .story
+    /// Always Story in Design V2; Post stays available in code for a later decision.
+    private let format: ShareFormat = .story
     @State private var image: UIImage?
     @State private var videoURL: URL?
     @State private var videoProgress = 0.0
@@ -26,7 +27,7 @@ struct ShareSheet: View {
     private let content: ShareContent
 
     /// Width of the on-screen preview; image and video are rendered at full size.
-    private let previewWidth: CGFloat = 250
+    private let previewWidth: CGFloat = 290
 
     init(content: ShareContent) {
         self.content = content
@@ -40,38 +41,29 @@ struct ShareSheet: View {
 
     var body: some View {
         ScreenContainer {
-            HStack {
+            HStack(spacing: 14) {
                 IconButton(systemImage: "xmark", accessibilityLabel: "Close") {
                     dismiss()
                 }
+                Text("Share")
+                    .font(.grotesk(26))
+                    .foregroundStyle(Theme.text)
+                    .accessibilityAddTraits(.isHeader)
                 Spacer()
             }
-            Text("Share")
-                .font(.screenTitle)
-                .foregroundStyle(Theme.text)
-                .accessibilityAddTraits(.isHeader)
 
-            VStack(spacing: 8) {
-                HStack(spacing: 8) {
-                    SelectChip("Video", isSelected: media == .video, expands: true) { media = .video }
-                    SelectChip("Image", isSelected: media == .image, expands: true) { media = .image }
-                }
-                HStack(spacing: 8) {
-                    SelectChip("Story", isSelected: format == .story, expands: true) { format = .story }
-                    SelectChip("Post", isSelected: format == .post, expands: true) { format = .post }
-                }
+            HStack(spacing: 0) {
+                SegmentButton("Video", isSelected: media == .video) { media = .video }
+                SegmentButton("Image", isSelected: media == .image) { media = .image }
             }
+            .accessibilityElement(children: .contain)
+            .accessibilityLabel(Text("Kind"))
 
             preview
                 .frame(maxWidth: .infinity)
                 .accessibilityHidden(true)
 
-            VStack(spacing: 10) {
-                shareButton
-                Text("Choose X, Facebook or Instagram in the next step. Story fits Instagram and Facebook stories, Post fits the feed.")
-                    .font(.text(13))
-                    .foregroundStyle(Theme.textMuted)
-            }
+            shareButton
         }
         .presentationBackground(Theme.background)
         .task(id: RenderKey(media: media, format: format)) {
@@ -106,7 +98,7 @@ struct ShareSheet: View {
     @ViewBuilder
     private var shareButton: some View {
         if renderFailed {
-            Text("The file could not be created. Try the other format or the image.")
+            Text("The file could not be created. Try the image instead.")
                 .font(.text(13))
                 .foregroundStyle(Theme.danger)
         } else if media == .video, let videoURL, let image {
@@ -117,7 +109,7 @@ struct ShareSheet: View {
                 message: Text("My progress with Unweak. #unweak #calisthenics"),
                 preview: SharePreview(Text(verbatim: "Unweak"), image: still)
             ) {
-                shareLabel("Share video")
+                shareLabel("Share")
             }
             .buttonStyle(PressFeedbackStyle())
             .glow(accent.color, radius: Theme.Glow.medium)
@@ -129,7 +121,7 @@ struct ShareSheet: View {
                 message: Text("My progress with Unweak. #unweak #calisthenics"),
                 preview: SharePreview(Text(verbatim: "Unweak"), image: picture)
             ) {
-                shareLabel("Share image")
+                shareLabel("Share")
             }
             .buttonStyle(PressFeedbackStyle())
             .glow(accent.color, radius: Theme.Glow.medium)
@@ -138,8 +130,7 @@ struct ShareSheet: View {
                 if media == .video {
                     SegmentedProgress(total: 10, filled: Int(videoProgress * 10), label: "Creating video")
                     Text("Creating video …")
-                        .font(.mono)
-                        .textCase(.uppercase)
+                        .font(.text(14))
                         .foregroundStyle(Theme.textMuted)
                 } else {
                     ProgressView()

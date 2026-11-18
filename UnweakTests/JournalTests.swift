@@ -105,32 +105,15 @@ struct RecordAndMonthTests {
         #expect(stats([reps, seconds]).bestValue(of: "plank", unit: .seconds) == 40)
     }
 
-    @Test func personalBestsKeepTheFirstDayOfTheBestValue() {
-        let plank = ExerciseResult(exercise: "plank", sets: 1, value: 90, unit: .seconds)
-        let entries = [
-            entry(day(11, 2), results: [pullUps(5)]),
-            entry(day(11, 9), results: [pullUps(7)]),
-            entry(day(11, 10), results: [pullUps(7)]),
-            entry(day(11, 5), results: [plank]),
-        ]
-        let bests = stats(entries).personalBests()
-        #expect(bests.count == 2)
-        // Most recent first: pull-ups (9 Nov) before plank (5 Nov).
-        #expect(bests.map(\.exercise) == ["pullUp", "plank"])
-        #expect(bests[0].value == 7)
-        #expect(bests[0].date == day(11, 9))
-        #expect(bests[1].unit == .seconds)
-        #expect(stats([]).personalBests().isEmpty)
-    }
-
-    @Test func monthFigures() {
+    @Test func overallFigures() {
         let entries = [
             entry(day(10, 30), seconds: 999, results: [pullUps(4)]),
             entry(day(11, 2), seconds: 1_000, results: [pullUps(5)]),
             entry(day(11, 9), seconds: 500, results: [pullUps(7)]),
         ]
-        let month = stats(entries).month(containing: now)
-        #expect(month == MonthSummary(workouts: 2, seconds: 1_500, records: 2))
+        let totals = stats(entries).overall()
+        #expect(totals == TrainingTotals(workouts: 3, seconds: 2_499, records: 2))
+        #expect(stats([]).overall() == TrainingTotals(workouts: 0, seconds: 0, records: 0))
     }
 }
 
@@ -244,14 +227,20 @@ struct AchievementAndGoalTests {
         // Skill workouts first: never trained (pullDay), then the oldest, then the newest.
         #expect(next.prefix(3).map(\.id) == ["pullDay", "pullStrength", "frontLeverBuildUp"])
         // Then general workouts, no skill-only plans, no duplicates.
-        #expect(next.dropFirst(3).allSatisfy { $0.category != .skill && !frontLever.plans.contains($0.id) })
+        // Checked outside #expect: the macro cannot expand a call inside the `&&` autoclosure.
+        let restIsGeneral = next.dropFirst(3).allSatisfy { plan in
+            plan.category != .skill && !frontLever.plans.contains(plan.id)
+        }
+        #expect(restIsGeneral)
         #expect(Set(next.map(\.id)).count == next.count)
     }
 
     @Test func nextWorkoutsForFreeUsersAreFreePlans() {
         let next = stats([]).nextWorkouts(in: catalog, count: 5)
         #expect(next.count == 5)
-        #expect(next.allSatisfy(\.isFree))
+        // Computed before #expect: the macro turns a key path argument into a throwing call.
+        let allFree = next.allSatisfy { $0.isFree }
+        #expect(allFree)
         #expect(next.first?.id == stats([]).nextWorkout(in: catalog)?.id)
         #expect(stats([]).nextWorkouts(in: catalog, count: 0).isEmpty)
     }

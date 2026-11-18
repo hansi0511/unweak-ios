@@ -7,6 +7,8 @@ enum JournalRoute: Hashable {
     case entry(JournalEntry.ID)
     /// A new, not yet saved entry for a plan, added with the plus button.
     case newEntry(planID: String)
+    /// All achievements.
+    case achievements
 }
 
 /// Screens pushed in the workouts tab.
