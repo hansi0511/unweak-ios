@@ -67,3 +67,32 @@ Liga und Duell sind für alle gratis, weil sie neue Nutzer bringen. Gratis-Nutze
 - Fairness: Pro-Nutzer bekommen Skill-Punkte, Gratis-Nutzer nicht. Eigene Ligen für Pro, ausgleichende Punkte oder hinnehmen?
 - Liga-Preise für Gold und Diamant (Extras gestalten).
 - Datenschutzerklärung um Anzeigename, Rangliste und Duelle ergänzen.
+
+## Stand der Umsetzung
+
+Stand: 18. November 2026 (Pull Request „Wochen-Liga und Duell: Oberfläche und Logik“).
+
+**In der App fertig, ohne Server:**
+
+- **Regeln und Punkte** mit Unit-Tests (`Unweak/League/`):
+  - Ligen, Auf- und Abstieg (ein Viertel der Gruppe, mindestens 1), Zonen, Gleichstand;
+  - Woche nach UTC;
+  - Punkte nach der Tabelle oben; nachgetragene Trainings sind markiert und bringen keine Punkte;
+  - Anzeigename mit Wortfilter und 30-Tage-Sperre;
+  - Duelle (Arten, 7 Tage, 48 Stunden, höchstens 3).
+- **Alle Screens** dieses Dokuments: Liga-Zeile im Ich-Tab, Liga, Punkte, Wochenabschluss, Duell, Freund herausfordern, Anzeigename, Bereich „Liga“ in den Einstellungen mit „Blockierte Nutzer“, Abzeichen „Duellsieger“ auf der Erfolge-Seite, Liga-Kronen als Avatar-Extras und eine Share-Karte für den Wochenabschluss.
+- **Beispieldaten** (`LeagueStore`, `SampleLeague`):
+  - Die 19 anderen der Gruppe und die Freunde stammen aus dem Mockup; ihre Punkte wachsen über die Woche.
+  - Die eigenen Punkte rechnet die App aus der Journey.
+  - Name, Teilnahme, Blockierte, Meldungen und Duelle werden auf dem Gerät gespeichert.
+  - Die Screens zeigen den Hinweis „Beispieldaten“.
+
+**Kommt mit dem Server (nach Schritt 6):**
+
+- echte Gruppen und Einlosen am Montag, Wertung am Sonntag, Punkte schreibt der Server;
+- Prüfen, ob ein Anzeigename schon vergeben ist; Melden mit Ersatzname nach 3 Meldungen;
+- Einladungslink:
+  - braucht eine Domain für Universal Links; bis dahin steht in `LeagueLinks` ein Platzhalter `https://unweak.app/duel`;
+  - Annehmen innerhalb von 48 Stunden;
+- Mitteilungen (Platz verloren, Duell-Einladung, Wochenabschluss);
+- Löschen von Name, Ranglisten und Duellen mit „Konto löschen“.

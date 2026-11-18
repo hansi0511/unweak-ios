@@ -8,6 +8,7 @@ struct MeScreen: View {
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
     @Environment(SubscriptionStore.self) private var subscription
+    @Environment(LeagueStore.self) private var league
     @State private var isShowingPaywall = false
     private let catalog: Catalog
 
@@ -20,12 +21,16 @@ struct MeScreen: View {
         let stats = JournalStats(entries: store.entries)
         let week = stats.week(containing: .now, target: target)
         let streak = stats.streak(at: .now, target: target)
-        let unlocks = AvatarUnlocks(stats: stats, catalog: catalog, weeklyTarget: target) {
+        let unlocks = AvatarUnlocks(stats: stats, catalog: catalog, weeklyTarget: target, leagueWins: Set(store.data.leagueWins)) {
             store.reachedStages(of: $0)
         }
         let goals = subscription.access.canUseSkills ? store.activeGoals(in: catalog) : []
         // Pro: first from the skills being learned. Free: from the free workouts.
         let today = stats.nextWorkout(in: catalog, access: subscription.access, preferring: goals.flatMap(\.plans))
+
+        let now = Date.now
+        let standing = league.standing(store: store, weeklyTarget: target, catalog: catalog, now: now)
+        @Bindable var leagueBinding = league
 
         ScreenContainer {
             Text("Me")
@@ -52,10 +57,31 @@ struct MeScreen: View {
                 TodayCard(plan: today, catalog: catalog)
             }
 
+            if league.isTakingPart {
+                NavigationLink {
+                    LeagueScreen(catalog: catalog)
+                } label: {
+                    LeagueRow(league: league.league, standing: standing, daysLeft: LeagueWeek(containing: now).daysLeft(at: now))
+                }
+                .buttonStyle(PressFeedbackStyle())
+            }
+
             goalRow(goals: goals, stats: stats)
         }
         .sheet(isPresented: $isShowingPaywall) {
             PaywallSheet()
+        }
+        .fullScreenCover(item: $leagueBinding.pendingResult) { result in
+            WeekResultScreen(result: result)
+        }
+        .onAppear {
+            // From Monday on: shows how the last week ended, once.
+            league.refresh(
+                store: store,
+                weeklyTarget: target,
+                avatar: LeagueAvatar.mine(store: store, catalog: catalog, weeklyTarget: target),
+                now: .now
+            )
         }
     }
 

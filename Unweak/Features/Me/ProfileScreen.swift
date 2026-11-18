@@ -39,7 +39,7 @@ struct ProfileScreen: View {
 
     var body: some View {
         let stats = JournalStats(entries: store.entries)
-        let unlocks = AvatarUnlocks(stats: stats, catalog: catalog, weeklyTarget: reminders.weeklyTarget) {
+        let unlocks = AvatarUnlocks(stats: stats, catalog: catalog, weeklyTarget: reminders.weeklyTarget, leagueWins: Set(store.data.leagueWins)) {
             store.reachedStages(of: $0)
         }
         let style = store.data.avatar
@@ -188,6 +188,8 @@ enum AvatarRequirementText {
             return Text("From \(count) workouts")
         case .masteredSkill:
             return Text("Master a skill")
+        case .leagueWin(let league):
+            return Text("First place in the \(Text(league.name))")
         case .achievement(let id):
             guard let achievement = catalog.achievements.first(where: { $0.id == id }) else { return nil }
             let label = Text(catalog: achievement.labelKey)

@@ -142,6 +142,24 @@ struct ShareCardView: View {
             .lineLimit(1)
             .minimumScaleFactor(0.7)
             .padding(.top, 10)
+
+        case .league(let result):
+            kindLabel("Weekly league")
+            Text(verbatim: "#\(result.place)")
+                .font(.fixed(.spaceGroteskBold, size: isStory ? 72 : 56))
+                .foregroundStyle(accent.color)
+                .glow(accent.color, radius: Theme.Glow.medium)
+            headline(Text(result.outcome.headline), size: isStory ? 34 : 28)
+            HStack(spacing: 8) {
+                Image(systemName: "checkmark.shield")
+                    .foregroundStyle(result.league.color)
+                Text("Place \(result.place) of \(result.groupSize) · from Monday \(Text(result.league.name))")
+            }
+            .font(.fixed(.interSemiBold, size: 15))
+            .foregroundStyle(Theme.textSoft)
+            .lineLimit(2)
+            .minimumScaleFactor(0.7)
+            .padding(.top, 10)
         }
     }
 

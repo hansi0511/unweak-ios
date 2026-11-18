@@ -34,6 +34,10 @@ struct AchievementsScreen: View {
                 }
             }
 
+            if store.data.duelWins > 0 {
+                duelWinnerBadge(store.data.duelWins)
+            }
+
             LazyVGrid(columns: columns, spacing: 10) {
                 ForEach(progress.achievedFirst, id: \.achievement.id) { item in
                     if item.isAchieved {
@@ -59,6 +63,30 @@ struct AchievementsScreen: View {
         .sheet(item: $shareContent) { content in
             ShareSheet(content: content)
         }
+    }
+
+    /// "Duel winner" with how often, from won duels (docs/SOCIAL.md).
+    private func duelWinnerBadge(_ wins: Int) -> some View {
+        HStack(spacing: 14) {
+            Image(systemName: "rosette")
+                .font(.system(size: 26, weight: .medium))
+                .foregroundStyle(League.gold.color)
+                .accessibilityHidden(true)
+            Text("Duel winner")
+                .font(.textSemibold(16))
+                .foregroundStyle(Theme.text)
+            Spacer(minLength: 0)
+            Text(verbatim: "× \(wins)")
+                .font(.grotesk(22))
+                .foregroundStyle(accent.color)
+        }
+        .padding(.horizontal, 16)
+        .frame(maxWidth: .infinity, minHeight: 64)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(League.gold.color, lineWidth: 1))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("Duel winner"))
+        .accessibilityValue(Text("Won \(wins) times"))
     }
 
     private func tile(_ item: AchievementProgress) -> some View {

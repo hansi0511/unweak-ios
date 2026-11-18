@@ -34,6 +34,7 @@ struct RootView: View {
     @State private var store = UserDataStore(fileURL: UserDataStore.defaultFileURL)
     @State private var reminders = ReminderSettings()
     @State private var subscription = SubscriptionStore()
+    @State private var league = LeagueStore()
 
     private var language: AppLanguage { AppLanguage.resolve(stored: storedLanguage) }
 
@@ -58,6 +59,7 @@ struct RootView: View {
         .environment(store)
         .environment(reminders)
         .environment(subscription)
+        .environment(league)
         .environment(\.accent, accent)
         .environment(\.locale, language.locale)
         .tint(accent.color)
