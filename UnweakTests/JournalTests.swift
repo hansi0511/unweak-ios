@@ -227,7 +227,11 @@ struct AchievementAndGoalTests {
         // Skill workouts first: never trained (pullDay), then the oldest, then the newest.
         #expect(next.prefix(3).map(\.id) == ["pullDay", "pullStrength", "frontLeverBuildUp"])
         // Then general workouts, no skill-only plans, no duplicates.
-        #expect(next.dropFirst(3).allSatisfy { $0.category != .skill && !frontLever.plans.contains($0.id) })
+        // Checked outside #expect: the macro cannot expand a call inside the `&&` autoclosure.
+        let restIsGeneral = next.dropFirst(3).allSatisfy { plan in
+            plan.category != .skill && !frontLever.plans.contains(plan.id)
+        }
+        #expect(restIsGeneral)
         #expect(Set(next.map(\.id)).count == next.count)
     }
 
