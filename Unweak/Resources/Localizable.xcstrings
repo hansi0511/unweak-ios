@@ -3058,6 +3058,16 @@
         }
       }
     },
+    "Your goals" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Ziele"
+          }
+        }
+      }
+    },
     "Your path" : {
       "localizations" : {
         "de" : {

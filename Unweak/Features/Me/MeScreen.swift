@@ -59,8 +59,9 @@ struct MeScreen: View {
         }
     }
 
-    /// Pro with a goal: the first skill being learned. Pro without: a row to choose one.
-    /// Free: the skills teaser, which opens the subscription page.
+    /// Pro with one skill: "Your goal: Front lever". With several: "Your goals" and one row
+    /// per skill. Pro without: a row to choose one. Free: the skills teaser, which opens the
+    /// subscription page.
     @ViewBuilder
     private func goalRow(goals: [Goal], stats: JournalStats) -> some View {
         if !subscription.access.canUseSkills {
@@ -74,25 +75,19 @@ struct MeScreen: View {
                 }
             }
             .buttonStyle(PressFeedbackStyle())
-        } else if let goal = goals.first {
-            let progress = stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal))
-            NavigationLink {
-                SkillScreen(goal: goal, catalog: catalog)
-            } label: {
-                GoalRowLabel(
-                    pose: goal.pose,
-                    title: Text("Your goal: \(Text(catalog: goal.nameKey))"),
-                    badge: false
-                ) {
-                    HStack(spacing: 10) {
-                        progress.shortStateText
-                            .font(.text(13))
-                            .foregroundStyle(Theme.textMuted)
-                        SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, height: 5, label: "Goal progress")
-                    }
+        } else if goals.count == 1, let goal = goals.first {
+            goalLink(goal, title: Text("Your goal: \(Text(catalog: goal.nameKey))"), stats: stats)
+        } else if !goals.isEmpty {
+            // Several skills: "Your goals" and one row per skill, in the order they were added.
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Your goals")
+                    .font(.buttonTitle)
+                    .foregroundStyle(Theme.text)
+                    .accessibilityAddTraits(.isHeader)
+                ForEach(goals) { goal in
+                    goalLink(goal, title: Text(catalog: goal.nameKey), stats: stats)
                 }
             }
-            .buttonStyle(PressFeedbackStyle())
         } else {
             Button {
                 navigation?.showSkills()
@@ -105,6 +100,24 @@ struct MeScreen: View {
             }
             .buttonStyle(PressFeedbackStyle())
         }
+    }
+
+    /// One skill row: pose, title, stage and segments; opens the skill page.
+    private func goalLink(_ goal: Goal, title: Text, stats: JournalStats) -> some View {
+        let progress = stats.goalProgress(goal, reachedStages: store.reachedStages(of: goal))
+        return NavigationLink {
+            SkillScreen(goal: goal, catalog: catalog)
+        } label: {
+            GoalRowLabel(pose: goal.pose, title: title, badge: false) {
+                HStack(spacing: 10) {
+                    progress.shortStateText
+                        .font(.text(13))
+                        .foregroundStyle(Theme.textMuted)
+                    SegmentedProgress(total: GoalProgress.segmentCount, filled: progress.filledSegments, height: 5, label: "Goal progress")
+                }
+            }
+        }
+        .buttonStyle(PressFeedbackStyle())
     }
 }
 

@@ -49,7 +49,7 @@ Drei Tabs wie bisher: Ich, Workouts, Journey.
 - Titel „Ich“, sonst nichts im Kopf (Teilen der Woche wandert zu „Training geschafft“ und „Erfolge“).
 - Avatar 190 pt mit Wochenring (Bögen = Wochenziel). Darunter „**2 von 3** Trainings diese Woche“ (Zahl in Akzentfarbe) und klein „3 Wochen in Folge geschafft“. Antippen öffnet den Ich-Bereich.
 - Karte „Heute dran“: Pose, Workout-Name groß, „21 min · 4 Übungen“, Hauptknopf „Starten“. Es ist das erste der bisherigen „nächsten Workouts“; das Karussell entfällt.
-- Eine Zeile „Dein Ziel: Front Lever“ mit „2 / 5“ und Segmenten, nur mit Pro und gewähltem Skill. Mehrere gelernte Skills: nur der erste; die übrigen auf der Skills-Seite. Gratis: dieselbe Zeile als „Skills · Pro“ zur Abo-Seite.
+- Eine Zeile „Dein Ziel: Front Lever“ mit „2 / 5“ und Segmenten, nur mit Pro und gewähltem Skill. Mehrere gelernte Skills (geändert von Hansi): Überschrift „Deine Ziele“ und eine Zeile pro Skill untereinander, je mit Name, Stand und Segmenten. Gratis: dieselbe Zeile als „Skills · Pro“ zur Abo-Seite.
 
 ### 2 Workouts (Tab) — `V2-Workouts`
 - Titel, rechts Plus (Neues Workout).
