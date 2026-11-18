@@ -1,91 +1,71 @@
 import SwiftUI
 
-/// The two areas of the journey tab.
-private enum JournalArea {
-    /// Records per exercise, month figures and the workouts.
-    case stats
-    case achievements
-}
-
-/// Journey tab. "Stats": the best value of every exercise as tiles, the month figures and
-/// all workouts, newest first, with records highlighted. "Achievements": all achievements.
+/// Journey tab (Design V2, `V2-Journey`): this week as seven day circles, three totals
+/// (workouts, hours, records), a row to the achievements and the recent workouts. The
+/// plus adds a workout by hand.
 struct JournalScreen: View {
-    @Environment(\.locale) private var locale
     @Environment(UserDataStore.self) private var store
     @Environment(ReminderSettings.self) private var reminders
-    @State private var area: JournalArea = .stats
     @State private var isPickingPlan = false
-    @State private var shareContent: ShareContent?
     private let catalog: Catalog
 
     init(catalog: Catalog = .main) {
         self.catalog = catalog
     }
 
-    private var monthTitle: String {
-        Date.now.formatted(.dateTime.month(.wide).year().locale(locale))
-    }
-
     var body: some View {
         let stats = JournalStats(entries: store.entries)
-        let month = stats.month(containing: .now)
+        let target = reminders.weeklyTarget
+        let week = stats.week(containing: .now, target: target)
+        let totals = stats.overall()
+        let achievements = catalog.achievements.map { stats.progress(of: $0, target: target) }
         let entries = store.sortedEntries
 
         ScreenContainer {
-            ScreenHeader(label: MonoLabel(verbatim: monthTitle), title: "Journey") {
+            HStack {
+                Text("Journey")
+                    .font(.screenTitle)
+                    .foregroundStyle(Theme.text)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer()
                 IconButton(systemImage: "plus", accessibilityLabel: "Add workout") {
                     isPickingPlan = true
                 }
             }
 
-            HStack(spacing: 8) {
-                SelectChip("Stats", isSelected: area == .stats, expands: true) {
-                    area = .stats
-                }
-                SelectChip("Achievements", isSelected: area == .achievements, expands: true) {
-                    area = .achievements
-                }
+            WeekCard(week: week)
+
+            HStack(spacing: 0) {
+                total(Text(verbatim: "\(totals.workouts)"), label: "Workouts")
+                total(hoursText(totals.seconds), label: "trained")
+                total(Text(verbatim: "\(totals.records)"), label: "Records")
             }
+            .background(Theme.surface)
+            .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
 
-            switch area {
-            case .stats:
-                let bests = stats.personalBests()
-                if !bests.isEmpty {
-                    PersonalBestsRow(bests: bests, catalog: catalog)
-                }
+            NavigationLink(value: JournalRoute.achievements) {
+                AchievementsRow(achieved: achievements.filter(\.isAchieved).count, total: achievements.count)
+            }
+            .buttonStyle(PressFeedbackStyle())
 
-                HStack(spacing: 10) {
-                    MetricTile(value: Text(verbatim: "\(month.workouts)"), label: "Sessions")
-                    MetricTile(value: ValueText.totalTime(month.seconds, locale: locale), label: "Time")
-                    MetricTile(value: Text(verbatim: "\(month.records)"), label: "Records")
-                }
-
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Recent workouts")
+                    .font(.buttonTitle)
+                    .foregroundStyle(Theme.text)
+                    .accessibilityAddTraits(.isHeader)
                 if entries.isEmpty {
-                    Card {
-                        VStack(alignment: .leading, spacing: 6) {
-                            MonoLabel("No workouts yet", bold: true)
-                            Text("Finish a workout or tap + to add one.")
-                                .font(.text(15))
-                                .foregroundStyle(Theme.textSoft)
-                        }
-                    }
+                    Text("Finish a workout or tap + to add one.")
+                        .font(.text(15))
+                        .foregroundStyle(Theme.textSoft)
+                        .padding(.vertical, 10)
                 } else {
-                    VStack(alignment: .leading, spacing: 10) {
-                        MonoLabel("Recent workouts")
-                            .accessibilityAddTraits(.isHeader)
-                        ForEach(entries) { entry in
-                            NavigationLink(value: JournalRoute.entry(entry.id)) {
-                                JournalRow(entry: entry, records: stats.records(in: entry), catalog: catalog)
-                            }
-                            .buttonStyle(PressFeedbackStyle())
+                    ForEach(entries) { entry in
+                        NavigationLink(value: JournalRoute.entry(entry.id)) {
+                            JournalRow(entry: entry, hasRecord: !stats.records(in: entry).isEmpty, catalog: catalog)
                         }
+                        .buttonStyle(PressFeedbackStyle())
+                        Rectangle().fill(Theme.line).frame(height: 1)
                     }
-                }
-            case .achievements:
-                AchievementsGrid(
-                    progress: catalog.achievements.map { stats.progress(of: $0, target: reminders.weeklyTarget) }
-                ) { achievement in
-                    shareContent = .achievement(achievement)
                 }
             }
         }
@@ -99,163 +79,177 @@ struct JournalScreen: View {
                 if let plan = store.plan(planID, in: catalog) {
                     WorkoutDoneScreen(entry: JournalEntry(plan: plan, date: .now), mode: .addedByHand, catalog: catalog)
                 }
+            case .achievements:
+                AchievementsScreen(catalog: catalog)
             }
         }
         .sheet(isPresented: $isPickingPlan) {
             PlanPickerSheet(catalog: catalog)
         }
-        .sheet(item: $shareContent) { content in
-            ShareSheet(content: content)
-        }
     }
-}
 
-/// The best value of every exercise as tiles that scroll sideways, most recent first.
-private struct PersonalBestsRow: View {
-    let bests: [PersonalBest]
-    let catalog: Catalog
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            MonoLabel("Records")
-                .accessibilityAddTraits(.isHeader)
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
-                    ForEach(bests) { best in
-                        PersonalBestTile(best: best, exercise: catalog.exercise(best.exercise))
-                    }
-                }
-                // The row runs to the screen edges while the tiles start in line with the content.
-                .padding(.horizontal, Theme.Layout.screenEdge)
-            }
-            .padding(.horizontal, -Theme.Layout.screenEdge)
-        }
-    }
-}
-
-/// One exercise's best value: pose, value, exercise name and the day it was reached.
-private struct PersonalBestTile: View {
-    @Environment(\.accent) private var accent
-    @Environment(\.locale) private var locale
-    let best: PersonalBest
-    let exercise: Exercise?
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            if let exercise {
-                StickyPoseView(exercise.pose)
-                    .accessibilityHidden(true)
-            }
-            ValueText.result(best.value, unit: best.unit)
-                .font(.metric)
-                .foregroundStyle(accent.color)
+    private func total(_ value: Text, label: LocalizedStringKey) -> some View {
+        VStack(spacing: 2) {
+            value
+                .font(.grotesk(26))
+                .foregroundStyle(Theme.text)
+                .monospacedDigit()
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
-            Group {
-                if let exercise {
-                    Text(catalog: exercise.nameKey)
-                } else {
-                    Text(verbatim: best.exercise)
-                }
-            }
-            .font(.textSemibold(13))
-            .foregroundStyle(Theme.text)
-            .lineLimit(1)
-            .minimumScaleFactor(0.8)
-            MonoLabel(verbatim: best.date.formatted(.dateTime.day().month(.abbreviated).locale(locale)))
+            Text(label)
+                .font(.text(13))
+                .foregroundStyle(Theme.textMuted)
         }
-        .padding(12)
-        .frame(width: 132, alignment: .leading)
-        .background(Theme.surface)
-        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+        .padding(14)
+        .frame(maxWidth: .infinity)
         .accessibilityElement(children: .combine)
+    }
+
+    /// "9 h" from one hour on, before that "45 min".
+    private func hoursText(_ seconds: Int) -> Text {
+        let hours = Int((Double(seconds) / 3600).rounded())
+        return hours >= 1 ? Text(verbatim: "\(hours) h") : Text(verbatim: "\(seconds / 60) min")
     }
 }
 
-/// Small card with a large value and a label below.
-struct MetricTile: View {
-    private let value: Text
-    private let label: LocalizedStringKey
-
-    init(value: Text, label: LocalizedStringKey) {
-        self.value = value
-        self.label = label
-    }
+/// "This week": seven day circles Monday to Sunday (trained filled, today outlined)
+/// and "2 of 3".
+private struct WeekCard: View {
+    @Environment(\.accent) private var accent
+    @Environment(\.locale) private var locale
+    let week: WeekSummary
 
     var body: some View {
-        Card(padding: 12) {
-            VStack(alignment: .leading, spacing: 4) {
-                value
-                    .font(.metric)
+        VStack(alignment: .leading, spacing: 14) {
+            HStack {
+                Text("This week")
+                    .font(.textSemibold(17))
                     .foregroundStyle(Theme.text)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
-                MonoLabel(label)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.8)
+                Spacer()
+                Text("\(week.workouts) of \(week.target)")
+                    .font(.text(15))
+                    .foregroundStyle(accent.color)
+            }
+            HStack(spacing: 6) {
+                ForEach(week.days, id: \.date) { day in
+                    VStack(spacing: 6) {
+                        Circle()
+                            .fill(day.trained ? accent.color : Color.clear)
+                            .overlay(Circle().strokeBorder(
+                                day.trained ? accent.color : (day.isToday ? Theme.text : Theme.lineStrong),
+                                lineWidth: day.isToday && !day.trained ? 2 : 1
+                            ))
+                            .frame(width: 32, height: 32)
+                        Text(verbatim: day.date.formatted(.dateTime.weekday(.short).locale(locale)))
+                            .font(.text(12))
+                            .foregroundStyle(day.isToday ? Theme.text : Theme.textMuted)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text(verbatim: day.date.formatted(.dateTime.weekday(.wide).locale(locale))))
+                    .accessibilityValue(day.trained ? Text("Trained") : Text("Not trained"))
+                }
             }
         }
-        .accessibilityElement(children: .combine)
+        .padding(16)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+        .overlay {
+            DiagonalCornerMarks()
+                .stroke(accent.color, lineWidth: Theme.Layout.cornerMarkWidth)
+                .accessibilityHidden(true)
+        }
     }
 }
 
-/// One workout in the journal list.
+/// "Achievements · 4 of 12" with a bar; opens the achievements.
+private struct AchievementsRow: View {
+    @Environment(\.accent) private var accent
+    let achieved: Int
+    let total: Int
+
+    var body: some View {
+        HStack(spacing: 14) {
+            Image(systemName: "trophy")
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundStyle(accent.color)
+                .frame(width: 32)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 6) {
+                HStack {
+                    Text("Achievements")
+                        .font(.textSemibold(16))
+                        .foregroundStyle(Theme.text)
+                    Spacer()
+                    Text("\(achieved) of \(total)")
+                        .font(.text(14))
+                        .foregroundStyle(Theme.textMuted)
+                }
+                GeometryReader { proxy in
+                    ZStack(alignment: .leading) {
+                        Rectangle().fill(Theme.line)
+                        Rectangle()
+                            .fill(accent.color)
+                            .frame(width: max(0, proxy.size.width * Double(achieved) / Double(max(total, 1))))
+                    }
+                }
+                .frame(height: 5)
+                .accessibilityHidden(true)
+            }
+            Image(systemName: "chevron.right")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(Theme.textMuted)
+                .accessibilityHidden(true)
+        }
+        .padding(14)
+        .background(Theme.surface)
+        .overlay(Rectangle().strokeBorder(Theme.line, lineWidth: 1))
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
+    }
+}
+
+/// One workout in the list: pose, name, "Wed, 11 Nov · 36 min" and a "Record" badge.
 private struct JournalRow: View {
     @Environment(UserDataStore.self) private var store
     @Environment(\.accent) private var accent
     @Environment(\.locale) private var locale
     let entry: JournalEntry
-    let records: [ExerciseResult]
+    let hasRecord: Bool
     let catalog: Catalog
 
     private var plan: WorkoutPlan? { entry.planID.flatMap { store.plan($0, in: catalog) } }
 
     var body: some View {
-        Card(padding: 12) {
-            VStack(alignment: .leading, spacing: 8) {
-                MonoLabel(verbatim: entry.date.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated).locale(locale)))
-                HStack(spacing: 12) {
-                    StickyPoseView(plan?.pose ?? .pushUp, highlighted: !records.isEmpty)
-                        .accessibilityHidden(true)
-                    VStack(alignment: .leading, spacing: 4) {
-                        planName
-                            .font(.textSemibold(17))
-                            .foregroundStyle(Theme.text)
-                            .multilineTextAlignment(.leading)
-                        summary
-                    }
-                    Spacer(minLength: 0)
-                    ValueText.minutes(entry.durationSeconds)
-                        .font(.mono)
-                        .foregroundStyle(Theme.textMuted)
-                }
+        HStack(spacing: 14) {
+            StickyPoseView(plan?.pose ?? .pushUp, highlighted: hasRecord)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 3) {
+                planName
+                    .font(.textSemibold(16))
+                    .foregroundStyle(Theme.text)
+                    .multilineTextAlignment(.leading)
+                Text("\(Text(verbatim: entry.date.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated).locale(locale)))) · \(entry.durationSeconds / 60) min")
+                    .font(.text(13))
+                    .foregroundStyle(Theme.textMuted)
+            }
+            Spacer(minLength: 0)
+            if hasRecord {
+                Text("Record")
+                    .font(.text(13))
+                    .foregroundStyle(accent.color)
             }
         }
+        .padding(.vertical, 10)
+        .frame(minHeight: Theme.Layout.minTouchTarget)
+        .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
     }
 
     private var planName: Text {
         if let plan { plan.title } else { Text("Workout") }
-    }
-
-    @ViewBuilder
-    private var summary: some View {
-        if let record = records.first, let exercise = catalog.exercise(record.exercise) {
-            HStack(spacing: 4) {
-                Text("Record: \(Text(catalog: exercise.nameKey))")
-                Text(verbatim: "·")
-                ValueText.result(record.value, unit: record.unit)
-            }
-            .font(.textSemibold(13))
-            .foregroundStyle(accent.color)
-            .lineLimit(1)
-            .minimumScaleFactor(0.8)
-        } else {
-            Text("Exercises \(entry.results.count) · Sets \(entry.totalSets)")
-                .font(.text(13))
-                .foregroundStyle(Theme.textMuted)
-        }
     }
 }
 
@@ -284,7 +278,7 @@ private struct PlanPickerSheet: View {
                 Spacer()
             }
             Text("Add workout")
-                .font(.screenTitle)
+                .font(.grotesk(28))
                 .foregroundStyle(Theme.text)
                 .accessibilityAddTraits(.isHeader)
             Text("Choose the plan you trained.")
@@ -296,7 +290,7 @@ private struct PlanPickerSheet: View {
                         navigation?.journalPath.append(.newEntry(planID: plan.id))
                         dismiss()
                     } label: {
-                        PlanRow(plan: plan)
+                        WorkoutCard(plan: plan, badge: plan.customName != nil ? .custom : nil)
                     }
                     .buttonStyle(PressFeedbackStyle())
                 }

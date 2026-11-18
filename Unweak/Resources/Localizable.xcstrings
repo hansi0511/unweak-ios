@@ -41,6 +41,16 @@
         }
       }
     },
+    "%@ · %lld min" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld min"
+          }
+        }
+      }
+    },
     "%@, %@" : {
       "localizations" : {
         "de" : {
@@ -147,6 +157,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld von %2$lld"
+          }
+        }
+      }
+    },
+    "%lld of %lld done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld geschafft"
           }
         }
       }
@@ -406,7 +426,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Training hinzufügen"
+            "value" : "Training nachtragen"
           }
         }
       }
@@ -687,16 +707,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wähle den Plan, den du trainiert hast."
-          }
-        }
-      }
-    },
-    "Choose X, Facebook or Instagram in the next step. Story fits Instagram and Facebook stories, Post fits the feed." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wähle im nächsten Schritt X, Facebook oder Instagram. Story passt für Instagram- und Facebook-Storys, Post für den Feed."
           }
         }
       }
@@ -1017,16 +1027,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Übungen"
-          }
-        }
-      }
-    },
-    "Exercises %lld · Sets %lld" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Übungen %1$lld · Sätze %2$lld"
           }
         }
       }
@@ -1377,6 +1377,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Passt"
+          }
+        }
+      }
+    },
+    "Kind" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Art"
           }
         }
       }
@@ -1801,16 +1811,6 @@
         }
       }
     },
-    "No workouts yet" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch keine Trainings"
-          }
-        }
-      }
-    },
     "None" : {
       "localizations" : {
         "de" : {
@@ -1827,6 +1827,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nicht angemeldet"
+          }
+        }
+      }
+    },
+    "Not trained" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht trainiert"
           }
         }
       }
@@ -1947,16 +1957,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Animation Plank"
-          }
-        }
-      }
-    },
-    "Post" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Post"
           }
         }
       }
@@ -2261,16 +2261,6 @@
         }
       }
     },
-    "Sessions" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trainings"
-          }
-        }
-      }
-    },
     "Set %lld" : {
       "localizations" : {
         "de" : {
@@ -2361,32 +2351,12 @@
         }
       }
     },
-    "Share image" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bild teilen"
-          }
-        }
-      }
-    },
     "Share progress" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fortschritt teilen"
-          }
-        }
-      }
-    },
-    "Share video" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Video teilen"
           }
         }
       }
@@ -2581,26 +2551,6 @@
         }
       }
     },
-    "Stats" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stats"
-          }
-        }
-      }
-    },
-    "Story" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Story"
-          }
-        }
-      }
-    },
     "Straddle front lever animation" : {
       "localizations" : {
         "de" : {
@@ -2647,6 +2597,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tippe auf ein gesperrtes Teil, um zu sehen, wie du es freischaltest."
+          }
+        }
+      }
+    },
+    "Tap an achievement to share it." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippe auf einen Erfolg, um ihn zu teilen."
           }
         }
       }
@@ -2701,12 +2661,12 @@
         }
       }
     },
-    "The file could not be created. Try the other format or the image." : {
+    "The file could not be created. Try the image instead." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Datei konnte nicht erstellt werden. Versuch das andere Format oder das Bild."
+            "value" : "Die Datei konnte nicht erstellt werden. Versuch es mit dem Bild."
           }
         }
       }
@@ -2834,6 +2794,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trainiert"
+          }
+        }
+      }
+    },
+    "trained" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "trainiert"
           }
         }
       }

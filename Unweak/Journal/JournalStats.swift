@@ -26,20 +26,11 @@ struct WeekSummary: Equatable {
     let target: Int
 }
 
-struct MonthSummary: Equatable {
+/// Number of workouts, training time in seconds and number of records.
+struct TrainingTotals: Equatable {
     let workouts: Int
     let seconds: Int
     let records: Int
-}
-
-/// The best value of one exercise and the day it was first reached.
-struct PersonalBest: Equatable, Identifiable, Sendable {
-    let exercise: String
-    let value: Int
-    let unit: ExerciseResult.Unit
-    let date: Date
-
-    var id: String { "\(exercise)|\(unit.rawValue)" }
 }
 
 /// Progress towards an achievement.
@@ -191,32 +182,18 @@ struct JournalStats {
         }
     }
 
-    /// The best value of every exercise ever done, with the day it was first reached.
-    /// Most recent first; ties by exercise ID.
-    func personalBests() -> [PersonalBest] {
-        var bests: [String: PersonalBest] = [:]
-        for entry in entries {
-            for result in entry.results {
-                let key = "\(result.exercise)|\(result.unit.rawValue)"
-                if let current = bests[key], current.value >= result.value { continue }
-                bests[key] = PersonalBest(exercise: result.exercise, value: result.value, unit: result.unit, date: entry.date)
-            }
-        }
-        return bests.values.sorted { ($0.date, $1.exercise) > ($1.date, $0.exercise) }
-    }
-
     private func isBefore(_ a: JournalEntry, _ b: JournalEntry) -> Bool {
         (a.date, a.id.uuidString) < (b.date, b.id.uuidString)
     }
 
-    // MARK: Month
+    // MARK: Totals
 
-    func month(containing date: Date) -> MonthSummary {
-        let inMonth = entries.filter { calendar.isDate($0.date, equalTo: date, toGranularity: .month) }
-        return MonthSummary(
-            workouts: inMonth.count,
-            seconds: inMonth.reduce(0) { $0 + $1.durationSeconds },
-            records: inMonth.reduce(0) { $0 + records(in: $1).count }
+    /// Workouts, training time and records over all entries.
+    func overall() -> TrainingTotals {
+        TrainingTotals(
+            workouts: entries.count,
+            seconds: entries.reduce(0) { $0 + $1.durationSeconds },
+            records: entries.reduce(0) { $0 + records(in: $1).count }
         )
     }
 

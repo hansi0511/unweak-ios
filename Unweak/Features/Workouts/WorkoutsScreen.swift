@@ -206,42 +206,6 @@ struct WorkoutCard: View {
     }
 }
 
-/// One plan in a list: pose, name, metadata and badge (Free, Pro or Custom). Used when
-/// adding a workout by hand in the Journey.
-struct PlanRow: View {
-    private let plan: WorkoutPlan
-    private let badge: Badge.Kind
-
-    init(plan: WorkoutPlan, badge: Badge.Kind? = nil) {
-        self.plan = plan
-        self.badge = badge ?? (plan.customName != nil ? .custom : (plan.isFree ? .free : .subscription))
-    }
-
-    var body: some View {
-        Card(padding: 12) {
-            HStack(spacing: 14) {
-                StickyPoseView(plan.pose, highlighted: plan.isFree)
-                    .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 6) {
-                    plan.title
-                        .font(.textSemibold(17))
-                        .foregroundStyle(Theme.text)
-                        .multilineTextAlignment(.leading)
-                    MetaLine([
-                        Text(plan.category.title),
-                        Text("\(plan.estimatedMinutes) min"),
-                        Text(plan.level.title),
-                    ])
-                }
-                Spacer(minLength: 0)
-                Badge(kind: badge)
-            }
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityAddTraits(.isButton)
-    }
-}
-
 #Preview {
     NavigationStack {
         WorkoutsScreen()
