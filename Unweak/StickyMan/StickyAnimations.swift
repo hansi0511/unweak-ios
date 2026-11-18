@@ -33,6 +33,20 @@ enum StickyAnimation: String, CaseIterable, Codable, Sendable {
     case negativeMuscleUp
     case boxPistol
     case assistedPistol
+    case inclinePushUp
+    case declinePushUp
+    case diamondPushUp
+    case benchDip
+    case deadHang
+    case scapulaPullUp
+    case hangingLegRaise
+    case tuckLSit
+    case hollowHold
+    case mountainClimber
+    case gluteBridge
+    case wallSit
+    case bulgarianSplitSquat
+    case jumpSquat
 
     /// The front lever variants, drawn by `FrontLeverAnimation`.
     var frontLeverLegs: FrontLeverAnimation.Legs? {
@@ -71,6 +85,20 @@ enum StickyAnimation: String, CaseIterable, Codable, Sendable {
         case .negativeMuscleUp: .negativeMuscleUp
         case .boxPistol: .boxPistol
         case .assistedPistol: .assistedPistol
+        case .inclinePushUp: .inclinePushUp
+        case .declinePushUp: .declinePushUp
+        case .diamondPushUp: .diamondPushUp
+        case .benchDip: .benchDip
+        case .deadHang: .deadHang
+        case .scapulaPullUp: .scapulaPullUp
+        case .hangingLegRaise: .hangingLegRaise
+        case .tuckLSit: .tuckLSit
+        case .hollowHold: .hollowHold
+        case .mountainClimber: .mountainClimber
+        case .gluteBridge: .gluteBridge
+        case .wallSit: .wallSit
+        case .bulgarianSplitSquat: .bulgarianSplitSquat
+        case .jumpSquat: .jumpSquat
         }
     }
 
@@ -145,6 +173,20 @@ enum StickyAnimation: String, CaseIterable, Codable, Sendable {
         case .negativeMuscleUp: "Negative muscle-up animation"
         case .boxPistol: "Box pistol animation"
         case .assistedPistol: "Assisted pistol animation"
+        case .inclinePushUp: "Incline push-up animation"
+        case .declinePushUp: "Decline push-up animation"
+        case .diamondPushUp: "Diamond push-up animation"
+        case .benchDip: "Bench dip animation"
+        case .deadHang: "Dead hang animation"
+        case .scapulaPullUp: "Scapula pull-up animation"
+        case .hangingLegRaise: "Hanging leg raise animation"
+        case .tuckLSit: "Tuck L-sit animation"
+        case .hollowHold: "Hollow hold animation"
+        case .mountainClimber: "Mountain climber animation"
+        case .gluteBridge: "Glute bridge animation"
+        case .wallSit: "Wall sit animation"
+        case .bulgarianSplitSquat: "Bulgarian split squat animation"
+        case .jumpSquat: "Jump squat animation"
         }
     }
 }

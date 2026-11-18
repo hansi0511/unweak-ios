@@ -8,17 +8,19 @@ struct CatalogTests {
     @Test func loadsWithoutProblems() throws {
         let loaded = try Catalog.load()
         #expect(loaded.problems().isEmpty)
-        #expect(loaded.exercises.count == 16)
-        #expect(loaded.plans.count == 13)
+        #expect(loaded.exercises.count == 42)
+        #expect(loaded.plans.count == 50)
         #expect(loaded.goals.count == 6)
         #expect(loaded.achievements.count == 12)
     }
 
     @Test func theFreeVersionHasTenGeneralWorkouts() {
         #expect(catalog.freePlanCount == 10)
-        for plan in catalog.plans {
-            #expect(plan.isFree == (plan.category != .skill), "\(plan.id)")
+        // Skill workouts are always Pro; general workouts beyond the ten free ones too.
+        for plan in catalog.plans where plan.category == .skill {
+            #expect(!plan.isFree, "\(plan.id)")
         }
+        #expect(catalog.plans.contains { !$0.isFree && $0.category != .skill })
     }
 
     @Test func skillsArePro() {
@@ -214,10 +216,22 @@ struct AreaTests {
     @Test func stagesAreSpreadOverTheSkillWorkouts() throws {
         let catalog = Catalog.main
         let frontLever = try #require(catalog.goals.first { $0.id == "frontLever" })
-        // Three workouts over five stages: 0, 0, 1, 1, 2.
+        // Five workouts over five stages: one per stage.
         let ids = (0..<5).compactMap { catalog.plan(forStage: $0, of: frontLever)?.id }
-        #expect(ids == ["pullDay", "pullDay", "pullStrength", "pullStrength", "frontLeverBuildUp"])
-        #expect(catalog.plan(forStage: 9, of: frontLever)?.id == "frontLeverBuildUp")
+        #expect(ids == frontLever.plans)
+        #expect(catalog.plan(forStage: 9, of: frontLever)?.id == "frontLeverFull")
+        // Three workouts over five stages: 0, 0, 1, 1, 2.
+        let small = Goal(
+            id: frontLever.id,
+            pose: frontLever.pose,
+            exercise: frontLever.exercise,
+            plans: ["pullDay", "pullStrength", "frontLeverBuildUp"],
+            isFree: false,
+            stageCount: 5,
+            targetSeconds: nil
+        )
+        let spread = (0..<5).compactMap { catalog.plan(forStage: $0, of: small)?.id }
+        #expect(spread == ["pullDay", "pullDay", "pullStrength", "pullStrength", "frontLeverBuildUp"])
         let plank = try #require(catalog.goals.first { $0.id == "plank5Min" })
         #expect(catalog.plan(forStage: 3, of: plank)?.id == plank.plans.first)
     }
@@ -231,7 +245,9 @@ struct SkillTests {
             #expect(!catalog.skillPlans(for: goal).isEmpty, "\(goal.id)")
         }
         let frontLever = try #require(catalog.goals.first { $0.id == "frontLever" })
-        #expect(catalog.skillPlans(for: frontLever).map(\.id) == ["pullDay", "pullStrength", "frontLeverBuildUp"])
+        #expect(catalog.skillPlans(for: frontLever).map(\.id) == [
+            "frontLeverBuildUp", "frontLeverAdvancedTuck", "frontLeverOneLeg", "frontLeverStraddle", "frontLeverFull",
+        ])
     }
 
     @Test func skillWorkoutsAreNotInTheWorkoutsArea() {
@@ -310,7 +326,8 @@ struct AccessTests {
         let pro = stats.nextWorkout(in: catalog, access: Access(isPro: true), preferring: frontLever.plans)
         #expect(pro?.id == "frontLeverBuildUp")
         let free = stats.nextWorkout(in: catalog, access: Access(isPro: false), preferring: frontLever.plans)
-        #expect(free?.id == "pullDay")
+        // Free: none of the skill workouts, so the first free workout never trained.
+        #expect(free?.id == "pushBasics")
     }
 
     @Test func withoutSkillOnlyGeneralWorkoutsAreSuggested() {
