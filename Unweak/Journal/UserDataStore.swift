@@ -147,10 +147,15 @@ final class UserDataStore {
     }
 
     /// Starts or stops learning a skill. Several skills can be learned at once.
+    /// A skill that is already learned keeps its place; a new one goes to the end.
     func setLearning(_ learning: Bool, _ goal: Goal, in catalog: Catalog) {
         var ids = activeGoalIDs(in: catalog)
-        ids.removeAll { $0 == goal.id }
-        if learning { ids.append(goal.id) }
+        if learning {
+            // Still saved when already in the list: the default skill becomes a real choice.
+            if !ids.contains(goal.id) { ids.append(goal.id) }
+        } else {
+            ids.removeAll { $0 == goal.id }
+        }
         data.activeGoalIDs = ids
         persist()
     }
