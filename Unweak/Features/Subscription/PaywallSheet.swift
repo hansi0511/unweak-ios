@@ -36,6 +36,7 @@ struct PaywallSheet: View {
             }
 
             VStack(alignment: .leading, spacing: 14) {
+                benefit("All 50 workouts")
                 benefit("All 6 skills")
                 benefit("Goals with 5 stages")
                 benefit("Unlimited custom workouts")

@@ -205,6 +205,1026 @@
         }
       }
     },
+    "exercise.advancedTuckFrontLever.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Runder Rücken."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rounded back."
+          }
+        }
+      }
+    },
+    "exercise.advancedTuckFrontLever.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Arme beugen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bending the arms."
+          }
+        }
+      }
+    },
+    "exercise.advancedTuckFrontLever.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced Tuck Front Lever"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced tuck front lever"
+          }
+        }
+      }
+    },
+    "exercise.advancedTuckFrontLever.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geh unter der Stange in den Tuck Front Lever."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get into a tuck front lever under the bar."
+          }
+        }
+      }
+    },
+    "exercise.advancedTuckFrontLever.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Streck die Hüfte, bis der Rücken flach ist, die Knie bleiben gebeugt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open your hips until your back is flat, knees still bent."
+          }
+        }
+      }
+    },
+    "exercise.advancedTuckFrontLever.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück die Stange mit gestreckten Armen nach unten und halte."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press the bar down with straight arms and hold."
+          }
+        }
+      }
+    },
+    "exercise.assistedPistol.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dich mit den Armen hochziehen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulling yourself up with the arms."
+          }
+        }
+      }
+    },
+    "exercise.assistedPistol.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Ferse des Standbeins hebt ab."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heel of the standing foot lifting."
+          }
+        }
+      }
+    },
+    "exercise.assistedPistol.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol mit Hilfe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assisted pistol"
+          }
+        }
+      }
+    },
+    "exercise.assistedPistol.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stell dich auf einem Bein neben eine Stange oder einen Türrahmen und halt dich leicht fest."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stand on one leg next to a pole or door frame and hold it lightly."
+          }
+        }
+      }
+    },
+    "exercise.assistedPistol.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geh auf dem Standbein ganz nach unten, das andere Bein gestreckt nach vorn."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sink all the way down on the standing leg, the other leg straight out in front."
+          }
+        }
+      }
+    },
+    "exercise.assistedPistol.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steh wieder auf und nutz die Hände nur so viel wie nötig."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stand back up, using your hands only as much as you need."
+          }
+        }
+      }
+    },
+    "exercise.benchDip.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Ellbogen zeigen zur Seite."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elbows pointing out to the sides."
+          }
+        }
+      }
+    },
+    "exercise.benchDip.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Hüfte wandert weit von der Bank weg."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips drifting far away from the bench."
+          }
+        }
+      }
+    },
+    "exercise.benchDip.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bank-Dip"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bench dip"
+          }
+        }
+      }
+    },
+    "exercise.benchDip.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setz dich auf die Kante einer Bank, die Hände neben der Hüfte, und schieb die Hüfte nach vorn von der Bank."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sit on the edge of a bench, hands next to your hips, and slide your hips forward off it."
+          }
+        }
+      }
+    },
+    "exercise.benchDip.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beug die Ellbogen nach hinten und senk die Hüfte, bis die Oberarme etwa waagrecht sind."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bend your elbows straight back and lower your hips until your upper arms are about level."
+          }
+        }
+      }
+    },
+    "exercise.benchDip.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück dich hoch, bis die Arme gestreckt sind."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press back up until your arms are straight."
+          }
+        }
+      }
+    },
+    "exercise.boxPistol.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf den Kasten plumpsen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dropping onto the box."
+          }
+        }
+      }
+    },
+    "exercise.boxPistol.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Knie knickt nach innen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knee caving inwards."
+          }
+        }
+      }
+    },
+    "exercise.boxPistol.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol auf Kasten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Box pistol"
+          }
+        }
+      }
+    },
+    "exercise.boxPistol.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stell dich auf einem Bein vor einen Kasten, das andere Bein gestreckt nach vorn."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stand on one leg in front of a box, the other leg straight out in front."
+          }
+        }
+      }
+    },
+    "exercise.boxPistol.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setz dich langsam nach hinten auf den Kasten, die Arme nach vorn."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sit back slowly onto the box, arms reaching forward."
+          }
+        }
+      }
+    },
+    "exercise.boxPistol.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steh auf demselben Bein wieder auf, ohne Schwung."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stand up on the same leg without rocking."
+          }
+        }
+      }
+    },
+    "exercise.bulgarianSplitSquat.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das vordere Knie knickt nach innen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front knee collapsing inwards."
+          }
+        }
+      }
+    },
+    "exercise.bulgarianSplitSquat.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zu nah an der Bank stehen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standing too close to the bench."
+          }
+        }
+      }
+    },
+    "exercise.bulgarianSplitSquat.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulgarische Kniebeuge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulgarian split squat"
+          }
+        }
+      }
+    },
+    "exercise.bulgarianSplitSquat.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stell dich einen großen Schritt vor eine Bank und leg den Rist des hinteren Fußes darauf."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stand a big step in front of a bench and put the top of your back foot on it."
+          }
+        }
+      }
+    },
+    "exercise.bulgarianSplitSquat.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senk das hintere Knie Richtung Boden, der Oberkörper bleibt aufrecht."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower your back knee towards the floor, upper body upright."
+          }
+        }
+      }
+    },
+    "exercise.bulgarianSplitSquat.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück dich über die vordere Ferse wieder hoch."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Push through your front heel to stand back up."
+          }
+        }
+      }
+    },
+    "exercise.chestToBarPullUp.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit dem Kinn an der Stange aufhören."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopping with the chin at the bar."
+          }
+        }
+      }
+    },
+    "exercise.chestToBarPullUp.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit den Beinen strampeln."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kicking with the legs."
+          }
+        }
+      }
+    },
+    "exercise.chestToBarPullUp.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klimmzug bis zur Brust"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chest-to-bar pull-up"
+          }
+        }
+      }
+    },
+    "exercise.chestToBarPullUp.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häng an der Stange, die Hände etwas breiter als schulterbreit."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hang from the bar with hands slightly wider than your shoulders."
+          }
+        }
+      }
+    },
+    "exercise.chestToBarPullUp.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zieh kräftig und zügig, leicht nach hinten gelehnt, bis die Brust die Stange berührt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull hard and fast, leaning back slightly, until your chest touches the bar."
+          }
+        }
+      }
+    },
+    "exercise.chestToBarPullUp.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lass dich kontrolliert bis in den vollen Hang ab."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower yourself under control to a full hang."
+          }
+        }
+      }
+    },
+    "exercise.chinUp.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit den Beinen Schwung holen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swinging the legs for momentum."
+          }
+        }
+      }
+    },
+    "exercise.chinUp.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur halb hochziehen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only pulling halfway up."
+          }
+        }
+      }
+    },
+    "exercise.chinUp.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chin-up"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chin-up"
+          }
+        }
+      }
+    },
+    "exercise.chinUp.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häng an der Stange, die Handflächen zeigen zu dir, die Hände schulterbreit."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hang from the bar with your palms facing you, hands shoulder-width apart."
+          }
+        }
+      }
+    },
+    "exercise.chinUp.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zieh die Brust zur Stange, bis das Kinn darüber ist."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull your chest towards the bar until your chin is above it."
+          }
+        }
+      }
+    },
+    "exercise.chinUp.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lass dich kontrolliert bis in den vollen Hang ab."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower yourself under control to a full hang."
+          }
+        }
+      }
+    },
+    "exercise.deadHang.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vor und zurück schwingen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swinging back and forth."
+          }
+        }
+      }
+    },
+    "exercise.deadHang.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loslassen, bevor die Zeit um ist, statt kurz abzusetzen und weiterzumachen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letting go before the time is up, instead of resting a moment and continuing."
+          }
+        }
+      }
+    },
+    "exercise.deadHang.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hängen an der Stange"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dead hang"
+          }
+        }
+      }
+    },
+    "exercise.deadHang.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Greif die Stange etwas breiter als schulterbreit."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grip the bar a little wider than your shoulders."
+          }
+        }
+      }
+    },
+    "exercise.deadHang.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lass dich mit gestreckten Armen hängen, die Beine geschlossen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let your body hang with straight arms and legs together."
+          }
+        }
+      }
+    },
+    "exercise.deadHang.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halte den Bauch leicht angespannt und atme ruhig weiter."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep your belly lightly tensed and breathe calmly."
+          }
+        }
+      }
+    },
+    "exercise.declinePushUp.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Hüfte sackt zum Boden durch."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips sagging towards the floor."
+          }
+        }
+      }
+    },
+    "exercise.declinePushUp.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur halb nach unten gehen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only going halfway down."
+          }
+        }
+      }
+    },
+    "exercise.declinePushUp.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liegestütz mit erhöhten Füßen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decline push-up"
+          }
+        }
+      }
+    },
+    "exercise.declinePushUp.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leg die Füße auf einen Kasten oder eine Bank, die Hände unter den Schultern auf den Boden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Put your feet on a box or bench and your hands on the floor under your shoulders."
+          }
+        }
+      }
+    },
+    "exercise.declinePushUp.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spann den Bauch an, damit dein Körper von den Fersen bis zum Kopf gerade bleibt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tighten your belly so your body stays straight from heels to head."
+          }
+        }
+      }
+    },
+    "exercise.declinePushUp.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senk die Brust zum Boden und drück dich wieder hoch."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower your chest towards the floor and press back up."
+          }
+        }
+      }
+    },
+    "exercise.diamondPushUp.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Ellbogen gehen weit zur Seite."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elbows flaring out to the sides."
+          }
+        }
+      }
+    },
+    "exercise.diamondPushUp.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Hüfte hängt durch oder ragt nach oben."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips sagging or piking up."
+          }
+        }
+      }
+    },
+    "exercise.diamondPushUp.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diamant-Liegestütz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diamond push-up"
+          }
+        }
+      }
+    },
+    "exercise.diamondPushUp.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setz die Hände unter der Brust zusammen, sodass Daumen und Zeigefinger eine Raute bilden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Put your hands together under your chest so thumbs and index fingers form a diamond."
+          }
+        }
+      }
+    },
+    "exercise.diamondPushUp.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halte den Körper gerade und senk die Brust zu den Händen, die Ellbogen eng am Körper."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep your body straight and lower your chest towards your hands, elbows close to your body."
+          }
+        }
+      }
+    },
+    "exercise.diamondPushUp.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück dich hoch, bis die Arme gestreckt sind."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press back up until your arms are straight."
+          }
+        }
+      }
+    },
     "exercise.dip.mistake1" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -303,6 +1323,822 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Press back up to straight arms."
+          }
+        }
+      }
+    },
+    "exercise.elevatedPikePushUp.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Hüfte sinkt hinter die Schultern ab."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips sinking down behind the shoulders."
+          }
+        }
+      }
+    },
+    "exercise.elevatedPikePushUp.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Ellbogen gehen weit nach außen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elbows flaring wide."
+          }
+        }
+      }
+    },
+    "exercise.elevatedPikePushUp.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erhöhter Pike-Liegestütz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elevated pike push-up"
+          }
+        }
+      }
+    },
+    "exercise.elevatedPikePushUp.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stell die Füße auf einen Kasten und lauf mit den Händen zurück, bis die Hüfte über den Schultern ist."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Put your feet on a box and walk your hands back until your hips are above your shoulders."
+          }
+        }
+      }
+    },
+    "exercise.elevatedPikePushUp.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beug die Ellbogen und senk den Scheitel vor den Händen Richtung Boden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bend your elbows and lower the top of your head towards the floor in front of your hands."
+          }
+        }
+      }
+    },
+    "exercise.elevatedPikePushUp.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück dich zurück zu gestreckten Armen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press back up to straight arms."
+          }
+        }
+      }
+    },
+    "exercise.frontLever.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Hüfte sinkt unter die Linie."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips dropping below the line."
+          }
+        }
+      }
+    },
+    "exercise.frontLever.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Arme beugen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bending the arms."
+          }
+        }
+      }
+    },
+    "exercise.frontLever.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front Lever"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front lever"
+          }
+        }
+      }
+    },
+    "exercise.frontLever.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häng an der Stange und drück sie mit gestreckten Armen Richtung Hüfte."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hang from the bar and pull it down towards your hips with straight arms."
+          }
+        }
+      }
+    },
+    "exercise.frontLever.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heb den ganzen Körper mit geschlossenen Beinen bis zur Waagrechten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raise your whole body, legs together, until it is level."
+          }
+        }
+      }
+    },
+    "exercise.frontLever.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spann Bauch und Po an und halte."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Squeeze your belly and glutes and hold."
+          }
+        }
+      }
+    },
+    "exercise.gluteBridge.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oben ins Hohlkreuz gehen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arching the lower back at the top."
+          }
+        }
+      }
+    },
+    "exercise.gluteBridge.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Über die Zehen statt über die Fersen drücken."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pushing through the toes instead of the heels."
+          }
+        }
+      }
+    },
+    "exercise.gluteBridge.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beckenheben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glute bridge"
+          }
+        }
+      }
+    },
+    "exercise.gluteBridge.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leg dich auf den Rücken, die Knie gebeugt, die Füße hüftbreit flach am Boden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lie on your back, knees bent, feet flat on the floor hip-width apart."
+          }
+        }
+      }
+    },
+    "exercise.gluteBridge.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück dich über die Fersen hoch und heb die Hüfte, bis Knie, Hüfte und Schultern eine Linie bilden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Push through your heels and lift your hips until knees, hips and shoulders are in a line."
+          }
+        }
+      }
+    },
+    "exercise.gluteBridge.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spann oben den Po an und senk die Hüfte langsam ab."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Squeeze your glutes at the top, then lower slowly."
+          }
+        }
+      }
+    },
+    "exercise.halfWallHandstandPushUp.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starkes Hohlkreuz."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strong arch in the lower back."
+          }
+        }
+      }
+    },
+    "exercise.halfWallHandstandPushUp.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unkontrolliert nach unten fallen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dropping down without control."
+          }
+        }
+      }
+    },
+    "exercise.halfWallHandstandPushUp.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halber Handstand-Liegestütz an der Wand"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Half wall handstand push-up"
+          }
+        }
+      }
+    },
+    "exercise.halfWallHandstandPushUp.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schwing dich mit dem Rücken zur Wand in den Handstand."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kick up into a handstand with your back to the wall."
+          }
+        }
+      }
+    },
+    "exercise.halfWallHandstandPushUp.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beug die Ellbogen und lass dich bis zur Hälfte Richtung Boden ab."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bend your elbows and lower yourself halfway towards the floor."
+          }
+        }
+      }
+    },
+    "exercise.halfWallHandstandPushUp.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück dich zurück zu gestreckten Armen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press back up to straight arms."
+          }
+        }
+      }
+    },
+    "exercise.hangingLegRaise.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vor und zurück schwingen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swinging back and forth."
+          }
+        }
+      }
+    },
+    "exercise.hangingLegRaise.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Knie beugen, damit es leichter wird."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bending the knees to make it easier."
+          }
+        }
+      }
+    },
+    "exercise.hangingLegRaise.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hängendes Beinheben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanging leg raise"
+          }
+        }
+      }
+    },
+    "exercise.hangingLegRaise.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häng mit gestreckten Armen und aktiven Schultern an der Stange."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hang from the bar with straight arms and active shoulders."
+          }
+        }
+      }
+    },
+    "exercise.hangingLegRaise.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heb die gestreckten Beine mindestens bis zur Waagrechten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raise your straight legs until they are at least level."
+          }
+        }
+      }
+    },
+    "exercise.hangingLegRaise.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senk sie langsam ab, ohne zu schwingen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower them slowly without swinging."
+          }
+        }
+      }
+    },
+    "exercise.hollowHold.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der untere Rücken hebt vom Boden ab."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower back lifting off the floor."
+          }
+        }
+      }
+    },
+    "exercise.hollowHold.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Beine zu hoch, dann wird es zu leicht."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legs too high, which makes it too easy."
+          }
+        }
+      }
+    },
+    "exercise.hollowHold.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hollow Hold"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hollow hold"
+          }
+        }
+      }
+    },
+    "exercise.hollowHold.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leg dich auf den Rücken und drück den unteren Rücken in den Boden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lie on your back and press your lower back into the floor."
+          }
+        }
+      }
+    },
+    "exercise.hollowHold.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heb Schultern, Arme und gestreckte Beine ein Stück vom Boden ab."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lift your shoulders, arms and straight legs a little off the floor."
+          }
+        }
+      }
+    },
+    "exercise.hollowHold.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halte die Bananenform und atme ruhig weiter."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold the banana shape and breathe calmly."
+          }
+        }
+      }
+    },
+    "exercise.inclinePushUp.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Hüfte sackt zum Boden durch."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips sagging towards the floor."
+          }
+        }
+      }
+    },
+    "exercise.inclinePushUp.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Kopf geht nach vorn statt der Brust."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Head reaching forward instead of the chest."
+          }
+        }
+      }
+    },
+    "exercise.inclinePushUp.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liegestütz mit erhöhten Händen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incline push-up"
+          }
+        }
+      }
+    },
+    "exercise.inclinePushUp.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setz die Hände etwas breiter als schulterbreit auf einen Kasten oder eine Bank."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Place your hands on a box or bench, slightly wider than your shoulders."
+          }
+        }
+      }
+    },
+    "exercise.inclinePushUp.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geh mit den Füßen zurück, bis dein Körper von Kopf bis Ferse eine Linie bildet."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Step back until your body forms a straight line from head to heels."
+          }
+        }
+      }
+    },
+    "exercise.inclinePushUp.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senk die Brust zur Kante und drück dich wieder hoch."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower your chest to the edge and push back up."
+          }
+        }
+      }
+    },
+    "exercise.jumpSquat.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit steifen Beinen landen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Landing with stiff legs."
+          }
+        }
+      }
+    },
+    "exercise.jumpSquat.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Knie knicken bei der Landung nach innen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knees caving inwards on landing."
+          }
+        }
+      }
+    },
+    "exercise.jumpSquat.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprungkniebeuge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jump squat"
+          }
+        }
+      }
+    },
+    "exercise.jumpSquat.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stell dich schulterbreit hin und geh in die Kniebeuge."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stand with feet shoulder-width apart and squat down."
+          }
+        }
+      }
+    },
+    "exercise.jumpSquat.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring explosiv nach oben und schwing die Arme mit."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jump up explosively, swinging your arms up."
+          }
+        }
+      }
+    },
+    "exercise.jumpSquat.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lande weich auf dem ganzen Fuß und geh direkt in die nächste Kniebeuge."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Land softly on your whole foot and sink straight into the next squat."
           }
         }
       }
@@ -715,6 +2551,108 @@
         }
       }
     },
+    "exercise.mountainClimber.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Hüfte hüpft auf und ab."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips bouncing up and down."
+          }
+        }
+      }
+    },
+    "exercise.mountainClimber.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Schultern wandern hinter die Hände."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoulders drifting back behind the hands."
+          }
+        }
+      }
+    },
+    "exercise.mountainClimber.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bergsteiger"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mountain climber"
+          }
+        }
+      }
+    },
+    "exercise.mountainClimber.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beginne im hohen Stütz, die Hände unter den Schultern."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start in a high plank with your hands under your shoulders."
+          }
+        }
+      }
+    },
+    "exercise.mountainClimber.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zieh ein Knie zur Brust und wechsle dann zügig das Bein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drive one knee towards your chest, then switch legs quickly."
+          }
+        }
+      }
+    },
+    "exercise.mountainClimber.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halte die Hüfte unten und die Schultern über den Händen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep your hips low and your shoulders above your hands."
+          }
+        }
+      }
+    },
     "exercise.muscleUp.mistake1" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -817,6 +2755,108 @@
         }
       }
     },
+    "exercise.negativeMuscleUp.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durch den Übergang fallen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dropping through the transition."
+          }
+        }
+      }
+    },
+    "exercise.negativeMuscleUp.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unten die Schultern locker lassen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letting the shoulders go loose at the bottom."
+          }
+        }
+      }
+    },
+    "exercise.negativeMuscleUp.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negativer Muscle-up"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negative muscle-up"
+          }
+        }
+      }
+    },
+    "exercise.negativeMuscleUp.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring in den gestreckten Stütz oben auf der Stange."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jump into a straight-arm support on top of the bar."
+          }
+        }
+      }
+    },
+    "exercise.negativeMuscleUp.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lass dich langsam ab, lehn dich nach vorn und dreh die Handgelenke zurück unter die Stange."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower yourself slowly, lean forward and turn your wrists back under the bar."
+          }
+        }
+      }
+    },
+    "exercise.negativeMuscleUp.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brems weiter, bis du im vollen Hang ankommst."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep braking all the way down to a full hang."
+          }
+        }
+      }
+    },
     "exercise.negativePullUp.mistake1" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -915,6 +2955,108 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reach a full hang, then step back up for the next repetition."
+          }
+        }
+      }
+    },
+    "exercise.oneLegFrontLever.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Hüfte sinkt, wenn das Bein rausgeht."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips dropping when the leg goes out."
+          }
+        }
+      }
+    },
+    "exercise.oneLegFrontLever.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Arme beugen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bending the arms."
+          }
+        }
+      }
+    },
+    "exercise.oneLegFrontLever.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front Lever mit einem Bein"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One-leg front lever"
+          }
+        }
+      }
+    },
+    "exercise.oneLegFrontLever.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beginne im Advanced Tuck Front Lever."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start in an advanced tuck front lever."
+          }
+        }
+      }
+    },
+    "exercise.oneLegFrontLever.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Streck ein Bein gerade aus, das andere bleibt gebeugt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stretch one leg out straight while the other stays bent."
+          }
+        }
+      }
+    },
+    "exercise.oneLegFrontLever.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halte den Körper waagrecht und wechsle im nächsten Satz das Bein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold with your body level, then switch legs in the next set."
           }
         }
       }
@@ -1531,6 +3673,108 @@
         }
       }
     },
+    "exercise.scapulaPullUp.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Ellbogen beugen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bending the elbows."
+          }
+        }
+      }
+    },
+    "exercise.scapulaPullUp.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit den Beinen Schwung holen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swinging the legs for momentum."
+          }
+        }
+      }
+    },
+    "exercise.scapulaPullUp.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schulterblatt-Klimmzug"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scapula pull-up"
+          }
+        }
+      }
+    },
+    "exercise.scapulaPullUp.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häng mit gestreckten Armen an der Stange."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hang from the bar with straight arms."
+          }
+        }
+      }
+    },
+    "exercise.scapulaPullUp.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zieh die Schultern nach unten, weg von den Ohren, ohne die Ellbogen zu beugen, sodass dein Körper etwas hochkommt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Without bending your elbows, pull your shoulders down and away from your ears so your body rises a little."
+          }
+        }
+      }
+    },
+    "exercise.scapulaPullUp.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lass dich kontrolliert zurück in den Hang."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower back into the hang under control."
+          }
+        }
+      }
+    },
     "exercise.squat.mistake1" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1629,6 +3873,108 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Drive through your whole foot to stand back up."
+          }
+        }
+      }
+    },
+    "exercise.straddleFrontLever.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Hüfte hängt unter Schulterhöhe."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hips sagging below the shoulders."
+          }
+        }
+      }
+    },
+    "exercise.straddleFrontLever.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebeugte Knie."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bent knees."
+          }
+        }
+      }
+    },
+    "exercise.straddleFrontLever.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Straddle Front Lever"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Straddle front lever"
+          }
+        }
+      }
+    },
+    "exercise.straddleFrontLever.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beginne im Advanced Tuck Front Lever."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start in an advanced tuck front lever."
+          }
+        }
+      }
+    },
+    "exercise.straddleFrontLever.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Streck beide Beine weit gegrätscht aus."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stretch both legs out wide to the sides."
+          }
+        }
+      }
+    },
+    "exercise.straddleFrontLever.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halte den Körper waagrecht und drück die Stange mit gestreckten Armen nach unten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep your body level and press the bar down with straight arms."
           }
         }
       }
@@ -1735,6 +4081,108 @@
         }
       }
     },
+    "exercise.tuckLSit.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hochgezogene Schultern."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoulders shrugged up."
+          }
+        }
+      }
+    },
+    "exercise.tuckLSit.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebeugte Ellbogen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bent elbows."
+          }
+        }
+      }
+    },
+    "exercise.tuckLSit.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuck L-Sit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tuck L-sit"
+          }
+        }
+      }
+    },
+    "exercise.tuckLSit.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setz die Hände neben der Hüfte auf Parallettes oder den Boden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Place your hands on parallettes or the floor next to your hips."
+          }
+        }
+      }
+    },
+    "exercise.tuckLSit.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück dich nach unten weg und heb die Hüfte an."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press down and lift your hips off the floor."
+          }
+        }
+      }
+    },
+    "exercise.tuckLSit.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zieh die Knie Richtung Brust und halte, die Füße in der Luft."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull your knees up towards your chest and hold, feet off the floor."
+          }
+        }
+      }
+    },
     "exercise.wallHandstand.mistake1" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1833,6 +4281,210 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Push the floor away, squeeze your legs together and look at your hands."
+          }
+        }
+      }
+    },
+    "exercise.wallHandstandPushUp.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hart auf dem Kopf landen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Landing hard on your head."
+          }
+        }
+      }
+    },
+    "exercise.wallHandstandPushUp.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Ellbogen gehen weit nach außen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elbows flaring wide."
+          }
+        }
+      }
+    },
+    "exercise.wallHandstandPushUp.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handstand-Liegestütz an der Wand"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wall handstand push-up"
+          }
+        }
+      }
+    },
+    "exercise.wallHandstandPushUp.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schwing dich mit dem Rücken zur Wand in den Handstand, die Hände etwas breiter als die Schultern."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kick up into a handstand with your back to the wall, hands a little wider than your shoulders."
+          }
+        }
+      }
+    },
+    "exercise.wallHandstandPushUp.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lass dich langsam ab, bis der Kopf sanft den Boden berührt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower yourself slowly until your head gently touches the floor."
+          }
+        }
+      }
+    },
+    "exercise.wallHandstandPushUp.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drück dich ganz zurück zu gestreckten Armen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press all the way back up to straight arms."
+          }
+        }
+      }
+    },
+    "exercise.wallSit.mistake1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Knie schieben sich über die Zehen hinaus."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knees pushing forward past the toes."
+          }
+        }
+      }
+    },
+    "exercise.wallSit.mistake2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Hände auf den Oberschenkeln abstützen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resting the hands on the thighs."
+          }
+        }
+      }
+    },
+    "exercise.wallSit.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wandsitzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wall sit"
+          }
+        }
+      }
+    },
+    "exercise.wallSit.step1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lehn dich mit dem Rücken an eine Wand und geh mit den Füßen nach vorn."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lean your back against a wall and walk your feet forward."
+          }
+        }
+      }
+    },
+    "exercise.wallSit.step2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rutsch nach unten, bis die Oberschenkel waagrecht und die Knie über den Füßen sind."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slide down until your thighs are level and your knees are above your ankles."
+          }
+        }
+      }
+    },
+    "exercise.wallSit.step3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lass den Rücken an der Wand und halte."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep your back on the wall and hold."
           }
         }
       }
@@ -3503,6 +6155,91 @@
         }
       }
     },
+    "plan.chestAndTriceps.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brust & Trizeps"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chest & Triceps"
+          }
+        }
+      }
+    },
+    "plan.chinUpDay.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chin-up-Tag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chin-up Day"
+          }
+        }
+      }
+    },
+    "plan.coreAdvanced.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Core für Fortgeschrittene"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Core Advanced"
+          }
+        }
+      }
+    },
+    "plan.coreBasics.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Core-Basics"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Core Basics"
+          }
+        }
+      }
+    },
+    "plan.coreBurner.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Core-Brenner"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Core Burner"
+          }
+        }
+      }
+    },
     "plan.corePlank.name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3537,6 +6274,40 @@
         }
       }
     },
+    "plan.dipDay.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dip-Tag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dip Day"
+          }
+        }
+      }
+    },
+    "plan.frontLeverAdvancedTuck.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front Lever: Advanced Tuck"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front lever: advanced tuck"
+          }
+        }
+      }
+    },
     "plan.frontLeverBuildUp.name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3550,6 +6321,108 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Front lever build-up"
+          }
+        }
+      }
+    },
+    "plan.frontLeverFull.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front Lever: voll"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front lever: full"
+          }
+        }
+      }
+    },
+    "plan.frontLeverOneLeg.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front Lever: ein Bein"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front lever: one leg"
+          }
+        }
+      }
+    },
+    "plan.frontLeverStraddle.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front Lever: Straddle"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Front lever: straddle"
+          }
+        }
+      }
+    },
+    "plan.handstandElevated.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handstand-Liegestütz: erhöhter Pike"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handstand push-up: elevated pike"
+          }
+        }
+      }
+    },
+    "plan.handstandFull.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handstand-Liegestütz: ganzer Weg"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handstand push-up: full range"
+          }
+        }
+      }
+    },
+    "plan.handstandHalf.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handstand-Liegestütz: halber Weg"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handstand push-up: half range"
           }
         }
       }
@@ -3571,6 +6444,125 @@
         }
       }
     },
+    "plan.handstandWallHold.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handstand-Liegestütz: an der Wand halten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handstand push-up: wall hold"
+          }
+        }
+      }
+    },
+    "plan.hangStrong.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stark am Hang"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hang Strong"
+          }
+        }
+      }
+    },
+    "plan.hangingCore.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Core am Hang"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanging Core"
+          }
+        }
+      }
+    },
+    "plan.hollowBody.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hollow Body"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hollow Body"
+          }
+        }
+      }
+    },
+    "plan.jumpAndBurn.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Springen & Brennen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jump & Burn"
+          }
+        }
+      }
+    },
+    "plan.lSitLab.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L-Sit-Labor"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L-sit lab"
+          }
+        }
+      }
+    },
+    "plan.legBasics.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bein-Basics"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leg Basics"
+          }
+        }
+      }
+    },
     "plan.legDayPlus.name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3584,6 +6576,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Leg Day Plus"
+          }
+        }
+      }
+    },
+    "plan.legPower.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bein-Power"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leg Power"
           }
         }
       }
@@ -3605,6 +6614,57 @@
         }
       }
     },
+    "plan.muscleUpChestToBar.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muscle-up: bis zur Brust"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muscle-up: chest to bar"
+          }
+        }
+      }
+    },
+    "plan.muscleUpDips.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muscle-up: Dips"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muscle-up: dips"
+          }
+        }
+      }
+    },
+    "plan.muscleUpNegatives.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muscle-up: Negative"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muscle-up: negatives"
+          }
+        }
+      }
+    },
     "plan.muscleUpPath.name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3618,6 +6678,125 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muscle-up path"
+          }
+        }
+      }
+    },
+    "plan.muscleUpPullUps.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muscle-up: Klimmzüge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muscle-up: pull-ups"
+          }
+        }
+      }
+    },
+    "plan.pistolAssisted.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol Squat: mit Hilfe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol squat: assisted"
+          }
+        }
+      }
+    },
+    "plan.pistolBox.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol Squat: Kasten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol squat: box"
+          }
+        }
+      }
+    },
+    "plan.pistolDeepSquat.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol Squat: tiefe Kniebeuge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol squat: deep squat"
+          }
+        }
+      }
+    },
+    "plan.pistolFull.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol Squat: voll"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol squat: full"
+          }
+        }
+      }
+    },
+    "plan.pistolLunge.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol Squat: Ausfallschritte"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pistol squat: lunges"
+          }
+        }
+      }
+    },
+    "plan.plankChallenge.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plank-Challenge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plank challenge"
           }
         }
       }
@@ -3639,6 +6818,23 @@
         }
       }
     },
+    "plan.pullPower.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zug-Power"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull Power"
+          }
+        }
+      }
+    },
     "plan.pullStrength.name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3652,6 +6848,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pull Strength"
+          }
+        }
+      }
+    },
+    "plan.pullUpVolume.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klimmzug-Volumen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull-up Volume"
           }
         }
       }
@@ -3707,6 +6920,23 @@
         }
       }
     },
+    "plan.pushUpVariety.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liegestütz-Mix"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Push-up Variety"
+          }
+        }
+      }
+    },
     "plan.rowsAndHangs.name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3720,6 +6950,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rows & Hangs"
+          }
+        }
+      }
+    },
+    "plan.shoulderBuilder.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schulter-Aufbau"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoulder Builder"
+          }
+        }
+      }
+    },
+    "plan.singleLegStrength.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einbeinige Kraft"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Single-Leg Strength"
+          }
+        }
+      }
+    },
+    "plan.wallSitBurner.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wandsitz-Brenner"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wall Sit Burner"
           }
         }
       }

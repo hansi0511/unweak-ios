@@ -165,3 +165,106 @@ def apistol(hip, torso, free, grip):
     return P(hip, torso, torso, [('p', (pole-1, grip), 1), ('p', (pole-1, grip+3), 1)], [('p', pf, -1), ('a', free[0], free[1])])
 up, down = apistol((99, 110), -88, (70, 92), 84), apistol((82, 136), -62, (-6, -4), 84)
 ANIMS['assistedPistol'] = dict(canvas=(200,170), dur=3.5, end=0.0, app=[((pole, 40), (pole, FLOOR+1.5)), floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
+
+# ===== Catalog additions =====
+
+# --- incline push-up: hands on a box, feet on the floor
+ibox = 136; ihand = (148, ibox); ifoot = (76, FLOOR)
+def incline(sh, neck):
+    hip, a = body_line(ifoot, sh)
+    return P(hip, a, a+neck, [('p', ihand, 1), ('p', (ihand[0]+2, ihand[1]), 1)], [('p', ifoot, 1), ('p', (ifoot[0]+2, ifoot[1]), 1)])
+up, down = incline(circ(ifoot, 89, ihand, 41.5, -1), -10), incline(circ(ifoot, 89, ihand, 24, -1), -6)
+ibox_lines = [((134, ibox), (170, ibox)), ((134, ibox), (134, FLOOR+1.5)), ((170, ibox), (170, FLOOR+1.5))]
+ANIMS['inclinePushUp'] = dict(canvas=(200,170), dur=3, end=0.0, app=ibox_lines + [floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
+
+# --- decline push-up: feet on a box, hands on the floor
+dbox = 132; dfoot = (52, dbox); dhand = (140, FLOOR)
+def decline(sh, neck):
+    hip, a = body_line(dfoot, sh)
+    return P(hip, a, a+neck, [('p', dhand, 1), ('p', (dhand[0]+2, dhand[1]), 1)], [('p', dfoot, 1), ('p', (dfoot[0]+2, dfoot[1]), 1)])
+up, down = decline(circ(dfoot, 89, dhand, 41.5, -1), -6), decline(circ(dfoot, 89, dhand, 24, -1), -2)
+dbox_lines = [((34, dbox), (70, dbox)), ((34, dbox), (34, FLOOR+1.5)), ((70, dbox), (70, FLOOR+1.5))]
+ANIMS['declinePushUp'] = dict(canvas=(200,170), dur=3, end=0.0, app=dbox_lines + [floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
+
+# --- diamond push-up: hands close together under the chest, elbows along the body
+dmfoot = (50, FLOOR); dmhand = (128, FLOOR)
+def diamond(sh, neck):
+    hip, a = body_line(dmfoot, sh)
+    return P(hip, a, a+neck, [('p', dmhand, 1), ('p', (dmhand[0]+1, dmhand[1]), 1)], [('p', dmfoot, 1), ('p', (dmfoot[0]+2, dmfoot[1]), 1)])
+up, down = diamond(circ(dmfoot, 89, dmhand, 41.5, -1), -8), diamond(circ(dmfoot, 89, dmhand, 22, -1), -4)
+ANIMS['diamondPushUp'] = dict(canvas=(200,170), dur=3, end=0.0, app=[floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
+
+# --- bench dip: hands on a box behind, heels on the floor
+bdbox = 120; bdhand = (84, bdbox); bdfoot = (119, FLOOR)
+def bdip(hip, sh):
+    return P(hip, ang(hip, sh), -84, [('p', bdhand, -1), ('p', (bdhand[0]-2, bdhand[1]), -1)], [('p', bdfoot, -1), ('p', (bdfoot[0]+2, bdfoot[1]), -1)])
+up, down = bdip((93, 120), (91, 78)), bdip((96, 140), (93, 98))
+bd_lines = [((50, bdbox), (86, bdbox)), ((50, bdbox), (50, FLOOR+1.5)), ((86, bdbox), (86, FLOOR+1.5))]
+ANIMS['benchDip'] = dict(canvas=(200,170), dur=3, end=0.0, app=bd_lines + [floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
+
+# --- dead hang: straight arms on the bar, breathing calmly
+def hangp(hip_y, legs=((88, 92), (92, 90))):
+    return P((100, hip_y), -90, -90, [('p', kh, 1), ('p', (kh[0]+2, kh[1]), 1)], [('a', *legs[0]), ('a', *legs[1])])
+rest, breathe = hangp(105.5), hangp(104.5)
+ANIMS['deadHang'] = dict(canvas=(200,170), dur=4, end=0.0, app=[((60,20),(140,20))], keys=[(0,rest),(0.5,breathe),(1,rest)])
+
+# --- scapula pull-up: arms stay straight, the shoulders pull the body up a little
+low, high = hangp(105.5), hangp(99)
+ANIMS['scapulaPullUp'] = dict(canvas=(200,170), dur=3, end=0.5, app=[((60,20),(140,20))], keys=[(0,low),(0.15,low),(0.45,high),(0.6,high),(0.9,low),(1,low)])
+
+# --- hanging leg raise: straight legs up to horizontal
+down, up = hangp(105.5), hangp(105.5, ((2, 2), (0, 0)))
+ANIMS['hangingLegRaise'] = dict(canvas=(200,170), dur=3.5, end=0.5, app=[((60,20),(140,20))], keys=[(0,down),(0.1,down),(0.45,up),(0.6,up),(0.95,down),(1,down)])
+
+# --- tuck L-sit: like the L-sit, knees bent towards the chest
+def tsit(th, sh_, hip_y):
+    return P((101, hip_y), -90, -90, [('p', lh, 1), ('p', (lh[0]+2, lh[1]), 1)], [('a', th, sh_), ('a', th+2, sh_+2)])
+level, raised = tsit(-40, 95, 127), tsit(-52, 85, 126)
+ANIMS['tuckLSit'] = dict(canvas=(200,170), dur=4, end=0.5, app=[((84,128),(118,128)), floor()], keys=[(0,level),(0.3,raised),(0.7,raised),(1,level)])
+
+# --- hollow hold: on the back, shoulders and straight legs just off the floor, arms overhead
+def hollow(rock):
+    hip = (112, 149)
+    return P(hip, 192 - rock, 196 - rock, [('a', 194 - rock, 194 - rock), ('a', 196 - rock, 196 - rock)], [('a', -12 + rock, -12 + rock), ('a', -10 + rock, -10 + rock)])
+rest, breathe = hollow(0), hollow(2)
+ANIMS['hollowHold'] = dict(canvas=(200,170), dur=4, end=0.0, app=[floor()], keys=[(0,rest),(0.5,breathe),(1,rest)])
+
+# --- mountain climber: high plank, one knee drives towards the chest, then the other
+mcfoot = (50, FLOOR); mchand = (131, FLOOR); mcsh = (128, 116)
+mchip, mca = body_line(mcfoot, mcsh)
+def climber(f1, f2):
+    return P(mchip, mca, mca-8, [('p', mchand, 1), ('p', (mchand[0]+2, mchand[1]), 1)], [('p', f1, 1), ('p', f2, 1)])
+back1, back2 = (50, FLOOR), (52, FLOOR)
+fwd = (98, 150)
+a1, a2 = climber(fwd, back2), climber(back1, (fwd[0]+2, fwd[1]))
+ANIMS['mountainClimber'] = dict(canvas=(200,170), dur=2, end=0.0, app=[floor()], keys=[(0,climber(back1, back2)),(0.2,a1),(0.4,climber(back1, back2)),(0.6,a2),(0.8,climber(back1, back2)),(1,climber(back1, back2))])
+
+# --- glute bridge: on the back, feet flat, hips lift into a straight line
+gsh = (66, 149); gfoot = (128, FLOOR)
+def bridge(deg):
+    hip = along(gsh, deg, TORSO)
+    return P(hip, ang(hip, gsh), 180, [('a', 4, 2), ('a', 6, 4)], [('p', gfoot, -1), ('p', (gfoot[0]+2, gfoot[1]), -1)])
+down, up = bridge(-2), bridge(-28)
+ANIMS['gluteBridge'] = dict(canvas=(200,170), dur=3, end=0.5, app=[floor()], keys=[(0,down),(0.1,down),(0.45,up),(0.6,up),(0.95,down),(1,down)])
+
+# --- wall sit: back on the wall, thighs level, held while breathing
+WS = 60; wsfoot = (92, FLOOR)
+def wallsit(dy):
+    hip = (WS+8, FLOOR-23-dy)
+    return P(hip, -90, -90, [('a', 70, 85), ('a', 72, 88)], [('p', wsfoot, -1), ('p', (wsfoot[0]+2, wsfoot[1]), -1)])
+rest, breathe = wallsit(0), wallsit(1)
+ANIMS['wallSit'] = dict(canvas=(200,170), dur=4, end=0.0, app=[((WS, 30), (WS, FLOOR+1.5)), floor()], keys=[(0,rest),(0.5,breathe),(1,rest)])
+
+# --- Bulgarian split squat: rear foot on a box, front foot on the floor
+bsbox = 130; bsback = (60, bsbox); bsfront = (126, FLOOR)
+def split(hip, torso):
+    return P(hip, torso, torso, [('a', 95, 92), ('a', 85, 88)], [('p', bsfront, -1), ('p', bsback, -1)])
+up, down = split((105, 116), -88), split((98, 136), -80)
+bs_lines = [((40, bsbox), (72, bsbox)), ((40, bsbox), (40, FLOOR+1.5)), ((72, bsbox), (72, FLOOR+1.5))]
+ANIMS['bulgarianSplitSquat'] = dict(canvas=(200,170), dur=3.5, end=0.0, app=bs_lines + [floor()], keys=[(0,up),(0.1,up),(0.45,down),(0.55,down),(0.9,up),(1,up)])
+
+# --- jump squat: down into the squat, jump off the floor, land softly
+def jsquat(hip, torso, arm, lift):
+    return P(hip, torso, torso, [('a', arm, arm+2), ('a', arm+4, arm+6)], [('p', (102, FLOOR-lift), -1), ('p', (98, FLOOR-lift), -1)])
+stand, low, air = jsquat((99, 110), -90, 8, 0), jsquat((74, 131), -58, -4, 0), jsquat((100, 92), -90, -100, 18)
+ANIMS['jumpSquat'] = dict(canvas=(200,170), dur=2.5, end=0.0, app=[floor()], keys=[(0,stand),(0.1,stand),(0.4,low),(0.55,air),(0.65,air),(0.8,low),(0.95,stand),(1,stand)])

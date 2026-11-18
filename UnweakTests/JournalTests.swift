@@ -217,18 +217,20 @@ struct AchievementAndGoalTests {
     @Test func fiveNextWorkoutsFromTheSkillsFirstThenGeneral() throws {
         let pro = Access(isPro: true)
         let frontLever = try #require(catalog.goals.first { $0.id == "frontLever" })
-        // The skill's workouts were trained, the oldest first in the list.
+        // Two of the skill's workouts were trained, the older one first.
         let trained = [
             entry(day(11, 4), plan: "frontLeverBuildUp"),
-            entry(day(11, 2), plan: "pullStrength"),
+            entry(day(11, 2), plan: "frontLeverAdvancedTuck"),
         ]
-        let next = stats(trained).nextWorkouts(in: catalog, access: pro, preferring: frontLever.plans, count: 5)
-        #expect(next.count == 5)
-        // Skill workouts first: never trained (pullDay), then the oldest, then the newest.
-        #expect(next.prefix(3).map(\.id) == ["pullDay", "pullStrength", "frontLeverBuildUp"])
+        let next = stats(trained).nextWorkouts(in: catalog, access: pro, preferring: frontLever.plans, count: 7)
+        #expect(next.count == 7)
+        // Skill workouts first: never trained in order, then the oldest, then the newest.
+        #expect(next.prefix(5).map(\.id) == [
+            "frontLeverOneLeg", "frontLeverStraddle", "frontLeverFull", "frontLeverAdvancedTuck", "frontLeverBuildUp",
+        ])
         // Then general workouts, no skill-only plans, no duplicates.
         // Checked outside #expect: the macro cannot expand a call inside the `&&` autoclosure.
-        let restIsGeneral = next.dropFirst(3).allSatisfy { plan in
+        let restIsGeneral = next.dropFirst(5).allSatisfy { plan in
             plan.category != .skill && !frontLever.plans.contains(plan.id)
         }
         #expect(restIsGeneral)

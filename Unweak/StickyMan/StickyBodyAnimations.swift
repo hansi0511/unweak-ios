@@ -550,4 +550,355 @@ extension BodyAnimation {
                      legs: [.pinned(p(100, 157), .negative), .angles(70, 92)])),
         ]
     )
+
+    static let inclinePushUp = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 3,
+        endPoseProgress: 0,
+        apparatus: [line(p(134, 136), p(170, 136)), line(p(134, 136), p(134, 158.5)), line(p(170, 136), p(170, 158.5)), floorLine],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(109.85, 124.39), torso: -43.93, neck: -53.93,
+                     arms: [.pinned(p(148, 136), .positive), .pinned(p(150, 136), .positive)],
+                     legs: [.pinned(p(76, 157), .positive), .pinned(p(78, 157), .positive)])),
+            Key(time: 0.1, pose: BodyPose(hip: p(109.85, 124.39), torso: -43.93, neck: -53.93,
+                     arms: [.pinned(p(148, 136), .positive), .pinned(p(150, 136), .positive)],
+                     legs: [.pinned(p(76, 157), .positive), .pinned(p(78, 157), .positive)])),
+            Key(time: 0.45, pose: BodyPose(hip: p(116.72, 133.53), torso: -29.96, neck: -35.96,
+                     arms: [.pinned(p(148, 136), .positive), .pinned(p(150, 136), .positive)],
+                     legs: [.pinned(p(76, 157), .positive), .pinned(p(78, 157), .positive)])),
+            Key(time: 0.55, pose: BodyPose(hip: p(116.72, 133.53), torso: -29.96, neck: -35.96,
+                     arms: [.pinned(p(148, 136), .positive), .pinned(p(150, 136), .positive)],
+                     legs: [.pinned(p(76, 157), .positive), .pinned(p(78, 157), .positive)])),
+            Key(time: 0.9, pose: BodyPose(hip: p(109.85, 124.39), torso: -43.93, neck: -53.93,
+                     arms: [.pinned(p(148, 136), .positive), .pinned(p(150, 136), .positive)],
+                     legs: [.pinned(p(76, 157), .positive), .pinned(p(78, 157), .positive)])),
+            Key(time: 1, pose: BodyPose(hip: p(109.85, 124.39), torso: -43.93, neck: -53.93,
+                     arms: [.pinned(p(148, 136), .positive), .pinned(p(150, 136), .positive)],
+                     legs: [.pinned(p(76, 157), .positive), .pinned(p(78, 157), .positive)])),
+        ]
+    )
+
+    static let declinePushUp = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 3,
+        endPoseProgress: 0,
+        apparatus: [line(p(34, 132), p(70, 132)), line(p(34, 132), p(34, 158.5)), line(p(70, 132), p(70, 158.5)), floorLine],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(98.19, 123.29), torso: -10.68, neck: -16.68,
+                     arms: [.pinned(p(140, 157), .positive), .pinned(p(142, 157), .positive)],
+                     legs: [.pinned(p(52, 132), .positive), .pinned(p(54, 132), .positive)])),
+            Key(time: 0.1, pose: BodyPose(hip: p(98.19, 123.29), torso: -10.68, neck: -16.68,
+                     arms: [.pinned(p(140, 157), .positive), .pinned(p(142, 157), .positive)],
+                     legs: [.pinned(p(52, 132), .positive), .pinned(p(54, 132), .positive)])),
+            Key(time: 0.45, pose: BodyPose(hip: p(99, 132.54), torso: 0.66, neck: -1.34,
+                     arms: [.pinned(p(140, 157), .positive), .pinned(p(142, 157), .positive)],
+                     legs: [.pinned(p(52, 132), .positive), .pinned(p(54, 132), .positive)])),
+            Key(time: 0.55, pose: BodyPose(hip: p(99, 132.54), torso: 0.66, neck: -1.34,
+                     arms: [.pinned(p(140, 157), .positive), .pinned(p(142, 157), .positive)],
+                     legs: [.pinned(p(52, 132), .positive), .pinned(p(54, 132), .positive)])),
+            Key(time: 0.9, pose: BodyPose(hip: p(98.19, 123.29), torso: -10.68, neck: -16.68,
+                     arms: [.pinned(p(140, 157), .positive), .pinned(p(142, 157), .positive)],
+                     legs: [.pinned(p(52, 132), .positive), .pinned(p(54, 132), .positive)])),
+            Key(time: 1, pose: BodyPose(hip: p(98.19, 123.29), torso: -10.68, neck: -16.68,
+                     arms: [.pinned(p(140, 157), .positive), .pinned(p(142, 157), .positive)],
+                     legs: [.pinned(p(52, 132), .positive), .pinned(p(54, 132), .positive)])),
+        ]
+    )
+
+    static let diamondPushUp = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 3,
+        endPoseProgress: 0,
+        apparatus: [floorLine],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(91.58, 135.09), torso: -27.79, neck: -35.79,
+                     arms: [.pinned(p(128, 157), .positive), .pinned(p(129, 157), .positive)],
+                     legs: [.pinned(p(50, 157), .positive), .pinned(p(52, 157), .positive)])),
+            Key(time: 0.1, pose: BodyPose(hip: p(91.58, 135.09), torso: -27.79, neck: -35.79,
+                     arms: [.pinned(p(128, 157), .positive), .pinned(p(129, 157), .positive)],
+                     legs: [.pinned(p(50, 157), .positive), .pinned(p(52, 157), .positive)])),
+            Key(time: 0.45, pose: BodyPose(hip: p(95.77, 146.32), torso: -13.13, neck: -17.13,
+                     arms: [.pinned(p(128, 157), .positive), .pinned(p(129, 157), .positive)],
+                     legs: [.pinned(p(50, 157), .positive), .pinned(p(52, 157), .positive)])),
+            Key(time: 0.55, pose: BodyPose(hip: p(95.77, 146.32), torso: -13.13, neck: -17.13,
+                     arms: [.pinned(p(128, 157), .positive), .pinned(p(129, 157), .positive)],
+                     legs: [.pinned(p(50, 157), .positive), .pinned(p(52, 157), .positive)])),
+            Key(time: 0.9, pose: BodyPose(hip: p(91.58, 135.09), torso: -27.79, neck: -35.79,
+                     arms: [.pinned(p(128, 157), .positive), .pinned(p(129, 157), .positive)],
+                     legs: [.pinned(p(50, 157), .positive), .pinned(p(52, 157), .positive)])),
+            Key(time: 1, pose: BodyPose(hip: p(91.58, 135.09), torso: -27.79, neck: -35.79,
+                     arms: [.pinned(p(128, 157), .positive), .pinned(p(129, 157), .positive)],
+                     legs: [.pinned(p(50, 157), .positive), .pinned(p(52, 157), .positive)])),
+        ]
+    )
+
+    static let benchDip = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 3,
+        endPoseProgress: 0,
+        apparatus: [line(p(50, 120), p(86, 120)), line(p(50, 120), p(50, 158.5)), line(p(86, 120), p(86, 158.5)), floorLine],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(93, 120), torso: -92.73, neck: -84,
+                     arms: [.pinned(p(84, 120), .negative), .pinned(p(82, 120), .negative)],
+                     legs: [.pinned(p(119, 157), .negative), .pinned(p(121, 157), .negative)])),
+            Key(time: 0.1, pose: BodyPose(hip: p(93, 120), torso: -92.73, neck: -84,
+                     arms: [.pinned(p(84, 120), .negative), .pinned(p(82, 120), .negative)],
+                     legs: [.pinned(p(119, 157), .negative), .pinned(p(121, 157), .negative)])),
+            Key(time: 0.45, pose: BodyPose(hip: p(96, 140), torso: -94.09, neck: -84,
+                     arms: [.pinned(p(84, 120), .negative), .pinned(p(82, 120), .negative)],
+                     legs: [.pinned(p(119, 157), .negative), .pinned(p(121, 157), .negative)])),
+            Key(time: 0.55, pose: BodyPose(hip: p(96, 140), torso: -94.09, neck: -84,
+                     arms: [.pinned(p(84, 120), .negative), .pinned(p(82, 120), .negative)],
+                     legs: [.pinned(p(119, 157), .negative), .pinned(p(121, 157), .negative)])),
+            Key(time: 0.9, pose: BodyPose(hip: p(93, 120), torso: -92.73, neck: -84,
+                     arms: [.pinned(p(84, 120), .negative), .pinned(p(82, 120), .negative)],
+                     legs: [.pinned(p(119, 157), .negative), .pinned(p(121, 157), .negative)])),
+            Key(time: 1, pose: BodyPose(hip: p(93, 120), torso: -92.73, neck: -84,
+                     arms: [.pinned(p(84, 120), .negative), .pinned(p(82, 120), .negative)],
+                     legs: [.pinned(p(119, 157), .negative), .pinned(p(121, 157), .negative)])),
+        ]
+    )
+
+    static let deadHang = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 4,
+        endPoseProgress: 0,
+        apparatus: [line(p(60, 20), p(140, 20))],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+            Key(time: 0.5, pose: BodyPose(hip: p(100, 104.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+            Key(time: 1, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+        ]
+    )
+
+    static let scapulaPullUp = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 3,
+        endPoseProgress: 0.5,
+        apparatus: [line(p(60, 20), p(140, 20))],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+            Key(time: 0.15, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+            Key(time: 0.45, pose: BodyPose(hip: p(100, 99), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+            Key(time: 0.6, pose: BodyPose(hip: p(100, 99), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+            Key(time: 0.9, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+            Key(time: 1, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+        ]
+    )
+
+    static let hangingLegRaise = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 3.5,
+        endPoseProgress: 0.5,
+        apparatus: [line(p(60, 20), p(140, 20))],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+            Key(time: 0.1, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+            Key(time: 0.45, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(2, 2), .angles(0, 0)])),
+            Key(time: 0.6, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(2, 2), .angles(0, 0)])),
+            Key(time: 0.95, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+            Key(time: 1, pose: BodyPose(hip: p(100, 105.5), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 20), .positive), .pinned(p(102, 20), .positive)],
+                     legs: [.angles(88, 92), .angles(92, 90)])),
+        ]
+    )
+
+    static let tuckLSit = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 4,
+        endPoseProgress: 0.5,
+        apparatus: [line(p(84, 128), p(118, 128)), floorLine],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(101, 127), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 128), .positive), .pinned(p(102, 128), .positive)],
+                     legs: [.angles(-40, 95), .angles(-38, 97)])),
+            Key(time: 0.3, pose: BodyPose(hip: p(101, 126), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 128), .positive), .pinned(p(102, 128), .positive)],
+                     legs: [.angles(-52, 85), .angles(-50, 87)])),
+            Key(time: 0.7, pose: BodyPose(hip: p(101, 126), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 128), .positive), .pinned(p(102, 128), .positive)],
+                     legs: [.angles(-52, 85), .angles(-50, 87)])),
+            Key(time: 1, pose: BodyPose(hip: p(101, 127), torso: -90, neck: -90,
+                     arms: [.pinned(p(100, 128), .positive), .pinned(p(102, 128), .positive)],
+                     legs: [.angles(-40, 95), .angles(-38, 97)])),
+        ]
+    )
+
+    static let hollowHold = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 4,
+        endPoseProgress: 0,
+        apparatus: [floorLine],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(112, 149), torso: 192, neck: 196,
+                     arms: [.angles(194, 194), .angles(196, 196)],
+                     legs: [.angles(-12, -12), .angles(-10, -10)])),
+            Key(time: 0.5, pose: BodyPose(hip: p(112, 149), torso: 190, neck: 194,
+                     arms: [.angles(192, 192), .angles(194, 194)],
+                     legs: [.angles(-10, -10), .angles(-8, -8)])),
+            Key(time: 1, pose: BodyPose(hip: p(112, 149), torso: 192, neck: 196,
+                     arms: [.angles(194, 194), .angles(196, 196)],
+                     legs: [.angles(-12, -12), .angles(-10, -10)])),
+        ]
+    )
+
+    static let mountainClimber = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 2,
+        endPoseProgress: 0,
+        apparatus: [floorLine],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(91.6, 135.13), torso: -27.73, neck: -35.73,
+                     arms: [.pinned(p(131, 157), .positive), .pinned(p(133, 157), .positive)],
+                     legs: [.pinned(p(50, 157), .positive), .pinned(p(52, 157), .positive)])),
+            Key(time: 0.2, pose: BodyPose(hip: p(91.6, 135.13), torso: -27.73, neck: -35.73,
+                     arms: [.pinned(p(131, 157), .positive), .pinned(p(133, 157), .positive)],
+                     legs: [.pinned(p(98, 150), .positive), .pinned(p(52, 157), .positive)])),
+            Key(time: 0.4, pose: BodyPose(hip: p(91.6, 135.13), torso: -27.73, neck: -35.73,
+                     arms: [.pinned(p(131, 157), .positive), .pinned(p(133, 157), .positive)],
+                     legs: [.pinned(p(50, 157), .positive), .pinned(p(52, 157), .positive)])),
+            Key(time: 0.6, pose: BodyPose(hip: p(91.6, 135.13), torso: -27.73, neck: -35.73,
+                     arms: [.pinned(p(131, 157), .positive), .pinned(p(133, 157), .positive)],
+                     legs: [.pinned(p(50, 157), .positive), .pinned(p(100, 150), .positive)])),
+            Key(time: 0.8, pose: BodyPose(hip: p(91.6, 135.13), torso: -27.73, neck: -35.73,
+                     arms: [.pinned(p(131, 157), .positive), .pinned(p(133, 157), .positive)],
+                     legs: [.pinned(p(50, 157), .positive), .pinned(p(52, 157), .positive)])),
+            Key(time: 1, pose: BodyPose(hip: p(91.6, 135.13), torso: -27.73, neck: -35.73,
+                     arms: [.pinned(p(131, 157), .positive), .pinned(p(133, 157), .positive)],
+                     legs: [.pinned(p(50, 157), .positive), .pinned(p(52, 157), .positive)])),
+        ]
+    )
+
+    static let gluteBridge = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 3,
+        endPoseProgress: 0.5,
+        apparatus: [floorLine],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(107.97, 147.53), torso: 178, neck: 180,
+                     arms: [.angles(4, 2), .angles(6, 4)],
+                     legs: [.pinned(p(128, 157), .negative), .pinned(p(130, 157), .negative)])),
+            Key(time: 0.1, pose: BodyPose(hip: p(107.97, 147.53), torso: 178, neck: 180,
+                     arms: [.angles(4, 2), .angles(6, 4)],
+                     legs: [.pinned(p(128, 157), .negative), .pinned(p(130, 157), .negative)])),
+            Key(time: 0.45, pose: BodyPose(hip: p(103.08, 129.28), torso: 152, neck: 180,
+                     arms: [.angles(4, 2), .angles(6, 4)],
+                     legs: [.pinned(p(128, 157), .negative), .pinned(p(130, 157), .negative)])),
+            Key(time: 0.6, pose: BodyPose(hip: p(103.08, 129.28), torso: 152, neck: 180,
+                     arms: [.angles(4, 2), .angles(6, 4)],
+                     legs: [.pinned(p(128, 157), .negative), .pinned(p(130, 157), .negative)])),
+            Key(time: 0.95, pose: BodyPose(hip: p(107.97, 147.53), torso: 178, neck: 180,
+                     arms: [.angles(4, 2), .angles(6, 4)],
+                     legs: [.pinned(p(128, 157), .negative), .pinned(p(130, 157), .negative)])),
+            Key(time: 1, pose: BodyPose(hip: p(107.97, 147.53), torso: 178, neck: 180,
+                     arms: [.angles(4, 2), .angles(6, 4)],
+                     legs: [.pinned(p(128, 157), .negative), .pinned(p(130, 157), .negative)])),
+        ]
+    )
+
+    static let wallSit = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 4,
+        endPoseProgress: 0,
+        apparatus: [line(p(60, 30), p(60, 158.5)), floorLine],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(68, 134), torso: -90, neck: -90,
+                     arms: [.angles(70, 85), .angles(72, 88)],
+                     legs: [.pinned(p(92, 157), .negative), .pinned(p(94, 157), .negative)])),
+            Key(time: 0.5, pose: BodyPose(hip: p(68, 133), torso: -90, neck: -90,
+                     arms: [.angles(70, 85), .angles(72, 88)],
+                     legs: [.pinned(p(92, 157), .negative), .pinned(p(94, 157), .negative)])),
+            Key(time: 1, pose: BodyPose(hip: p(68, 134), torso: -90, neck: -90,
+                     arms: [.angles(70, 85), .angles(72, 88)],
+                     legs: [.pinned(p(92, 157), .negative), .pinned(p(94, 157), .negative)])),
+        ]
+    )
+
+    static let bulgarianSplitSquat = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 3.5,
+        endPoseProgress: 0,
+        apparatus: [line(p(40, 130), p(72, 130)), line(p(40, 130), p(40, 158.5)), line(p(72, 130), p(72, 158.5)), floorLine],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(105, 116), torso: -88, neck: -88,
+                     arms: [.angles(95, 92), .angles(85, 88)],
+                     legs: [.pinned(p(126, 157), .negative), .pinned(p(60, 130), .negative)])),
+            Key(time: 0.1, pose: BodyPose(hip: p(105, 116), torso: -88, neck: -88,
+                     arms: [.angles(95, 92), .angles(85, 88)],
+                     legs: [.pinned(p(126, 157), .negative), .pinned(p(60, 130), .negative)])),
+            Key(time: 0.45, pose: BodyPose(hip: p(98, 136), torso: -80, neck: -80,
+                     arms: [.angles(95, 92), .angles(85, 88)],
+                     legs: [.pinned(p(126, 157), .negative), .pinned(p(60, 130), .negative)])),
+            Key(time: 0.55, pose: BodyPose(hip: p(98, 136), torso: -80, neck: -80,
+                     arms: [.angles(95, 92), .angles(85, 88)],
+                     legs: [.pinned(p(126, 157), .negative), .pinned(p(60, 130), .negative)])),
+            Key(time: 0.9, pose: BodyPose(hip: p(105, 116), torso: -88, neck: -88,
+                     arms: [.angles(95, 92), .angles(85, 88)],
+                     legs: [.pinned(p(126, 157), .negative), .pinned(p(60, 130), .negative)])),
+            Key(time: 1, pose: BodyPose(hip: p(105, 116), torso: -88, neck: -88,
+                     arms: [.angles(95, 92), .angles(85, 88)],
+                     legs: [.pinned(p(126, 157), .negative), .pinned(p(60, 130), .negative)])),
+        ]
+    )
+
+    static let jumpSquat = BodyAnimation(
+        canvas: CGSize(width: 200, height: 170),
+        duration: 2.5,
+        endPoseProgress: 0,
+        apparatus: [floorLine],
+        keys: [
+            Key(time: 0, pose: BodyPose(hip: p(99, 110), torso: -90, neck: -90,
+                     arms: [.angles(8, 10), .angles(12, 14)],
+                     legs: [.pinned(p(102, 157), .negative), .pinned(p(98, 157), .negative)])),
+            Key(time: 0.1, pose: BodyPose(hip: p(99, 110), torso: -90, neck: -90,
+                     arms: [.angles(8, 10), .angles(12, 14)],
+                     legs: [.pinned(p(102, 157), .negative), .pinned(p(98, 157), .negative)])),
+            Key(time: 0.4, pose: BodyPose(hip: p(74, 131), torso: -58, neck: -58,
+                     arms: [.angles(-4, -2), .angles(0, 2)],
+                     legs: [.pinned(p(102, 157), .negative), .pinned(p(98, 157), .negative)])),
+            Key(time: 0.55, pose: BodyPose(hip: p(100, 92), torso: -90, neck: -90,
+                     arms: [.angles(-100, -98), .angles(-96, -94)],
+                     legs: [.pinned(p(102, 139), .negative), .pinned(p(98, 139), .negative)])),
+            Key(time: 0.65, pose: BodyPose(hip: p(100, 92), torso: -90, neck: -90,
+                     arms: [.angles(-100, -98), .angles(-96, -94)],
+                     legs: [.pinned(p(102, 139), .negative), .pinned(p(98, 139), .negative)])),
+            Key(time: 0.8, pose: BodyPose(hip: p(74, 131), torso: -58, neck: -58,
+                     arms: [.angles(-4, -2), .angles(0, 2)],
+                     legs: [.pinned(p(102, 157), .negative), .pinned(p(98, 157), .negative)])),
+            Key(time: 0.95, pose: BodyPose(hip: p(99, 110), torso: -90, neck: -90,
+                     arms: [.angles(8, 10), .angles(12, 14)],
+                     legs: [.pinned(p(102, 157), .negative), .pinned(p(98, 157), .negative)])),
+            Key(time: 1, pose: BodyPose(hip: p(99, 110), torso: -90, neck: -90,
+                     arms: [.angles(8, 10), .angles(12, 14)],
+                     legs: [.pinned(p(102, 157), .negative), .pinned(p(98, 157), .negative)])),
+        ]
+    )
 }
